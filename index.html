@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oscar Cheung</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #fff;
+        }
+
+        main {
+            opacity: 0;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-out {
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <section class="intro">
+                <div class="intro-title">
+                    <h1>Product<br>Designer</h1>
+                </div>
+                <div class="intro-text">
+                    <p>Hi, I'm Oscar, A UI/UX<br>Designer Creating<br>Intuitive Digital<br>Experiences.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="images/Oscar-Profile.JPG" alt="Profile Image">
+                </div>
+            </section>
+
+            <div class="section-header">
+                <h2>Selected Works</h2>
+                <nav class="main-nav">
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+            </div>
+
+            <section class="work-section">
+                <div class="work-grid">
+                    <div class="project-card">
+                        <a href="breast-cancer-hub.html" class="project-image">
+                            <img src="images/BreastCancer.png" alt="Breast Cancer Hub Interface">
+                        </a>
+                        <div class="project-info">
+                            <h3 class="project-title">Breast Cancer Hub, 2024</h3>
+                            <p class="project-subtitle">Breast Cancer Self-Check Mobile App</p>
+                            <div class="project-tags">
+                                <div class="tag">DESIGN</div>
+                                <div class="tag">DEVELOPMENT</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <a href="golden-dragon.html" class="project-image">
+                            <img src="images/GoldenDragon.png" alt="Golden Dragon Interface">
+                        </a>
+                        <div class="project-info">
+                            <h3 class="project-title">Golden Dragon, 2024</h3>
+                            <p class="project-subtitle">Golden Dragon Website</p>
+                            <div class="project-tags">
+                                <div class="tag">DESIGN</div>
+                                <div class="tag">DEVELOPMENT</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-location">
+                        <p>Chapel Hill, NC</p>
+                        <p class="time">1:01:12 PM</p>
+                    </div>
+                    <div class="footer-right">
+                        <div class="footer-links">
+                            <a href="https://www.linkedin.com/in/oscarcheungg/" target="_blank">LinkedIn</a>
+                            <a href="https://github.com/oscarcheungg" target="_blank">GitHub</a>
+                            <a href="mailto:oscarcheung2023@gmail.com">Email</a>
+                        </div>
+                        <div class="footer-copyright">
+                            <p>Copyright © 2025 Oscar Cheung. All rights reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Let's Connect!</h2>
+                <button class="close-button">&times;</button>
+            </div>
+            <p>I'm always open to new opportunities and collaborations.</p>
+            <div class="modal-links">
+                <a href="https://www.linkedin.com/in/oscar-cheung/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/oscarcheung102" target="_blank">GitHub</a>
+                <a href="mailto:oscarcheung102@gmail.com">Email</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update time
+        function updateTime() {
+            const timeElement = document.querySelector('.time');
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        // Update time every second
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial update
+
+        // Handle navigation with fade effect
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('target') === '_blank') return;
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                const mainContent = document.querySelector('main');
+                mainContent.classList.add('fade-out');
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
