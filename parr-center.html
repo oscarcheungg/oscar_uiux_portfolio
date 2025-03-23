@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parr Center | Oscar Cheung</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        body {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        main {
+            opacity: 0;
+            animation: fadeIn 0.6s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header class="project-header">
+            <div class="container">
+                <div class="project-title">
+                    <h1>Parr Center</h1>
+                    <span class="project-subtitle">An Ethics Learning Platform</span>
+                </div>
+                <a href="index.html" class="close-button">×</a>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="project-cover">
+                <img src="images/Parr-Center-Main.png" alt="Project Cover">
+            </div>
+
+            <section class="project-content">
+                <div class="project-overview-grid">
+                    <div class="project-meta-left">
+                        <div class="meta-item">
+                            <h3>Role</h3>
+                            <p>UI/UX Designer & Developer</p>
+                        </div>
+                        <div class="meta-item">
+                            <h3>Duration</h3>
+                            <p>Jan 2025 - Present</p>
+                        </div>
+                        <div class="meta-item">
+                            <h3>Tools</h3>
+                            <p>Figma, React.js</p>
+                        </div>
+                    </div>
+                    <div class="project-overview-right">
+                        <h3>Overview</h3>
+                        <p>This ethics learning platform was developed for UNC's Parr Center for Ethics in collaboration with TEDx, aiming to teach moral philosophy through interactive, scenario-based modules. The platform allows users to explore complex ethical dilemmas while tracking their progress and reflecting through personal journals. I contributed to the UI/UX design by helping shape key screens and layout decisions to ensure the interface was accessible, engaging, and aligned with UNC's academic branding. My primary role in this project has been focused on front-end development, where I translated design prototypes into responsive, functional components using React.js, contributing to the platform's structure, interactivity, and user experience.</p>
+                        <a href="https://www.figma.com/design/uO5976p3Xeo1MfWzu5ZReu/department-of-philosophy-%2B-cssg?node-id=204-156&t=lwAwhF5qym2f6ZtJ-1" class="view-link" target="_blank">View prototype</a>
+                    </div>
+                </div>
+
+                <section class="project-section">
+                    <h3>The Challenge</h3>
+                    <p>How can we create an engaging digital platform that makes ethics education more accessible and interactive while maintaining academic rigor and fostering meaningful discussions?</p>
+                </section>
+
+                <div class="project-cover large-image">
+                    <img src="images/Flashcard.png" alt="Parr Center Interface Design" style="width: 100%; max-width: 100%; height: auto;">
+                </div>
+                <p style="font-size: 1.8rem; line-height: 1.6; color: var(--color-text); margin-top: var(--spacing-md); margin-bottom: var(--spacing-md); text-align: left;">This flashcard page was designed to support quick, digestible learning of ethical concepts. The two-column layout separates questions and answers clearly, enhancing readability and retention. Users can toggle between flashcard view and test mode for active recall practice. The use of soft blue tones maintains brand consistency with UNC while keeping the interface visually calm and focused. Navigation is kept minimal to reduce distractions and keep learners engaged with the content.</p>
+
+                <div class="project-cover large-image">
+                    <img src="images/Journal.png" alt="Parr Center Interface Features" style="width: 100%; max-width: 100%; height: auto;">
+                </div>
+                <p style="font-size: 1.8rem; line-height: 1.6; color: var(--color-text); margin-top: var(--spacing-md); margin-bottom: var(--spacing-md); text-align: left;">This journal page was designed to encourage personal reflection and critical thinking throughout the learning experience. The layout supports long-form responses by keeping the focus on readability and simplicity, with clear section headers like Immediate Engagement and Argument Builder to guide the user. The clean, text-focused design minimizes distractions and reinforces the academic tone of the platform, while allowing students to track their ethical reasoning and development over time.</p>
+
+                <div class="project-cover large-image">
+                    <img src="images/Arguement.png" alt="Parr Center User Flow" style="width: 100%; max-width: 100%; height: auto;">
+                </div>
+                <p style="font-size: 1.8rem; line-height: 1.6; color: var(--color-text); margin-top: var(--spacing-xs); margin-bottom: var(--spacing-xl); text-align: left;">This screen is designed to help users practice structured ethical reasoning by comparing opposing perspectives in a dilemma. The two-column layout visually separates Side A and Side B, making it easy to input and organize arguments. Prompts encourage users to provide at least three reasons for each side, reinforcing critical thinking and balanced analysis. The clean and minimal design keeps the focus on the content, while the progress indicator at the top helps guide users through the multi-part exercise.</p>
+
+                <div style="border-top: 1px solid #eee; margin: 40px 0 60px 0;"></div>
+
+                <section class="project-section">
+                    <h3>Implementation and Findings</h3>
+                    <div class="project-overview-right">
+                        <p>Following the design phase, I transitioned into working closely with the backend team to ensure seamless integration of the front-end components. Using React.js, I developed responsive interfaces based on our design system, focusing on consistency, accessibility, and performance. This collaboration involved aligning API structures with UI behavior, debugging integration issues, and refining user flows based on early testing. Through this process, we identified the importance of maintaining clear communication between design and development, which helped us catch gaps early and iterate more efficiently on both functionality and user experience.</p>
+                    </div>
+                </section>
+
+                <section class="project-section">
+                    <h3>Next Steps</h3>
+                    <div class="project-overview-right">
+                        <p>We are continuing to work closely with the Parr Center for Ethics to ensure that each page aligns with their educational goals and content needs. Ongoing collaboration with the backend team remains a priority as we integrate more features and refine existing functionality. We are actively developing additional pages for the platform, focusing on maintaining design consistency, improving accessibility, and enhancing the overall user experience based on ongoing feedback.</p>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-location">
+                    <p>Chapel Hill, NC</p>
+                    <p class="time">17:46:56</p>
+                </div>
+                <div class="footer-right">
+                    <div class="footer-links">
+                        <a href="https://www.linkedin.com/in/oscarcheungg/" target="_blank">LinkedIn</a>
+                        <a href="https://github.com/oscarcheungg" target="_blank">GitHub</a>
+                        <a href="mailto:oscarcheung2023@gmail.com">Email</a>
+                    </div>
+                    <div class="footer-copyright">
+                        <p>Copyright © 2025 Oscar Cheung. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update time
+        function updateTime() {
+            const timeElement = document.querySelector('.time');
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        // Update time every second
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial update
+
+        // Smooth page transitions
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.opacity = '1';
+        });
+
+        // Handle navigation with fade effect
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('target') === '_blank') return;
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                document.body.style.opacity = '0';
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html> 
