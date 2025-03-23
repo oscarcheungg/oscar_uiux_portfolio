@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe | Oscar Cheung</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        body {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        main {
+            opacity: 0;
+            animation: fadeIn 0.6s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header class="project-header">
+            <div class="container">
+                <div class="project-title">
+                    <h1>Vibe</h1>
+                    <span class="project-subtitle">Gamified Concert Finder</span>
+                </div>
+                <a href="index.html" class="close-button">×</a>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="project-cover">
+                <img src="images/Vibe-Home.png" alt="Project Cover">
+            </div>
+
+            <section class="project-content">
+                <div class="project-overview-grid">
+                    <div class="project-meta-left">
+                        <div class="meta-item">
+                            <h3>Role</h3>
+                            <p>UI/UX Designer</p>
+                        </div>
+                        <div class="meta-item">
+                            <h3>Duration</h3>
+                            <p>Jan 2025 - Present</p>
+                        </div>
+                        <div class="meta-item">
+                            <h3>Tools</h3>
+                            <p>Figma</p>
+                        </div>
+                    </div>
+                    <div class="project-overview-right">
+                        <h3>Overview</h3>
+                        <p>Vibe is a gamified concert discovery app designed to reinvent how users connect with live music. In a saturated digital landscape, Vibe stands out by turning concert hunting into a playful, personalized experience. The app combines intuitive search, genre-based filtering, and a dynamic "Hype Meter" that gamifies user engagement and builds excitement for upcoming shows.</p>
+                        <p>With a clean and modern interface, Vibe invites users to explore concerts based on mood, genre, and location. The core innovation lies in its social-meets-playful interaction model—every artist profile and concert listing is designed to feel like part of a game, increasing user retention and emotional investment. This project explores the intersection of interaction design, motion design, and user psychology to craft an experience that feels both effortless and exciting.</p>
+                        <a href="https://www.figma.com/design/N7GVitYYLyh1ZjixucQ91u/Gamified-Concert-Finder---Oscar?node-id=0-1&t=4LZkUfo6LI0jxS99-1" class="view-link" target="_blank">View prototype</a>
+                    </div>
+                </div>
+
+                <section class="project-section">
+                    <h3>The Challenge</h3>
+                    <p>How can we make discovering live music feel more personal, exciting, and emotionally engaging for the next generation of concert-goers?</p>
+                </section>
+
+                <div class="project-cover large-image">
+                    <img src="images/Vibe-More.png" alt="Vibe Interface Design" style="width: 100%; max-width: 100%; height: auto;">
+                </div>
+                <p style="font-size: 1.8rem; line-height: 1.6; color: var(--color-text); margin-top: var(--spacing-md); margin-bottom: var(--spacing-md); text-align: left;">This feature in Vibe reimagines concert discovery through gamification and rewards. The first screen presents a concert detail view enriched with artist trivia, turning passive browsing into an interactive experience. Users can answer fun questions to earn "Hype Points," encouraging deeper engagement and rewarding fan knowledge. Key event info is displayed clearly, supported by a strong visual hierarchy and intuitive CTAs like "Save for Later" and "Buy Ticket." The second screen showcases the rewards dashboard, where users track their Hype Meter progress and claim prizes like badges, mystery boxes, or merch. This system adds motivation and delight, using visual feedback and micro-interactions to create a habit-forming loop. Together, these screens reflect a product design approach focused on fun, interactivity, and emotional connection with live music.</p>
+
+                <div style="border-top: 1px solid #eee; margin: 40px 0 60px 0;"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-location">
+                    <p>Chapel Hill, NC</p>
+                    <p class="time">17:46:56</p>
+                </div>
+                <div class="footer-right">
+                    <div class="footer-links">
+                        <a href="https://www.linkedin.com/in/oscarcheungg/" target="_blank">LinkedIn</a>
+                        <a href="https://github.com/oscarcheungg" target="_blank">GitHub</a>
+                        <a href="mailto:oscarcheung2023@gmail.com">Email</a>
+                    </div>
+                    <div class="footer-copyright">
+                        <p>Copyright © 2025 Oscar Cheung. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update time
+        function updateTime() {
+            const timeElement = document.querySelector('.time');
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        // Update time every second
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial update
+
+        // Smooth page transitions
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.opacity = '1';
+        });
+
+        // Handle navigation with fade effect
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('target') === '_blank') return;
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                document.body.style.opacity = '0';
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html> 
