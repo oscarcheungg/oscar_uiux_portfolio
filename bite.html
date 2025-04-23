@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bite | Oscar Cheung</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        body {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        main {
+            opacity: 0;
+            animation: fadeIn 0.6s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header class="project-header">
+            <div class="container">
+                <div class="project-title">
+                    <h1>Bite</h1>
+                    <span class="project-subtitle">Dining Made Social and Simple</span>
+                </div>
+                <a href="index.html" class="close-button">×</a>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="project-cover">
+                <img src="images/Bite-Beginning.png" alt="Project Cover">
+            </div>
+
+            <section class="project-content">
+                <div class="project-overview-grid">
+                    <div class="project-meta-left">
+                        <div class="meta-item">
+                            <h3>Role</h3>
+                            <p>UI/UX Designer & Developer</p>
+                        </div>
+                        <div class="meta-item">
+                            <h3>Duration</h3>
+                            <p>Mar 2025 - Apr 2025</p>
+                        </div>
+                        <div class="meta-item">
+                            <h3>Tools</h3>
+                            <p>Figma, React.js, SwiftUI, Django, PostgreSQL, Stripe</p>
+                        </div>
+                    </div>
+                    <div class="project-overview-right">
+                        <h3>Overview</h3>
+                        <p>Bite is a startup concept that reimagines the dining experience by blending restaurant discovery with social connection and smart ordering. Unlike traditional review apps, Bite allows users to share their dining experiences through photos and personalized dish reviews, helping friends discover what to eat—not just where. With Bite, users can scan a QR code at partner restaurants to instantly access the menu, place an order, and earn loyalty rewards, all without disrupting the restaurant's existing POS system. The app also highlights trending dishes and venues based on real-time social data, making dining out more fun, social, and rewarding. By combining seamless ordering, loyalty incentives, and a trusted network of food-loving friends, Bite creates a new kind of dining culture—one built on discovery, ease, and shared taste.</p>
+                        <a href="https://www.figma.com/design/Y0S2Kcj8GlkeJG6cRoHt2R/Bite?node-id=0-1&t=mw0n26wQQf9MPPOT-1" class="view-link" target="_blank">View project</a>
+                    </div>
+                </div>
+
+                <section class="project-section">
+                    <h3>The Challenge</h3>
+                    <p>How can we create a social dining platform that makes restaurant discovery more personal, engaging, and community-driven?</p>
+                </section>
+
+                <section class="project-section">
+                    <h3>User Research</h3>
+                    <div class="project-overview-right">
+                        <p>To guide the development of Bite, I conducted a competitive analysis and user interviews to uncover gaps in the restaurant tech space. I analyzed four platforms—Sharp, InstaLaCarte, Clover, and Restolabs. Sharp offered strong visual design but wasn't tailored to food service. InstaLaCarte provided appealing, multilingual QR menus but lacked social or loyalty features. Clover featured robust POS integration but required proprietary hardware, limiting accessibility for smaller businesses. Restolabs supported advanced customization but was better suited for mid-sized restaurants with reliable tech infrastructure. These insights revealed a need for a lightweight, social dining solution that integrates QR ordering, personalized discovery, and loyalty rewards—without requiring restaurants to change their existing systems.</p>
+                        <p>In parallel, I interviewed frequent diners to understand user behaviors and frustrations. Many voiced distrust in anonymous reviews, a desire for recommendations from friends, and interest in earning rewards for dining out. These interviews informed key personas: socially-driven users who value convenience, trust, and personalization. Together, these research insights shaped Bite into a socially engaging, user-friendly platform that enhances both the dining and discovery experience.</p>
+                    </div>
+                </section>
+
+                <div class="project-cover large-image">
+                    <img src="images/Bite-Competitve-Analysis.png" alt="Bite Competitive Analysis" style="width: 100%; max-width: 100%; height: auto;">
+                </div>
+                <p style="font-size: 1.8rem; line-height: 1.6; color: var(--color-text); margin-top: var(--spacing-md); margin-bottom: var(--spacing-md); text-align: left;">Building on gaps identified in platforms like Clover and Restolabs, Bite's Discover screen brings a community-driven layer to restaurant discovery. It showcases personalized recommendations, trending dishes, and friends' recent visits in a visually rich, card-based layout. This social-first design not only helps users find new places to eat but also builds trust through familiar faces and shared experiences—features often missing from traditional ordering platforms.</p>
+
+                <div class="project-cover large-image">
+                    <img src="images/Persona_One.png" alt="Bite Profile Interface" style="width: 100%; max-width: 100%; height: auto;">
+                </div>
+
+                <div class="project-cover large-image">
+                    <img src="images/Persona_Two.png" alt="Bite Profile Interface" style="width: 100%; max-width: 100%; height: auto;">
+                </div>
+                <p style="font-size: 1.8rem; line-height: 1.6; color: var(--color-text); margin-top: var(--spacing-md); margin-bottom: var(--spacing-md); text-align: left;">Based on insights gathered from user interviews, I developed two detailed personas—Vy and Jack—to represent the app's core users: socially driven, convenience-seeking college students who dine out frequently with friends. Their goals and frustrations shaped key features in Bite, including the need for a unified QR code system, visible dish reviews, and cross-restaurant loyalty rewards. For example, Vy's emphasis on photo-based discovery influenced the visual layout of the Discover and Profile screens, while Jack's desire for speed and consistency informed the streamlined ordering flow and persistent reward tracking. These personas grounded the app in real user needs, ensuring that every feature—from restaurant cards to profile achievements—directly addressed their expectations and behaviors.</p>
+
+                <div style="border-top: 1px solid #eee; margin: 40px 0 60px 0;"></div>
+
+                <section class="project-section">
+                    <h3>Lo-Fi Wireframes</h3>
+                    <div class="project-overview-right">
+                        <p>To begin the design process, I created lo-fi wireframes to map out core user flows and test layout ideas quickly. These wireframes focused on structuring key features like the Discover feed, Rewards page, and QR ordering interface. Keeping them low-fidelity allowed for fast iteration based on early feedback, ensuring the experience aligned with user expectations before moving into high-fidelity visuals.</p>
+                    </div>
+                </section>
+
+                <div class="project-cover large-image">
+                    <img src="images/Bite-Lofi.png" alt="Bite Profile Interface" style="width: 100%; max-width: 100%; height: auto;">
+                </div>
+
+                <div style="border-top: 1px solid #eee; margin: 40px 0 60px 0;"></div>
+
+                <section class="project-section">
+                    <h3>Style Guide</h3>
+                    <div class="project-overview-right">
+                        <p>The style guide defines Bite's visual language, ensuring consistency and clarity across the app. The primary typeface, SF Pro, was chosen for its readability and modern feel, with a clear typographic hierarchy supporting different content levels. The color palette includes a deep blue brand color paired with a range of blacks and greys for strong contrast and accessibility. These design choices create a clean, trustworthy interface while maintaining visual harmony throughout the user experience.</p>
+                    </div>
+                </section>
+
+                <div class="project-cover large-image">
+                    <img src="images/Bite-Style.png" alt="Bite Style Guide" style="width: 100%; max-width: 100%; height: auto;">
+                </div>
+
+                <div style="border-top: 1px solid #eee; margin: 40px 0 60px 0;"></div>
+
+                <section class="project-section">
+                    <h3>Hi-Fi Prototype</h3>
+                    <div class="project-overview-right">
+                        <p>The hi-fi prototype brings Bite's core features to life with a clean, modern interface that emphasizes usability and visual storytelling. It reflects thoughtful decisions around navigation, content hierarchy, and social interaction—transforming early wireframes into a polished, interactive experience aligned with user needs.</p>
+                    </div>
+                </section>
+
+                <div class="project-cover large-image">
+                    <img src="images/Bite-Profile.png" alt="Bite User Profile" style="width: 100%; max-width: 100%; height: auto;">
+                </div>
+                <p style="font-size: 1.8rem; line-height: 1.6; color: var(--color-text); margin-top: var(--spacing-md); margin-bottom: var(--spacing-md); text-align: left;">The profile screen was designed to highlight a user's dining identity in a clean, organized layout. It showcases past reviews, favorite dishes, and order history, offering a personalized space that encourages continued engagement. Drawing from user personas, the design emphasizes social validation through likes and comments, while maintaining easy access to key features like saved restaurants and profile editing.</p>
+
+                <div class="project-cover large-image">
+                    <img src="images/Bite-Menu.png" alt="Bite Menu" style="width: 100%; max-width: 100%; height: auto;">
+                </div>
+                <p style="font-size: 1.8rem; line-height: 1.6; color: var(--color-text); margin-top: var(--spacing-md); margin-bottom: var(--spacing-md); text-align: left;">The menu screen was designed for speed and clarity, allowing users to easily browse, search, and customize their order after scanning a restaurant's QR code. Categories are organized in a fixed sidebar for quick navigation, while dish cards feature photos and pricing to support informed decisions. The cart interface is intuitive, enabling users to adjust quantities and review selections with minimal friction—making the ordering process fast, visual, and user-friendly.</p>
+
+                <div class="project-cover large-image">
+                    <img src="images/Bite-Chinese.png" alt="Bite Menu in Chinese" style="width: 100%; max-width: 100%; height: auto;">
+                </div>
+                <p style="font-size: 1.8rem; line-height: 1.6; color: var(--color-text); margin-top: var(--spacing-md); margin-bottom: var(--spacing-md); text-align: left;">To support diverse restaurant audiences and customers, the menu screen includes multilingual support, with Chinese as one of the primary options. This feature ensures accessibility for non-English speakers, making it easier for users to navigate, understand dish names, and order confidently. The layout adjusts seamlessly between languages, maintaining visual clarity and consistency across categories and listings, while enhancing inclusivity for multicultural dining experiences.</p>
+
+                <div class="project-cover large-image">
+                    <img src="images/Bite-Friends.png" alt="Bite Friends" style="width: 100%; max-width: 100%; height: auto;">
+                </div>
+                <p style="font-size: 1.8rem; line-height: 1.6; color: var(--color-text); margin-top: var(--spacing-md); margin-bottom: var(--spacing-md); text-align: left;">The Friends interface enhances Bite's social focus by allowing users to connect, message friends, and explore dining spots recommended by their network. Users can view a real-time map with location pins showing where their friends have recently eaten or left reviews, making restaurant discovery feel more personal and trustworthy. This screen bridges social interaction and food exploration, encouraging users to try new places based on familiar recommendations.</p>
+
+
+                <div style="border-top: 1px solid #eee; margin: 40px 0 60px 0;"></div>
+
+                <section class="project-section">
+                    <h3>Next Steps</h3>
+                    <div class="project-overview-right">
+                        <p>As we move forward, we're developing a full mobile app using React.js and SwiftUI to deliver a richer experience for users who choose to register. Through the app, users can unlock exclusive benefits such as joining the loyalty program, tracking points across multiple restaurants, and receiving personalized offers and rewards. Meanwhile, the mobile web interface—accessible via QR code—offers a streamlined ordering experience without requiring restaurants to change their existing POS systems. This dual-system approach ensures maximum convenience: customers can quickly order without downloading an app, while those who opt in gain added value through saved preferences, social features, and cross-restaurant rewards.</p>
+                        <p>On the backend, the system is built with Django and powered by a PostgreSQL database that manages restaurant data, user orders, and reward tracking. HTTP requests and API responses handle seamless communication between the front end and back end, ensuring that each order is processed accurately and reflected in both user accounts and restaurant systems. Customization settings for restaurant owners are stored in the database and dynamically update the front end when needed. Secure payment processing is integrated via Stripe or similar services, allowing transactions to be handled efficiently. This robust architecture enables Bite to support real-time interactions while scaling across multiple restaurant partners and user groups.</p>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-location">
+                    <p>Chapel Hill, NC</p>
+                    <p class="time">17:46:56</p>
+                </div>
+                <div class="footer-right">
+                    <div class="footer-links">
+                        <a href="https://www.linkedin.com/in/oscarcheungg/" target="_blank">LinkedIn</a>
+                        <a href="https://github.com/oscarcheungg" target="_blank">GitHub</a>
+                        <a href="mailto:oscarcheung2023@gmail.com">Email</a>
+                    </div>
+                    <div class="footer-copyright">
+                        <p>Copyright © 2025 Oscar Cheung. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update time
+        function updateTime() {
+            const timeElement = document.querySelector('.time');
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        // Update time every second
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial update
+
+        // Smooth page transitions
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.opacity = '1';
+        });
+
+        // Handle navigation with fade effect
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('target') === '_blank') return;
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                document.body.style.opacity = '0';
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html> 
