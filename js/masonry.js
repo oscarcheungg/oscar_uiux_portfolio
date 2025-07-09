@@ -111,36 +111,7 @@ class Masonry {
       }
 
       this.container.appendChild(wrapper);
-
-      // Set initial hidden state
-      wrapper.style.opacity = 0;
-      wrapper.style.transform = 'translateY(100px)';
-
-      // Use Intersection Observer to animate when in view
-      if ('IntersectionObserver' in window && window.gsap) {
-        const observer = new IntersectionObserver((entries, obs) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              gsap.to(entry.target, {
-                opacity: 1,
-                y: 0,
-                duration: 2.5,
-                ease: "power3.out"
-              });
-              obs.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.2 });
-        observer.observe(wrapper);
-      } else if (window.gsap) {
-        // Fallback: animate all if IntersectionObserver is not supported
-        gsap.to(wrapper, {
-          opacity: 1,
-          y: 0,
-          duration: 2.5,
-          ease: "power3.out"
-        });
-      }
+      // No animation: items appear immediately.
     });
   }
 } 
