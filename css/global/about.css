@@ -1,0 +1,178 @@
+body, .aboutText, .aboutSection {
+  font-family: 'Inter', sans-serif;
+}
+
+.aboutMain {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+}
+
+.aboutText {
+  flex: 2 1 400px;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.aboutText h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.aboutText h1 .gradientLink {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.aboutText p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.aboutImage {
+  flex: 1 1 260px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.aboutImage img {
+  width: 320px;
+  max-width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.aboutSections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-bottom: 2.5rem;
+}
+
+.aboutSection {
+  flex: 1 1 350px;
+  min-width: 260px;
+}
+
+.aboutSection h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.aboutSection hr, .aboutDivider {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 0.5rem 0 1.2rem 0;
+}
+
+.aboutSection ul, .aboutSection p, .aboutSection .eduSchool, .aboutSection .eduDegree, .aboutSection .expTitle {
+  margin: 0 0 0.7rem 0;
+  font-size: 1.08rem;
+  line-height: 1.5;
+  font-family: 'Inter', sans-serif;
+}
+
+.aboutSection strong, .aboutSection .expOrg {
+  font-weight: 700;
+}
+
+.aboutSection .expTitle {
+  font-weight: 400;
+}
+
+.aboutSection .expDesc {
+  margin-bottom: 0.2rem;
+}
+
+.aboutSection .eduSchool {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+
+/* Mobile devices */
+@media (max-width: 768px) {
+  .aboutMain {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    gap: 2rem;
+    flex-direction: column;
+  }
+  
+  .aboutText h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .aboutText p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .aboutImage {
+    justify-content: center;
+  }
+  
+  .aboutImage img {
+    width: 280px;
+  }
+  
+  .aboutSections {
+    gap: 0 !important;
+    margin-bottom: 0.5rem;
+    flex-direction: column;
+  }
+  
+  .aboutSection {
+    margin-bottom: 0.3rem;
+  }
+  
+  .aboutSection:last-child {
+    margin-bottom: 0;
+  }
+  
+  .aboutSection h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .aboutSection ul, .aboutSection p, .aboutSection .eduSchool, .aboutSection .eduDegree, .aboutSection .expTitle {
+    font-size: 1rem;
+    margin: 0 0 0.6rem 0;
+  }
+  
+  .aboutSection .eduSchool {
+    font-size: 1rem;
+  }
+  
+  /* Responsive styles for the "Life Outside of Design..." heading */
+  h2[style*="font-size:1.4rem"] {
+    font-size: 1.2rem !important;
+    margin-top: 2rem !important;
+  }
+  
+  .aboutSection > *:last-child {
+    margin-bottom: 0 !important;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.aboutFadeIn {
+  animation: fadeIn 0.9s cubic-bezier(0.4,0,0.2,1);
+}

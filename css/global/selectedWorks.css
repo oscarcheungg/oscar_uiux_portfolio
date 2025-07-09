@@ -1,0 +1,171 @@
+.selectedWorks {
+    margin-top: 10rem;
+    margin-bottom: 4rem;
+}
+
+.selectedWorksTitle {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+.selectedWorksDivider {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin-bottom: 2.5rem;
+}
+
+.worksGrid {
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 2.5rem;
+}
+
+.workCard {
+    background: #F7F7F7;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 0;
+    width: 900px;
+    height: 416px;
+}
+
+.workImageContainer {
+    width: 100%;
+    height: 100%;
+    border-radius: 19.3px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F7F7F7;
+    margin-bottom: 0;
+}
+
+.workImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(.4,2,.6,1);
+    display: block;
+}
+
+.worksInfoGrid {
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 1.5rem;
+}
+
+.workInfo {
+    width: 900px;
+    text-align: left;
+}
+
+.workTitle {
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
+}
+
+.workSubtitle {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin: 0;
+}
+
+.workImageContainer:hover .workImage {
+    transform: scale(1.05);
+}
+
+.workImage--goldendragon {
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 75%;
+    margin: 0 auto;
+    display: block;
+}
+
+@media (max-width: 700px) {
+  .selectedWorks {
+    margin-top: 3.5rem;
+    margin-bottom: 2rem;
+  }
+  .selectedWorksTitle {
+    font-size: 1.4rem;
+    grid-area: title;
+  }
+  .selectedWorksDivider {
+    grid-area: divider;
+    margin: 1rem 0 2rem 0;
+    border: none;
+    border-top: 1px solid var(--border-color);
+    display: block;
+    width: 100%;
+  }
+  .selectedWorks .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "divider"
+      "bite-img"
+      "bite-info"
+      "gd-img"
+      "gd-info";
+    gap: 0;
+  }
+  .worksGrid {
+    display: contents;
+  }
+  .worksInfoGrid {
+    display: contents;
+  }
+  .workCard:nth-child(1) {
+    grid-area: bite-img;
+  }
+  .workInfo:nth-child(1) {
+    grid-area: bite-info;
+  }
+  .workCard:nth-child(2) {
+    grid-area: gd-img;
+  }
+  .workInfo:nth-child(2) {
+    grid-area: gd-info;
+  }
+  .workCard {
+    width: 100%;
+    height: 180px;
+    border-radius: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .workImageContainer {
+    border-radius: 1rem;
+  }
+  .workInfo {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 1.5rem;
+  }
+  .workTitle {
+    font-size: 1.1rem;
+  }
+  .workSubtitle {
+    font-size: 0.95rem;
+  }
+  /* Ensure fade-in animation applies to info blocks too */
+  .workInfo.animated-card {
+    opacity: 0;
+    transform: translateY(100px) scale(0.98);
+  }
+}

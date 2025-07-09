@@ -1,168 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Oscar Cheung</title>
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/main.css">
-    <style>
-        body {
-            background: #fff;
-        }
-
-        main {
-            opacity: 0;
-            animation: fadeIn 0.4s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-out {
-            opacity: 0;
-            transform: translateY(8px);
-            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Oscar Cheung</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/global/about.css">
+  <link rel="stylesheet" href="css/global/masonry.css">
 </head>
-<body>
-    <main>
-        <header class="project-header">
-            <div class="container">
-                <div class="project-title">
-                    <h1>About</h1>
-                </div>
-                <a href="index.html" class="close-button">×</a>
-            </div>
-        </header>
-
-        <div class="container">
-            <section class="project-content">
-                <div class="project-overview-grid">
-                    <div class="project-overview-right" style="margin-top: var(--spacing-lg);">
-                        <p style="margin-bottom: var(--spacing-md);">Hello! I'm Oscar, a designer and developer currently studying Computer Science and Information Science at UNC Chapel Hill. I'm passionate about creating intuitive, inclusive digital experiences that sit at the intersection of design and technology.</p>
-
-                        <p style="margin-bottom: var(--spacing-md);">With a strong foundation in both UI/UX design and front-end development, I enjoy bringing ideas to life—from sketching and prototyping in Figma to building responsive, accessible interfaces with HTML, CSS, JavaScript, React.js, and React Native. I'm especially drawn to thoughtful interaction design and the way small details can elevate usability and impact.</p>
-
-                        <p>At the core of my work is a desire to make technology feel more human—clear, empowering, and enjoyable to use.</p>
-                    </div>
-                    <div class="project-overview-right">
-                        <div style="display: flex; flex-direction: column; gap: 20px; margin-top: var(--spacing-lg);">
-                            <div style="height: 350px; border-radius: 12px; overflow: hidden; background: #f5f5f7;">
-                                <img src="images/About_Cover_Sec.jpg" alt="About Image 1" style="width: 100%; height: 100%; object-fit: cover;">
-                            </div>
-                            <div style="height: 350px; border-radius: 12px; overflow: hidden; background: #f5f5f7;">
-                                <img src="images/About-Cover.JPG" alt="About Image 2" style="width: 100%; height: 100%; object-fit: cover;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <section class="project-section" style="margin-top: var(--spacing-md);">
-                    <h3>Education</h3>
-                    <div class="project-overview-right">
-                        <h4 style="font-size: 2rem; font-weight: 400; margin-bottom: 0.5rem;">University of North Carolina at Chapel Hill</h4>
-                        <p style="font-size: 1.8rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-md);">Bachelor of Arts in Computer Science<br>Bachelor of Science in Information Science</p>
-                    </div>
-                </section>
-
-                <section class="project-section" style="margin-top: var(--spacing-md);">
-                    <h3>Experience</h3>
-                    <div class="project-overview-right">
-
-                        <h4 style="font-size: 2rem; font-weight: 400; margin-bottom: 0.5rem;">Director of Marketing</h4>
-                        <p style="font-size: 1.8rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-md);">HackNC, 2025</p>
-
-                        <h4 style="font-size: 2rem; font-weight: 400; margin-bottom: 0.5rem;">Web Developer</h4>
-                        <p style="font-size: 1.8rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-md);">1893 Brand Studio, 2025</p>
-
-                        <h4 style="font-size: 2rem; font-weight: 400; margin-bottom: 0.5rem;">UI/UX Apprentice</h4>
-                        <p style="font-size: 1.8rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-md);">App Team Carolina, 2025</p>
-
-                        <h4 style="font-size: 2rem; font-weight: 400; margin-bottom: 0.5rem;">UI/UX Developer</h4>
-                        <p style="font-size: 1.8rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-md);">Parr Center, 2025</p>
-
-                        <h4 style="font-size: 2rem; font-weight: 400; margin-bottom: 0.5rem;">Undergraduate Teaching Assistant</h4>
-                        <p style="font-size: 1.8rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-md);">UNC Department of Computer Science, 2025</p>
-
-                        <h4 style="font-size: 2rem; font-weight: 400; margin-bottom: 0.5rem;">UI/UX Developer</h4>
-                        <p style="font-size: 1.8rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-md);">Breast Cancer Hub, 2024</p>
-
-                        <h4 style="font-size: 2rem; font-weight: 400; margin-bottom: 0.5rem;">UI/UX Developer</h4>
-                        <p style="font-size: 1.8rem; color: var(--color-text-secondary);">Golden Dragon, 2024</p>
-                    </div>
-                </section>
-
-                <section class="project-section" style="margin-top: var(--spacing-md);">
-                    <h3>Projects & Awards</h3>
-                    <div class="project-overview-right">
-                        <h4 style="font-size: 2rem; font-weight: 400; margin-bottom: 0.5rem;">Milwaukee Bucks Hackathon 1st Place Winner</h4>
-                        <p style="font-size: 1.8rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-md);">Milwaukee Bucks & Modine, 2025</p>
-                    </div>
-                </section>
-            </section>
+<body style="font-family: 'Inter', sans-serif;">
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo"><a href="index.html">Oscar Cheung</a></div>
+        <ul class="navLinks">
+          <li><a href="index.html#selectedWorks">Work</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="Cheung_Oscar_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+        </ul>
+        <button class="hamburger" aria-label="Toggle menu">
+          <span class="hamburgerLine"></span>
+          <span class="hamburgerLine"></span>
+          <span class="hamburgerLine"></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="container aboutFadeIn">
+      <div class="aboutMain">
+        <div class="aboutText">
+          <h1>Get to know a little bit more <span class="animated-gradient-text">about me</span></h1>
+          <p>Hello! I'm Oscar, a designer and developer currently studying Computer Science and Information Science at UNC Chapel Hill. I'm passionate about creating intuitive, inclusive digital experiences that sit at the intersection of design and technology.</p>
+          <p>With a strong foundation in both UI/UX design and front-end development, I enjoy bringing ideas to life—from sketching and prototyping in Figma to building responsive, accessible interfaces with HTML, CSS, JavaScript, React.js, and React Native. I'm especially drawn to thoughtful interaction design and the way small details can elevate usability and impact.</p>
+          <p>At the core of my work is a desire to make technology feel more human—clear, empowering, and enjoyable to use.</p>
         </div>
+        <div class="aboutImage">
+          <img src="assets/aboutAssets/oscarProfile.svg" alt="Oscar Cheung profile photo" />
+        </div>
+      </div>
+      <div class="aboutSections">
+        <section class="aboutSection">
+          <h2>🍎 Education</h2>
+          <hr class="aboutDivider">
+          <div class="eduSchool">University of North Carolina at Chapel Hill</div>
+          <div class="eduDegree">Bachelor's of Arts in Computer Science</div>
+          <div class="eduDegree">Bachelor's of Science in Information Science</div>
+        </section>
+        <section class="aboutSection">
+          <h2>💻 Experience</h2>
+          <hr class="aboutDivider">
+          <div class="expTitle"><span class="expOrg">Quantifyd</span> - Frontend Developer Intern</div>
+          <div class="expTitle"><span class="expOrg">1893 Brand Studio</span> - Web Developer</div>
+          <div class="expTitle"><span class="expOrg">App Team Carolina</span> - UI/UX Production Team</div>
+          <div class="expTitle"><span class="expOrg">CS + Social Good</span> - UI/UX Production Team</div>
+          <div class="expTitle"><span class="expOrg">UNC Department of Computer Science</span> - Undergraduate Teaching Assistant</div>
+        </section>
+      </div>
+      <h2 style="font-size:1.4rem; font-weight:700; margin-top:2.5rem;">Life Outside of Design...</h2>
+      <hr class="aboutDivider" style="margin:0.5rem 0 2rem 0;">
+      <div class="masonry-container">
+        <div id="life-gallery" class="list"></div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container footerContainer">
+      <div class="footerLeft">
+        <p>Chapel Hill, NC</p>
+        <p id="clock"></p>
+      </div>
+      <div class="footerRight">
+        <div class="footerSocial">
+          <a href="https://www.linkedin.com/in/oscarcheungg/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.instagram.com/oscar.cheungg/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="mailto:oscarcheung2023@gmail.com">Email</a>
+        </div>
+        <p class="copyright">Copyright © 2025 Oscar Cheung. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="js/masonry.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const lifeGallery = document.getElementById('life-gallery');
+      const masonrySection = document.querySelector('.masonry-container');
+      const items = [
+        // Column A
+        { id: 'run', img: 'assets/aboutAssets/oscarRun.jpg', label: 'The Tar Heel 10 Miler, my first ever race! Placed top 15 in my age group :)' },
+        { id: 'ape', img: 'assets/aboutAssets/oscarApe.jpg', label: 'Grew up loving Japanese streetwear, especially Bathing Ape. Going to this store in Tokyo, Japan was a dream come true.' },
+        { id: 'fam', img: 'assets/aboutAssets/oscarFam.jpg', label: 'Got to visit my family in Hong Kong last summer. It is always nice to go back to the motherland 🇭🇰' },
+        { id: 'seoulKorea', img: 'assets/aboutAssets/seoulKorea.mp4', label: 'This is Han River in Seoul, Korea. Studying here for a summer was amazing!' },
+        { id: 'cusa', img: 'assets/aboutAssets/oscarCUSA.jpg', label: 'Our amazing CUSA Exec Dances at our annual CNY 😭' },
+        { id: 'food', img: 'assets/aboutAssets/oscarFood.jpg', label: 'Love eating out with my friends and trying new foods, add me on Beli!! @oscarcheung' },
+        { id: 'oscarFlick', img: 'assets/aboutAssets/oscarFlick.jpg', label: 'Always got to flick up for the Instagram LOL' },
+        { id: 'runwithfriends', img: 'assets/aboutAssets/runwithFriends.mp4', label: 'You will always will find me running with friends. Strava is oscar cheung for my fellow runners ' },
 
-        <footer class="site-footer">
-            <div class="container">
-                <div class="footer-grid">
-                    <div class="footer-location">
-                        <p>Chapel Hill, NC</p>
-                        <p class="time">17:46:56</p>
-                    </div>
-                    <div class="footer-right">
-                        <div class="footer-links">
-                            <a href="https://www.linkedin.com/in/oscarcheungg/" target="_blank">LinkedIn</a>
-                            <a href="https://github.com/oscarcheungg" target="_blank">GitHub</a>
-                            <a href="mailto:oscarcheung2023@gmail.com">Email</a>
-                        </div>
-                        <div class="footer-copyright">
-                            <p>Copyright © 2025 Oscar Cheung. All rights reserved.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </main>
+        // Column B
+        { id: 'cafe', img: 'assets/aboutAssets/oscarCafe.mp4', label: 'Cafe hopping is one of my favorite ways to explore new cities, this one in particular was in Toronto. One of my dreams is to run a cafe one day haha' },
+        { id: 'cn', img: 'assets/aboutAssets/oscarCN.jpg', label: 'I love traveling, have been to 5 countries so far! This is my most recent trip to Toronto, Canada 🇨🇦, would love to live here one day.' },
+        { id: 'oscarFish', img: 'assets/aboutAssets/oscarFish.mp4', label: 'Growing up near the beach, my family and I would always go fishing' },
+        { id: 'yap', img: 'assets/aboutAssets/oscarYap.JPEG', label: 'Me and my friends in Chinatown, New York City' },
+        { id: 'oscarGrill', img: 'assets/aboutAssets/oscarGrill.jpg', label: 'My friends and I always are experimenting with new and healthy recipes' },
+        { id: 'pose', img: 'assets/aboutAssets/oscarPose.JPG', label: 'New York subway station. I will never get tired of the city life' },
 
-    <script>
-        // Update time
-        function updateTime() {
-            const timeElement = document.querySelector('.time');
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
-        }
-
-        // Update time every second
-        setInterval(updateTime, 1000);
-        updateTime(); // Initial update
-
-        // Handle navigation with fade effect
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (this.getAttribute('target') === '_blank') return;
-                e.preventDefault();
-                const href = this.getAttribute('href');
-                const mainContent = document.querySelector('main');
-                mainContent.classList.add('fade-out');
-                setTimeout(() => {
-                    window.location.href = href;
-                }, 300);
-            });
-        });
-    </script>
+        // Column C
+        { id: 'osakaJapan', img: 'assets/aboutAssets/osakaJapan.mp4', label: 'Osaka was my favorite city in Japan. Laid back but still had the city vibes.' },
+        { id: 'oscarJapan', img: 'assets/aboutAssets/oscarJapan.jpg', label: 'Kyoto, Japan, a city filled with culture and history' },
+        { id: 'hangout', img: 'assets/aboutAssets/oscarHangout.jpg', label: 'Our semesterly hangouts with CUSA Exec' },
+        { id: 'mccain', img: 'assets/aboutAssets/oscarMccain.jpg', label: 'Randomly meeting Jared McCain at an ice cream shop in the middle of nowhere 😂' },
+        { id: 'oscarCook', img: 'assets/aboutAssets/oscarCook.jpg', label: 'Growing up in the restaurant, I love cooking for our customers!!' },
+      ];
+      let masonryStarted = false;
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !masonryStarted) {
+              new Masonry(lifeGallery, items);
+              masonryStarted = true;
+              obs.disconnect();
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      observer.observe(masonrySection);
+    });
+  </script>
 </body>
-</html> 
+</html>

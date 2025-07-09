@@ -4,221 +4,335 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bite | Oscar Cheung</title>
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/main.css">
-    <style>
-        body {
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        main {
-            opacity: 0;
-            animation: fadeIn 0.6s ease-in forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <main>
-        <header class="project-header">
-            <div class="container">
-                <div class="project-title">
-                    <h1>Bite</h1>
-                    <span class="project-subtitle">Dining Made Social and Simple</span>
-                </div>
-                <a href="index.html" class="close-button">×</a>
-            </div>
-        </header>
-
+    <header>
         <div class="container">
-            <div class="project-cover">
-                <img src="images/Bite-Beginning.png" alt="Project Cover">
+            <nav>
+                <div class="logo"><a href="index.html">Oscar Cheung</a></div>
+                <ul class="navLinks">
+                    <li><a href="index.html#selectedWorks">Work</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="Cheung_Oscar_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+                </ul>
+                <button class="hamburger" aria-label="Toggle menu">
+                    <span class="hamburgerLine"></span>
+                    <span class="hamburgerLine"></span>
+                    <span class="hamburgerLine"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="biteHeroBg">
+            <div class="biteHeroImgWrap">
+                <img src="assets/biteAssets/biteHead.svg" alt="Bite App Main" class="biteHeroImg">
             </div>
-
-            <section class="project-content">
-                <div class="project-overview-grid">
-                    <div class="project-meta-left">
-                        <div class="meta-item">
-                            <h3>Role</h3>
-                            <p>UI/UX Designer & Developer</p>
-                        </div>
-                        <div class="meta-item">
-                            <h3>Duration</h3>
-                            <p>Mar 2025 - Apr 2025</p>
-                        </div>
-                        <div class="meta-item">
-                            <h3>Tools</h3>
-                            <p>Figma, React.js, SwiftUI, Django, PostgreSQL, Stripe</p>
-                        </div>
-                    </div>
-                    <div class="project-overview-right">
-                        <h3>Overview</h3>
-                        <p>Bite is a startup concept that reimagines the dining experience by blending restaurant discovery with social connection and smart ordering. Unlike traditional review apps, Bite allows users to share their dining experiences through photos and personalized dish reviews, helping friends discover what to eat—not just where. With Bite, users can scan a QR code at partner restaurants to instantly access the menu, place an order, and earn loyalty rewards, all without disrupting the restaurant's existing POS system. The app also highlights trending dishes and venues based on real-time social data, making dining out more fun, social, and rewarding. By combining seamless ordering, loyalty incentives, and a trusted network of food-loving friends, Bite creates a new kind of dining culture—one built on discovery, ease, and shared taste.</p>
-                        <a href="https://www.figma.com/design/Y0S2Kcj8GlkeJG6cRoHt2R/Bite?node-id=0-1&t=mw0n26wQQf9MPPOT-1" class="view-link" target="_blank">View project</a>
-                    </div>
-                </div>
-
-                <section class="project-section">
-                    <h3>The Challenge</h3>
-                    <p>How can we create a social dining platform that makes restaurant discovery more personal, engaging, and community-driven?</p>
-                </section>
-
-                <section class="project-section">
-                    <h3>User Research</h3>
-                    <div class="project-overview-right">
-                        <p>To guide the development of Bite, I conducted a competitive analysis and user interviews to uncover gaps in the restaurant tech space. I analyzed four platforms—Sharp, InstaLaCarte, Clover, and Restolabs. Sharp offered strong visual design but wasn't tailored to food service. InstaLaCarte provided appealing, multilingual QR menus but lacked social or loyalty features. Clover featured robust POS integration but required proprietary hardware, limiting accessibility for smaller businesses. Restolabs supported advanced customization but was better suited for mid-sized restaurants with reliable tech infrastructure. These insights revealed a need for a lightweight, social dining solution that integrates QR ordering, personalized discovery, and loyalty rewards—without requiring restaurants to change their existing systems.</p>
-                        <p>In parallel, I interviewed frequent diners to understand user behaviors and frustrations. Many voiced distrust in anonymous reviews, a desire for recommendations from friends, and interest in earning rewards for dining out. These interviews informed key personas: socially-driven users who value convenience, trust, and personalization. Together, these research insights shaped Bite into a socially engaging, user-friendly platform that enhances both the dining and discovery experience.</p>
-                    </div>
-                </section>
-
-                <div class="project-cover large-image">
-                    <img src="images/Bite-Competitve-Analysis.png" alt="Bite Competitive Analysis" style="width: 100%; max-width: 100%; height: auto;">
-                </div>
-                <p style="font-size: 1.8rem; line-height: 1.6; color: var(--color-text); margin-top: var(--spacing-md); margin-bottom: var(--spacing-md); text-align: left;">Building on gaps identified in platforms like Clover and Restolabs, Bite's Discover screen brings a community-driven layer to restaurant discovery. It showcases personalized recommendations, trending dishes, and friends' recent visits in a visually rich, card-based layout. This social-first design not only helps users find new places to eat but also builds trust through familiar faces and shared experiences—features often missing from traditional ordering platforms.</p>
-
-                <div class="project-cover large-image">
-                    <img src="images/Persona_One.png" alt="Bite Profile Interface" style="width: 100%; max-width: 100%; height: auto;">
-                </div>
-
-                <div class="project-cover large-image">
-                    <img src="images/Persona_Two.png" alt="Bite Profile Interface" style="width: 100%; max-width: 100%; height: auto;">
-                </div>
-                <p style="font-size: 1.8rem; line-height: 1.6; color: var(--color-text); margin-top: var(--spacing-md); margin-bottom: var(--spacing-md); text-align: left;">Based on insights gathered from user interviews, I developed two detailed personas—Vy and Jack—to represent the app's core users: socially driven, convenience-seeking college students who dine out frequently with friends. Their goals and frustrations shaped key features in Bite, including the need for a unified QR code system, visible dish reviews, and cross-restaurant loyalty rewards. For example, Vy's emphasis on photo-based discovery influenced the visual layout of the Discover and Profile screens, while Jack's desire for speed and consistency informed the streamlined ordering flow and persistent reward tracking. These personas grounded the app in real user needs, ensuring that every feature—from restaurant cards to profile achievements—directly addressed their expectations and behaviors.</p>
-
-                <div style="border-top: 1px solid #eee; margin: 40px 0 60px 0;"></div>
-
-                <section class="project-section">
-                    <h3>Lo-Fi Wireframes</h3>
-                    <div class="project-overview-right">
-                        <p>To begin the design process, I created lo-fi wireframes to map out core user flows and test layout ideas quickly. These wireframes focused on structuring key features like the Discover feed, Rewards page, and QR ordering interface. Keeping them low-fidelity allowed for fast iteration based on early feedback, ensuring the experience aligned with user expectations before moving into high-fidelity visuals.</p>
-                    </div>
-                </section>
-
-                <div class="project-cover large-image">
-                    <img src="images/Bite-Lofi.png" alt="Bite Profile Interface" style="width: 100%; max-width: 100%; height: auto;">
-                </div>
-
-                <div style="border-top: 1px solid #eee; margin: 40px 0 60px 0;"></div>
-
-                <section class="project-section">
-                    <h3>Style Guide</h3>
-                    <div class="project-overview-right">
-                        <p>The style guide defines Bite's visual language, ensuring consistency and clarity across the app. The primary typeface, SF Pro, was chosen for its readability and modern feel, with a clear typographic hierarchy supporting different content levels. The color palette includes a deep blue brand color paired with a range of blacks and greys for strong contrast and accessibility. These design choices create a clean, trustworthy interface while maintaining visual harmony throughout the user experience.</p>
-                    </div>
-                </section>
-
-                <div class="project-cover large-image">
-                    <img src="images/Bite-Style.png" alt="Bite Style Guide" style="width: 100%; max-width: 100%; height: auto;">
-                </div>
-
-                <div style="border-top: 1px solid #eee; margin: 40px 0 60px 0;"></div>
-
-                <section class="project-section">
-                    <h3>Hi-Fi Prototype</h3>
-                    <div class="project-overview-right">
-                        <p>The hi-fi prototype brings Bite's core features to life with a clean, modern interface that emphasizes usability and visual storytelling. It reflects thoughtful decisions around navigation, content hierarchy, and social interaction—transforming early wireframes into a polished, interactive experience aligned with user needs.</p>
-                    </div>
-                </section>
-
-                <div class="project-cover large-image">
-                    <img src="images/Bite-Profile.png" alt="Bite User Profile" style="width: 100%; max-width: 100%; height: auto;">
-                </div>
-                <p style="font-size: 1.8rem; line-height: 1.6; color: var(--color-text); margin-top: var(--spacing-md); margin-bottom: var(--spacing-md); text-align: left;">The profile screen was designed to highlight a user's dining identity in a clean, organized layout. It showcases past reviews, favorite dishes, and order history, offering a personalized space that encourages continued engagement. Drawing from user personas, the design emphasizes social validation through likes and comments, while maintaining easy access to key features like saved restaurants and profile editing.</p>
-
-                <div class="project-cover large-image">
-                    <img src="images/Bite-Menu.png" alt="Bite Menu" style="width: 100%; max-width: 100%; height: auto;">
-                </div>
-                <p style="font-size: 1.8rem; line-height: 1.6; color: var(--color-text); margin-top: var(--spacing-md); margin-bottom: var(--spacing-md); text-align: left;">The menu screen was designed for speed and clarity, allowing users to easily browse, search, and customize their order after scanning a restaurant's QR code. Categories are organized in a fixed sidebar for quick navigation, while dish cards feature photos and pricing to support informed decisions. The cart interface is intuitive, enabling users to adjust quantities and review selections with minimal friction—making the ordering process fast, visual, and user-friendly.</p>
-
-                <div class="project-cover large-image">
-                    <img src="images/Bite-Chinese.png" alt="Bite Menu in Chinese" style="width: 100%; max-width: 100%; height: auto;">
-                </div>
-                <p style="font-size: 1.8rem; line-height: 1.6; color: var(--color-text); margin-top: var(--spacing-md); margin-bottom: var(--spacing-md); text-align: left;">To support diverse restaurant audiences and customers, the menu screen includes multilingual support, with Chinese as one of the primary options. This feature ensures accessibility for non-English speakers, making it easier for users to navigate, understand dish names, and order confidently. The layout adjusts seamlessly between languages, maintaining visual clarity and consistency across categories and listings, while enhancing inclusivity for multicultural dining experiences.</p>
-
-                <div class="project-cover large-image">
-                    <img src="images/Bite-Friends.png" alt="Bite Friends" style="width: 100%; max-width: 100%; height: auto;">
-                </div>
-                <p style="font-size: 1.8rem; line-height: 1.6; color: var(--color-text); margin-top: var(--spacing-md); margin-bottom: var(--spacing-md); text-align: left;">The Friends interface enhances Bite's social focus by allowing users to connect, message friends, and explore dining spots recommended by their network. Users can view a real-time map with location pins showing where their friends have recently eaten or left reviews, making restaurant discovery feel more personal and trustworthy. This screen bridges social interaction and food exploration, encouraging users to try new places based on familiar recommendations.</p>
-
-
-                <div style="border-top: 1px solid #eee; margin: 40px 0 60px 0;"></div>
-
-                <section class="project-section">
-                    <h3>Next Steps</h3>
-                    <div class="project-overview-right">
-                        <p>As we move forward, we're developing a full mobile app using React.js and SwiftUI to deliver a richer experience for users who choose to register. Through the app, users can unlock exclusive benefits such as joining the loyalty program, tracking points across multiple restaurants, and receiving personalized offers and rewards. Meanwhile, the mobile web interface—accessible via QR code—offers a streamlined ordering experience without requiring restaurants to change their existing POS systems. This dual-system approach ensures maximum convenience: customers can quickly order without downloading an app, while those who opt in gain added value through saved preferences, social features, and cross-restaurant rewards.</p>
-                        <p>On the backend, the system is built with Django and powered by a PostgreSQL database that manages restaurant data, user orders, and reward tracking. HTTP requests and API responses handle seamless communication between the front end and back end, ensuring that each order is processed accurately and reflected in both user accounts and restaurant systems. Customization settings for restaurant owners are stored in the database and dynamically update the front end when needed. Secure payment processing is integrated via Stripe or similar services, allowing transactions to be handled efficiently. This robust architecture enables Bite to support real-time interactions while scaling across multiple restaurant partners and user groups.</p>
-                    </div>
-                </section>
-            </section>
         </div>
     </main>
+    <div class="biteMainContainer">
+        <div class="biteDetailsContainer">
+            <h1 class="biteMainTitle">Bite - Dining Made Social and Simple</h1>
+            <hr class="biteDivider">
+            <div class="biteGrid">
+                <div>
+                    <h2 class="biteGridHeading">My Role</h2>
+                    <p>Product Designer</p>
+                </div>
+                <div>
+                    <h2 class="biteGridHeading">Responsibilities</h2>
+                    <p>UX Research<br>Design Thinking<br>Wireframing<br>Prototyping</p>
+                </div>
+                <div>
+                    <h2 class="biteGridHeading">Timeline</h2>
+                    <p>1 month</p>
+                </div>
+                <div>
+                    <h2 class="biteGridHeading">Tools Used</h2>
+                    <p>Figma<br>Figjam<br>Notion</p>
+                </div>
+            </div>
+            <div class="biteBackground">
+                <p class="biteLabel">BACKGROUND</p>
+                <h2 class="biteTitle">The Inspiration behind Bite</h2>
+                <hr class="biteDivider">
+                <p class="biteText">Inspired by QR code dining culture in China, Bite reimagines the restaurant experience by blending social discovery with seamless ordering. Instead of endless reviews from strangers, users share bite-sized dish recs and photos with friends—helping each other decide what to eat, not just where.</p>
+                <p class="biteText">Scan a QR code at partner restaurants to instantly access the menu, place an order, and earn rewards—all without disrupting existing POS systems. Bite also highlights trending dishes and spots using real-time social data, making dining out more fun, personal, and rewarding.</p>
+                <p class="biteText">Bite transforms eating out into a connected, curated experience—driven by taste, tech, and the people you trust.</p>
+                <div class="biteInspirationVideoWrap">
+                    <video id="chinaInspirationVideo" class="biteInspirationVideo" loop muted playsinline poster="assets/biteAssets/chinaInspirationPoster.jpg" style="margin-top: 2.5rem; max-width: 350px; width: 100%; display: block; margin-left: auto; margin-right: auto; border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,0.08); background: #fff;">
+                        <source src="assets/biteAssets/chinaInspiration.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+            <div class="biteProblemContainer">
+                <p class="biteLabel">PROBLEM</p>
+                <h2 class="biteTitle">Understanding the problem that Bite addresses</h2>
+                <hr class="biteDivider">
+                <p class="biteText">How can we create a social dining platform that makes restaurant discovery more personal, engaging, and community-driven?</p>
+                <p class="biteText">Bite reimagines how we eat out by turning meals into social moments, a QR-powered dining culture I experienced abroad. With Bite, users discover dishes through their friends' photos and bite-sized reviews, order instantly via QR code, and unlock loyalty rewards—making dining out feel effortless, connected, and fun.</p>
+                <h2 class="biteTitle">The Process</h2>
+                <hr class="biteDivider">
+                <div class="biteProcessGrid">
+                    <div class="biteProcessStep">
+                        <div class="biteProcessCircle">1</div>
+                        <div class="biteProcessStepTitle">Research</div>
+                        <div class="biteProcessStepDesc">Identifying Problems<br>Competitor Analysis<br>User Interviews</div>
+                    </div>
+                    <div class="biteProcessStep">
+                        <div class="biteProcessCircle">2</div>
+                        <div class="biteProcessStepTitle">Synthesis</div>
+                        <div class="biteProcessStepDesc">User Personas</div>
+                    </div>
+                    <div class="biteProcessStep">
+                        <div class="biteProcessCircle">3</div>
+                        <div class="biteProcessStepTitle">Ideation</div>
+                        <div class="biteProcessStepDesc">User Flow<br>Low Fidelity<br>Style Guide</div>
+                    </div>
+                    <div class="biteProcessStep">
+                        <div class="biteProcessCircle">4</div>
+                        <div class="biteProcessStepTitle">Final Designs</div>
+                        <div class="biteProcessStepDesc">Final Prototype</div>
+                    </div>
+                    <div class="biteProcessStep">
+                        <div class="biteProcessCircle">5</div>
+                        <div class="biteProcessStepTitle">Reflection</div>
+                        <div class="biteProcessStepDesc">Conclusion<br>Next Steps</div>
+                    </div>
+                </div>
+            </div>
+            <div class="biteCompetitorContainer">
+                <p class="biteLabel">RESEARCH</p>
+                <h2 class="biteTitle">Competitor Analysis</h2>
+                <hr class="biteDivider">
+                <p class="biteText">To guide Bite's development, I began with a competitive analysis of four platforms—<b>Sharp, InstaLaCarte, Clover, and Restolabs</b>—to identify gaps in visual design, social features, POS integration, and accessibility. This revealed the need for a lightweight, socially-driven solution that works with existing restaurant systems.</p>
+                <div class="biteImgWrap">
+                    <img src="assets/biteAssets/bitecompetitorAnalysis.svg" alt="Competitor Analysis Table" class="biteCompetitorImg">
+                </div>
+            </div>
+            <div class="biteIdentifyingProblems">
+                <p class="biteLabel">RESEARCH</p>
+                <h2 class="biteTitle">Identifying Problems</h2>
+                <hr class="biteDivider">
+                <p class="biteText">I then conducted user interviews with <b>over 50 frequent diners</b> to uncover behaviors and pain points.</p>
+                <ol class="biteProblemsList">
+                    <li><b>QR Menus Are Widely Used–but Inconsistently Designed</b><br>
+                        <ul>
+                            <li>93% of participants have used QR codes to view menus or place orders.</li>
+                            <li>Users praised convenience but often reported poor experiences with clunky PDFs, slow load times, or non-interactive menus.</li>
+                        </ul>
+                    </li>
+                    <li><b>Ordering Without Staff is Preferred, When Done Right</b><br>
+                        <ul>
+                            <li>82% prefer ordering through their phone over waiting for a server.</li>
+                            <li>Users appreciate the speed and autonomy but emphasize frustration with inconsistent systems and payment flows.</li>
+                        </ul>
+                    </li>
+                    <li><b>Photos & Peer Recommendations Drive Decisions</b><br>
+                        <ul>
+                            <li>76% rely on photos and personal recommendations (from friends or staff) to decide what to order.</li>
+                            <li>Trust in anonymous reviews is low—users want suggestions from people they know or trust.</li>
+                        </ul>
+                    </li>
+                    <li><b>Loyalty & Rewards Are Strong Motivators</b><br>
+                        <ul>
+                            <li>68% would download a restaurant-related app if it offered loyalty rewards or perks.</li>
+                            <li>Users mentioned rewards, discounts, and personalized recommendations as key drivers for retention and app adoption.</li>
+                        </ul>
+                    </li>
+                </ol>
+                <div class="bitePainPoints">
+                    <p class="biteText" style="font-weight: 700; margin-bottom: 0.5rem;">Pain Points (Quotes derived from participants):</p>
+                    <ul class="bitePainQuotes">
+                        <li>"Some QR menus are just outdated PDFs—it doesn't feel modern."</li>
+                        <li>"If it looks good on Instagram or someone I follow likes it, I'll check it out."</li>
+                        <li>"If I earn points across multiple places, I'd definitely use it."</li>
+                        <li>"I always ask friends or look for real photos–reviews from strangers don't mean much."</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="biteUserPersonas">
+                <p class="biteLabel">SYNTHESIS</p>
+                <h2 class="biteTitle">User Personas</h2>
+                <hr class="biteDivider">
+                <p class="biteText">Based on insights gathered from user interviews, I developed a user persona represent the app's core users: socially driven, convenience-seeking college students who dine out frequently with friends. Their goals and frustrations shaped key features in Bite, including the need for a unified QR code system, visible dish reviews, and cross-restaurant loyalty rewards.</p>
+                <div class="biteImgWrap">
+                    <img src="assets/biteAssets/bitePersona.svg" alt="User Persona Tiffany Tran" class="bitePersonaImg biteImg">
+                </div>
+            </div>
+            <div class="biteUserFlow">
+                <p class="biteLabel">IDEATION</p>
+                <h2 class="biteTitle">User Flow</h2>
+                <hr class="biteDivider">
+                <p class="biteText">Building on the insights from user interviews and the synthesis of our research, I mapped out a user flow to visualize the key journeys Bite users may take as they explore the app. This flow highlights the main decision points and actions, from onboarding and scanning QR codes to discovering restaurants, reading reviews, and redeeming rewards—capturing the essential scenarios that shape the Bite experience.</p>
+                <div class="biteImgWrap">
+                    <img src="assets/biteAssets/biteUserFlow.svg" alt="Bite User Flow" class="biteImg">
+                </div>
+            </div>
+            <div class="biteSketchingSection">
+                <p class="biteLabel">IDEATION</p>
+                <h2 class="biteTitle">Sketching</h2>
+                <hr class="biteDivider">
+                <p class="biteText">To begin the design process, I created lo-fi wireframes to map out core user flows and test layout ideas quickly. These sketches focus on structuring key features like the Discover feed, Rewards page, and QR ordering interface, allowing for rapid iteration and feedback before moving to digital wireframes.</p>
+                <div class="biteImgWrap">
+                    <img src="assets/biteAssets/biteSketch.svg" alt="Bite Sketching Wireframes" class="biteImg">
+                </div>
+            </div>
+            <div class="biteWireframesSection">
+                <p class="biteLabel">IDEATION</p>
+                <h2 class="biteTitle">Lo-Fi Wireframes</h2>
+                <hr class="biteDivider">
+                <p class="biteText">After sketching, I translated the concepts into digital lo-fi wireframes. These wireframes further define the app's structure and user flows, focusing on usability and layout for features such as onboarding, login, home, rewards, and cart. This step ensures the experience is intuitive before moving to high-fidelity design.</p>
+                <div class="biteImgWrap">
+                    <img src="assets/biteAssets/biteWireframes.svg" alt="Bite Lo-Fi Wireframes" class="biteImg">
+                </div>
+            </div>
+            <div class="biteStyleGuideSection">
+                <p class="biteLabel">IDEATION</p>
+                <h2 class="biteTitle">Style Guide</h2>
+                <hr class="biteDivider">
+                <div class="biteImgWrap">
+                    <img src="assets/biteAssets/biteStyleGuide.svg" alt="Bite Style Guide" class="biteImg">
+                </div>
+            </div>
+            <div class="biteFinalDesignsSection" style="margin-top: 5rem;">
+                <p class="biteLabel">FINAL DESIGNS</p>
+                <h2 class="biteTitle">Introducing Bite!</h2>
+                <hr class="biteDivider">
+                
+                <!-- Desktop Sticky Scroll Container -->
+                <div class="sticky-scroll-container">
+                    <!-- Sticky Phone Display -->
+                    <div class="sticky-phone-display">
+                        <div class="phone-frame">
+                            <video id="biteMainVideo" class="phone-video" loop muted playsinline poster="assets/biteAssets/biteMainPoster.jpg">
+                                <source src="assets/biteAssets/biteMain.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    
+                    <!-- Scrollable Content -->
+                    <div class="scrollable-content">
+                        <div class="content-section" data-section="0">
+                            <h3 class="content-title">Bite's Home Screen</h3>
+                            <p class="content-description">With a single glance, your home feed brings you right up to speed—see the latest restaurant reviews and moments from friends, ready to like, comment, or share in just a tap. Discover featured spots nearby, add favorites, and filter by what your circle recommends. Want to explore more? Hit "See All" to browse every restaurant, making it effortless to find your next meal, together.</p>
+                        </div>
+                        
+                        <div class="content-section" data-section="1">
+                            <h3 class="content-title">Menu's Tailored to the Restaurant</h3>
+                            <p class="content-description">Bite's menu adapts to each restaurant's unique offerings—browse categories, discover best-sellers, and see friends' reviews on every dish to help you decide. Customize your order with ease—no need to explain modifications to waiters, just send your preferences directly to the kitchen. Plus, with language support, menus can switch to Chinese and other languages, adapting to multiple audiences that restaurants target, making dining accessible and personal.</p>
+                        </div>
+                        
+                        <div class="content-section" data-section="2">
+                            <h3 class="content-title">Endless Rewards for Scanning</h3>
+                            <p class="content-description">Earn points every time you scan and order, unlock exclusive rewards, and take on fun challenges with friends. Bite's rewards system is designed to keep you coming back for more delicious experiences. Partner restaurants offer frequent users the chance to earn points towards free appetizers or dishes, creating a compelling incentive to return and build loyalty with your favorite spots.</p>
+                        </div>
+                        
+                        <div class="content-section" data-section="3">
+                            <h3 class="content-title">Your Posts, Favorites, and History, All Together</h3>
+                            <p class="content-description">Personalize your dining journey by tracking favorite restaurants, revisiting where you've dined, and curating your posts—all seamlessly organized. Dive into your past order history and share authentic reviews and photos. Bite's innovative approach transforms every meal into a personalized experience, making it effortless to rediscover your best moments and inspire friends with your culinary adventures.</p>
+                        </div>
+                        
+                        <div class="content-section" data-section="4">
+                            <h3 class="content-title">See What Your Friends Are Up To</h3>
+                            <p class="content-description">Stay connected with your friends' dining adventures in one unified feed. View all their posts, engage with their content through likes and comments, and message them directly about their recommendations. Discover nearby restaurants your friends love through an interactive map, making it effortless to plan your next meal together.</p>
+                        </div>
+                    </div>
+                </div>
 
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-location">
-                    <p>Chapel Hill, NC</p>
-                    <p class="time">17:46:56</p>
-                </div>
-                <div class="footer-right">
-                    <div class="footer-links">
-                        <a href="https://www.linkedin.com/in/oscarcheungg/" target="_blank">LinkedIn</a>
-                        <a href="https://github.com/oscarcheungg" target="_blank">GitHub</a>
-                        <a href="mailto:oscarcheung2023@gmail.com">Email</a>
+                <!-- Mobile Final Designs Section -->
+                <div class="final-designs-mobile">
+                    <div class="final-design-mobile-block">
+                        <div class="phone-frame">
+                            <video class="phone-video" autoplay loop muted playsinline poster="assets/biteAssets/biteMainPoster.jpg">
+                                <source src="assets/biteAssets/biteMain.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <h3 class="content-title">Bite's Home Screen</h3>
+                        <p class="content-description">With a single glance, your home feed brings you right up to speed—see the latest restaurant reviews and moments from friends, ready to like, comment, or share in just a tap. Discover featured spots nearby, add favorites, and filter by what your circle recommends. Want to explore more? Hit "See All" to browse every restaurant, making it effortless to find your next meal, together.</p>
                     </div>
-                    <div class="footer-copyright">
-                        <p>Copyright © 2025 Oscar Cheung. All rights reserved.</p>
+                    <div class="final-design-mobile-block">
+                        <div class="phone-frame">
+                            <video class="phone-video" autoplay loop muted playsinline poster="assets/biteAssets/biteMenuPoster.jpg">
+                                <source src="assets/biteAssets/biteOrdering.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <h3 class="content-title">Menu's Tailored to the Restaurant</h3>
+                        <p class="content-description">Bite's menu adapts to each restaurant's unique offerings—browse categories, discover best-sellers, and see friends' reviews on every dish to help you decide. Customize your order with ease—no need to explain modifications to waiters, just send your preferences directly to the kitchen. Plus, with language support, menus can switch to Chinese and other languages, adapting to multiple audiences that restaurants target, making dining accessible and personal.</p>
+                    </div>
+                    <div class="final-design-mobile-block">
+                        <div class="phone-frame">
+                            <video class="phone-video" autoplay loop muted playsinline poster="assets/biteAssets/biteRewardsPoster.jpg">
+                                <source src="assets/biteAssets/biteRewards.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <h3 class="content-title">Endless Rewards for Scanning</h3>
+                        <p class="content-description">Earn points every time you scan and order, unlock exclusive rewards, and take on fun challenges with friends. Bite's rewards system is designed to keep you coming back for more delicious experiences. Partner restaurants offer frequent users the chance to earn points towards free appetizers or dishes, creating a compelling incentive to return and build loyalty with your favorite spots.</p>
+                    </div>
+                    <div class="final-design-mobile-block">
+                        <div class="phone-frame">
+                            <video class="phone-video" autoplay loop muted playsinline poster="assets/biteAssets/biteProfilePoster.jpg">
+                                <source src="assets/biteAssets/biteProfile.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <h3 class="content-title">Your Posts, Favorites, and History, All Together</h3>
+                        <p class="content-description">Personalize your dining journey by tracking favorite restaurants, revisiting where you've dined, and curating your posts—all seamlessly organized. Dive into your past order history and share authentic reviews and photos. Bite's innovative approach transforms every meal into a personalized experience, making it effortless to rediscover your best moments and inspire friends with your culinary adventures.</p>
+                    </div>
+                    <div class="final-design-mobile-block">
+                        <div class="phone-frame">
+                            <video class="phone-video" autoplay loop muted playsinline poster="assets/biteAssets/biteFriendsPoster.jpg">
+                                <source src="assets/biteAssets/biteFriends.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <h3 class="content-title">See What Your Friends Are Up To</h3>
+                        <p class="content-description">Stay connected with your friends' dining adventures in one unified feed. View all their posts, engage with their content through likes and comments, and message them directly about their recommendations. Discover nearby restaurants your friends love through an interactive map, making it effortless to plan your next meal together.</p>
                     </div>
                 </div>
+            </div>
+            <p class="biteLabel">REFLECTION</p>
+            <h2 class="biteTitle">Conclusion</h2>
+            <hr class="biteDivider">
+            <p class="biteText">Diving into the Bite project was both a <b>challenge</b> and a <b>joy</b>—especially as someone with a genuine <b>passion for food</b> and the experiences it creates. Designing for a <b>social dining audience</b> let me blend my love for food with my drive to solve real problems, pushing me to think beyond features and focus on <b>real connections</b> and <b>seamless experiences</b>. Navigating the <b>end-to-end design process</b>—from research and ideation to final prototypes—was not only rewarding, but also deeply personal, as I considered how I could help improve the food industry for others who share my enthusiasm. I find fulfillment in building a <b>personal connection</b> to my work, sharing my process openly, and ensuring that <b>empathy—not bias—guides every decision</b>. This journey has strengthened my commitment to <b>meaningful, user-centered product design</b> and to fostering <b>genuine connections</b> between people and the products they use.</p>
+            <p class="biteLabel">REFLECTION</p>
+            <h2 class="biteTitle">Next Steps</h2>
+            <hr class="biteDivider">
+            <p class="biteText">As Bite evolves, the next steps are clear:</p>
+            <ol class="biteText">
+                <li><b>Develop a full-featured mobile app</b> using React.js and SwiftUI, giving registered users access to loyalty programs, personalized rewards, and social features—while maintaining a seamless web experience for quick, app-free ordering via QR code.</li>
+                <li><b>Enhance backend reliability and scalability</b> by refining our Django and PostgreSQL infrastructure, ensuring smooth order processing, real-time updates, and secure payments across all partner restaurants.</li>
+                <li><b>Continue user testing and feedback cycles</b> to validate new features, improve usability, and ensure Bite delivers value to both diners and restaurant partners.</li>
+            </ol>
+            <p class="biteText">By balancing convenience with deeper engagement, Bite aims to set a new standard for social dining—making every meal more rewarding, connected, and effortless.</p>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container footerContainer">
+            <div class="footerLeft">
+                <p>Chapel Hill, NC</p>
+                <p id="clock"></p>
+            </div>
+            <div class="footerRight">
+                <div class="footerSocial">
+                    <a href="https://www.linkedin.com/in/oscarcheungg/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://www.instagram.com/oscar.cheungg/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    <a href="mailto:oscarcheung2023@gmail.com">Email</a>
+                </div>
+                <p class="copyright">Copyright © 2025 Oscar Cheung. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
-    <script>
-        // Update time
-        function updateTime() {
-            const timeElement = document.querySelector('.time');
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
-        }
-
-        // Update time every second
-        setInterval(updateTime, 1000);
-        updateTime(); // Initial update
-
-        // Smooth page transitions
-        document.addEventListener('DOMContentLoaded', function() {
-            document.body.style.opacity = '1';
-        });
-
-        // Handle navigation with fade effect
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (this.getAttribute('target') === '_blank') return;
-                e.preventDefault();
-                const href = this.getAttribute('href');
-                document.body.style.opacity = '0';
-                setTimeout(() => {
-                    window.location.href = href;
-                }, 300);
-            });
-        });
-    </script>
+    <script src="js/bite.js"></script>
+    <script src="js/main.js"></script>
 </body>
-</html> 
+</html>
