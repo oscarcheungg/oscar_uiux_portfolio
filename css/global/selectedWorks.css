@@ -1,5 +1,5 @@
 .selectedWorks {
-    margin-top: 10rem;
+    margin-top: 12rem;
     margin-bottom: 4rem;
 }
 
@@ -98,7 +98,7 @@
 
 @media (max-width: 700px) {
   .selectedWorks {
-    margin-top: 3.5rem;
+    margin-top: 4rem;
     margin-bottom: 2rem;
   }
   .selectedWorksTitle {
