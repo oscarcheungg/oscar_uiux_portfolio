@@ -4,220 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oscar Cheung</title>
-    <link rel="icon" type="image/png" href="images/white.png">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background: #fff;
-        }
-
-        main {
-            opacity: 0;
-            animation: fadeIn 0.4s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-out {
-            opacity: 0;
-            transform: translateY(8px);
-            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo"><a href="index.html">Oscar Cheung</a></div>
+                <ul class="navLinks">
+                    <li><a href="#selectedWorks">Work</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="Cheung_Oscar_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+                </ul>
+                <button class="hamburger" aria-label="Toggle menu">
+                    <span class="hamburgerLine"></span>
+                    <span class="hamburgerLine"></span>
+                    <span class="hamburgerLine"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
     <main>
         <div class="container">
-            <section class="intro">
-                <div class="intro-title">
-                    <h1>Product<br>Designer</h1>
-                </div>
-                <div class="intro-text">
-                    <p>Hi, I'm Oscar, A First-Gen<br>Student Creating<br>Intuitive Digital<br>Experiences.</p>
-                </div>
-                <div class="intro-image">
-                    <img src="images/Oscar-Profile.JPG" alt="Profile Image">
-                </div>
-            </section>
-
-            <div class="section-header">
-                <h2>Selected Works</h2>
-                <nav class="main-nav">
-                    <a href="about.html">About</a>
-                    <a href="contact.html">Contact</a>
-                </nav>
-            </div>
-
-            <section class="work-section">
-                <div class="work-grid">
-
-                    <div class="project-card">
-                        <a href="bite.html" class="project-image">
-                            <img src="images/Bite.png" alt="Bite Interface">
-                        </a>
-                        <div class="project-info">
-                            <h3 class="project-title">Bite, 2025</h3>
-                            <p class="project-subtitle">Dining Made Social and Simple</p>
-                            <div class="project-tags">
-                                <div class="tag">DESIGN</div>
-                                <div class="tag">RESEARCH</div>
-                                <div class="tag">DEVELOPMENT</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <a href="parr-center.html" class="project-image">
-                            <img src="images/Parr-Center.png" alt="Parr Center Interface">
-                        </a>
-                        <div class="project-info">
-                            <h3 class="project-title">Parr Center, 2025</h3>
-                            <p class="project-subtitle">An Ethics Learning Platform</p>
-                            <div class="project-tags">
-                                <div class="tag">DESIGN</div>
-                                <div class="tag">DEVELOPMENT</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <a href="bape.html" class="project-image">
-                            <img src="images/Bape.png" alt="Bape Interface">
-                        </a>
-                        <div class="project-info">
-                            <h3 class="project-title">BAPE, 2025</h3>
-                            <p class="project-subtitle">A Mobile App for Japan Streetwear Brand, BAPE</p>
-                            <div class="project-tags">
-                                <div class="tag">DESIGN</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <a href="sharp.html" class="project-image">
-                            <img src="images/Sharp.png" alt="Sharp Interface">
-                        </a>
-                        <div class="project-info">
-                            <h3 class="project-title">Sharp, 2025</h3>
-                            <p class="project-subtitle">Barber Finder Mobile App</p>
-                            <div class="project-tags">
-                                <div class="tag">DESIGN</div>
-                                <div class="tag">RESEARCH</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <a href="breast-cancer-hub.html" class="project-image">
-                            <img src="images/BreastCancer.png" alt="Breast Cancer Hub Interface">
-                        </a>
-                        <div class="project-info">
-                            <h3 class="project-title">Breast Cancer Hub, 2024</h3>
-                            <p class="project-subtitle">Breast Cancer Self-Check Mobile App</p>
-                            <div class="project-tags">
-                                <div class="tag">DESIGN</div>
-                                <div class="tag">DEVELOPMENT</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <a href="golden-dragon.html" class="project-image">
-                            <img src="images/GoldenDragon.png" alt="Golden Dragon Interface">
-                        </a>
-                        <div class="project-info">
-                            <h3 class="project-title">Golden Dragon, 2024</h3>
-                            <p class="project-subtitle">Golden Dragon Website</p>
-                            <div class="project-tags">
-                                <div class="tag">DESIGN</div>
-                                <div class="tag">RESEARCH</div>
-                                <div class="tag">DEVELOPMENT</div>
-                            </div>
-                        </div>
-                    </div>
+            <section class="hero">
+                <h1>Hi, This is Oscar.</h1>
+                <p class="subtitle">
+                    A <a href="#" class="animated-gradient-text">product designer</a> at UNC-Chapel Hill crafting<br>
+                    intuitive digital experiences. ✌️
+                </p>
+                <div class="currentStatus">
+                    <p>Currently &rarr; <strong>Frontend Developer Intern at Quantifyd</strong></p>
+                    <p>Made with &rarr; <strong>Care :)</strong></p>
                 </div>
             </section>
         </div>
-
-        <footer class="site-footer">
-            <div class="container">
-                <div class="footer-grid">
-                    <div class="footer-location">
-                        <p>Chapel Hill, NC</p>
-                        <p class="time">1:01:12 PM</p>
-                    </div>
-                    <div class="footer-right">
-                        <div class="footer-links">
-                            <a href="https://www.linkedin.com/in/oscarcheungg/" target="_blank">LinkedIn</a>
-                            <a href="https://github.com/oscarcheungg" target="_blank">GitHub</a>
-                            <a href="mailto:oscarcheung2023@gmail.com">Email</a>
-                        </div>
-                        <div class="footer-copyright">
-                            <p>Copyright © 2025 Oscar Cheung. All rights reserved.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
     </main>
-
-    <!-- Contact Modal -->
-    <div id="contact-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Let's Connect!</h2>
-                <button class="close-button">&times;</button>
+    <section class="selectedWorks" id="selectedWorks">
+        <div class="container">
+            <h2 class="selectedWorksTitle">Selected Works</h2>
+            <hr class="selectedWorksDivider">
+            <div class="worksGrid">
+                <div class="workCard animated-card">
+                    <div class="workImageContainer">
+                        <a href="bite.html" class="workImageLink">
+                            <img src="assets/biteAssets/biteCover.svg" alt="Bite App Preview" class="workImage workImage--bite">
+                        </a>
+                    </div>
+                </div>
+                <div class="workCard animated-card">
+                    <div class="workImageContainer">
+                        <a href="goldendragon.html" class="workImageLink">
+                            <img src="assets/goldendragonAssets/goldendragonCover.svg" alt="Golden Dragon Website Preview" class="workImage workImage--goldendragon">
+                        </a>
+                    </div>
+                </div>
             </div>
-            <p>I'm always open to new opportunities and collaborations.</p>
-            <div class="modal-links">
-                <a href="https://www.linkedin.com/in/oscar-cheung/" target="_blank">LinkedIn</a>
-                <a href="https://github.com/oscarcheung102" target="_blank">GitHub</a>
-                <a href="mailto:oscarcheung102@gmail.com">Email</a>
+            <div class="worksInfoGrid">
+                <div class="workInfo animated-card">
+                    <h3 class="workTitle">Bite, 2025</h3>
+                    <p class="workSubtitle">Dining Made Social and Simple</p>
+                </div>
+                <div class="workInfo animated-card">
+                    <h3 class="workTitle">Golden Dragon Website, 2025</h3>
+                    <p class="workSubtitle">The Heart of Our Family, Designed</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <script>
-        // Update time
-        function updateTime() {
-            const timeElement = document.querySelector('.time');
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
-        }
-
-        // Update time every second
-        setInterval(updateTime, 1000);
-        updateTime(); // Initial update
-
-        // Handle navigation with fade effect
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (this.getAttribute('target') === '_blank') return;
-                e.preventDefault();
-                const href = this.getAttribute('href');
-                const mainContent = document.querySelector('main');
-                mainContent.classList.add('fade-out');
-                setTimeout(() => {
-                    window.location.href = href;
-                }, 300);
-            });
-        });
-    </script>
+    <footer class="footer">
+        <div class="container footerContainer">
+            <div class="footerLeft">
+                <p>Chapel Hill, NC</p>
+                <p id="clock"></p>
+            </div>
+            <div class="footerRight">
+                <div class="footerSocial">
+                    <a href="https://www.linkedin.com/in/oscarcheungg/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://www.instagram.com/oscar.cheungg/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    <a href="mailto:oscarcheung2023@gmail.com">Email</a>
+                </div>
+                <p class="copyright">Copyright © 2025 Oscar Cheung. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

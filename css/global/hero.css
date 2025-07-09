@@ -1,0 +1,79 @@
+.hero {
+    padding-top: 8rem; 
+    padding-bottom: 8rem;
+}
+
+.hero h1 {
+    font-size: 90px; 
+    font-weight: 700;
+    margin: 0 0 1.5rem 0; 
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+}
+
+.hero .subtitle {
+    font-size: 32px; 
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin: 0 0 4rem 0; 
+    max-width: 50rem;
+}
+
+.gradientLink {
+    background-image: linear-gradient(to right, #3777DF, #133C84);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.gradientLink:hover {
+    text-decoration: none;
+}
+
+.currentStatus p {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+.animated-gradient-text {
+  background: linear-gradient(90deg, #3777DF, #9c40ff, #3777DF);
+  background-size: 300% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: animated-gradient-move 8s linear infinite;
+}
+
+@keyframes animated-gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+  .hero .subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 100%;
+  }
+  .currentStatus p {
+    font-size: 1rem;
+  }
+}

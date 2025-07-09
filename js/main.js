@@ -1,99 +1,132 @@
-// Header scroll effect
-const header = document.querySelector('.site-header');
-let lastScroll = 0;
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
+document.addEventListener('DOMContentLoaded', () => {
+    const clockElement = document.getElementById('clock');
+    const header = document.querySelector('header');
     
-    if (currentScroll <= 0) {
-        header.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-        return;
+    // Scroll animation variables
+    let lastScrollTop = 0;
+    let isScrolling = false;
+
+    function updateTime() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        clockElement.textContent = `${hours}:${minutes}:${seconds}`;
     }
-    
-    if (currentScroll > lastScroll && currentScroll > 100) {
-        // Scrolling down
-        header.style.transform = 'translateY(-100%)';
-    } else {
-        // Scrolling up
-        header.style.transform = 'translateY(0)';
-        header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+
+    // Header scroll animation function
+    function handleScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Hide/show header based on scroll direction
+        if (scrollTop > lastScrollTop && scrollTop > 200) {
+            // Scrolling down - hide header
+            header.classList.add('hidden');
+        } else {
+            // Scrolling up - show header
+            header.classList.remove('hidden');
+        }
+        
+        lastScrollTop = scrollTop;
+        isScrolling = false;
     }
+
+    // Smooth scrolling for navigation links
+    function handleNavLinkClick(e) {
+        const targetId = this.getAttribute('href');
+        
+        // Only handle internal links (starting with #)
+        if (targetId && targetId.startsWith('#')) {
+            e.preventDefault();
+            
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                const headerHeight = header.offsetHeight;
+                const targetPosition = targetElement.offsetTop - headerHeight; // 20px offset for better spacing
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    }
+
+    // Add click event listeners to navigation links
+    const navLinks = document.querySelectorAll('.navLinks a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', handleNavLinkClick);
+    });
+
+    // Hamburger menu functionality
+    const hamburger = document.querySelector('.hamburger');
+    const navLinksContainer = document.querySelector('.navLinks');
     
-    lastScroll = currentScroll;
-});
+    if (hamburger && navLinksContainer) {
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navLinksContainer.classList.toggle('active');
+        });
 
-// Fade in elements on scroll
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-};
+        // Close menu when clicking on a nav link (mobile)
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navLinksContainer.classList.remove('active');
+            });
+        });
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!hamburger.contains(e.target) && !navLinksContainer.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinksContainer.classList.remove('active');
+            }
+        });
+    }
+
+    // Throttle scroll events for better performance
+    window.addEventListener('scroll', function() {
+        if (!isScrolling) {
+            requestAnimationFrame(handleScroll);
+            isScrolling = true;
         }
     });
-}, observerOptions);
 
-// Add fade-in animation to sections
-document.querySelectorAll('section').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(20px)';
-    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(section);
-});
-
-// Contact Modal
-const modal = document.getElementById('contact-modal');
-const contactLinks = document.querySelectorAll('a[href="#contact"]');
-const closeButton = document.querySelector('.close-button');
-
-// Open modal when clicking contact links
-contactLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        modal.classList.add('show');
-        document.body.style.overflow = 'hidden';
-    });
-});
-
-// Close modal when clicking close button
-closeButton.addEventListener('click', () => {
-    modal.classList.remove('show');
-    document.body.style.overflow = '';
-});
-
-// Close modal when clicking outside
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        modal.classList.remove('show');
-        document.body.style.overflow = '';
+    if (clockElement) {
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial call to display time immediately
     }
-});
 
-// Close modal when pressing escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('show')) {
-        modal.classList.remove('show');
-        document.body.style.overflow = '';
+    if (window.gsap && window.ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Get all animated elements (both cards and info)
+        const allAnimatedElements = gsap.utils.toArray('.animated-card');
+        
+        allAnimatedElements.forEach((element) => {
+            gsap.fromTo(
+                element,
+                {
+                    y: 100,
+                    opacity: 0,
+                    scale: 0.98,
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    scale: 1,
+                    duration: 2.0,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 85%",
+                        toggleActions: "play none none none",
+                        once: true,
+                    },
+                }
+            );
+        });
     }
-});
-
-// Update time in footer
-function updateTime() {
-    const timeElement = document.querySelector('.time');
-    if (timeElement) {
-        const now = new Date();
-        const hours = now.getHours().toString().padStart(2, '0');
-        const minutes = now.getMinutes().toString().padStart(2, '0');
-        const seconds = now.getSeconds().toString().padStart(2, '0');
-        timeElement.textContent = `${hours}:${minutes}:${seconds}`;
-    }
-}
-
-// Update time immediately and then every second
-updateTime();
-setInterval(updateTime, 1000); 
+}); 
