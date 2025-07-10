@@ -84,17 +84,20 @@ nav {
         font-size: 20px;
     }
 
+    /* Make mobile nav menu span full nav bar width */
     .navLinks {
         position: absolute;
         top: 100%;
         left: -10%;
-        width: 100vw;
+        width: 115%;
         background: #fff;
         flex-direction: column;
         align-items: flex-end;
-        padding: 24px 0 24px 0;
+        padding: 24px 0 0 0;
         gap: 12px;
-        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+        box-shadow: none;
+        border-bottom: none;
+        border-top: none;
         max-height: 0;
         opacity: 0;
         overflow: hidden;
@@ -107,6 +110,8 @@ nav {
     .navLinks.active {
         max-height: 400px;
         opacity: 1;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 24px;
     }
 
     .navLinks li {
