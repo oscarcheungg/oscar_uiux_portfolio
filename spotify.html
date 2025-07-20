@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Playlists Enhanced | Oscar Cheung</title>
+    <link rel="icon" type="image/svg+xml" href="white.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo"><a href="index.html">Oscar Cheung</a></div>
+                <ul class="navLinks">
+                    <li><a href="index.html#selectedWorks">Work</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="Cheung_Oscar_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+                </ul>
+                <button class="hamburger" aria-label="Toggle menu">
+                    <span class="hamburgerLine"></span>
+                    <span class="hamburgerLine"></span>
+                    <span class="hamburgerLine"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="spotifyHeroBg">
+            <div class="spotifyHeroImgWrap">
+                <img src="assets/spotifyAssets/spotifyMain.svg" alt="Spotify Playlists Enhanced Main" class="spotifyHeroImg">
+            </div>
+        </div>
+    </main>
+    <div class="spotifyMainContainer">
+        <div class="spotifyDetailsContainer">
+            <h1 class="spotifyMainTitle">Spotify Playlists Enhanced - Saving Music, Simplified</h1>
+            <hr class="spotifyDivider">
+            <div class="spotifyGrid">
+                <div>
+                    <h2 class="spotifyGridHeading">My Role</h2>
+                    <p>Product Designer</p>
+                </div>
+                <div>
+                    <h2 class="spotifyGridHeading">Responsibilities</h2>
+                    <p>UX Research<br>Design Thinking<br>Wireframing<br>Prototyping</p>
+                </div>
+                <div>
+                    <h2 class="spotifyGridHeading">Timeline</h2>
+                    <p>3 weeks</p>
+                </div>
+                <div>
+                    <h2 class="spotifyGridHeading">Tools Used</h2>
+                    <p>Figma<br>Figjam<br>Notion</p>
+                </div>
+            </div>
+            <div class="spotifyBackground">
+                <p class="spotifyLabel">BACKGROUND</p>
+                <h2 class="spotifyTitle">The Inspiration</h2>
+                <hr class="spotifyDivider">
+                <p class="spotifyText">While Spotify excels at music discovery, I have always found saving songs to playlists and making new playlists to not match that level. Simple actions—like adding a song to a playlist or checking if it's already been saved—often takes too many taps and is a pretty tedious process. What should feel instant instead feels buried.</p>
+                <p class="spotifyText">This inspired me to go out to redesign the playlist-building experience to make it faster, more intuitive, and more rewarding—without compromising Spotify's visually appealing user interface. By streamlining key interactions and surfacing helpful visual cues, this case study explores how thoughtful design tweaks can reduce friction and give users more control over how they organize what they love.</p>
+            </div>
+            <div class="spotifyProblemContainer">
+                <p class="spotifyLabel">PROBLEM</p>
+                <h2 class="spotifyTitle">Frictions in the Playlist-Saving Experience</h2>
+                <hr class="spotifyDivider">
+                <p class="spotifyText">Adding a single song to a playlist on Spotify's mobile app requires navigating multiple layers—opening the three-dot menu, selecting "Add to Playlist," scrolling through multiple playlists, and then finally adding the song. What should be a very quick interaction turned into a 4–5 tap process. Below shows that process of adding a song to a playlist.</p>
+                <div class="spotifyProblemVideoWrap">
+                    <video id="newPlaylistProblemVideo" class="spotifyProblemVideo" autoplay loop muted playsinline style="margin-top: 2.5rem; max-width: 350px; width: 100%; display: block; margin-left: auto; margin-right: auto; border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,0.08); background: #fff;">
+                        <source src="assets/spotifyAssets/newPlaylistProblems.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <p class="spotifyText">While Spotify does offer a 'Quick Add' overlay when adding songs based off suggestions, recently played, etc. This feature is still very limited in scope, as the user is restricted purely to the overlay and can often find themselves having a hard time thinking of what songs to add. This limits the user's freedom in navigating the full interface of Spotify to freely find songs without these restrictions.</p>
+                <div class="spotifyQuickAddVideoWrap">
+                    <video id="quickAddVideo" class="spotifyQuickAddVideo" autoplay loop muted playsinline style="margin-top: 2.5rem; max-width: 350px; width: 100%; display: block; margin-left: auto; margin-right: auto; border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,0.08); background: #fff;">
+                        <source src="assets/spotifyAssets/quickAdd.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <p class="spotifyText">These issues quickly stack up—slowing down music curation and making playlist-building feel more like a chore than a natural part of the listening experience in Spotify. This gave me a very clear understanding of the goal of this case study, making the playlist-building experience more seamless and intuitive.</p>
+                <h2 class="spotifyTitle">The Process</h2>
+                <hr class="spotifyDivider">
+                <div class="spotifyProcessGrid">
+                    <div class="spotifyProcessStep">
+                        <div class="spotifyProcessCircle">1</div>
+                        <div class="spotifyProcessStepTitle">Research</div>
+                        <div class="spotifyProcessStepDesc">Desk Research<br>Competitor Analysis<br>Identify Problems</div>
+                    </div>
+                    <div class="spotifyProcessStep">
+                        <div class="spotifyProcessCircle">2</div>
+                        <div class="spotifyProcessStepTitle">Synthesis</div>
+                        <div class="spotifyProcessStepDesc">User Personas</div>
+                    </div>
+                    <div class="spotifyProcessStep">
+                        <div class="spotifyProcessCircle">3</div>
+                        <div class="spotifyProcessStepTitle">Ideation</div>
+                        <div class="spotifyProcessStepDesc">User Flow<br>Feature Explorations</div>
+                    </div>
+                    <div class="spotifyProcessStep">
+                        <div class="spotifyProcessCircle">4</div>
+                        <div class="spotifyProcessStepTitle">Final Designs</div>
+                        <div class="spotifyProcessStepDesc">The Solution</div>
+                    </div>
+                    <div class="spotifyProcessStep">
+                        <div class="spotifyProcessCircle">5</div>
+                        <div class="spotifyProcessStepTitle">Reflection</div>
+                        <div class="spotifyProcessStepDesc">Conclusion</div>
+                    </div>
+                </div>
+            </div>
+            <div class="spotifyResearchContainer">
+                <p class="spotifyLabel">RESEARCH</p>
+                <h2 class="spotifyTitle">Desk Research</h2>
+                <hr class="spotifyDivider">
+                <p class="spotifyText">Before diving into designing the new feature, I wanted to first look at discussion boards from Google that mentioned if users were also experiencing any key issues with Spotify's UI. I was curious to find if others were also experiencing the same problems with me when building playlists or if Spotify had already issued this issue. These discussion posts and quotes were found from exploring Reddit.</p>
+                <div class="spotifyImgWrap">
+                    <img src="assets/spotifyAssets/quoteCitations.svg" alt="User Quotes from Reddit" class="spotifyImg">
+                </div>
+            </div>
+            <div class="spotifyCompetitorContainer">
+                <p class="spotifyLabel">RESEARCH</p>
+                <h2 class="spotifyTitle">Competitor Analysis</h2>
+                <hr class="spotifyDivider">
+                <p class="spotifyText">I was then curious about how other music platforms curated the playlist-building experience for their users, leading to my competitor analysis. This analysis involved diving into comparing the amount of taps it took to add a song to a playlist and determining if the process was faster in other platforms compared to Spotify. These main competitors that I took account of were Apple Music, Youtube Music, and Soundcloud.</p>
+                <div class="spotifyImgWrap">
+                    <img src="assets/spotifyAssets/spotifyCompetitorAnalysis.svg" alt="Competitor Analysis" class="spotifyImg">
+                </div>
+            </div>
+            <div class="spotifyProblemsContainer">
+                <p class="spotifyLabel">RESEARCH</p>
+                <h2 class="spotifyTitle">Identifying Problems</h2>
+                <hr class="spotifyDivider">
+                <p class="spotifyText">After conducting desk research and competitor analysis, I wanted to direct my attention to fellow Spotify users that I personally knew, building a stronger conviction of this occurring user experience issue. This was key to solidifying what needed to be addressed in the design of this new feature. Here are the key problems that I took note of in my discussions with other Spotify users:</p>
+                <div class="spotifyImgWrap">
+                    <img src="assets/spotifyAssets/circleGroup.svg" alt="Problem Circles" class="spotifyImg">
+                </div>
+            </div>
+            <div class="spotifyPersonaContainer">
+                <p class="spotifyLabel">SYNTHESIS</p>
+                <h2 class="spotifyTitle">User Personas</h2>
+                <hr class="spotifyDivider">
+                <p class="spotifyText">I wanted to create a user persona to embody the ideal Spotify user based on the full research process I conducted, incorporating insights from the problem discovery, user discussions, competitor analysis, and major pain points. By synthesizing the gathered data, my aim is to represent the user's preferences, pain points, and behaviors, allowing for a more focused and effective feature for the ideal user.</p>
+                <div class="spotifyImgWrap">
+                    <img src="assets/spotifyAssets/aubreyPersona.svg" alt="Aubrey Jones User Persona" class="spotifyImg">
+                </div>
+            </div>
+            <div class="spotifyUserFlowContainer">
+                <p class="spotifyLabel">IDEATION</p>
+                <h2 class="spotifyTitle">User Flow</h2>
+                <hr class="spotifyDivider">
+                <p class="spotifyText">After understanding the user's needs and pain points, I mapped out the current Spotify flow and designed an enhanced user flow that would address the identified problems.</p>
+                
+                <h3 class="spotifyFlowTitle">The Current User Flow</h3>
+                <p class="spotifyText">This 4-5 step process creates significant obstacles: users must navigate nested menus, switch contexts from music discovery, and face decision fatigue with branching paths. This validates the pain points identified in research - users lose their "groove" when menu diving interrupts their listening flow.</p>
+                <div class="spotifyImgWrap">
+                    <img src="assets/spotifyAssets/spotifyOriginalFlow.svg" alt="Spotify Original Flow" class="spotifyImg">
+                </div>
+                
+                <h3 class="spotifyFlowTitle">The Enhanced User Flow</h3>
+                <p class="spotifyText">This streamlined 3-step process addresses core issues through strategic simplification: "Playlist Mode" preserves context while enabling quick additions to a certain playlist, the green add button provides clear affordance, and reduced decision points eliminate complexity while maintaining functionality.</p>
+                <div class="spotifyImgWrap">
+                    <img src="assets/spotifyAssets/enhancedFlow.svg" alt="Enhanced User Flow" class="spotifyImg">
+                </div>
+            </div>
+            <div class="spotifyFeatureExplorationsContainer">
+                <p class="spotifyLabel">IDEATION</p>
+                <h2 class="spotifyTitle">Feature Explorations</h2>
+                <hr class="spotifyDivider">
+                <p class="spotifyText">I then explored different approaches to indicate when "Playlist Mode" is active and simplifying the user interface of a playlist, testing various visual cues and interaction patterns to find the optimal balance between functionality and usability.</p>
+                
+                <h3 class="spotifyFlowTitle">Active State Design Explorations</h3>
+                <p class="spotifyText">I tested three different visual approaches to indicate when users are in playlist editing mode. The first iteration used inner green shadows around screen edges, but this proved too distracting. The second approach with a more subtle green shadow near the top of the screen was less intrusive but lacked playlist context. The final iteration with a prominent green banner at the top clearly communicates which playlist is being edited while respecting Spotify's user interface.</p>
+                <div class="spotifyImgWrap">
+                    <img src="assets/spotifyAssets/activeState.svg" alt="Active State Design Explorations" class="spotifyImg">
+                </div>
+                
+                <h3 class="spotifyFlowTitle">UI Simplification Explorations</h3>
+                <p class="spotifyText">Taking note of how compact the action bar was now with the new "Playlist Mode" button added, I focused on combining the functionality of certain buttons into the "Playlist Mode" button. The first iteration added a quick manual sorting of music within a playlist to give the feature more than just a quick add functionality. The second approach eliminated the "Edit" button by integrating its function into "Playlist Mode" as the user can freely edit the playlist cover, name, and description of the playlist when "Playlist Mode" is on. I decided to get rid of the "Add" button in the final iteration as the user has the ability to now add songs outside of the playlist interface without the constriction of an overlay. Additionally, if they were still looking for suggested songs, that would still exist near the bottom of the playlist. With that, I was able to simplify the action bar by adding the functionality of other buttons into the new "Playlist Mode" button.</p>
+                <div class="spotifyImgWrap">
+                    <img src="assets/spotifyAssets/uiSimplification.svg" alt="UI Simplification Explorations" class="spotifyImg">
+                </div>
+            </div>
+            <div class="spotifySolutionContainer">
+                <p class="spotifyLabel">FINAL DESIGNS</p>
+                <h2 class="spotifyTitle">The Solution</h2>
+                <hr class="spotifyDivider">
+                
+                <!-- Desktop Sticky Scroll Container -->
+                <div class="sticky-scroll-container">
+                    <!-- Sticky Phone Display -->
+                    <div class="sticky-phone-display">
+                        <div class="phone-frame">
+                            <video id="spotifyMainVideo" class="phone-video" loop muted playsinline>
+                                <source src="assets/spotifyAssets/newPlaylistFlow.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    
+                    <!-- Scrollable Content -->
+                    <div class="scrollable-content">
+                        <div class="content-section" data-section="0">
+                            <h3 class="content-title">Build New Playlists, Effortlessly</h3>
+                            <p class="content-description">Transform music discovery into organized collections with just two taps. Tap the green "+" button to instantly add music to your new playlist. This streamlined approach eliminates menu navigation, keeping you in your musical flow while building meaningful playlists effortlessly.</p>
+                        </div>
+                        
+                        <div class="content-section" data-section="1">
+                            <h3 class="content-title">Add New Music without Hesitation</h3>
+                            <p class="content-description">Seamlessly add discoveries to your existing playlists with unprecedented speed. The enhanced interface prioritizes the playlists you want to edit. This smart categorization eliminates scrolling tirelessly through multiple playlists to find a certain playlist, speeding up the process of finding the home for your new favorite track.</p>
+                        </div>
+                        
+                        <div class="content-section" data-section="2">
+                            <h3 class="content-title">Edit Multiple Playlists at Once, with Ease</h3>
+                            <p class="content-description">Take control of your music organization with powerful bulk editing capabilities. Turn on "Playlist Mode" for multiple playlists and add to them simultaneously without worrying about finding the playlists you want to add a song to. Clear visual feedback ensures you always know what's within your playlists, saving significant time.</p>
+                        </div>
+                        
+                        <div class="content-section" data-section="3">
+                            <h3 class="content-title">Make Changes All in One Place</h3>
+                            <p class="content-description">The new interface adapts to prioritize your desired edits all in one place while maintaining full access to music discovery. The newly streamlined action bar consolidates all editing functions into intuitive, context-aware controls.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Final Designs Section -->
+                <div class="final-designs-mobile">
+                    <div class="final-design-mobile-block">
+                        <div class="phone-frame">
+                            <video class="phone-video" autoplay loop muted playsinline>
+                                <source src="assets/spotifyAssets/newPlaylistFlow.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <h3 class="content-title">Build New Playlists, Effortlessly</h3>
+                        <p class="content-description">Transform music discovery into organized collections with just two taps. Tap the green "+" button to instantly create a new playlist with intelligent name suggestions based on the song's mood or genre. This streamlined approach eliminates menu navigation, keeping you in your musical flow while building meaningful playlists effortlessly.</p>
+                    </div>
+                    <div class="final-design-mobile-block">
+                        <div class="phone-frame">
+                            <video class="phone-video" autoplay loop muted playsinline>
+                                <source src="assets/spotifyAssets/existingPlaylistFlow.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <h3 class="content-title">Add New Music without Hesitation</h3>
+                        <p class="content-description">Seamlessly add discoveries to your curated playlists with unprecedented speed. The enhanced interface prioritizes your most-used playlists and groups them by mood, activity, or recent usage. Smart categorization eliminates endless scrolling, making it intuitive to find the perfect home for your new favorite track.</p>
+                    </div>
+                    <div class="final-design-mobile-block">
+                        <div class="phone-frame">
+                            <video class="phone-video" autoplay loop muted playsinline>
+                                <source src="assets/spotifyAssets/multiPlaylistEdit.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <h3 class="content-title">Edit Multiple Playlists at Once, with Ease</h3>
+                        <p class="content-description">Take control of your music organization with powerful bulk editing capabilities. Select multiple songs and add them to multiple playlists simultaneously, or remove them with the same efficiency. Clear visual feedback ensures you always know what's happening with your collection, saving significant time for power users.</p>
+                    </div>
+                    <div class="final-design-mobile-block">
+                        <div class="phone-frame">
+                            <video class="phone-video" autoplay loop muted playsinline>
+                                <source src="assets/spotifyAssets/playlistMode.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <h3 class="content-title">Make Changes All in One Place</h3>
+                        <p class="content-description">Enter a dedicated playlist editing mode that transforms your listening experience. The interface adapts to prioritize playlist building while maintaining full access to music discovery. A prominent green banner indicates which playlist you're editing, and the streamlined action bar consolidates all editing functions into intuitive, context-aware controls.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="spotifyConclusionContainer">
+                <p class="spotifyLabel">REFLECTION</p>
+                <h2 class="spotifyTitle">Conclusion</h2>
+                <hr class="spotifyDivider">
+                <p class="spotifyText">Working on this Spotify case study was super fun and exciting—not just as a designer, but as someone who's been a passionate Spotify user for years. There is definitely something special about redesigning a product you use daily, where every frustration becomes an opportunity to create something better. I loved the challenge of working within Spotify's existing design system while finding creative ways to enhance the user experience.</p>
+                <p class="spotifyText">Music has always been a huge part of my life, and seeing how technology can make that experience more seamless and enjoyable drives my passion for product design. This project allowed me to blend my love for music with my desire to solve real world problems that I and many other users face every day. The creative freedom to explore different approaches while respecting Spotify's established brand and interface was both challenging and rewarding.</p>
+                <p class="spotifyText">What I enjoyed most was the iterative process—testing different solutions, getting feedback from fellow Spotify users, and refining the design based on real user needs. It reminded me why I love product design: the opportunity to make everyday experiences better, one interaction at a time. Whether it's reducing the taps needed to save a song or creating a more intuitive playlist-building flow, these small improvements can make a big difference in how people connect with their music.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container footerContainer">
+            <div class="footerLeft">
+                <p>Chapel Hill, NC</p>
+                <p id="clock"></p>
+            </div>
+            <div class="footerRight">
+                <div class="footerSocial">
+                    <a href="https://www.linkedin.com/in/oscarcheungg/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://www.instagram.com/oscar.cheungg/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    <a href="mailto:oscarcheung2023@gmail.com">Email</a>
+                </div>
+                <p class="copyright">Copyright © 2025 Oscar Cheung. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/spotify.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

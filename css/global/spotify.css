@@ -1,0 +1,585 @@
+.spotifyHeroBg {
+    width: 100vw;
+    background: #F5F5F7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    margin: 0;
+    padding: 0;
+}
+
+.spotifyHeroImgWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.spotifyHeroImg {
+    max-width: 27vw;
+    height: auto;
+    display: block;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.spotifyDetails {
+    margin: 0 auto;
+    padding: 3rem 0 0 0;
+    max-width: 1000px;
+}
+
+.spotifyDetailsContainer {
+    width: 100%;
+}
+
+.spotifyLabel {
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+    margin-top: 3rem;
+    color: var(--text-secondary);
+}
+
+.spotifyTitle {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0.2rem 0 1.2rem 0;
+}
+
+.spotifyProcessTitle {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 3rem 0 1.2rem 0;
+}
+
+.spotifyText {
+    font-size: 17px;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+}
+
+.spotifyDivider {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 1.5rem 0 2.5rem 0;
+}
+
+.spotifyGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 3.5rem;
+}
+
+.spotifyGridHeading {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.spotifyGrid p {
+    font-size: 17px;
+    font-weight: 400;
+    margin: 0;
+    line-height: 2;
+}
+
+.spotifyBackground {
+    margin-top: 2.5rem;
+}
+
+.spotifyProcessGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 3.5rem;
+}
+
+.spotifyProcessStep {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.spotifyProcessCircle {
+    width: 56px;
+    height: 56px;
+    background: #1DB954;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.spotifyProcessStepTitle {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.spotifyProcessStepDesc {
+    font-size: 15px;
+    color: var(--text-primary);
+    text-align: center;
+    line-height: 1.6;
+}
+
+.spotifyMainContainer {
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+.spotifyBackground,
+.spotifyProblemContainer,
+.spotifyResearchContainer {
+    margin: 0;
+    max-width: none;
+}
+
+.spotifyProblemVideoWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2.5rem 0;
+    width: 100%;
+}
+
+.spotifyProblemVideo {
+    max-width: 350px;
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    background: #fff;
+}
+
+.spotifyQuickAddVideoWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2.5rem 0;
+    width: 100%;
+}
+
+.spotifyQuickAddVideo {
+    max-width: 350px;
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    background: #fff;
+}
+
+.spotifyCompetitorContainer {
+    margin-top: 4rem;
+}
+
+.spotifyProblemsContainer {
+    margin-top: 5rem;
+}
+
+.spotifyPersonaContainer {
+    margin-top: 5rem;
+}
+
+.spotifyUserFlowContainer {
+    margin-top: 5rem;
+}
+
+.spotifyFlowTitle {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 3rem 0 1rem 0;
+    color: var(--text-primary);
+}
+
+.spotifyFeatureExplorationsContainer {
+    margin-top: 5rem;
+}
+
+.spotifySolutionContainer {
+    margin-top: 5rem;
+}
+
+.spotifyConclusionContainer {
+    margin-top: 5rem;
+}
+
+/* Sticky Scroll Effect Styles */
+.sticky-scroll-container {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+    margin-top: 3rem;
+    min-height: 80vh;
+}
+
+.sticky-phone-display {
+    position: sticky;
+    top: 120px;
+    flex-shrink: 0;
+    width: 300px;
+    height: 600px;
+}
+
+.phone-frame {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.phone-video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 50px;
+}
+
+.scrollable-content {
+    flex: 1;
+    padding-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 80vh;
+}
+
+.content-section {
+    margin-bottom: 8rem;
+    opacity: 0.1;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+    text-align: left;
+    max-width: 600px;
+}
+
+.content-section:first-child {
+    margin-top: 10rem;
+}
+
+.content-section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.content-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.content-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #222;
+    max-width: 500px;
+}
+
+/* Mobile Final Designs Section */
+.final-designs-mobile {
+    display: none;
+}
+
+.final-design-mobile-block {
+    margin-bottom: 4rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .sticky-scroll-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .sticky-phone-display {
+        position: relative;
+        top: auto;
+        width: 280px;
+        height: 560px;
+        margin: 0 auto;
+    }
+    
+    .scrollable-content {
+        padding-right: 0;
+        min-height: auto;
+    }
+    
+    .content-section {
+        margin-bottom: 4rem;
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    
+    .content-section:first-child {
+        margin-top: 2rem;
+    }
+    
+    .content-description {
+        max-width: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .sticky-scroll-container {
+        display: none;
+    }
+    
+    .final-designs-mobile {
+        display: block;
+    }
+    
+    .phone-frame {
+        width: 280px;
+        height: 560px;
+        margin: 0 auto 2rem auto;
+    }
+    
+    .phone-video {
+        border-radius: 40px;
+    }
+    
+    .content-title {
+        font-size: 1.5rem;
+    }
+    
+    .content-section {
+        margin-bottom: 3rem;
+    }
+    
+    .content-section:first-child {
+        margin-top: 1rem;
+    }
+}
+
+
+
+.spotifyMainTitle {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    margin-top: 3rem;
+    letter-spacing: 0.01em;
+}
+
+.spotifyResearchContainer {
+    margin-top: 4rem;
+}
+
+.spotifyProblemsList {
+    font-size: 17px;
+    color: var(--text-primary);
+    margin-left: 1.5rem;
+    margin-bottom: 2.5rem;
+    padding-left: 0;
+}
+
+.spotifyProblemsList > li {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+.spotifyProblemsList ul {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 1.5rem;
+    padding-left: 1.2rem;
+}
+
+.spotifyProblemsList ul li {
+    list-style-type: disc;
+    margin-bottom: 0.3rem;
+    line-height: 1.6;
+}
+
+.spotifyPainPoints {
+    margin-top: 2rem;
+}
+
+.spotifyPainQuotes {
+    font-size: 17px;
+    color: var(--text-primary);
+    margin-left: 1.5rem;
+    margin-bottom: 2.5rem;
+    padding-left: 0;
+}
+
+.spotifyPainQuotes li {
+    list-style-type: disc;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.spotifyUserPersonas {
+    margin-top: 4rem;
+}
+
+.spotifyPersonaImg {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+}
+
+.spotifyUserFlow {
+    margin-top: 4rem;
+}
+
+.spotifySketchingSection {
+    margin-top: 4rem;
+}
+
+.spotifyWireframesSection {
+    margin-top: 4rem;
+}
+
+.spotifyStyleGuideSection {
+    margin-top: 4rem;
+}
+
+.spotifyFinalDesignsSection {
+    margin-top: 4rem;
+}
+
+.spotifyConclusion {
+    margin-top: 4rem;
+}
+
+.spotifyImgWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2.5rem 0;
+    width: 100%;
+}
+
+.spotifyImg {
+    max-width: 100%;
+    height: auto;
+}
+
+.spotifyImg[src*="circleGroup.svg"] {
+    max-width: 90%;
+    height: auto;
+}
+
+.spotifyPersonaImg {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+}
+
+@media (max-width: 768px) {
+    .spotifyMainTitle {
+        font-size: 24px;
+        margin-bottom: 1rem;
+        margin-top: 2rem;
+    }
+
+    .spotifyDivider {
+        margin: 1rem 0 2rem 0;
+    }
+
+    .spotifyGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .spotifyGridHeading {
+        font-size: 18px;
+    }
+
+    .spotifyText, .spotifyProblemsList, .spotifyPainQuotes {
+        font-size: 16px;
+    }
+
+    .spotifyTitle, .spotifyProcessTitle {
+        font-size: 20px;
+    }
+
+    .spotifyProcessGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .spotifyProcessCircle {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+    }
+
+    .spotifyProcessStepTitle {
+        font-size: 16px;
+    }
+
+    .spotifyProcessStepDesc {
+        font-size: 14px;
+    }
+
+    .spotifyMainContainer {
+        padding: 0 1rem;
+    }
+
+    .spotifyImgWrap {
+        margin: 2rem 0;
+    }
+
+    .spotifyPersonaImg, .spotifyImg {
+        border-radius: 6px;
+    }
+
+    .spotifyHeroImg {
+        max-width: 80vw;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .spotifyHeroBg {
+        min-height: 50vh;
+    }
+
+    .spotifyDetailsContainer {
+        padding: 0 1rem;
+    }
+
+    .spotifyBackground, .spotifyProblemContainer, .spotifyResearchContainer, .spotifyUserPersonas, .spotifyUserFlow, .spotifySketchingSection, .spotifyWireframesSection, .spotifyStyleGuideSection, .spotifyFinalDesignsSection, .spotifyConclusion {
+        margin-top: 3rem;
+    }
+
+    .spotifyProblemsList {
+        margin-left: 1rem;
+    }
+
+    .spotifyProblemsList > li {
+        margin-bottom: 1rem;
+    }
+
+    .spotifyPainPoints {
+        margin-top: 1.5rem;
+    }
+
+    .spotifyPainQuotes {
+        margin-left: 1rem;
+    }
+
+    .spotifyUserPersonas, .spotifyUserFlow, .spotifySketchingSection, .spotifyWireframesSection, .spotifyStyleGuideSection, .spotifyFinalDesignsSection, .spotifyConclusion {
+        margin-top: 3rem;
+    }
+
+    .spotifyPersonaImg, .spotifyImg {
+        border-radius: 6px;
+    }
+}
