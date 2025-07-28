@@ -102,23 +102,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.gsap && window.ScrollTrigger) {
         gsap.registerPlugin(ScrollTrigger);
 
-        // Get all animated elements (both cards and info)
-        const allAnimatedElements = gsap.utils.toArray('.animated-card');
+        // Simple fade-in animation for selected works projects
+        const projectElements = gsap.utils.toArray('.spotifyWork, .biteWork, .goldenDragonWork');
         
-        allAnimatedElements.forEach((element) => {
+        projectElements.forEach((element) => {
             gsap.fromTo(
                 element,
                 {
-                    y: 100,
                     opacity: 0,
-                    scale: 0.98,
                 },
                 {
-                    y: 0,
                     opacity: 1,
-                    scale: 1,
-                    duration: 2.0,
-                    ease: "power3.out",
+                    duration: 0.6,
+                    ease: "power1.out",
                     scrollTrigger: {
                         trigger: element,
                         start: "top 85%",
