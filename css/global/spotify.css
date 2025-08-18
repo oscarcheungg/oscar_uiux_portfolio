@@ -17,11 +17,8 @@
 }
 
 .spotifyHeroImg {
-    max-width: 27vw;
+    width: 100%;
     height: auto;
-    display: block;
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
 }
 
 .spotifyDetails {
