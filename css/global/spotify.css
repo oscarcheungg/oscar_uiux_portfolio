@@ -539,13 +539,22 @@
     }
 
     .spotifyHeroImg {
-        max-width: 80vw;
-        padding-top: 2rem;
-        padding-bottom: 2rem;
+        max-width: 100vw;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .spotifyHeroImg[src*="newSpotifyMain.svg"] {
+        width: 100vw;
+        max-width: 100vw;
+        height: auto;
+        display: block;
+        margin: 0 auto;
     }
 
     .spotifyHeroBg {
-        min-height: 50vh;
+        min-height: 0;
+        padding: 0;
     }
 
     .spotifyDetailsContainer {
