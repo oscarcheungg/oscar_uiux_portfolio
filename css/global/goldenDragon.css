@@ -154,6 +154,15 @@ body {
     margin-top: 2.5rem;
 }
 
+.gdInitialWebsiteProblems .gdImgWrap {
+    margin-bottom: 2rem;
+}
+
+.gdInitialWebsiteProblems .gdImg {
+    max-width: 700px;
+    width: 100%;
+}
+
 .gdImg {
     max-width: 100%;
     height: auto;
