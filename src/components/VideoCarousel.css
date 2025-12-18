@@ -1,0 +1,128 @@
+.video-carousel-container {
+  position: relative;
+  padding: 24px 0 16px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #f5f5f7;
+  border-radius: 24px;
+}
+
+.dark .video-carousel-container {
+  background: #1a1a1a;
+}
+
+.video-carousel-scroll-track {
+  display: flex;
+  height: calc(100% - 50px);
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.video-carousel-scroll-track::-webkit-scrollbar {
+  display: none;
+}
+
+.video-carousel-item {
+  flex: 0 0 100%;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.video-carousel-video-container {
+  flex: 1;
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 1.5rem;
+}
+
+.video-carousel-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 1.5rem;
+}
+
+.video-carousel-title {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  padding: 0 16px;
+}
+
+.dark .video-carousel-title {
+  color: #999;
+}
+
+.video-carousel-indicators-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+}
+
+.video-carousel-indicators {
+  display: flex;
+  gap: 24px;
+}
+
+.video-carousel-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  padding: 8px;
+  margin: -8px;
+  touch-action: manipulation;
+}
+
+.video-carousel-indicator.active {
+  background-color: #1ED760;
+}
+
+.video-carousel-indicator.inactive {
+  background-color: #ccc;
+}
+
+.dark .video-carousel-indicator.inactive {
+  background-color: #555;
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 768px) {
+  .video-carousel-indicator {
+    padding: 12px;
+    margin: -12px;
+  }
+  
+  .video-carousel-title {
+    font-size: 13px;
+    padding: 0 12px;
+  }
+  
+  .video-carousel-item {
+    padding: 0 16px;
+  }
+}

@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-neutral-200 dark:border-neutral-800;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Prevent text size adjustment on iOS */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Improve touch targets on mobile */
+  button,
+  a,
+  [role="button"] {
+    touch-action: manipulation;
+  }
+}
+
+/* Strava embed full width styling */
+.strava-embed-placeholder,
+.strava-embed-placeholder iframe,
+.strava-embed-placeholder > div,
+.strava-embed-placeholder > div > iframe,
+[class*="strava-embed"],
+[class*="strava-embed"] iframe,
+[class*="strava-embed"] > div {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+}
+
+/* Target any divs created by the Strava script */
+div[data-embed-type="activity"] {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+div[data-embed-type="activity"] iframe,
+div[data-embed-type="activity"] > div {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+

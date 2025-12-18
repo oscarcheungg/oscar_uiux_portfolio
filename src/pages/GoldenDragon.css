@@ -1,0 +1,171 @@
+/* Golden Dragon Case Study Styles */
+
+/* Sticky Scroll Effect Styles */
+.sticky-scroll-container {
+  display: flex;
+  gap: 6rem;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 3rem;
+  min-height: 80vh;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sticky-phone-display {
+  position: sticky;
+  top: 120px;
+  flex-shrink: 0;
+  width: 320px;
+  height: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone-frame {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4rem;
+  background: white;
+}
+
+.phone-video {
+  width: 100%;
+  height: 100%;
+  border-radius: 4rem;
+  object-fit: contain;
+  transition: opacity 0.25s ease;
+}
+
+.scrollable-content {
+  flex: 1;
+  max-width: 500px;
+  padding-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+.content-section {
+  margin-bottom: 14rem;
+  opacity: 0.3;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+  text-align: left;
+  max-width: 600px;
+}
+
+.content-section:first-child {
+  margin-top: 12rem;
+}
+
+.content-section.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.content-title {
+  font-size: 1.5rem; /* text-2xl base */
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+  color: rgb(23 23 23);
+}
+
+@media (min-width: 768px) {
+  .content-title {
+    font-size: 1.875rem; /* text-3xl md */
+  }
+}
+
+.dark .content-title {
+  color: rgb(245 245 245);
+}
+
+.content-description {
+  font-size: 1rem; /* text-base */
+  line-height: 1.7;
+  max-width: 500px;
+  color: rgb(38 38 38);
+}
+
+@media (min-width: 768px) {
+  .content-description {
+    font-size: 1.125rem; /* text-lg md */
+  }
+}
+
+.dark .content-description {
+  color: rgb(212 212 212);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .sticky-scroll-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .sticky-phone-display {
+    position: relative;
+    top: auto;
+    width: 280px;
+    height: 560px;
+    margin: 0 auto;
+  }
+
+  .scrollable-content {
+    padding-right: 0;
+    min-height: auto;
+  }
+
+  .content-section {
+    margin-bottom: 4rem;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .content-section:first-child {
+    margin-top: 2rem;
+  }
+
+  .content-description {
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .sticky-scroll-container {
+    display: none;
+  }
+
+  .phone-frame {
+    width: 280px;
+    height: 560px;
+    margin: 0 auto 2rem auto;
+    border-radius: 3.5rem;
+  }
+
+  .phone-video {
+    border-radius: 3.5rem;
+  }
+
+  .content-title {
+    font-size: 1.25rem; /* text-xl mobile */
+  }
+
+  .content-section {
+    margin-bottom: 3rem;
+  }
+
+  .content-section:first-child {
+    margin-top: 1rem;
+  }
+}
+
