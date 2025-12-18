@@ -98,7 +98,7 @@ export default function VideoCarousel({
         className="video-carousel-scroll-track"
         onScroll={handleScroll}
       >
-        {items.map((item, index) => (
+        {items.map((item) => (
           <div key={item.id} className="video-carousel-item">
             <div className="video-carousel-video-container">
               <video

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Calendar, User, Wrench, Search, Users, MapPin, Award, Heart, MessageCircle } from 'lucide-react';
+import { Calendar, User, Wrench, Search, Users } from 'lucide-react';
 import { useRef, useEffect, useState } from 'react';
 import './Bite.css';
 

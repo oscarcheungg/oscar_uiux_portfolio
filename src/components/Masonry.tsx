@@ -73,8 +73,8 @@ interface MasonryProps {
 
 const Masonry: React.FC<MasonryProps> = ({
   items,
-  ease = 'power3.out',
-  duration = 0.6,
+  ease: _ease = 'power3.out',
+  duration: _duration = 0.6,
   stagger = 0.05,
   animateFrom = 'bottom',
   blurToFocus = true
