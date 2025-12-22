@@ -163,8 +163,8 @@ export function About() {
     },
     {
       id: 20,
-      url: '/oscarYap.JPEG',
-      caption: 'Me and my friends in Chinatown, New York City',
+      url: '/flying.JPG',
+      caption: 'Recently picked up on Chinese fan dancing as a hobby, check out @uncflyingsilk on Instagram!',
       isVideo: false
     },
     {
@@ -181,8 +181,8 @@ export function About() {
     },
     {
       id: 23,
-      url: '/flyingSilk.jpg',
-      caption: 'Recently picked up on Chinese fan dancing as a hobby, check out @uncflyingsilk on Instagram!',
+      url: '/happy.JPG',
+      caption: 'The Flying Silk team 🫶🏻',
       isVideo: false
     },
     {
