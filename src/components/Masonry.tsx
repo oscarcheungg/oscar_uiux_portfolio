@@ -318,8 +318,17 @@ const Masonry: React.FC<MasonryProps> = ({
     <div 
       ref={containerRef} 
       className="masonry-list"
-      style={{ height: containerHeight > 0 ? `${containerHeight}px` : undefined }}
+      style={{ 
+        height: containerHeight > 0 ? `${containerHeight}px` : undefined,
+        minHeight: !imagesReady ? '200px' : undefined
+      }}
     >
+      {!imagesReady && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-neutral-500 dark:text-neutral-400">
+          <span className="text-4xl animate-pulse" aria-hidden>📸</span>
+          <p className="text-sm">Loading...</p>
+        </div>
+      )}
       {grid.map((item) => {
         return (
           <div
