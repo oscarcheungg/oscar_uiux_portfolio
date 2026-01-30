@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Play, Calendar, User, Wrench, AlertCircle, TrendingDown, Clock, Zap } from 'lucide-react';
 import { useRef, useEffect, useState } from 'react';
+import { preloadMedia } from '../hooks/usePreload';
 import './Spotify.css';
 import VideoCarousel from '../components/VideoCarousel';
 
@@ -90,6 +91,7 @@ function StickyScrollSection() {
               loop
               muted
               playsInline
+              preload="auto"
             >
               <source src={SOLUTION_SECTIONS[0].video} type="video/mp4" />
               Your browser does not support the video tag.
@@ -119,6 +121,17 @@ function StickyScrollSection() {
 }
 
 export function Spotify() {
+  // Preload all videos when component mounts
+  useEffect(() => {
+    const videoUrls = SOLUTION_SECTIONS.map(section => section.video);
+    // Also preload other videos used in the page
+    videoUrls.push(
+      '/spotifyAssets/newPlaylistProblems.mp4',
+      '/spotifyAssets/quickAdd.mp4'
+    );
+    preloadMedia(videoUrls);
+  }, []);
+
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 pt-20 md:pt-24">
       {/* Hero Image */}
@@ -770,6 +783,7 @@ export function Spotify() {
                     loop
                     muted
                     playsInline
+                    preload="auto"
                   >
                     <source src={item.video} type="video/mp4" />
                     Your browser does not support the video tag.

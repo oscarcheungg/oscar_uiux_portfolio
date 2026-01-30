@@ -1,6 +1,7 @@
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 interface ProjectCardProps {
   title: string;
@@ -14,6 +15,12 @@ interface ProjectCardProps {
 
 export function ProjectCard({ title, category, year, description, image, index, link }: ProjectCardProps) {
   const isEven = index % 2 === 0;
+
+  // Preload image when component mounts
+  useEffect(() => {
+    const img = new Image();
+    img.src = image;
+  }, [image]);
 
   const content = (
     <motion.div 

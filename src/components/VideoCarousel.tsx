@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { preloadMedia } from '../hooks/usePreload';
 import './VideoCarousel.css';
 
 export interface VideoCarouselItem {
@@ -26,6 +27,14 @@ export default function VideoCarousel({
   const [position, setPosition] = useState<number>(0);
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Preload all videos when component mounts
+  useEffect(() => {
+    if (items.length > 0) {
+      const videoUrls = items.map(item => item.video);
+      preloadMedia(videoUrls);
+    }
+  }, [items]);
 
   useEffect(() => {
     if (pauseOnHover && scrollRef.current) {
@@ -107,6 +116,7 @@ export default function VideoCarousel({
                 loop
                 muted
                 playsInline
+                preload="auto"
               >
                 <source src={item.video} type="video/mp4" />
                 Your browser does not support the video tag.

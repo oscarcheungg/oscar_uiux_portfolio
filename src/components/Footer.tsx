@@ -6,7 +6,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="space-y-3 md:space-y-4">
           <p className="text-base md:text-lg text-neutral-900 dark:text-neutral-100">
-            oscar cheung • 2025
+            oscar cheung • 2026
           </p>
           <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400">
             i'm always up for a chat ☕

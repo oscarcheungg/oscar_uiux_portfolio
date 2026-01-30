@@ -55,13 +55,36 @@ export function Header() {
     }
   };
 
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    
+    if (location.pathname === '/') {
+      // Already on home page, just scroll to top
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    } else {
+      // Navigate to home page and scroll to top
+      navigate('/');
+      // Small delay to ensure navigation completes before scrolling
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }, 100);
+    }
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-4 py-4 md:px-12 md:py-6">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <Link 
           to="/" 
           className="group"
-          onClick={() => setMobileMenuOpen(false)}
+          onClick={handleLogoClick}
         >
           <div className="transition-transform duration-700 ease-out group-hover:rotate-180">
             <GradientOrb />

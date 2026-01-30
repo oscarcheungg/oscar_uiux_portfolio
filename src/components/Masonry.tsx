@@ -47,6 +47,22 @@ const preloadImages = async (urls: string[]): Promise<void> => {
   );
 };
 
+const preloadVideos = async (urls: string[]): Promise<void> => {
+  await Promise.all(
+    urls.map(
+      src =>
+        new Promise<void>(resolve => {
+          const video = document.createElement('video');
+          video.src = src;
+          video.preload = 'auto';
+          video.oncanplaythrough = () => resolve();
+          video.onerror = () => resolve();
+          video.load();
+        })
+    )
+  );
+};
+
 interface Photo {
   id: number;
   url: string;
@@ -155,9 +171,16 @@ const Masonry: React.FC<MasonryProps> = ({
       });
       setAspectRatios(ratioMap);
 
-      // Preload images (skip videos for preload)
+      // Preload images and videos
       const imageUrls = items.filter(item => !item.isVideo).map(item => item.url);
-      await preloadImages(imageUrls);
+      const videoUrls = items.filter(item => item.isVideo).map(item => item.url);
+      
+      // Preload in parallel for faster loading
+      await Promise.all([
+        preloadImages(imageUrls),
+        preloadVideos(videoUrls)
+      ]);
+      
       setImagesReady(true);
     };
 
@@ -312,14 +335,14 @@ const Masonry: React.FC<MasonryProps> = ({
                 loop
                 muted
                 playsInline
-                preload="metadata"
+                preload="auto"
               />
             ) : (
               <img
                 src={item.url}
                 alt={item.caption}
                 className="masonry-media"
-                loading="lazy"
+                loading="eager"
                 decoding="async"
               />
             )}

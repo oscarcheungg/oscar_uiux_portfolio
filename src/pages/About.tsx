@@ -266,6 +266,8 @@ export function About() {
               src="/oscarProfile.svg" 
               alt="Oscar Cheung" 
               className="w-full max-w-md h-auto"
+              loading="eager"
+              decoding="async"
             />
           </motion.div>
         </div>
@@ -491,12 +493,15 @@ export function About() {
                   muted
                   playsInline
                   controls
+                  preload="auto"
                 />
               ) : (
                 <img
                   src={photos[selectedPhoto].url}
                   alt={photos[selectedPhoto].caption}
                   className="max-w-full max-h-[90vh] object-contain rounded-lg"
+                  loading="eager"
+                  decoding="async"
                 />
               )}
               <p className="text-white text-center mt-4 text-base md:text-lg px-4">

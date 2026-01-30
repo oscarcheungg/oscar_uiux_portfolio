@@ -23,7 +23,8 @@ export function ImageWithFallback({ src, alt, className }: ImageWithFallbackProp
       alt={alt}
       className={className}
       onError={handleError}
-      loading="lazy"
+      loading="eager"
+      decoding="async"
     />
   );
 }

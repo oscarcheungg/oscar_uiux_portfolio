@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Calendar, User, Wrench, Search, Users } from 'lucide-react';
 import { useRef, useEffect, useState } from 'react';
+import { preloadMedia } from '../hooks/usePreload';
 import './Bite.css';
 
 const FINAL_DESIGN_SECTIONS = [
@@ -94,6 +95,7 @@ function StickyScrollSection() {
               loop
               muted
               playsInline
+              preload="auto"
             >
               <source src={FINAL_DESIGN_SECTIONS[0].video} type="video/mp4" />
               Your browser does not support the video tag.
@@ -123,6 +125,14 @@ function StickyScrollSection() {
 }
 
 export function Bite() {
+  // Preload all videos when component mounts
+  useEffect(() => {
+    const videoUrls = FINAL_DESIGN_SECTIONS.map(section => section.video);
+    // Also preload the inspiration video
+    videoUrls.push('/biteAssets/chinaInspiration.mp4');
+    preloadMedia(videoUrls);
+  }, []);
+
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 pt-20 md:pt-24">
       {/* Hero Image */}
@@ -210,6 +220,7 @@ export function Bite() {
               muted
               playsInline
               autoPlay
+              preload="auto"
             >
               <source src="/biteAssets/chinaInspiration.mp4" type="video/mp4" />
               Your browser does not support the video tag.
@@ -594,6 +605,7 @@ export function Bite() {
                     loop
                     muted
                     playsInline
+                    preload="auto"
                   >
                     <source src={item.video} type="video/mp4" />
                     Your browser does not support the video tag.
