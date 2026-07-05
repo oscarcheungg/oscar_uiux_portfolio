@@ -54,9 +54,9 @@ export function About() {
     },
     {
       id: 5,
-      url: '/seoulKorea.mp4',
-      caption: 'This is Han River in Seoul, Korea. Studying here for a summer was amazing!',
-      isVideo: true
+      url: '/oscarxixi.jpg',
+      caption: 'oscar', // TODO: alt text (captions aren't shown, used for accessibility)
+      isVideo: false
     },
     {
       id: 6,
@@ -72,15 +72,15 @@ export function About() {
     },
     {
       id: 8,
-      url: '/oscarCafe.mp4',
-      caption: 'Cafe hopping is one of my favorite ways to explore new cities, this one in particular was in Toronto. One of my dreams is to run a cafe one day haha',
-      isVideo: true
+      url: '/oscarFS.jpg',
+      caption: 'oscar', // TODO: alt text
+      isVideo: false
     },
     {
       id: 9,
-      url: '/runwithFriends.mp4',
-      caption: 'You will always will find me running with friends. Strava is oscar cheung for my fellow runners ',
-      isVideo: true
+      url: '/oscarCNYCUSA.jpg',
+      caption: 'oscar', // TODO: alt text
+      isVideo: false
     },
     {
       id: 10,
