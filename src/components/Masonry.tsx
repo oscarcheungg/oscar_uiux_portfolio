@@ -96,9 +96,9 @@ const Masonry: React.FC<MasonryProps> = ({
   blurToFocus = true
 }) => {
   const columns = useMedia(
-    ['(min-width:1500px)', '(min-width:1000px)', '(min-width:600px)', '(min-width:400px)'],
+    ['(min-width:1500px)', '(min-width:1000px)', '(min-width:600px)', '(min-width:0px)'],
     [5, 4, 3, 2],
-    1
+    2
   );
 
   const [containerRef, { width }] = useMeasure<HTMLDivElement>();
@@ -336,27 +336,26 @@ const Masonry: React.FC<MasonryProps> = ({
             data-key={item.id}
             className="masonry-item-wrapper"
           >
-            {item.isVideo ? (
-              <video
-                src={item.url}
-                className="masonry-media"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-              />
-            ) : (
-              <img
-                src={item.url}
-                alt={item.caption}
-                className="masonry-media"
-                loading="eager"
-                decoding="async"
-              />
-            )}
-            <div className="masonry-caption">
-              <p>{item.caption}</p>
+            <div className="masonry-frame">
+              {item.isVideo ? (
+                <video
+                  src={item.url}
+                  className="masonry-media"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                />
+              ) : (
+                <img
+                  src={item.url}
+                  alt={item.caption}
+                  className="masonry-media"
+                  loading="eager"
+                  decoding="async"
+                />
+              )}
             </div>
           </div>
         );

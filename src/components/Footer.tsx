@@ -2,16 +2,16 @@ import { Linkedin, Github, Instagram } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="py-12 md:py-20 px-4 sm:px-6 md:px-12 bg-neutral-50 dark:bg-neutral-950">
+    <footer className="py-12 md:py-20 px-4 sm:px-6 md:px-12 bg-white dark:bg-neutral-950">
       <div className="max-w-7xl mx-auto">
         <div className="space-y-3 md:space-y-4">
           <p className="text-base md:text-lg text-neutral-900 dark:text-neutral-100">
             oscar cheung • 2026
           </p>
-          <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400">
+          <p className="text-sm md:text-base text-neutral-500 dark:text-neutral-400">
             i'm always up for a chat ☕
           </p>
-          <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400 break-words">
+          <p className="text-sm md:text-base text-neutral-500 dark:text-neutral-400 break-words">
             get in touch below or directly at{' '}
             <a 
               href="mailto:ocheung@unc.edu"

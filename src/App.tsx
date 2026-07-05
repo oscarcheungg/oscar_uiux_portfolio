@@ -8,12 +8,13 @@ import { Centible } from './pages/Centible';
 import { Spotify } from './pages/Spotify';
 import { Bite } from './pages/Bite';
 import { GoldenDragon } from './pages/GoldenDragon';
+import { Wigo } from './pages/Wigo';
 
 function App() {
   return (
     <ThemeProvider>
       <Router>
-        <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
+        <div className="min-h-screen bg-white dark:bg-neutral-950">
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -22,6 +23,7 @@ function App() {
             <Route path="/spotify" element={<Spotify />} />
             <Route path="/bite" element={<Bite />} />
             <Route path="/goldendragon" element={<GoldenDragon />} />
+            <Route path="/wigo" element={<Wigo />} />
           </Routes>
           <Footer />
         </div>
