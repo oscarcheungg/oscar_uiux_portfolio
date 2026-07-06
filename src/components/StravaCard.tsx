@@ -179,14 +179,9 @@ export function StravaCard() {
       {/* Stats panel — bottom */}
       {activity && !failed && (
         <div className="absolute z-10 inset-x-3 bottom-3 rounded-xl bg-white/95 dark:bg-neutral-900/90 backdrop-blur shadow-sm px-4 py-3.5">
-          <div className="flex items-baseline justify-between gap-3 mb-3">
-            <p className="text-sm md:text-base font-medium text-neutral-900 dark:text-neutral-50 truncate">
-              {activity.name}
-            </p>
-            <p className="text-xs text-neutral-400 dark:text-neutral-500 shrink-0">
-              {formatDate(activity.start_date_local)}
-            </p>
-          </div>
+          <p className="text-xs text-neutral-400 dark:text-neutral-500 mb-3">
+            {formatDate(activity.start_date_local)}
+          </p>
           <div className="grid grid-cols-4 gap-3">
             <Stat label="distance" value={formatDistance(activity.distance)} />
             <Stat label="pace" value={`${formatPace(activity.distance, activity.moving_time)} /mi`} />
