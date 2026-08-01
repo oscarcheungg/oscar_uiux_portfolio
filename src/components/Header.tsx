@@ -107,7 +107,7 @@ export function Header() {
             work
           </a>
           <a 
-            href="/CheungOscar_Resume.pdf" 
+            href="/Oscar_Cheung_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="px-4 py-2 rounded-full text-sm text-neutral-600 dark:text-neutral-400 hover:bg-white/40 dark:hover:bg-white/10 hover:text-neutral-900 dark:hover:text-neutral-100 transition-all"
@@ -170,7 +170,7 @@ export function Header() {
               work
             </a>
             <a 
-              href="/CheungOscar_Resume.pdf" 
+              href="/Oscar_Cheung_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}

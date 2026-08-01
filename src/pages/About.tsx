@@ -19,10 +19,10 @@ export function About() {
 
   const experiences = [
     { company: '84.51°', role: 'Product Design Intern', when: 'Summer 2026' },
-    { company: 'Quantifyd', role: 'UI/UX Design Intern', when: 'Summer 2025' },
+    { company: 'Quantifyd', role: 'Product Design Intern', when: 'Summer 2025' },
     { company: 'App Team Carolina', role: 'UI/UX Production Team', when: '' },
     { company: 'UNC Computer Science', role: 'Web Design & Development UTA', when: '' },
-    { company: '1893 Brand Studio', role: 'UI/UX Designer', when: '' },
+    { company: '1893 Brand Studio', role: 'Product Designer', when: '' },
     { company: 'CS + Social Good', role: 'UI/UX Production Team', when: '' },
   ];
 

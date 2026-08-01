@@ -31,8 +31,7 @@ export function Hero() {
           className="text-lg md:text-xl text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-3xl mb-8 md:mb-10"
         >
           i design elegant, data-driven experiences that help people accomplish their goals with
-          clarity and delight.{' '}
-          <span className="gradient-text-purple">currently designing @ 84.51°.</span>
+          clarity and delight.
         </motion.p>
 
         <motion.div

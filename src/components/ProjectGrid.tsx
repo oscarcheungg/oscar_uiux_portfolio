@@ -31,13 +31,6 @@ const PROJECTS: BentoProject[] = [
     locked: true,
   },
   {
-    title: 'Building Brightwill from zero to one',
-    meta: 'Brightwill · Startup 2026',
-    image: '/brightwillcover.png',
-    alt: 'Brightwill startup cover',
-    locked: true,
-  },
-  {
     title: 'Making friend group planning easier',
     meta: 'Wigo · Product 2026',
     image: '/wigoCover.png',
