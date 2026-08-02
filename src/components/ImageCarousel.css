@@ -85,46 +85,53 @@
 
 .image-carousel-indicators {
   display: flex;
-  gap: 24px;
+  gap: 0;
   align-items: center;
 }
 
 .image-carousel-indicator {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+  position: relative;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  padding: 8px;
-  margin: -8px;
   touch-action: manipulation;
 }
 
-.image-carousel-indicator.active {
-  background-color: #666;
-  width: 24px;
-  border-radius: 4px;
+.image-carousel-indicator::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
 }
 
-.image-carousel-indicator.inactive {
+.image-carousel-indicator.active::after {
+  background-color: #666;
+}
+
+.image-carousel-indicator.inactive::after {
   background-color: #ccc;
 }
 
-.dark .image-carousel-indicator.active {
+.dark .image-carousel-indicator.active::after {
   background-color: #999;
 }
 
-.dark .image-carousel-indicator.inactive {
+.dark .image-carousel-indicator.inactive::after {
   background-color: #444;
 }
 
 /* Improve touch targets on mobile */
 @media (max-width: 768px) {
   .image-carousel-indicator {
-    padding: 12px;
-    margin: -12px;
+    width: 24px;
+    height: 24px;
   }
-  
+
   .image-carousel-title {
     font-size: 13px;
     padding: 0 12px;

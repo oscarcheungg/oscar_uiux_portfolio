@@ -6,6 +6,7 @@ export interface ImageCarouselItem {
   image: string;
   title?: string;
   id: number;
+  imageStyle?: React.CSSProperties;
 }
 
 export interface ImageCarouselProps {
@@ -99,6 +100,7 @@ export default function ImageCarousel({
                 src={item.image}
                 alt={item.title || `Carousel item ${index + 1}`}
                 className="image-carousel-image"
+                style={item.imageStyle}
               />
             </div>
             {item.title && <p className="image-carousel-title">{item.title}</p>}
@@ -111,11 +113,7 @@ export default function ImageCarousel({
             <motion.div
               key={index}
               className={`image-carousel-indicator ${position === index ? 'active' : 'inactive'}`}
-              animate={{
-                scale: position === index ? 1.2 : 1
-              }}
               onClick={() => handleIndicatorClick(index)}
-              transition={{ duration: 0.15 }}
             />
           ))}
         </div>

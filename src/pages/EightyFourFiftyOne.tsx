@@ -1,6 +1,18 @@
 import { FormEvent, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check, X, TrendingUp, MousePointerClick, Target, Flag, Rocket, Sparkles, Lock } from 'lucide-react';
+import {
+  Check,
+  X,
+  TrendingUp,
+  MousePointerClick,
+  Target,
+  Flag,
+  Rocket,
+  Sparkles,
+  Lock,
+  SlidersHorizontal,
+  ListOrdered,
+} from 'lucide-react';
 import {
   CaseStudyHeader,
   CaseStudySection,
@@ -13,24 +25,41 @@ const META = [
   { label: 'Role', value: 'Product Design Intern' },
   { label: 'Team', value: 'Media Insights\nand Reporting' },
   { label: 'Timeline', value: '10 weeks' },
-  { label: 'Tools', value: 'Figma, FigJam,\nMural, Confluence' },
+  { label: 'Tools', value: 'Figma, FigJam,\nFigma Make, Figma Agent,\nMural, Confluence' },
 ];
 
 const USABILITY_FINDINGS = [
   {
-    title: 'Estimated impact is essential for trust',
-    body: 'Participants needed to know the "why" behind every action. Forecasting became a critical component of the recommendation card, not a nice-to-have.',
+    title: 'Estimated impact is the #1 trust driver',
+    body: 'Every participant called forecasted impact the most critical element; without it, a recommendation is just asking clients to spend more money.',
+    quote:
+      "Without the expected impact... you're pretty much just telling them to increase their bid... I definitely would not use this.",
     icon: TrendingUp,
   },
   {
-    title: 'Recommendations must live closer to the point of action',
-    body: 'Users expected recommendations inside the campaigns and ad groups tabs where they were already making changes, not tucked away on a separate page.',
+    title: 'Recommendations must live at the point of action',
+    body: 'Participants wanted a multi-placement strategy: homepage for visibility, campaign and ad group pages near the action, and a dedicated recommendations tab.',
+    quote: "The greatest benefit, I'd want to see it in multiple places.",
     icon: MousePointerClick,
   },
   {
-    title: 'Specificity at the ad group / UPC level matters',
-    body: 'Surface-level suggestions eroded confidence. Recommendations had to name the exact campaign and ad group they applied to.',
+    title: 'Specificity at the ad group / UPC level is essential',
+    body: 'Averages were not actionable; participants needed current versus recommended values tied to a specific campaign, ad group, or UPC.',
+    quote:
+      'If there was like maybe at the top somewhere, if it specified which specific campaign or which specific ad group this is referring to, that would be helpful.',
     icon: Target,
+  },
+  {
+    title: 'Users need flexibility and control when applying',
+    body: 'No one wanted binary accept-or-reject; participants asked to adjust values, confirm before applying, and apply selectively.',
+    quote: 'Maybe there could be a manual option, and a do-it-for-me option.',
+    icon: SlidersHorizontal,
+  },
+  {
+    title: 'Prioritization and filtering make or break scale',
+    body: 'Participants wanted sorting by impact and urgency, severity flags for underspending, and filters to manage recommendations at scale.',
+    quote: 'Having them ordered by like most needed or most impact.',
+    icon: ListOrdered,
   },
 ];
 
@@ -228,7 +257,7 @@ export function EightyFourFiftyOne() {
 
         <CaseStudyFigure
           bordered={false}
-          src="/8451Assets/homepageintro.png"
+          src="/8451Assets/homepageintro.svg"
           alt="KAP homepage with AI recommendations concept"
           className="mt-6 max-w-3xl mx-auto"
         />
@@ -372,56 +401,119 @@ export function EightyFourFiftyOne() {
             </div>
           </CaseStudySection>
 
-          {/* 05 · Usability testing */}
+          {/* 05 · Ideation */}
           <CaseStudySection
             num="05"
+            label="Ideation"
+            sublabel="structure before screens"
+            title="From Architecture to Iterations"
+          >
+            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
+              Before designing any screens, I mapped the full information architecture for
+              recommendations in KAP: the surfaces where they appear, how a recommendation hub
+              organizes and filters them, the anatomy of a single recommendation from rationale to
+              apply flow, and the activity history that makes every action traceable and
+              reversible.
+            </p>
+            <CaseStudyFigure
+              bordered={false}
+              rounded={false}
+              src="/8451Assets/InformationArchitecture.png"
+              alt="KAP insight automation information architecture"
+              className="mb-10 max-w-4xl mx-auto"
+            />
+            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
+              With the structure set, I iterated on the homepage, campaigns page, and
+              recommendation center across multiple versions, using Figma Agent to quickly spin up
+              variations of recommendation concepts and explore more directions in less time. I
+              collaborated closely with front-end engineers and data scientists throughout,
+              pressure-testing feasibility directly on the boards, and checked every concept
+              against Meridian so my components stayed consistent with the rest of the platform.
+            </p>
+            <CaseStudyFigure
+              bordered={false}
+              src="/8451Assets/AlignmentIdeation.png"
+              alt="Iteration boards for homepage, campaigns page, and recommendation center with engineering and data science feedback"
+              className="mb-10"
+            />
+            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
+              Out of this exploration came the two concepts I carried into usability testing: a
+              recommendation card and its view recommendation modal, shown here in the exact
+              versions participants reacted to.
+            </p>
+            <ImageCarousel
+              className="!bg-white border border-neutral-200 dark:border-neutral-800 [&_.image-carousel-image]:w-auto [&_.image-carousel-image]:max-h-[400px] [&_.image-carousel-image]:mx-auto"
+              items={[
+                {
+                  id: 1,
+                  image: '/8451Assets/OldRecommendation.svg',
+                  title: 'The recommendation card concept tested with users',
+                },
+                {
+                  id: 2,
+                  image: '/8451Assets/OldViewRecommendation.svg',
+                  title: 'The view recommendation concept tested with users',
+                },
+              ]}
+            />
+          </CaseStudySection>
+
+          {/* 06 · Usability testing */}
+          <CaseStudySection
+            num="06"
             label="Usability Testing"
             sublabel="pressure-testing the concepts"
             title="Testing AI Recommendation Concepts with 6 KAP Users"
           >
             <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              With recommendations chosen as the focus, I prototyped concepts across KAP's key
-              entry points and put them in front of 6 internal KAP users, digging into gaps in
-              clarity, trust, and actionability. Three findings reshaped the design:
+              I ran moderated, think-aloud usability sessions with 6 internal KAP users to evaluate
+              how they understand, trust, and act on AI recommendations, framing everything as
+              early-stage concepts so feedback stayed on the ideas rather than the fidelity. Each
+              30-minute session built context progressively: a single recommendation card in
+              isolation, a grouped card bundling similar recommendations across campaigns, then
+              the homepage and recommendation center to test placement, prioritization, and
+              findability. Five findings reshaped the design:
             </p>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 gap-4">
               {USABILITY_FINDINGS.map((finding, i) => (
                 <motion.div
                   key={finding.title}
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="h-full p-6 bg-neutral-100 dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800"
+                  transition={{ duration: 0.5, delay: i * 0.06 }}
+                  className="p-5 bg-neutral-100 dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800"
                 >
-                  <div className="w-11 h-11 rounded-xl bg-[#8451EC]/10 dark:bg-[#8451EC]/20 flex items-center justify-center mb-4">
-                    <finding.icon className="w-5 h-5 text-[var(--csa)] dark:text-[var(--csa-dark)]" />
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-9 h-9 rounded-lg bg-[#8451EC]/10 dark:bg-[#8451EC]/20 flex items-center justify-center flex-shrink-0">
+                      <finding.icon className="w-4 h-4 text-[var(--csa)] dark:text-[var(--csa-dark)]" />
+                    </div>
+                    <p className="text-sm md:text-base font-medium text-neutral-900 dark:text-neutral-100 leading-snug">
+                      {finding.title}
+                    </p>
                   </div>
-                  <p className="text-base font-medium text-neutral-900 dark:text-neutral-100 mb-3 leading-snug">
-                    {finding.title}
-                  </p>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-3">
                     {finding.body}
+                  </p>
+                  <p className="border-l-2 border-[var(--csa)] dark:border-[var(--csa-dark)] pl-3 text-sm italic text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                    "{finding.quote}"
                   </p>
                 </motion.div>
               ))}
             </div>
           </CaseStudySection>
 
-          {/* 06 · Final designs */}
+          {/* 07 · Final designs */}
           <CaseStudySection
-            num="06"
+            num="07"
             label="Final Designs"
             sublabel="insights in action"
             title="Recommendations at Every Entry Point"
           >
             <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              Those findings shaped everything that follows. At the core of the experience is the
-              recommendation card, where every element is there to earn trust: a plain-language
-              headline, the rationale behind it, the metrics at stake, and an estimated impact,
-              with apply one click away. Opening a card reveals the full view: the exact campaign,
-              ad group, and UPC it applies to, current versus suggested values, expected impact
-              with its trade-offs, and how the AI arrived at the recommendation.
+              Those findings translated directly into the final recommendation card: specific
+              campaign, ad group, and UPC context, forecasted impact and trade-offs, and an
+              explanation of the AI's reasoning.
             </p>
             <div className="mb-10">
               <ImageCarousel
@@ -429,12 +521,12 @@ export function EightyFourFiftyOne() {
                 items={[
                   {
                     id: 1,
-                    image: '/8451Assets/RecommendationExample.png',
+                    image: '/8451Assets/RecommendationExample.svg',
                     title: 'The recommendation card',
                   },
                   {
                     id: 2,
-                    image: '/8451Assets/ViewRecommendationExample.png',
+                    image: '/8451Assets/ViewRecommendationExample.svg',
                     title: 'The view recommendation modal',
                   },
                 ]}
@@ -468,9 +560,9 @@ export function EightyFourFiftyOne() {
             />
           </CaseStudySection>
 
-          {/* 07 · Design system */}
+          {/* 08 · Design system */}
           <CaseStudySection
-            num="07"
+            num="08"
             label="Design System"
             sublabel="making it reusable"
             title="An AI Recommendation Library for Meridian"
@@ -485,14 +577,14 @@ export function EightyFourFiftyOne() {
             </p>
             <CaseStudyFigure
               bordered={false}
-              src="/8451Assets/Meridian.png"
+              src="/8451Assets/Meridian.svg"
               alt="Meridian design system - AI recommendations component library"
             />
           </CaseStudySection>
 
-          {/* 08 · Future planning */}
+          {/* 09 · Future planning */}
           <CaseStudySection
-            num="08"
+            num="09"
             label="Future Planning"
             sublabel="where this goes next"
             title="Visualizing the Future State of Recommendations"
@@ -503,16 +595,61 @@ export function EightyFourFiftyOne() {
               notifications, and a full conversational assistant that answers performance questions
               in natural language.
             </p>
-            <CaseStudyFigure
-              bordered={false}
-              src="/8451Assets/AdditionalConcepts.png"
-              alt="Future concepts - planning recommendations and ad assistant"
-              className="mb-10"
-            />
+            <div className="mb-10">
+              <ImageCarousel
+                className="!bg-white border border-neutral-200 dark:border-neutral-800"
+                items={[
+                  {
+                    id: 1,
+                    image: '/8451Assets/CampaignPlanning.svg',
+                    title: 'Planning recommendations woven into campaign creation',
+                    imageStyle: {
+                      width: 'auto',
+                      height: '480px',
+                      margin: '0 auto',
+                      boxShadow: '0 12px 32px -16px rgba(0,0,0,0.25)',
+                    },
+                  },
+                  {
+                    id: 2,
+                    image: '/8451Assets/AdGroupPlanning.png',
+                    title: 'Planning recommendations at the ad group level',
+                    imageStyle: {
+                      width: 'auto',
+                      height: '480px',
+                      margin: '0 auto',
+                      boxShadow: '0 12px 32px -16px rgba(0,0,0,0.25)',
+                    },
+                  },
+                  {
+                    id: 3,
+                    image: '/8451Assets/AdAssistantNotification.png',
+                    title: 'Proactive Ad Assistant notifications',
+                    imageStyle: {
+                      width: 'auto',
+                      height: '480px',
+                      margin: '0 auto',
+                      boxShadow: '0 12px 32px -16px rgba(0,0,0,0.25)',
+                    },
+                  },
+                  {
+                    id: 4,
+                    image: '/8451Assets/AdAssistantChat.svg',
+                    title: 'Ad Assistant answering performance questions in natural language',
+                    imageStyle: {
+                      width: 'auto',
+                      height: '620px',
+                      margin: '0 auto',
+                    },
+                  },
+                ]}
+              />
+            </div>
             <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
               To help the team phase the work in after I left, I proposed an adoption roadmap:
               prove the value of recommendations first, build the ecosystem around them, then scale
-              toward full maturity and personalization.
+              toward full maturity and personalization. The team is now carrying the MVP forward in
+              fiscal year 2026, with my recommendations serving as its foundation.
             </p>
             <div className="grid md:grid-cols-3 gap-6">
               {ROADMAP.map((step, i) => (
@@ -539,9 +676,9 @@ export function EightyFourFiftyOne() {
             </div>
           </CaseStudySection>
 
-          {/* 09 · Reflection */}
+          {/* 10 · Reflection */}
           <CaseStudySection
-            num="09"
+            num="10"
             label="Reflection"
             sublabel="what i learned"
             title="What This Summer Taught Me"
@@ -556,12 +693,13 @@ export function EightyFourFiftyOne() {
                 early, which usually turned out to be the ones worth asking.
               </p>
               <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                What I'm proudest of is that the work outlives the internship: I was able to create
-                a foundation for AI recommendations to be implemented within KAP and across other
-                platform experiences at 84.51°, with the patterns now living in Meridian for other
-                designers to push further. I'm grateful to the Media Insights and Reporting team for
-                treating me like a designer rather than an intern, and I left this experience
-                knowing that the AI space is where I want to keep designing and growing in.
+                What I'm proudest of is that the work outlives the internship: the team is carrying
+                the MVP forward this fiscal year, with my recommendations serving as the foundation
+                for AI to be implemented within KAP and across other platform experiences at
+                84.51°, and the patterns now live in Meridian for other designers to push further.
+                I'm grateful to the Media Insights and Reporting team for treating me like a
+                designer rather than an intern, and I left this experience knowing that the AI
+                space is where I want to keep designing and growing in.
               </p>
             </div>
             <CaseStudyFigure
