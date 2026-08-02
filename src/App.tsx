@@ -9,6 +9,7 @@ import { Spotify } from './pages/Spotify';
 import { Bite } from './pages/Bite';
 import { GoldenDragon } from './pages/GoldenDragon';
 import { Wigo } from './pages/Wigo';
+import { EightyFourFiftyOne } from './pages/EightyFourFiftyOne';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/bite" element={<Bite />} />
             <Route path="/goldendragon" element={<GoldenDragon />} />
             <Route path="/wigo" element={<Wigo />} />
+            <Route path="/8451" element={<EightyFourFiftyOne />} />
           </Routes>
           <Footer />
         </div>

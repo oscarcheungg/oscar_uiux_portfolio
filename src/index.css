@@ -34,6 +34,7 @@
 [data-accent="green"] { --csa: #1ED760; --csa-dark: #1ED760; }
 [data-accent="red"]   { --csa: #dc2626; --csa-dark: #f87171; }
 [data-accent="teal"]  { --csa: #284B63; --csa-dark: #6B8CAE; }
+[data-accent="8451"]  { --csa: #8451EC; --csa-dark: #A78BFA; }
 
 /* Animated gradient text (hero "currently designing at 84.51°") */
 @keyframes gradient-slide {

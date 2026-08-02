@@ -28,13 +28,16 @@ const PROJECTS: BentoProject[] = [
     meta: '84.51° · Internship 2026',
     image: '/8451Cover.gif',
     alt: '84.51° internship cover',
-    locked: true,
+    link: '/8451',
   },
   {
     title: 'Making friend group planning easier',
     meta: 'Wigo · Product 2026',
-    image: '/wigoCover.png',
-    alt: 'Wigo friend group planning app cover',
+    image: '/WigoLogo.png',
+    alt: 'Wigo logo',
+    fit: 'contain',
+    zoom: 0.28,
+    bg: '#ffffff',
     link: '/wigo',
   },
   {
@@ -192,7 +195,10 @@ function BentoCard({
         </div>
       ) : (
         <Link to={project.link!} className="group block">
-          <div className="relative aspect-[5/4] rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 transition-all duration-500 ease-out group-hover:-translate-y-1.5 group-hover:shadow-[0_24px_48px_-24px_rgba(0,0,0,0.35)] dark:group-hover:shadow-[0_24px_48px_-24px_rgba(0,0,0,0.7)]">
+          <div
+            className="relative aspect-[5/4] rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 transition-all duration-500 ease-out group-hover:-translate-y-1.5 group-hover:shadow-[0_24px_48px_-24px_rgba(0,0,0,0.35)] dark:group-hover:shadow-[0_24px_48px_-24px_rgba(0,0,0,0.7)]"
+            style={project.bg ? { backgroundColor: project.bg } : undefined}
+          >
             {project.video ? (
               <video
                 src={project.video}
@@ -208,7 +214,11 @@ function BentoCard({
               <img
                 src={project.image}
                 alt={project.alt}
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                className={`w-full h-full ${project.fit === 'contain' ? 'object-contain' : 'object-cover'} transition-transform duration-700 ease-out group-hover:scale-[1.05]`}
+                style={{
+                  objectPosition: project.position,
+                  transform: project.zoom ? `scale(${project.zoom})` : undefined,
+                }}
                 loading="lazy"
                 decoding="async"
               />

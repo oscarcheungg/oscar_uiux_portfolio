@@ -14,6 +14,7 @@ export interface ImageCarouselProps {
   autoplayDelay?: number;
   pauseOnHover?: boolean;
   loop?: boolean;
+  className?: string;
 }
 
 export default function ImageCarousel({
@@ -22,6 +23,7 @@ export default function ImageCarousel({
   autoplayDelay = 3000,
   pauseOnHover = false,
   loop = false,
+  className = '',
 }: ImageCarouselProps): React.JSX.Element {
   const [position, setPosition] = useState<number>(0);
   const [isHovered, setIsHovered] = useState<boolean>(false);
@@ -84,7 +86,7 @@ export default function ImageCarousel({
   };
 
   return (
-    <div className="image-carousel-container">
+    <div className={`image-carousel-container ${className}`}>
       <div
         ref={scrollRef}
         className="image-carousel-scroll-track"

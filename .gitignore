@@ -31,6 +31,8 @@ dist-ssr
 *.mp4
 !public/runwithFriends.mp4
 !public/centibleAssets/centibleDemo.mp4
+!public/8451Assets/HomepageDemo.mp4
+!public/8451Assets/CampaignAdGroupDemo.mp4
 assets/aboutAssets/runwithFriends.mp4
 
 # Claude local settings

@@ -114,9 +114,22 @@ interface CaseStudyHeaderProps {
   meta: CaseStudyMetaItem[];
   cover: string;
   coverAlt: string;
+  coverClassName?: string;
+  coverWrapClassName?: string;
+  coverBordered?: boolean;
 }
 
-export function CaseStudyHeader({ eyebrow, title, subtitle, meta, cover, coverAlt }: CaseStudyHeaderProps) {
+export function CaseStudyHeader({
+  eyebrow,
+  title,
+  subtitle,
+  meta,
+  cover,
+  coverAlt,
+  coverClassName,
+  coverWrapClassName = '',
+  coverBordered = true,
+}: CaseStudyHeaderProps) {
   return (
     <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
       {/* mobile back link (sidebar handles desktop) */}
@@ -139,8 +152,18 @@ export function CaseStudyHeader({ eyebrow, title, subtitle, meta, cover, coverAl
       </h1>
 
       {/* Cover */}
-      <div className="rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800">
-        <img src={cover} alt={coverAlt} className="w-full h-auto" loading="eager" decoding="async" />
+      <div
+        className={`rounded-2xl overflow-hidden ${
+          coverBordered ? 'border border-neutral-200 dark:border-neutral-800' : ''
+        } ${coverWrapClassName}`}
+      >
+        <img
+          src={cover}
+          alt={coverAlt}
+          className={coverClassName || 'w-full h-auto'}
+          loading="eager"
+          decoding="async"
+        />
       </div>
 
       {/* Meta row */}
@@ -173,9 +196,10 @@ interface CaseStudySectionProps {
   sublabel?: string;
   title: string;
   children: ReactNode;
+  className?: string;
 }
 
-export function CaseStudySection({ num, label, title, children }: CaseStudySectionProps) {
+export function CaseStudySection({ num, label, title, children, className = '' }: CaseStudySectionProps) {
   const id = slug(num, label);
   return (
     <motion.section
@@ -186,7 +210,7 @@ export function CaseStudySection({ num, label, title, children }: CaseStudySecti
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.6 }}
-      className="py-8 md:py-12 scroll-mt-28"
+      className={`py-8 md:py-12 scroll-mt-28 ${className}`}
     >
       <p className="text-xs uppercase tracking-widest text-[var(--csa)] dark:text-[var(--csa-dark)] mb-3">
         {label}
@@ -206,9 +230,18 @@ interface CaseStudyFigureProps {
   alt?: string;
   type?: 'image' | 'video';
   className?: string;
+  bordered?: boolean;
+  rounded?: boolean;
 }
 
-export function CaseStudyFigure({ src, alt = '', type = 'image', className = '' }: CaseStudyFigureProps) {
+export function CaseStudyFigure({
+  src,
+  alt = '',
+  type = 'image',
+  className = '',
+  bordered = true,
+  rounded = true,
+}: CaseStudyFigureProps) {
   const media =
     type === 'video' ? (
       <video src={src} className="w-full h-auto" autoPlay loop muted playsInline preload="auto">
@@ -224,7 +257,9 @@ export function CaseStudyFigure({ src, alt = '', type = 'image', className = '' 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className={`rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 ${className}`}
+      className={`${rounded ? 'rounded-2xl' : ''} overflow-hidden ${
+        bordered ? 'border border-neutral-200 dark:border-neutral-800' : ''
+      } ${className}`}
     >
       {media}
     </motion.div>
