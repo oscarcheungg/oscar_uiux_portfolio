@@ -12,7 +12,7 @@ export function Hero() {
   };
 
   return (
-    <section className="min-h-screen min-h-[100svh] flex flex-col justify-end px-4 sm:px-6 md:px-12 pt-24 pb-16 md:pb-20">
+    <section className="px-4 sm:px-6 md:px-12 pt-28 md:pt-36 pb-12 md:pb-16">
       {/* Bottom-left anchored content */}
       <div className="max-w-7xl mx-auto w-full">
         <motion.h1

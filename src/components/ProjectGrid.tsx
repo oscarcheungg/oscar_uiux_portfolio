@@ -38,18 +38,18 @@ const PROJECTS: BentoProject[] = [
     link: '/wigo',
   },
   {
-    title: 'Playlist management, enhanced',
-    meta: 'Spotify · Concept 2025',
-    image: '/spotifyAssets/spotifyLoop.gif',
-    alt: 'Spotify playlists concept cover',
-    link: '/spotify',
-  },
-  {
     title: 'Budgeting that fits student life',
     meta: 'Centible · iOS 2025',
     image: '/centibleCover.png',
     alt: 'Centible budgeting app cover',
     link: '/centible',
+  },
+  {
+    title: 'Playlist management, enhanced',
+    meta: 'Spotify · Concept 2025',
+    image: '/spotifyAssets/spotifyLoop.gif',
+    alt: 'Spotify playlists concept cover',
+    link: '/spotify',
   },
   {
     title: 'Deciding where to eat, together',
