@@ -3,10 +3,17 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Lock } from 'lucide-react';
 import { PasswordModal } from './PasswordModal';
+import { COVERS, ProjectCover, ProjectCoverArt, ProjectTags } from './ProjectCover';
 
 interface BentoProject {
+  /* Brief noun phrase naming the work — kept short, like Claire's. */
   title: string;
+  /* Company or product — the caption's heading. */
+  client: string;
+  /* Discipline and year — the caption's chip, rendered as written. */
   meta: string;
+  /* One line on what the work is, condensed from the case study's subtitle. */
+  blurb: string;
   image?: string;
   video?: string;
   videoSpeed?: number;
@@ -16,6 +23,9 @@ interface BentoProject {
   fit?: 'cover' | 'contain';
   bg?: string;
   corner?: boolean;
+  /* Prototype screens on the project's painted ground — shared with the case
+     study page, so the two can't drift apart. */
+  cover?: ProjectCoverArt;
   zoom?: number;
   position?: string;
 }
@@ -24,48 +34,57 @@ interface BentoProject {
    Projects without an image/link render as "coming soon" placeholders. */
 const PROJECTS: BentoProject[] = [
   {
-    title: 'Designing AI insights and recommendations',
-    meta: '84.51° · Internship 2026',
-    image: '/8451Cover.gif',
-    alt: '84.51° internship cover',
+    title: 'AI Insights & Recommendations',
+    client: '84.51°',
+    meta: 'Internship 2026',
+    blurb: 'Actionable AI recommendations for the Kroger Ad Platform.',
+    cover: COVERS['8451'],
+    alt: '84.51° AI recommendations interface',
     link: '/8451',
   },
   {
-    title: 'Making friend group planning easier',
-    meta: 'Wigo · Product 2026',
-    image: '/WigoLogo.png',
-    alt: 'Wigo logo',
-    fit: 'contain',
-    zoom: 0.28,
-    bg: '#ffffff',
+    title: 'Group Planning App',
+    client: 'Wigo',
+    meta: 'Mobile 2026',
+    blurb: 'Turning scattered group chats into plans everyone actually agrees on.',
+    cover: COVERS['wigo'],
+    alt: 'Wigo home screen',
     link: '/wigo',
   },
   {
-    title: 'Budgeting that fits student life',
-    meta: 'Centible · iOS 2025',
-    image: '/centibleCover.png',
-    alt: 'Centible budgeting app cover',
+    title: 'Student Budgeting App',
+    client: 'Centible',
+    meta: 'iOS 2025',
+    blurb: 'Budgeting built for college students living on unpredictable income.',
+    cover: COVERS['centible'],
+    alt: 'Centible home screen',
     link: '/centible',
   },
   {
-    title: 'Playlist management, enhanced',
-    meta: 'Spotify · Concept 2025',
-    image: '/spotifyAssets/spotifyLoop.gif',
-    alt: 'Spotify playlists concept cover',
+    title: 'Playlist Management Concept',
+    client: 'Spotify',
+    meta: 'Concept 2025',
+    blurb: 'A quick-add gesture that cuts saving a song from five taps to one.',
+    cover: COVERS['spotify'],
+    alt: 'Spotify playlist management concept screens',
     link: '/spotify',
   },
   {
-    title: 'Deciding where to eat, together',
-    meta: 'Bite · Product 2025',
-    image: '/biteAssets/newBiteCover.png',
-    alt: 'Bite mobile app cover',
+    title: 'Group Dining App',
+    client: 'Bite',
+    meta: 'Mobile 2025',
+    blurb: 'Friends swap bite-sized dish recs to decide what to eat, not just where.',
+    cover: COVERS['bite'],
+    alt: 'Bite home screen',
     link: '/bite',
   },
   {
-    title: 'A new home for the family restaurant',
-    meta: 'Golden Dragon · Web 2025',
-    image: '/gdLogo.png',
-    alt: 'Golden Dragon website cover',
+    title: 'Restaurant Website',
+    client: 'Golden Dragon',
+    meta: 'Website 2025',
+    blurb: "A redesign for my parents' restaurant, built around family heritage.",
+    cover: COVERS['goldendragon'],
+    alt: 'Golden Dragon website',
     link: '/goldendragon',
   },
 ];
@@ -86,13 +105,19 @@ function BentoCard({
     if (el && project.videoSpeed) el.playbackRate = project.videoSpeed;
   };
 
+  /* Bao's caption shape: the product name on the left of a row, the discipline
+     and year as two quiet chips on its right, and a single line on the work
+     beneath them both. The chips never wrap — a long name yields space. */
   const caption = (
-    <div className="flex items-baseline justify-between gap-4 mt-4">
-      <p className="text-lg text-neutral-900 dark:text-neutral-100 leading-snug">
-        {project.title}
-      </p>
-      <p className="text-[0.65rem] uppercase tracking-widest text-neutral-500 dark:text-neutral-500 whitespace-nowrap">
-        {project.meta}
+    <div className="mt-4">
+      <div className="flex items-start justify-between gap-2">
+        <h3 className="text-[17px] font-medium leading-[1.4] text-neutral-900/90 dark:text-neutral-100/90 group-hover:text-neutral-900 dark:group-hover:text-neutral-100 transition-colors">
+          {project.client}
+        </h3>
+        <ProjectTags meta={project.meta} className="pt-[3px]" />
+      </div>
+      <p className="mt-1.5 text-[14px] leading-[1.5] text-neutral-900/50 dark:text-neutral-100/50">
+        {project.blurb}
       </p>
     </div>
   );
@@ -110,12 +135,12 @@ function BentoCard({
           onClick={() => onLockClick(project)}
           className="group block w-full text-left cursor-pointer"
         >
-          <div className="relative aspect-[5/4] rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 transition-all duration-500 ease-out group-hover:-translate-y-1.5 group-hover:shadow-[0_24px_48px_-24px_rgba(0,0,0,0.35)] dark:group-hover:shadow-[0_24px_48px_-24px_rgba(0,0,0,0.7)]">
+          <div className="relative aspect-[5/4] rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900">
             {project.video ? (
               <video
                 ref={applySpeed}
                 src={project.video}
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                 autoPlay
                 loop
                 muted
@@ -128,7 +153,7 @@ function BentoCard({
               <img
                 src={project.image}
                 alt={project.alt}
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                 loading="lazy"
                 decoding="async"
               />
@@ -143,7 +168,7 @@ function BentoCard({
       ) : isPlaceholder ? (
         <div className="block cursor-default">
           {project.video ? (
-            <div className="relative aspect-[5/4] rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900">
+            <div className="relative aspect-[5/4] rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900">
               <video
                 ref={applySpeed}
                 src={project.video}
@@ -159,7 +184,7 @@ function BentoCard({
             </div>
           ) : project.image ? (
             <div
-              className="relative aspect-[5/4] rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900"
+              className="relative aspect-[5/4] rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900"
               style={project.bg ? { backgroundColor: project.bg } : undefined}
             >
               {project.corner ? (
@@ -185,9 +210,9 @@ function BentoCard({
               )}
             </div>
           ) : (
-            <div className="relative aspect-[5/4] rounded-2xl overflow-hidden border border-dashed border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900/60 flex items-center justify-center">
+            <div className="relative aspect-[5/4] rounded-lg overflow-hidden border border-dashed border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900/60 flex items-center justify-center">
               <p className="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-500">
-                case study coming soon
+                Case Study Coming Soon
               </p>
             </div>
           )}
@@ -196,13 +221,19 @@ function BentoCard({
       ) : (
         <Link to={project.link!} className="group block">
           <div
-            className="relative aspect-[5/4] rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 transition-all duration-500 ease-out group-hover:-translate-y-1.5 group-hover:shadow-[0_24px_48px_-24px_rgba(0,0,0,0.35)] dark:group-hover:shadow-[0_24px_48px_-24px_rgba(0,0,0,0.7)]"
+            className={`relative aspect-[5/4] overflow-hidden ${
+              project.cover
+                ? 'rounded-[10px]'
+                : 'rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900'
+            }`}
             style={project.bg ? { backgroundColor: project.bg } : undefined}
           >
-            {project.video ? (
+            {project.cover ? (
+              <ProjectCover cover={project.cover} alt={project.alt} />
+            ) : project.video ? (
               <video
                 src={project.video}
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                 autoPlay
                 loop
                 muted
@@ -214,7 +245,7 @@ function BentoCard({
               <img
                 src={project.image}
                 alt={project.alt}
-                className={`w-full h-full ${project.fit === 'contain' ? 'object-contain' : 'object-cover'} transition-transform duration-700 ease-out group-hover:scale-[1.05]`}
+                className={`w-full h-full ${project.fit === 'contain' ? 'object-contain' : 'object-cover'} transition-transform duration-700 ease-out group-hover:scale-[1.02]`}
                 style={{
                   objectPosition: project.position,
                   transform: project.zoom ? `scale(${project.zoom})` : undefined,
@@ -223,8 +254,8 @@ function BentoCard({
                 decoding="async"
               />
             )}
-            {/* Arrow chip — slides in on hover */}
-            <span className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 dark:bg-neutral-900/90 backdrop-blur-sm flex items-center justify-center opacity-0 translate-y-2 scale-90 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100">
+            {/* Arrow chip — slides in on hover, above the cover artwork */}
+            <span className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-white/90 dark:bg-neutral-900/90 backdrop-blur-sm flex items-center justify-center opacity-0 translate-y-2 scale-90 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100">
               <ArrowUpRight className="w-5 h-5 text-neutral-900 dark:text-neutral-100 transition-transform duration-300 group-hover:rotate-45" />
             </span>
           </div>
@@ -240,13 +271,12 @@ export function ProjectGrid() {
 
   return (
     <section id="work" className="py-16 md:py-24 px-4 sm:px-6 md:px-12">
-      <div className="max-w-7xl mx-auto">
-        {/* Section header */}
-        <div className="mb-10 md:mb-14">
-          <h2 className="text-xl md:text-2xl tracking-tight font-normal text-neutral-900 dark:text-neutral-50">
-            my work
-          </h2>
-        </div>
+      {/* Narrower than the rest of the page so the covers stay modest. */}
+      <div className="max-w-5xl mx-auto">
+        {/* Section header — a quiet centred label rather than a large heading */}
+        <h2 className="mb-8 md:mb-10 text-center font-label text-[15px] font-medium tracking-[0.7px] text-neutral-900/60 dark:text-neutral-100/60">
+          My Work
+        </h2>
 
         {/* Uniform grid — cards line up in rows */}
         <div className="grid md:grid-cols-2 gap-x-6 lg:gap-x-8 gap-y-10 md:gap-y-14">

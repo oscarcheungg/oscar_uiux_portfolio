@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Filter, TrendingUp, Lightbulb } from 'lucide-react';
+import { Filter, TrendingUp, Lightbulb } from 'lucide-react';
 import {
   CaseStudyHeader,
   CaseStudySection,
@@ -9,34 +9,31 @@ import {
   CaseStudyCard,
   CaseStudyLayout,
 } from '../components/CaseStudy';
+import { COVERS } from '../components/ProjectCover';
 
 const META = [
   { label: 'Role', value: 'Product Designer' },
+  { label: 'Scope', value: 'Led the transaction\nfiltering redesign' },
   { label: 'Team', value: '1 PM\n2 engineers\n2 designers' },
   { label: 'Timeline', value: '2 weeks' },
-  { label: 'Tools', value: 'Figma, Figjam' },
-  { label: 'Responsibilities', value: 'UX Research, Design Thinking, Wireframing, Prototyping' },
+  { label: 'Responsibilities', value: 'User interviews, Interaction design, Prototyping, Usability testing' },
 ];
 
+/* Three principles rather than one requirement per research quote. */
 const DESIGN_GOALS = [
   {
-    insight: 'Users scan more than read',
-    goal: 'Make categories instantly recognizable with icons and color coding',
-    icon: Search,
-  },
-  {
-    insight: 'Category-first thinking',
-    goal: 'Put category selection before date ranges, with the most common filters first',
-    icon: Filter,
-  },
-  {
-    insight: 'Low tolerance for friction',
-    goal: 'Make common filters a single tap, keeping advanced options available but not prominent',
+    insight: 'Make common actions immediate',
+    goal: 'The filters students reach for daily should cost close to nothing to apply',
     icon: TrendingUp,
   },
   {
-    insight: 'Over-filtering causes fatigue',
-    goal: 'Show essential filters first, revealing advanced options only when needed',
+    insight: 'Prioritise categories',
+    goal: 'Use the recognisable labels students already use to describe their spending',
+    icon: Filter,
+  },
+  {
+    insight: 'Reveal complexity progressively',
+    goal: 'Keep the less common controls reachable without letting them compete with everyday tasks',
     icon: Lightbulb,
   },
 ];
@@ -44,22 +41,22 @@ const DESIGN_GOALS = [
 const ITERATIONS = [
   {
     title: 'Iteration 1: Inline filter options',
-    body: "I started by placing filter options right in the transaction list header, hoping to save taps. Instead, showing everything at once just added cognitive load. Users wanted transactions first, filters second, and I learned that visibility doesn't always equal usability.",
+    body: "I started by placing filter options right in the transaction list header, assuming the problem was that filtering was hidden. Testing said otherwise. Making everything visible only created a new problem: students did not need easier access to filters, they needed fewer decisions between their question and the answer. This is the iteration that changed how I understood the brief.",
     aside: "What didn't work: Cluttered header, limited space, didn't feel like a dedicated filtering experience",
     media: '/centibleAssets/centibleIterationOne.jpg',
     alt: 'Inline filter options iteration',
   },
   {
     title: 'Iteration 2: Testing the overlay approach',
-    body: "So I tried an overlay menu, which solved the space issue. A partial overlay won out over full-screen because users could still see their transaction list, and it opened up a two-stage pattern that matched their mental model: pick a status (Categorized/Uncategorized), then watch category chips appear.",
-    aside: 'Key learning: Overlay maintains context, provides space for clear labels, enables category chips',
+    body: "Testing surfaced two different filtering needs that had been sharing one menu: transaction status, which belongs to the workflow of classifying transactions, and spending category, which is how students ask everyday money questions. Splitting them into layers made both simpler. A partial overlay carries the status layer while keeping the transaction list in view, and choosing a status brings the category chips forward.",
+    aside: 'Key learning: status and category are two different questions and deserve two layers',
     media: '/centibleAssets/centibleIterationTwo.jpg',
     alt: 'Overlay filter menu exploration',
   },
   {
-    title: 'Iteration 3: Making categorized filter the default',
-    body: 'Then the research clicked: if students think in categories first, why not make "Categorized" the default? I did, keeping "All" easily accessible. Transactions now open already grouped by category chips, cutting "tap filter → select categorized → see categories" down to just "see categories."',
-    aside: 'Key insight: Defaulting to categorized view matches how users think about their spending',
+    title: 'Iteration 3: Defaulting to categorized transactions',
+    body: 'Because category questions were the dominant use case, I made categorized transactions the default state so the category chips are available immediately rather than after a setup step. "All" stays one tap away. That turns "tap filter, choose categorized, then see categories" into simply seeing categories.',
+    aside: 'Key insight: defaulting to categorized exposes category filtering sooner, without claiming a status is a category',
     media: '/centibleAssets/centibleIterationThree.jpg',
     alt: 'Categorized filter as default',
   },
@@ -67,32 +64,32 @@ const ITERATIONS = [
 
 const SOLUTION_SECTIONS = [
   {
-    title: 'Filter overlay menu with transaction status options',
+    title: 'Preserve context while filtering',
     description:
-      'Tap the filter icon and a semi-transparent overlay opens with radio options: Categorized, Uncategorized, All, and Ignored. The transaction list stays in view, and the overlay dismisses easily for quick check-ins.',
+      'A partial-height overlay rather than a dedicated screen, so students never lose sight of the transaction list they are trying to understand. It dismisses with a tap, which matters when the whole visit lasts a few seconds.',
     media: '/centibleAssets/filterOverlay.png',
     type: 'image' as const,
   },
   {
-    title: 'Category filter chips for quick selection',
+    title: 'Make common categories immediately scannable',
     description:
-      'When filtering by "Categorized," category chips (Rent, Groceries, Eating Out) appear above the transaction list. Users can tap multiple chips at once, and each is clearly labeled and easy to remove, so adjusting filters on the fly is simple.',
+      'Once categorized transactions are active, the high-frequency spending categories sit above the list as removable chips. Answering "how much on food" costs one tap, and combining chips does not mean returning to the menu.',
     media: '/centibleAssets/categorizedTransactions.png',
     type: 'image' as const,
   },
   {
-    title: 'Clear visual feedback and easy filter management',
+    title: 'Keep filter state visible',
     description:
-      'Active filters are always visible through the filter label (e.g., "Uncategorized Transactions") and category chips, supporting the quick, goal-oriented behavior we saw in research.',
+      'The active filter stays on screen after the overlay closes, so nobody has to remember why the list changed. For a tool people open mid-thought, the state of the screen has to explain itself.',
     media: '/centibleAssets/centibleDemo.mp4',
     type: 'video' as const,
   },
 ];
 
 const REFLECTIONS = [
-  'The best designs match how users actually think, not how I think they should. Learning that students think in categories first, not date ranges, fundamentally shifted the solution.',
+  'The best designs match how users actually think. Students remember spending by category, and separating that from the transaction-status workflow is what made both simple.',
   "Showing everything doesn't give users control, it overwhelms them. Hiding advanced options until needed reduced cognitive load while keeping functionality accessible.",
-  "I'd start with observation, not assumptions. My first iterations reflected what I thought users wanted; watching them use financial tools first would have saved cycles.",
+  "I'd observe behaviour before asking about it. The interviews told me what students said they wanted; watching them complete real financial tasks would have surfaced the friction in the existing filter earlier and saved me an iteration.",
 ];
 
 function Bullet({ strong, children }: { strong: string; children: ReactNode }) {
@@ -112,11 +109,10 @@ export function Centible() {
     <div className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 pt-28 md:pt-36 pb-16 md:pb-24" data-accent="purple">
       <CaseStudyLayout>
         <CaseStudyHeader
-          eyebrow="CENTIBLE · IOS MOBILE DESIGN 2025"
           title="Filtering Transactions for Centible"
           subtitle="A financial tool built with App Team Carolina for college students navigating independent living on unpredictable, fluctuating incomes."
           meta={META}
-          cover="/centibleCover.png"
+          cover={COVERS['centible']}
           coverAlt="Filtering Transactions for Centible"
         />
 
@@ -128,10 +124,11 @@ export function Centible() {
             sublabel="why this matters"
             title="The Problem With the Existing Filter"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
               It started with a simple question students kept asking: "How much did I spend on food
-              this week?" Getting that answer meant multiple taps through buried options that didn't
-              match their category-first thinking.
+              this week?" Answering it meant working through filtering options that felt
+              disproportionately complicated for something that simple. Why it felt that way was
+              what the research had to tell me.
             </p>
             <CaseStudyFigure
               src="/centibleAssets/centibleBefore.png"
@@ -146,31 +143,34 @@ export function Centible() {
             sublabel="what we found"
             title="How Students Actually Use Financial Tools"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              So I sat down with 8 college students for informal interviews. They all used financial
-              apps the same way: quick check-ins, not deep budgeting sessions. That insight shaped
-              every design decision that followed.
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+              I sat down with 8 college students for informal interviews. The biggest takeaway was
+              not what they filtered by, but how they approached financial tools at all. They opened
+              one with a question in mind, looked for the answer, and left. Centible is a check-in
+              tool, not a destination, which means every extra interaction competes with a very
+              short session.
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               <CaseStudyCard title="User context">
-                <ul className="space-y-3 text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                  <Bullet strong="Quick, repeated usage:">
-                    Multiple check-ins per day, not dedicated budgeting sessions
+                <ul className="space-y-3 text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+                  <Bullet strong="Short, repeated check-ins:">
+                    Students opened financial apps for quick answers rather than long budgeting
+                    sessions
                   </Bullet>
                   <Bullet strong="Low friction tolerance:">Any extra step feels like too much</Bullet>
                   <Bullet strong="Goal-oriented:">Specific question → answer → leave</Bullet>
                 </ul>
               </CaseStudyCard>
               <CaseStudyCard title="Key insights">
-                <ul className="space-y-3 text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                  <Bullet strong="Users scan more than read:">
-                    Category labels must be instantly recognizable
+                <ul className="space-y-3 text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+                  <Bullet strong="They arrive with a specific question:">
+                    Nobody was exploring the interface, they wanted an answer
                   </Bullet>
-                  <Bullet strong="Category-first thinking:">
-                    "Food" or "transportation" before date ranges
+                  <Bullet strong="Spending is remembered by category:">
+                    "Food" or "transportation" came to mind before any other way of slicing it
                   </Bullet>
-                  <Bullet strong="Over-filtering causes fatigue:">
-                    Too many options lead to decision paralysis
+                  <Bullet strong="More controls is not more control:">
+                    When every option appeared at once, students hesitated instead of acting faster
                   </Bullet>
                 </ul>
               </CaseStudyCard>
@@ -182,9 +182,9 @@ export function Centible() {
             num="03"
             label="Goals"
             sublabel="insight → intent"
-            title="Tying Goals Directly to Insights"
+            title="Turning Insights Into Design Principles"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
               With those insights in hand, I tied each design goal to something users actually told
               us, so the solution would solve real problems instead of adding complexity.
             </p>
@@ -199,7 +199,7 @@ export function Centible() {
                 >
                   <CaseStudyCard className="h-full">
                     <div className="flex items-start gap-4">
-                      <div className="w-11 h-11 rounded-xl bg-purple-600/10 dark:bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                      <div className="w-9 h-9 rounded-[10px] bg-purple-600/10 dark:bg-purple-500/20 flex items-center justify-center flex-shrink-0">
                         <item.icon className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                       </div>
                       <div>
@@ -224,20 +224,20 @@ export function Centible() {
             sublabel="explore & test"
             title="Exploring Different Approaches to Transaction Filtering"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
               From there, I tested several filter approaches, learning what worked and what didn't
               through rapid iteration and user feedback.
             </p>
             <div className="space-y-12 md:space-y-16">
               {ITERATIONS.map((it) => (
                 <div key={it.title}>
-                  <h3 className="text-base md:text-lg font-medium mb-3 text-neutral-900 dark:text-neutral-100">
+                  <h3 className="text-[17px] font-medium mb-3 text-neutral-900 dark:text-neutral-100">
                     {it.title}
                   </h3>
-                  <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-3">
+                  <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-3">
                     {it.body}
                   </p>
-                  <p className="text-sm text-neutral-500 dark:text-neutral-500 italic mb-5">{it.aside}</p>
+                  <p className="text-[14px] text-neutral-900/45 dark:text-neutral-100/45 italic mb-5">{it.aside}</p>
                   <CaseStudyFigure src={it.media} alt={it.alt} />
                 </div>
               ))}
@@ -251,7 +251,7 @@ export function Centible() {
             sublabel="what we made"
             title="The Final Filtering Solution"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
               Everything the iterations taught me came together in the final design: a filter
               overlay menu of transaction status options, plus category chips that appear when
               filtering. Context stays intact, and filters stay quick and scannable.
@@ -259,10 +259,10 @@ export function Centible() {
             <div className="space-y-12 md:space-y-16 mb-12">
               {SOLUTION_SECTIONS.map((section) => (
                 <div key={section.title}>
-                  <h3 className="text-base md:text-lg font-medium mb-3 text-neutral-900 dark:text-neutral-100">
+                  <h3 className="text-[17px] font-medium mb-3 text-neutral-900 dark:text-neutral-100">
                     {section.title}
                   </h3>
-                  <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-5">
+                  <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-5">
                     {section.description}
                   </p>
                   <CaseStudyFigure src={section.media} alt={section.title} type={section.type} />
@@ -270,7 +270,7 @@ export function Centible() {
               ))}
             </div>
             <CaseStudyCard title="How it supports user jobs">
-              <ul className="space-y-3 text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              <ul className="space-y-3 text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
                 <Bullet strong="Quick check-ins:">One tap to see food spending for the week</Bullet>
                 <Bullet strong="Category-first thinking:">
                   Categories are prominent and visually distinct
@@ -285,48 +285,94 @@ export function Centible() {
           {/* 06 · Outcome */}
           <CaseStudySection
             num="06"
-            label="Outcome"
+            label="Testing"
             sublabel="what it did"
-            title="Light but Honest Outcomes"
+            title="Testing the Redesign"
           >
             <div className="grid md:grid-cols-2 gap-8 md:gap-12">
               <div>
-                <h3 className="text-base md:text-lg font-medium mb-4 text-neutral-900 dark:text-neutral-100">
+                <h3 className="text-[17px] font-medium mb-4 text-neutral-900 dark:text-neutral-100">
                   Quantitative
                 </h3>
-                <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                  We turned everything we learned into high-fidelity Figma prototypes and put them
-                  back in front of users. The redesigned filtering interface{' '}
+                <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+                  I ran task-based usability tests with 5 students on a high-fidelity prototype,
+                  asking them to find specific transactions in both the existing filter and the
+                  redesign. Participants completed those tasks{' '}
                   <span className="text-purple-600 dark:text-purple-400 font-medium">
-                    reduced time to locate specific transactions by approximately 15%
+                    roughly 15% faster with the new filter
                   </span>
                   .
                 </p>
               </div>
               <div>
-                <h3 className="text-base md:text-lg font-medium mb-4 text-neutral-900 dark:text-neutral-100">
+                <h3 className="text-[17px] font-medium mb-4 text-neutral-900 dark:text-neutral-100">
                   Qualitative
                 </h3>
-                <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                  Users reported{' '}
+                <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+                  Participants described the flow as{' '}
                   <span className="text-purple-600 dark:text-purple-400 font-medium">
-                    feeling less overwhelmed and more confident
-                  </span>{' '}
-                  finding what they needed. The category-first approach matched their mental model,
-                  so the feature felt intuitive rather than learned.
+                    easier to scan and more predictable
+                  </span>
+                  , and pointed specifically at the selected categories staying visible after
+                  filtering as the reason they always knew what they were looking at.
                 </p>
               </div>
             </div>
           </CaseStudySection>
 
-          {/* 07 · Team */}
+          {/* 08 · Reflection */}
           <CaseStudySection
             num="07"
-            label="Team"
+            label="Reflection"
+            sublabel="what i learned"
+            title="What I Learned and What I'd Do Differently"
+          >
+            <div className="space-y-4">
+              {REFLECTIONS.map((takeaway, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  className="flex gap-4 items-start p-5 rounded-[10px] bg-neutral-900/[0.035] dark:bg-neutral-100/[0.06]"
+                >
+                  <span className="text-sm text-purple-600 dark:text-purple-400 pt-1 flex-shrink-0">
+                    0{i + 1}
+                  </span>
+                  <p className="text-[16px] leading-6 text-neutral-900/70 dark:text-neutral-100/70">
+                    {takeaway}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </CaseStudySection>
+
+          {/* 09 · Next steps */}
+          <CaseStudySection
+            num="08"
+            label="Next steps"
+            sublabel="where it's going"
+            title="Continuing to Refine Centible"
+          >
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+              I'm revamping the app's widgets so users can see their finances at a glance, and we're
+              expanding marketing to grow fundraising for the app and the team. We keep refining
+              Centible based on user feedback so it stays valuable for students!
+            </p>
+            <CaseStudyLink href="https://apps.apple.com/us/app/centible/id6443507950">
+              Get Centible on the App Store!
+            </CaseStudyLink>
+          </CaseStudySection>
+
+          {/* 07 · Team */}
+          <CaseStudySection
+            num="09"
+            label="Delivery"
             sublabel="beyond the screens"
             title="Presenting at App Team Carolina Gala"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
               Our team presented the semester's work at the App Team Carolina Gala, sharing our
               usability testing insights, redesigned features, and the website redesign that brought
               them to life. Go Centible!
@@ -341,50 +387,6 @@ export function Centible() {
             </CaseStudyLink>
           </CaseStudySection>
 
-          {/* 08 · Reflection */}
-          <CaseStudySection
-            num="08"
-            label="Reflection"
-            sublabel="what i learned"
-            title="What I Learned and What I'd Do Differently"
-          >
-            <div className="space-y-4">
-              {REFLECTIONS.map((takeaway, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.08 }}
-                  className="flex gap-4 items-start p-6 bg-neutral-100 dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800"
-                >
-                  <span className="text-sm text-purple-600 dark:text-purple-400 pt-1 flex-shrink-0">
-                    0{i + 1}
-                  </span>
-                  <p className="text-base md:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                    {takeaway}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </CaseStudySection>
-
-          {/* 09 · Next steps */}
-          <CaseStudySection
-            num="09"
-            label="Next steps"
-            sublabel="where it's going"
-            title="Continuing to Refine Centible"
-          >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              I'm revamping the app's widgets so users can see their finances at a glance, and we're
-              expanding marketing to grow fundraising for the app and the team. We keep refining
-              Centible based on user feedback so it stays valuable for students!
-            </p>
-            <CaseStudyLink href="https://apps.apple.com/us/app/centible/id6443507950">
-              Get Centible on the App Store!
-            </CaseStudyLink>
-          </CaseStudySection>
         </div>
       </CaseStudyLayout>
     </div>

@@ -2,6 +2,14 @@ import { ReactNode, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ExternalLink, ArrowLeft } from 'lucide-react';
+import { ProjectCover, ProjectCoverArt, ProjectTags } from './ProjectCover';
+
+/* Typography borrowed wholesale from the homepage and about page: Instrument
+   Sans for the small labels, Inter at 16px for anything read as prose, and one
+   heading scale rather than three. */
+const LABEL =
+  'font-label text-[13px] font-medium tracking-[0.7px] text-neutral-900/60 dark:text-neutral-100/60';
+const BODY = 'text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55';
 
 /**
  * Case-study template (inspired by rachelchen.tech):
@@ -13,6 +21,21 @@ import { ExternalLink, ArrowLeft } from 'lucide-react';
 
 function slug(num: string, label: string) {
   return `${num}-${label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
+}
+
+/* The way back, written once so the sidebar and the mobile header can't drift.
+   Held back to 55% ink and resolving on hover, exactly like the nav links, and
+   the arrow slides a hair towards the work it returns to. */
+export function BackToWork({ className = '' }: { className?: string }) {
+  return (
+    <Link
+      to="/#work"
+      className={`group inline-flex items-center gap-2 -my-2 py-2 font-label text-[13px] font-medium tracking-[0.5px] text-neutral-900/55 dark:text-neutral-100/55 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors ${className}`}
+    >
+      <ArrowLeft className="w-3.5 h-3.5 transition-transform duration-300 ease-out group-hover:-translate-x-0.5" />
+      Work
+    </Link>
+  );
 }
 
 // ---- Page layout: sticky TOC + content ----
@@ -66,23 +89,17 @@ export function CaseStudyLayout({ children }: { children: ReactNode }) {
         {/* Sticky TOC */}
         <nav className="hidden md:block" aria-label="Sections">
           <div className="sticky top-28">
-            <Link
-              to="/#work"
-              className="inline-flex items-center gap-2 text-xs tracking-widest text-neutral-500 dark:text-neutral-500 hover:text-[var(--csa)] dark:hover:text-[var(--csa-dark)] transition-colors"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" />
-              work
-            </Link>
+            <BackToWork />
             <ul className="mt-8 space-y-3">
               {toc.map((item) => (
                 <li key={item.id}>
                   <button
                     type="button"
                     onClick={() => goTo(item.id)}
-                    className={`text-left text-sm leading-snug transition-colors ${
+                    className={`text-left text-[14px] leading-snug transition-colors ${
                       activeId === item.id
-                        ? 'text-neutral-900 dark:text-neutral-50 font-medium'
-                        : 'text-neutral-500 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300'
+                        ? 'text-neutral-900 dark:text-neutral-100 font-medium'
+                        : 'text-neutral-900/45 dark:text-neutral-100/45 hover:text-neutral-900 dark:hover:text-neutral-100'
                     }`}
                   >
                     {item.label}
@@ -108,72 +125,49 @@ interface CaseStudyMetaItem {
 }
 
 interface CaseStudyHeaderProps {
-  eyebrow?: string;
   title: string;
   subtitle: string;
   meta: CaseStudyMetaItem[];
-  cover: string;
+  /* The project's own cover — the same screens and painted ground the
+     homepage card reveals on hover, here simply the cover. */
+  cover: ProjectCoverArt;
   coverAlt: string;
-  coverClassName?: string;
-  coverWrapClassName?: string;
-  coverBordered?: boolean;
 }
 
 export function CaseStudyHeader({
-  eyebrow,
   title,
   subtitle,
   meta,
   cover,
   coverAlt,
-  coverClassName,
-  coverWrapClassName = '',
-  coverBordered = true,
 }: CaseStudyHeaderProps) {
   return (
     <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
       {/* mobile back link (sidebar handles desktop) */}
-      <Link
-        to="/#work"
-        className="md:hidden inline-flex items-center gap-2 text-xs tracking-widest text-neutral-500 dark:text-neutral-500 hover:text-[var(--csa)] dark:hover:text-[var(--csa-dark)] transition-colors mb-6"
-      >
-        <ArrowLeft className="w-3.5 h-3.5" />
-        work
-      </Link>
+      <BackToWork className="md:hidden mb-6" />
 
-      {eyebrow && (
-        <p className="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-500 mb-4">
-          {eyebrow}
-        </p>
-      )}
+      {/* Client and tags, exactly as the work section labels this project. */}
+      <div className="mb-4 flex items-center gap-2">
+        <p className={LABEL}>{cover.client}</p>
+        <ProjectTags meta={cover.meta} />
+      </div>
 
-      <h1 className="text-4xl sm:text-5xl md:text-6xl leading-[1.06] tracking-tight text-neutral-900 dark:text-neutral-50 mb-8">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-normal leading-[1.1] tracking-tight text-neutral-900 dark:text-neutral-50 mb-8">
         {title}
       </h1>
 
-      {/* Cover */}
-      <div
-        className={`rounded-2xl overflow-hidden ${
-          coverBordered ? 'border border-neutral-200 dark:border-neutral-800' : ''
-        } ${coverWrapClassName}`}
-      >
-        <img
-          src={cover}
-          alt={coverAlt}
-          className={coverClassName || 'w-full h-auto'}
-          loading="eager"
-          decoding="async"
-        />
+      {/* Cover — a wider crop of the homepage tile, with the artwork already
+          showing rather than waiting for a cursor. */}
+      <div className="relative aspect-[16/10] overflow-hidden rounded-[10px]">
+        <ProjectCover cover={cover} alt={coverAlt} showArt lift={false} />
       </div>
 
       {/* Meta row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-6 mt-8 md:mt-10">
         {meta.map((item) => (
           <div key={item.label}>
-            <p className="text-[0.65rem] uppercase tracking-widest text-neutral-500 dark:text-neutral-500 mb-2">
-              {item.label}
-            </p>
-            <p className="text-sm text-neutral-900 dark:text-neutral-100 leading-snug whitespace-pre-line">
+            <p className={`${LABEL} mb-2`}>{item.label}</p>
+            <p className="text-[16px] leading-6 text-neutral-900/85 dark:text-neutral-100/85 whitespace-pre-line">
               {item.value}
             </p>
           </div>
@@ -181,7 +175,7 @@ export function CaseStudyHeader({
       </div>
 
       {/* Lead-in description */}
-      <p className="text-lg md:text-xl text-neutral-500 dark:text-neutral-400 leading-relaxed mt-10 md:mt-12">
+      <p className={`${BODY} mt-10 md:mt-12`}>
         {subtitle}
       </p>
     </motion.div>
@@ -212,10 +206,10 @@ export function CaseStudySection({ num, label, title, children, className = '' }
       transition={{ duration: 0.6 }}
       className={`py-8 md:py-12 scroll-mt-28 ${className}`}
     >
-      <p className="text-xs uppercase tracking-widest text-[var(--csa)] dark:text-[var(--csa-dark)] mb-3">
+      <p className="font-label text-[13px] font-medium tracking-[0.7px] text-[var(--csa)] dark:text-[var(--csa-dark)] mb-3">
         {label}
       </p>
-      <h2 className="text-xl md:text-2xl mb-5 tracking-tight font-semibold text-neutral-900 dark:text-neutral-50">
+      <h2 className="text-xl md:text-2xl mb-5 tracking-tight font-medium text-neutral-900 dark:text-neutral-50">
         {title}
       </h2>
       {children}
@@ -279,7 +273,7 @@ export function CaseStudyLink({ href, children }: CaseStudyLinkProps) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 px-6 py-3 min-h-[44px] border border-neutral-300 dark:border-neutral-700 rounded-full text-neutral-900 dark:text-neutral-100 hover:border-[var(--csa)] hover:text-[var(--csa)] dark:hover:border-[var(--csa-dark)] dark:hover:text-[var(--csa-dark)] transition-all duration-300 hover:-translate-y-0.5 touch-manipulation text-base"
+      className="inline-flex items-center gap-2 px-6 py-3 min-h-[44px] border border-neutral-300 dark:border-neutral-700 rounded-full text-neutral-900 dark:text-neutral-100 hover:border-[var(--csa)] hover:text-[var(--csa)] dark:hover:border-[var(--csa-dark)] dark:hover:text-[var(--csa-dark)] transition-all duration-300 hover:-translate-y-0.5 touch-manipulation text-[16px]"
     >
       <span>{children}</span>
       <ExternalLink className="w-4 h-4" />
@@ -298,10 +292,10 @@ interface CaseStudyCardProps {
 export function CaseStudyCard({ title, children, className = '' }: CaseStudyCardProps) {
   return (
     <div
-      className={`p-6 bg-neutral-100 dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 ${className}`}
+      className={`p-5 rounded-[10px] bg-neutral-900/[0.035] dark:bg-neutral-100/[0.06] ${className}`}
     >
       {title && (
-        <h3 className="text-base md:text-lg font-medium mb-4 text-neutral-900 dark:text-neutral-100">
+        <h3 className="text-[17px] font-medium mb-4 text-neutral-900 dark:text-neutral-100">
           {title}
         </h3>
       )}

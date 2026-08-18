@@ -55,7 +55,7 @@ function formatDistance(m: number) {
   return `${miles(m).toFixed(2)} mi`;
 }
 function formatDuration(sec?: number) {
-  if (!sec) return '—';
+  if (!sec) return ', ';
   const h = Math.floor(sec / 3600);
   const m = Math.floor((sec % 3600) / 60);
   const s = sec % 60;
@@ -65,7 +65,7 @@ function formatDuration(sec?: number) {
 }
 function formatPace(distanceM: number, sec?: number) {
   const mi = miles(distanceM);
-  if (!sec || mi < 0.01) return '—';
+  if (!sec || mi < 0.01) return ', ';
   const perMile = sec / mi;
   const m = Math.floor(perMile / 60);
   const s = Math.round(perMile % 60);
@@ -182,7 +182,7 @@ export function StravaCard() {
           <p className="text-xs text-neutral-400 dark:text-neutral-500 mb-3">
             {formatDate(activity.start_date_local)}
           </p>
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <Stat label="distance" value={formatDistance(activity.distance)} />
             <Stat label="pace" value={`${formatPace(activity.distance, activity.moving_time)} /mi`} />
             <Stat label="time" value={formatDuration(activity.moving_time)} />
@@ -191,7 +191,7 @@ export function StravaCard() {
               value={
                 activity.total_elevation_gain != null
                   ? `${Math.round(activity.total_elevation_gain)} m`
-                  : '—'
+                  : ', '
               }
             />
           </div>

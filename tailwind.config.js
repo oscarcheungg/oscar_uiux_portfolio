@@ -10,7 +10,11 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Satoshi', ...defaultTheme.fontFamily.sans],
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        // Small labels and tags only.
+        label: ['Instrument Sans', ...defaultTheme.fontFamily.sans],
+        // Polaroid captions only — as if written on the print.
+        hand: ['Caveat', 'cursive'],
       },
     },
   },

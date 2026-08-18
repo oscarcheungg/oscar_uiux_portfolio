@@ -37,3 +37,6 @@ assets/aboutAssets/runwithFriends.mp4
 
 # Claude local settings
 .claude/settings.local.json
+
+# Assets pulled out of public/ for manual review, kept local only
+_unused-assets/

@@ -1,4 +1,5 @@
 import { CaseStudyHeader, CaseStudyLayout } from '../components/CaseStudy';
+import { COVERS } from '../components/ProjectCover';
 
 const META = [
   { label: 'Role', value: 'Solo Product Designer' },
@@ -15,11 +16,10 @@ export function Wigo() {
     >
       <CaseStudyLayout>
         <CaseStudyHeader
-          eyebrow="WIGO · PRODUCT DESIGN 2026"
           title="Making friend group planning easier"
           subtitle="Wigo provides an all-in-one platform for friend groups to decide on what they want to do and when, turning scattered group chats into simple and shared plans."
           meta={META}
-          cover="/wigoCover.png"
+          cover={COVERS['wigo']}
           coverAlt="Wigo friend group planning app cover"
         />
 

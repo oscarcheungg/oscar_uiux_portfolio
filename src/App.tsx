@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -11,11 +12,27 @@ import { GoldenDragon } from './pages/GoldenDragon';
 import { Wigo } from './pages/Wigo';
 import { EightyFourFiftyOne } from './pages/EightyFourFiftyOne';
 
+/* Every route opens at its own top. Without this the browser keeps the scroll
+   position from the page you just left, so opening a case study from halfway
+   down the work grid drops you into the middle of it. A hash link (the "/#work"
+   back link) is left alone — the header scrolls that one itself. */
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) return;
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+  }, [pathname, hash]);
+
+  return null;
+}
+
 function App() {
   return (
     <ThemeProvider>
       <Router>
         <div className="min-h-screen bg-white dark:bg-neutral-950">
+          <ScrollToTop />
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />

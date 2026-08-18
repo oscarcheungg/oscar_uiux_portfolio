@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { AlertCircle, TrendingDown, Clock, Zap } from 'lucide-react';
+import { AlertCircle, TrendingDown, Clock } from 'lucide-react';
 import { preloadMedia } from '../hooks/usePreload';
 import './Spotify.css';
 import VideoCarousel from '../components/VideoCarousel';
@@ -9,83 +9,86 @@ import {
   CaseStudySection,
   CaseStudyLayout,
 } from '../components/CaseStudy';
+import { COVERS } from '../components/ProjectCover';
 
 const META = [
   { label: 'Role', value: 'Solo Product Designer' },
   { label: 'Timeline', value: '3 weeks' },
   { label: 'Tools', value: 'Figma, Figjam' },
-  { label: 'Responsibilities', value: 'UX Research, Design Thinking, Wireframing, Prototyping' },
+  { label: 'Responsibilities', value: 'User interviews, Interaction design, Prototyping, Usability testing' },
 ];
 
 const RESEARCH_QUOTES = [
   { quote: "I just hit 'like' instead of organizing. My Liked Songs is a mess.", author: 'Reddit User' },
-  { quote: 'Why does it take so many taps? I usually just give up.', author: 'Interview Participant' },
-  { quote: "I can't tell if I already saved a song without checking every playlist.", author: 'Survey Response' },
+  { quote: 'Why does it take so many taps? I usually just give up.', author: 'Playlist builder I spoke with' },
+  { quote: "I can't tell if I already saved a song without checking every playlist.", author: 'Playlist builder I spoke with' },
 ];
 
+/* Five observations collapsed into the three that actually differ: the rest
+   were symptoms of the same friction. */
 const PAIN_POINTS = [
   {
-    icon: AlertCircle,
-    title: 'Poor Organization',
-    description: 'Users hit "like" instead of sorting songs into themed playlists, leaving Liked Songs cluttered.',
-  },
-  {
     icon: TrendingDown,
-    title: 'Avoidance Behavior',
-    description: 'Users avoid adding songs to playlists due to the tedious multi-tap process.',
-  },
-  {
-    icon: Zap,
-    title: 'Lack of Control',
-    description: 'Users want more control over which playlists show up in the "Quick Add" panel.',
+    title: 'Organisation Gets Deferred',
+    description:
+      'People fall back on the Like button because sorting music in the moment costs more effort than it is worth. Liked Songs becomes the dumping ground nobody wants to sort later.',
   },
   {
     icon: Clock,
-    title: 'Time Wasted',
-    description: 'A quick-add shortcut would save users real time when building playlists.',
+    title: 'Managing Playlists Interrupts Listening',
+    description:
+      'The add action lives behind a three-dot menu, so a lightweight intention turns into nested menus and a context switch away from whatever is playing.',
   },
   {
     icon: AlertCircle,
-    title: 'Hidden Actions',
-    description: 'The three-dot icon frustrates users by hiding and complicating the add action.',
+    title: 'People Need to Know Where Music Is Going',
+    description:
+      'Users want to see which playlist they are adding to, and whether a song is already in it, without opening each one to check.',
   },
 ];
 
 const SOLUTION_SECTIONS = [
   {
-    title: 'Build New Playlists, Effortlessly',
-    description: 'Two taps to add music to new playlists. The green "+" button eliminates menu navigation, keeping you in your musical flow.',
+    title: 'Stay in the Listening Flow',
+    description:
+      'Switching a playlist on takes two taps, and from there browsing continues as normal. The green "+" replaces the trip through the three-dot menu, so organising no longer means leaving what you are listening to.',
     video: '/spotifyAssets/newPlaylistFlow.mp4',
   },
   {
-    title: 'Add New Music without Hesitation',
-    description: 'The interface prioritizes playlists you edit most. Smart categorization eliminates endless scrolling.',
+    title: 'Reach the Right Playlist Faster',
+    description:
+      'Recently edited playlists appear first, so the one you are building is usually the one at the top rather than something to scroll for.',
     video: '/spotifyAssets/existingPlaylistFlow.mp4',
   },
   {
-    title: 'Edit Multiple Playlists at Once',
-    description: 'Turn on Playlist Mode for multiple playlists. Add to them simultaneously with clear visual feedback.',
+    title: 'One Active Destination at a Time',
+    description:
+      'I explored switching on several playlists at once, but kept the core interaction to a single active destination. Adding to three playlists from one tap sounds efficient until you tap it by accident.',
     video: '/spotifyAssets/multiPlaylistEdit.mp4',
   },
   {
-    title: 'Make Changes All in One Place',
-    description: 'Streamlined action bar consolidates all editing functions into intuitive, context-aware controls.',
+    title: 'Simplifying Rather Than Adding',
+    description:
+      'Once Playlist Mode handled both adding and editing, several dedicated controls became redundant. The new mode was a chance to remove existing complexity instead of layering more on top.',
     video: '/spotifyAssets/playlistMode.mp4',
   },
 ];
 
+/* Prototype outcomes, stated as what a prototype can actually show. This was
+   never shipped, so nothing here claims real-world product behaviour.
+   TODO: fill in the participant counts from testing before publishing. */
 const IMPACT_STATS = [
-  { value: '50%', label: 'Faster saves' },
-  { value: '2 taps', label: 'Down from 5' },
-  { value: '85%', label: 'User satisfaction' },
-  { value: '2x', label: 'More organized' },
+  { value: '5 \u2192 2', label: 'taps for the first save' },
+  { value: '1 tap', label: 'for every song after' },
+  { value: '60%', label: 'fewer taps on the first save' },
+  { value: '20-song playlist', label: 'roughly 100 taps today, about 21 in Playlist Mode' },
 ];
 
 const REFLECTIONS = [
-  'Small friction compounds: cutting 3 taps increased engagement by 60%.',
-  'Visual feedback builds confidence: users always know which playlist they are editing and get immediate confirmation.',
-  'Testing revealed the mental load of nested menus mattered as much as the physical taps, an insight my research missed.',
-  'The best solutions are often invisible: subtle refinements beat radical redesigns.',
+  'I started treating this as a tap-count problem. Testing showed it was a context problem: people cared less about doing fewer things than about staying oriented while they listened. That is the insight my research missed.',
+  'Friction compounds with frequency. Two taps instead of five barely registers once, but across a twenty-song playlist it is the difference between organising as you listen and giving up on it.',
+  'Visual feedback is what makes a persistent mode safe. Users need to see which playlist is active before they trust a one-tap save.',
+  'Because this was an enhancement to a mature product, I worked inside Spotify\u2019s existing interaction language rather than inventing a new one. The problem became finding the smallest change that improved a high-frequency behaviour.',
 ];
 
 function StickyScrollSection() {
@@ -196,11 +199,10 @@ export function Spotify() {
     <div className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 pt-28 md:pt-36 pb-16 md:pb-24" data-accent="green">
       <CaseStudyLayout>
         <CaseStudyHeader
-          eyebrow="SPOTIFY · CONCEPT 2025"
           title="Spotify Playlists Enhanced"
-          subtitle="Redesigned Spotify's playlist management, cutting song saves from 4-5 taps to just 1 with a new quick-add gesture and smarter playlist suggestions."
+          subtitle="Organising music in Spotify means leaving whatever you are listening to and walking through a chain of menus. I explored whether playlist building could happen inside the listening experience instead of interrupting it: two taps to start, then one tap for every song after."
           meta={META}
-          cover="/spotifyAssets/newSpotify.png"
+          cover={COVERS['spotify']}
           coverAlt="Spotify Playlists Enhanced"
         />
 
@@ -210,13 +212,13 @@ export function Spotify() {
             num="02"
             label="Problem"
             sublabel="the impact"
-            title="5 taps to save one song. Multiply that by millions."
+            title="A Small Annoyance That Compounds"
           >
             <div className="space-y-6">
-              <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
                 This started with my own annoyance. Every time I saved a song, I had to open the three dot menu, tap "Add to Playlist," scroll, and add. What should be instant becomes friction.
               </p>
-              <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
                 That friction stacked up until playlist building felt like a chore, not part of listening.
               </p>
             </div>
@@ -229,13 +231,13 @@ export function Spotify() {
             sublabel="the experience"
             title="The Multi-Tap Nightmare"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              Spotify does have a "Quick Add" overlay, but it traps you inside it. You can't browse the full app to find songs, so you lose control of playlist building.
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+              Spotify's existing add flow does help with selecting several songs at once, but discovery happens inside a dedicated overlay: users still have to leave their normal browsing context to build the playlist. That suggested reversing the model. Instead of bringing songs into a playlist editor, bring playlist editing into the rest of Spotify.
             </p>
             <div className="w-full max-w-5xl mx-auto" style={{ height: '600px', position: 'relative' }}>
               <VideoCarousel
                 items={[
-                  { video: '/spotifyAssets/newPlaylistProblems.mp4', title: 'Adding to playlist: 4-5 taps required', id: 1 },
+                  { video: '/spotifyAssets/newPlaylistProblems.mp4', title: 'Adding to a playlist: five taps, every time', id: 1 },
                   { video: '/spotifyAssets/quickAdd.mp4', title: 'Quick add overlay: Limited playlist control', id: 2 },
                 ]}
                 autoplay={true}
@@ -253,8 +255,8 @@ export function Spotify() {
             sublabel="what users told me"
             title="What Users Told Me"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              So before designing anything, I dug through Reddit threads and discussion boards. Turns out the frustration wasn't just mine. It was a real, shared problem.
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+              Before designing anything I wanted to know whether the frustration extended past my own habits. I started with what people were already saying: Reddit threads and discussion boards where playlist management comes up constantly. It was not just mine.
             </p>
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -278,8 +280,8 @@ export function Spotify() {
                   viewport={{ once: true, margin: '-100px' }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
-                  <p className="text-base md:text-lg text-neutral-900 dark:text-neutral-50 italic mb-6 leading-relaxed">"{item.quote}"</p>
-                  <p className="text-sm text-neutral-500 dark:text-neutral-500">{item.author}</p>
+                  <p className="text-[16px] leading-6 text-neutral-900 dark:text-neutral-50 italic mb-6 leading-relaxed">"{item.quote}"</p>
+                  <p className="text-[14px] text-neutral-900/45 dark:text-neutral-100/45">{item.author}</p>
                 </motion.div>
               ))}
             </div>
@@ -292,7 +294,7 @@ export function Spotify() {
             sublabel="others do it better"
             title="Others Do It Better"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
               Next, I looked at the competition. Comparing tap counts on YouTube Music and SoundCloud, I found both solve it in far fewer steps.
             </p>
             <motion.div
@@ -312,14 +314,15 @@ export function Spotify() {
           {/* 06 · Pain points */}
           <CaseStudySection
             num="06"
-            label="Pain points"
+            label="Insights"
             sublabel="identifying problems"
             title="Key Pain Points"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              Then I brought it closer to home and talked to fellow Spotify users I knew. Those conversations solidified what the new feature had to address.
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+              Then I moved from secondary research to primary, talking with Spotify users I know who actively build and maintain playlists. Five observations came out of it, but three of them were the same friction wearing different clothes. These are what remained.
             </p>
-            <div className="grid md:grid-cols-2 gap-4 md:gap-6 max-w-5xl mx-auto">
+            {/* Three across, sized as supporting notes rather than headlines. */}
+            <div className="grid md:grid-cols-3 gap-3 md:gap-4">
               {PAIN_POINTS.map((item, i) => (
                 <motion.div
                   key={i}
@@ -327,80 +330,30 @@ export function Spotify() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className={`group relative bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-[#1ED760]/50 dark:hover:border-[#1ED760]/50 transition-all duration-300 p-6 md:p-8 rounded-2xl ${i === 4 ? 'md:col-span-2 md:mx-auto md:max-w-md' : ''}`}
+                  className="group relative p-4 transition-colors duration-300 rounded-[10px] bg-neutral-900/[0.035] dark:bg-neutral-100/[0.06] hover:bg-neutral-900/[0.06] dark:hover:bg-neutral-100/[0.09]"
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-[#1ED760]/10 dark:bg-[#1ED760]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#1ED760]/20 dark:group-hover:bg-[#1ED760]/30 transition-colors">
-                      <item.icon className="w-5 h-5 text-[#1ED760] dark:text-[#1ED760]" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-lg md:text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-2">{item.title}</h3>
-                      <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">{item.description}</p>
-                    </div>
+                  <div className="w-8 h-8 rounded-[10px] bg-[#1ED760]/10 dark:bg-[#1ED760]/20 flex items-center justify-center mb-3 group-hover:bg-[#1ED760]/20 dark:group-hover:bg-[#1ED760]/30 transition-colors">
+                    <item.icon className="w-4 h-4 text-[#1ED760] dark:text-[#1ED760]" />
                   </div>
+                  <h3 className="text-[16px] font-medium leading-snug text-neutral-900 dark:text-neutral-50 mb-1.5">
+                    {item.title}
+                  </h3>
+                  <p className="text-[14px] leading-5 text-neutral-900/55 dark:text-neutral-100/55">
+                    {item.description}
+                  </p>
                 </motion.div>
               ))}
             </div>
           </CaseStudySection>
 
-          {/* 07 · Journey */}
+                    {/* 09 · Flow */}
           <CaseStudySection
             num="07"
-            label="Journey"
-            sublabel="user journey"
-            title="Aubrey's Experience"
-          >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              To see the problem through a user's eyes, I mapped Aubrey's journey building a playlist today, tracking how each pain point hits his emotions along the way. It kept my design focused on the moments that matter most.
-            </p>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.8 }}
-              className="overflow-hidden"
-            >
-              <img
-                src="/spotifyAssets/aubreyUserJourney.svg"
-                alt="Aubrey's User Journey Map"
-                className="w-full max-w-5xl mx-auto h-auto"
-              />
-            </motion.div>
-          </CaseStudySection>
-
-          {/* 08 · Persona */}
-          <CaseStudySection
-            num="08"
-            label="Persona"
-            sublabel="who we design for"
-            title="Meet Aubrey"
-          >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              I distilled everything I learned, from user discussions to competitor analysis to the pain points, into Aubrey: one clear target to design for. His preferences and behaviors guided every design decision.
-            </p>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.8 }}
-              className="overflow-hidden"
-            >
-              <img
-                src="/spotifyAssets/aubreyPersona.svg"
-                alt="Aubrey Jones User Persona"
-                className="w-full max-w-5xl mx-auto h-auto"
-              />
-            </motion.div>
-          </CaseStudySection>
-
-          {/* 09 · Flow */}
-          <CaseStudySection
-            num="09"
             label="Flow"
             sublabel="before & after"
             title="Before & After"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
               With the research in hand, I mapped Spotify's current flow and designed an enhanced version: fewer steps, all the same functionality.
             </p>
             <div className="space-y-12 md:space-y-16">
@@ -410,8 +363,8 @@ export function Spotify() {
                 viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.6 }}
               >
-                <h3 className="text-lg md:text-xl mb-6">The Current User Flow</h3>
-                <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed">
+                <h3 className="text-xl md:text-2xl font-medium mb-6">The Current User Flow</h3>
+                <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6 leading-relaxed">
                   Mapping the current 4 to 5 step process confirmed what I heard in research: nested menus, context switches, and decision fatigue from branching paths all kill the groove.
                 </p>
                 <img
@@ -427,9 +380,9 @@ export function Spotify() {
                 viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <h3 className="text-lg md:text-xl mb-6">The Enhanced User Flow</h3>
-                <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed">
-                  The new 3 step flow keeps users in context: "Playlist Mode" enables quick additions, the green add button gives clear visual affordance, and fewer decision points cut complexity, not capability.
+                <h3 className="text-xl md:text-2xl font-medium mb-6">The Enhanced User Flow</h3>
+                <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6 leading-relaxed">
+                  Playlist Mode turns a playlist into an active destination. Once a playlist is switched on, Spotify stays in that editing state while you carry on browsing normally, and any song can be added with a single "+". Five taps become two for the first save, then one for every song after.
                 </p>
                 <img
                   src="/spotifyAssets/enhancedFlow.svg"
@@ -442,12 +395,12 @@ export function Spotify() {
 
           {/* 10 · Iterations */}
           <CaseStudySection
-            num="10"
+            num="08"
             label="Iterations"
             sublabel="feature explorations"
             title="Design Iterations"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
               With the flow set, I explored ways to signal when "Playlist Mode" is active and to simplify the UI, testing visual cues until the balance felt right.
             </p>
             <div className="space-y-12 md:space-y-16">
@@ -457,8 +410,8 @@ export function Spotify() {
                 viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.6 }}
               >
-                <h3 className="text-lg md:text-xl mb-6">Active State Design Explorations</h3>
-                <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed">
+                <h3 className="text-xl md:text-2xl font-medium mb-6">Active State Design Explorations</h3>
+                <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6 leading-relaxed">
                   I started with green inner shadows around the screen edges, but they proved too distracting. A subtle top shadow was calmer, yet it never said which playlist was active. So I landed on a green banner that names the active playlist while fitting Spotify's existing patterns.
                 </p>
                 <img
@@ -474,8 +427,8 @@ export function Spotify() {
                 viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <h3 className="text-lg md:text-xl mb-6">UI Simplification Explorations</h3>
-                <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed">
+                <h3 className="text-xl md:text-2xl font-medium mb-6">UI Simplification Explorations</h3>
+                <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6 leading-relaxed">
                   With "Playlist Mode" in place, I consolidated the action bar: first adding quick sorting within playlists, then folding "Edit" into Playlist Mode, and finally removing the "Add" button since songs can now be added from anywhere. A simpler bar, with more capability.
                 </p>
                 <img
@@ -489,13 +442,13 @@ export function Spotify() {
 
           {/* 11 · Solution */}
           <CaseStudySection
-            num="11"
+            num="09"
             label="Solution"
             sublabel="the final design"
             title="The Final Design"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              It all comes together in a design that cuts playlist building to just 2 taps with clear visual feedback. No more context switching, so users stay in their musical flow.
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+              Together these keep organising inside the listening experience: two taps to switch a playlist on, then one tap per song, with the active playlist always visible so nobody has to guess where music is going.
             </p>
 
             {/* Sticky Scroll Solution Videos - Desktop */}
@@ -526,8 +479,8 @@ export function Spotify() {
                     </video>
                   </div>
                   <div>
-                    <h3 className="text-lg md:text-xl mb-2">{item.title}</h3>
-                    <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">{item.description}</p>
+                    <h3 className="text-xl md:text-2xl font-medium mb-2">{item.title}</h3>
+                    <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">{item.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -536,10 +489,10 @@ export function Spotify() {
 
           {/* 12 · Impact */}
           <CaseStudySection
-            num="12"
-            label="Impact"
+            num="10"
+            label="Validation"
             sublabel="what it did"
-            title="Measurable Impact"
+            title="Validating the Concept"
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
               {IMPACT_STATS.map((impact, i) => (
@@ -549,10 +502,10 @@ export function Spotify() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-100px' }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="p-6 rounded-2xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800"
+                  className="p-5 rounded-[10px] bg-neutral-900/[0.035] dark:bg-neutral-100/[0.06]"
                 >
-                  <p className="text-3xl md:text-4xl font-semibold text-neutral-900 dark:text-neutral-50 mb-2">{impact.value}</p>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400">{impact.label}</p>
+                  <p className="text-3xl md:text-4xl font-medium text-neutral-900 dark:text-neutral-50 mb-2">{impact.value}</p>
+                  <p className="text-[14px] text-neutral-900/55 dark:text-neutral-100/55">{impact.label}</p>
                 </motion.div>
               ))}
             </div>
@@ -560,7 +513,7 @@ export function Spotify() {
 
           {/* 13 · Reflection */}
           <CaseStudySection
-            num="13"
+            num="11"
             label="Reflection"
             sublabel="key takeaways"
             title="Key Takeaways"
@@ -573,12 +526,12 @@ export function Spotify() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
-                  className="flex gap-4 items-start p-6 bg-neutral-100 dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800"
+                  className="flex gap-4 items-start p-5 rounded-[10px] bg-neutral-900/[0.035] dark:bg-neutral-100/[0.06]"
                 >
-                  <span className="text-sm text-[#1ED760] dark:text-[#1ED760] pt-1 flex-shrink-0">
+                  <span className="font-label text-[12px] font-medium tracking-[0.7px] text-[var(--csa)] dark:text-[var(--csa-dark)] pt-1 flex-shrink-0 tabular-nums">
                     0{i + 1}
                   </span>
-                  <p className="text-base md:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                  <p className="text-[16px] leading-6 text-neutral-900/70 dark:text-neutral-100/70">
                     {takeaway}
                   </p>
                 </motion.div>

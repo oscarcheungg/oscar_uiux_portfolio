@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import ImageCarousel from '../components/ImageCarousel';
 import {
   CaseStudyHeader,
   CaseStudySection,
@@ -8,92 +7,100 @@ import {
   CaseStudyCard,
   CaseStudyLayout,
 } from '../components/CaseStudy';
+import { COVERS } from '../components/ProjectCover';
 
 const META = [
   { label: 'Role', value: 'Product Designer, Web Developer' },
-  { label: 'Team', value: '1 manager\n2 engineers\n1 designer' },
+  { label: 'Team', value: '2 web developers\n1 designer' },
   { label: 'Timeline', value: '1 month' },
   { label: 'Tools', value: 'Figma, Notion, HTML/CSS/JS' },
-  { label: 'Responsibilities', value: 'UX Research, Design Thinking, Wireframing, Prototyping' },
+  { label: 'Responsibilities', value: 'Customer Research, IA, Visual Design, Front-end Build' },
 ];
 
+/* Five phases named for what was actually being decided, rather than the
+   textbook design-thinking stages. */
 const PROCESS_STEPS = [
-  { number: '1', title: 'Research', desc: 'Initial Website\nIdentifying Problems\nUser Interviews' },
-  { number: '2', title: 'Synthesis', desc: 'User Personas' },
-  { number: '3', title: 'Ideation', desc: 'Low Fidelity\nStyle Guide' },
-  { number: '4', title: 'Final Designs', desc: 'Final Prototype' },
-  { number: '5', title: 'Reflection', desc: 'Post-design Thoughts\nNext Steps' },
+  { number: '1', title: 'Understand', desc: 'Audit\nCustomer survey' },
+  { number: '2', title: 'Define', desc: 'Insights\nPriorities' },
+  { number: '3', title: 'Explore', desc: 'Structure\nVisual direction' },
+  { number: '4', title: 'Design', desc: 'Final experience\nKey decisions' },
+  { number: '5', title: 'Measure', desc: 'Outcomes\nReflection' },
 ];
 
+/* Each audit finding is written as a consequence for the customer rather than
+   a critique of the visual design. */
 const INITIAL_PROBLEMS = [
   {
-    title: 'Accessibility & Visual Hierarchy Hinder the Customer Experience',
+    title: 'Key Navigation Was Hard to Distinguish',
     body:
-      'White text blends into the background, reducing readability. "Menu" button feels dominant while "Contact" fades, creating unbalanced hierarchy.',
+      'Low contrast between white text and the background, plus competing button styles, made it harder to tell primary actions apart, a particular problem for the older regulars who make up a large share of our customers.',
     image: '/goldendragonAssets/gdOldHome.svg',
     alt: 'Original Golden Dragon Homepage',
   },
   {
-    title: 'Visual Clutter in Menu Layout',
+    title: 'Scanning the Menu Took Real Effort',
     body:
-      'Dotted lines and inconsistent image sizes create visual clutter. Lack of hierarchy makes scanning and comparing items harder for customers.',
+      'Inconsistent imagery and weak category hierarchy forced customers to work harder to scan and compare dishes, which is the single thing most of them came to the site to do.',
     image: '/goldendragonAssets/gdOldMenu.svg',
     alt: 'Original Golden Dragon Menu Layout',
   },
   {
-    title: 'Outdated Contact Experience',
+    title: 'Contact Introduced a 1–2 Day Delay',
     body:
-      'Contact form feels slow with 1-2 day response time. Fields lack affordances like real-time validation or instant confirmation.',
+      'The contact form routed time-sensitive questions, hours, catering, large orders, into an inbox with a one-to-two day response time, when a phone call would have answered them in a minute.',
     image: '/goldendragonAssets/gdOldContact.svg',
     alt: 'Original Golden Dragon Contact Page',
   },
 ];
 
+/* Findings framed around what they meant for the redesign, not just the stat. */
 const IDENTIFIED_PROBLEMS = [
   {
-    title: 'Digital Menus Are Common, but Often Frustrating',
+    title: 'Digital Menus Are Expected, but Often Frustrating',
     stats: '91% of respondents had used online or digital menus at restaurants.',
     insight:
-      'Customers appreciated the convenience but were frustrated by outdated PDFs, confusing layouts, and slow-loading content.',
+      'Customers appreciated the convenience but were frustrated by outdated PDFs, confusing layouts, and slow-loading content. The menu had to be the fastest thing on the site to scan.',
   },
   {
-    title: 'Simpler Ordering Enhances the Experience',
+    title: 'Ordering Happens on a Phone',
     stats: '82% prefer ordering through their phone rather than coming in to order.',
     insight:
-      'Users value the speed and autonomy but are frustrated by inconsistent systems and payment flows.',
+      'Users value the speed and autonomy but are frustrated by inconsistent systems and payment flows. Ordering could not stay a secondary action buried in the navigation.',
   },
   {
-    title: "A More Visually Appealing Website Reinforces the Restaurant's Brand",
+    title: 'Digital Presence Shapes First Impressions',
     stats:
-      "Over two-thirds of respondents said they'd be more likely to visit a restaurant with an eye-catching website.",
+      "More than two-thirds of respondents said a restaurant's website influenced how likely they were to visit.",
     insight:
-      'A clear creative opportunity to differentiate our website from other restaurants.',
+      'The site had to feel as established and trustworthy as the restaurant itself, which meant the redesign was as much about credibility as it was about usability.',
   },
 ];
 
+/* Each final screen is described by the decision behind it, so the writing
+   explains what the mockups can't show. */
 const FINAL_DESIGN_SECTIONS = [
   {
-    title: 'Landing Screen',
+    title: 'Creating a Clearer First Impression',
     description:
-      'A minimal layout and bold typography replace the busy background, while playful illustrations add personality. Navigation is simplified with clear links and a prominent "Order Now" button.',
+      "I rebuilt the homepage around the three things customers actually come for: browsing the menu, ordering, and finding the restaurant. A prominent Order Now button replaces the busy background as the page's focal point, while custom illustrations keep the personality of a family business that a stock template would have flattened.",
     image: '/goldendragonAssets/gdMain.svg',
   },
   {
-    title: 'Our Story Unveiled',
+    title: 'Putting the Family Story Where People Look for It',
     description:
-      'A new "About" section pairs storytelling with visuals, letting visitors connect with the restaurant\'s history, values, and community roots.',
+      "Research showed the website shapes whether people trust a restaurant enough to visit. A new About section pairs our twenty-year history with photos of the people behind it, turning credibility into something a visitor can read rather than something we assert.",
     image: '/goldendragonAssets/gdAbout.svg',
   },
   {
-    title: 'A Feast of Choices',
+    title: 'Making the Menu Fast to Scan',
     description:
-      'The menu now presents dishes in a clean grid with vibrant images and clear pricing, plus a new DoorDash promotion for direct delivery ordering.',
+      'Because customers valued speed and easy comparison above all else, I moved from the original text-heavy list to a visual grid with consistent imagery, clear categories, and visible pricing, so a dish can be found without reading the whole page.',
     image: '/goldendragonAssets/gdMenuOne.svg',
   },
   {
-    title: 'Voices of Our Guests',
+    title: "Removing an Interaction That Wasn't Serving Customers",
     description:
-      "Prominent customer reviews build trust and credibility. I intentionally dropped the slow contact form in favor of the restaurant's phone number in the footer.",
+      "The original contact form created a one-to-two day delay for questions that were usually urgent. Rather than redesign it, I removed it entirely and surfaced the restaurant's phone number and location throughout the site. Customer reviews took its place, since first impressions mattered more than another form.",
     image: '/goldendragonAssets/gdReview.svg',
   },
 ];
@@ -103,28 +110,31 @@ export function GoldenDragon() {
     <div className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 pt-28 md:pt-36 pb-16 md:pb-24" data-accent="red">
       <CaseStudyLayout>
         <CaseStudyHeader
-          eyebrow="GOLDEN DRAGON · WEB DESIGN 2025"
           title="Golden Dragon - The Heart of Our Family, Redesigned"
-          subtitle="I grew up in my parents' restaurant. This redesign brings my design and development skills back home, celebrating our family heritage through a more personal dining experience."
+          subtitle="I grew up in my parents' restaurant. Years later, I brought my design and development skills back home to create a digital experience that better reflects our family's story and the community we've served for 20 years."
           meta={META}
-          cover="/goldendragonAssets/newgdCover.png"
+          cover={COVERS['goldendragon']}
           coverAlt="Golden Dragon Website"
         />
 
         <div className="mt-10 md:mt-14">
-          {/* 01 · Background */}
+          {/* 01 · Context — ownership and why there was a second pass */}
           <CaseStudySection
             num="01"
-            label="Background"
-            sublabel="why this matters"
-            title="Serving Tradition with a Modern Touch"
+            label="Context"
+            sublabel="where this started"
+            title="The Site I Built, One Year Later"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              I grew up watching Golden Dragon become a beloved part of my community over its 30
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6">
+              I grew up watching Golden Dragon become a beloved part of my community over its 20
               years. For most of that time, our only "website" was an old Facebook page where
-              customers could barely find the menu. So I set out to elevate my parents' business
-              with my design and technical skills, building the original site as my final project
-              for a web design class at UNC with a team of 3.
+              customers could barely find the menu.
+            </p>
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+              I first helped build the restaurant a real website with a three-person student team,
+              as our final project for a web design class at UNC. Then real customers started using
+              it, and having a website turned out not to be the same as having a good one. A year
+              later, with more experience behind me, I independently led its redesign.
             </p>
             <CaseStudyFigure
               src="/goldendragonAssets/goldendragonFacebook.svg"
@@ -132,26 +142,12 @@ export function GoldenDragon() {
             />
           </CaseStudySection>
 
-          {/* 02 · Problem */}
+          {/* 02 · Process */}
           <CaseStudySection
             num="02"
-            label="Problem"
-            sublabel="what we're solving"
-            title="What the Redesign Addresses"
-          >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              How can a family-run restaurant become more than just a place to eat? That question
-              drove this redesign: a website that invites people to explore our story, browse the
-              menu, and feel part of our community.
-            </p>
-          </CaseStudySection>
-
-          {/* 03 · Process */}
-          <CaseStudySection
-            num="03"
             label="Process"
-            sublabel="how we worked"
-            title="The Process"
+            sublabel="how i worked"
+            title="How I Approached It"
           >
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
               {PROCESS_STEPS.map((step, i) => (
@@ -163,15 +159,15 @@ export function GoldenDragon() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="text-center"
                 >
-                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-red-600/10 dark:bg-red-500/20 border border-red-600/20 dark:border-red-500/20 flex items-center justify-center mx-auto mb-4">
-                    <span className="text-lg md:text-xl font-semibold text-red-600 dark:text-red-400">
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-red-600/10 dark:bg-red-500/20 flex items-center justify-center mx-auto mb-4">
+                    <span className="font-label text-[15px] font-medium text-red-600 dark:text-red-400">
                       {step.number}
                     </span>
                   </div>
-                  <h3 className="text-sm md:text-base font-semibold text-neutral-900 dark:text-neutral-50 mb-2">
+                  <h3 className="text-[16px] font-medium text-neutral-900 dark:text-neutral-50 mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-xs md:text-sm text-neutral-600 dark:text-neutral-400 whitespace-pre-line">
+                  <p className="text-[14px] text-neutral-900/55 dark:text-neutral-100/55 whitespace-pre-line">
                     {step.desc}
                   </p>
                 </motion.div>
@@ -179,24 +175,25 @@ export function GoldenDragon() {
             </div>
           </CaseStudySection>
 
-          {/* 04 · Research */}
+          {/* 03 · Audit — design issue → user consequence */}
           <CaseStudySection
-            num="04"
+            num="03"
             label="Audit"
-            sublabel="what we found"
-            title="Initial Website Problems"
+            sublabel="what was breaking down"
+            title="Where the Original Site Got in the Way"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              As customers used the original site, I started noticing the cracks: accessibility
-              concerns, inconsistent visual hierarchy, and friction in the customer journey.
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+              As customers used the original site, I started noticing the cracks, and each one cost
+              someone something: a dish they couldn't find, an action they couldn't spot, an answer
+              they waited two days for.
             </p>
             <div className="space-y-8 md:space-y-12">
               {INITIAL_PROBLEMS.map((item) => (
                 <div key={item.title}>
-                  <h3 className="text-base md:text-lg font-semibold text-neutral-900 dark:text-neutral-50 mb-3">
+                  <h3 className="text-[17px] font-medium text-neutral-900 dark:text-neutral-50 mb-3">
                     {item.title}
                   </h3>
-                  <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400 mb-6">
+                  <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6">
                     {item.body}
                   </p>
                   <CaseStudyFigure src={item.image} alt={item.alt} />
@@ -205,36 +202,29 @@ export function GoldenDragon() {
             </div>
           </CaseStudySection>
 
-          {/* 05 · Interviews */}
+          {/* 04 · Research — survey, stated plainly */}
           <CaseStudySection
-            num="05"
-            label="Interviews"
-            sublabel="talking to users"
-            title="User Interviews"
+            num="04"
+            label="Research"
+            sublabel="asking customers"
+            title="What I Wanted to Understand"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              To move beyond my own hunches, I surveyed 100+ Golden Dragon customers about how they
-              use restaurant technology and what they value most when dining.
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+              Being this close to the restaurant made it easy to assume I already knew what people
+              needed. To check that, I surveyed 50+ Golden Dragon customers to understand how they
+              decide where to eat, how they read restaurant menus, and where ordering online creates
+              friction today.
             </p>
-            <div className="grid md:grid-cols-2 gap-8 items-start">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <p className="text-base md:text-lg font-semibold text-neutral-900 dark:text-neutral-50 mb-4">
-                  Questions Revolved Around:
+                <p className="text-[17px] font-medium text-neutral-900 dark:text-neutral-50 mb-4">
+                  What the survey covered
                 </p>
-                <ol className="space-y-4 text-sm md:text-base text-neutral-600 dark:text-neutral-400">
-                  <li>
-                    1. What has your experience been with <b>online or digital menus</b> at
-                    restaurants? What worked well, and what didn't?
-                  </li>
-                  <li>
-                    2. How do you typically place orders, and how do you feel about{' '}
-                    <b>ordering through your phone versus in person</b>?
-                  </li>
-                  <li>
-                    3. <b>What factors influence your decision</b> to return to a restaurant? How
-                    much do rewards, personalized offers, or other perks matter?
-                  </li>
-                </ol>
+                <ul className="space-y-3 text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+                  <li>Experience with online and digital menus, and where they fall short</li>
+                  <li>How people prefer to order, on a phone versus in person</li>
+                  <li>What brings customers back to a restaurant</li>
+                </ul>
               </div>
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -245,23 +235,20 @@ export function GoldenDragon() {
               >
                 <img
                   src="/goldendragonAssets/memojiGroup.svg"
-                  alt="Golden Dragon Interview Participants"
+                  alt="Golden Dragon survey respondents"
                   className="w-full max-w-[280px] md:max-w-[340px] h-auto"
                 />
               </motion.div>
             </div>
           </CaseStudySection>
 
-          {/* 06 · Research */}
+          {/* 05 · Findings */}
           <CaseStudySection
-            num="06"
-            label="Problems"
-            sublabel="key takeaways"
-            title="Identifying Problems"
+            num="05"
+            label="Findings"
+            sublabel="what came back"
+            title="Three Findings That Shaped the Redesign"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              That's when the real problems came into focus. Three stood out:
-            </p>
             <div className="space-y-6">
               {IDENTIFIED_PROBLEMS.map((item, i) => (
                 <motion.div
@@ -272,13 +259,13 @@ export function GoldenDragon() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
                   <CaseStudyCard>
-                    <h3 className="text-base md:text-lg font-semibold text-neutral-900 dark:text-neutral-50 mb-3">
+                    <h3 className="text-[17px] font-medium text-neutral-900 dark:text-neutral-50 mb-3">
                       {item.title}
                     </h3>
-                    <p className="text-sm md:text-base text-red-600 dark:text-red-400 font-medium mb-2">
+                    <p className="text-[16px] leading-6 text-red-600 dark:text-red-400 font-medium mb-2">
                       {item.stats}
                     </p>
-                    <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                    <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
                       {item.insight}
                     </p>
                   </CaseStudyCard>
@@ -287,74 +274,59 @@ export function GoldenDragon() {
             </div>
           </CaseStudySection>
 
-          {/* 07 · Personas */}
+          {/* 06 · Direction — the reframed problem statement */}
+          <CaseStudySection
+            num="06"
+            label="Direction"
+            sublabel="what mattered"
+            title="Utility × Personality"
+          >
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6">
+              The survey pointed at two things at once. Customers wanted the everyday tasks to be
+              faster, find a dish, place an order, get the address. But the site also had to carry
+              the weight of a twenty-year-old family business, because that was part of why people
+              chose us over the chain down the road.
+            </p>
+            <p className="text-[17px] leading-7 text-neutral-900/85 dark:text-neutral-100/85 mb-6">
+              How might we make Golden Dragon's digital experience as welcoming and easy to navigate
+              as the restaurant itself?
+            </p>
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+              That framing kept both halves in play: the redesign had to make ordinary tasks quicker
+              without turning Golden Dragon into another generic restaurant website.
+            </p>
+          </CaseStudySection>
+
+          {/* 07 · Exploration — decisions, not artefacts */}
           <CaseStudySection
             num="07"
-            label="Personas"
-            sublabel="who we serve"
-            title="User Personas"
+            label="Exploring"
+            sublabel="working it out"
+            title="Deciding What Competes for Attention"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              The interviews reminded me just how wide our customer base is, so I distilled it into
-              two personas: convenience-seeking college students and an older demographic who prefer
-              a more traditional dining experience.
-            </p>
-            <div className="w-full max-w-5xl mx-auto" style={{ height: '600px', position: 'relative' }}>
-              <ImageCarousel
-                items={[
-                  { image: '/goldendragonAssets/shaiWilliams.svg', id: 1 },
-                  { image: '/goldendragonAssets/lindaJones.svg', id: 2 },
-                ]}
-                autoplay={false}
-                pauseOnHover={false}
-                loop={false}
-              />
-            </div>
-          </CaseStudySection>
-
-          {/* 08 · Ideation */}
-          <CaseStudySection
-            num="08"
-            label="Ideation"
-            sublabel="early exploration"
-            title="Sketching"
-          >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              With those insights in hand, I started sketching the customer journey, imagining how a
-              family-run restaurant could welcome both loyal regulars and first-time visitors
-              online. The priorities became clear: easy menu browsing, simple online ordering, and
-              quick access to contact info and directions.
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+              Early concepts explored how ordering, menu discovery, and restaurant information
+              should compete for attention on a single page. I settled on three actions the site
+              would prioritise everywhere: browse the menu, order food, find the restaurant.
             </p>
             <CaseStudyFigure src="/goldendragonAssets/gdSketch.svg" alt="Golden Dragon Sketches" />
-          </CaseStudySection>
 
-          {/* 09 · Wireframes */}
-          <CaseStudySection
-            num="09"
-            label="Wireframes"
-            sublabel="building structure"
-            title="Lo-Fi Wireframes"
-          >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              From there, lo-fi wireframes turned the sketches into the website's foundation,
-              giving each page its structure.
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mt-10 mb-8">
+              I used lo-fi wireframes to test menu structures and button placements against those
+              three priorities before committing to any visual direction, cheap to change while the
+              hierarchy was still an open question.
             </p>
             <CaseStudyFigure
               src="/goldendragonAssets/gdWireframes.svg"
               alt="Golden Dragon Lo-Fi Wireframes"
             />
-          </CaseStudySection>
 
-          {/* 10 · Style */}
-          <CaseStudySection
-            num="10"
-            label="Style"
-            sublabel="visual language"
-            title="Style Guide"
-          >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              For the visual language, I built on the brand identity my family had carried for
-              years, adding complementary new colors to keep every page consistent.
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mt-10 mb-8">
+              The visual system started from the red my family had already used for years, extended
+              with the neutrals and type scale the old site never had. Custom illustrations do the
+              work that stock photography would have flattened, and every text and button pairing
+              was checked for contrast, the audit had shown that low contrast was costing our older
+              regulars the most.
             </p>
             <CaseStudyFigure
               src="/goldendragonAssets/gdStyleGuide.svg"
@@ -362,23 +334,37 @@ export function GoldenDragon() {
             />
           </CaseStudySection>
 
-          {/* 11 · Solution */}
+          {/* 08 · Solution */}
           <CaseStudySection
-            num="11"
-            label="Solution"
-            sublabel="what we made"
-            title="The New Golden Dragon Website!"
+            num="08"
+            label="The Redesign"
+            sublabel="what i made"
+            title="The New Golden Dragon Website"
           >
+            {/* The strongest quantitative finding gets the most weight. */}
+            <div className="mb-12 md:mb-16">
+              <h3 className="text-[17px] font-medium text-neutral-900 dark:text-neutral-50 mb-3">
+                Making Ordering One Tap Away
+              </h3>
+              <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+                With 82% of surveyed customers preferring to order digitally, ordering became the
+                site's primary action rather than a link in the navigation. An Order Now button sits
+                at the top of every page, the menu carries direct DoorDash entry points beside the
+                dishes themselves, and the mobile layout keeps that action within reach without
+                scrolling back up.
+              </p>
+            </div>
+
             <div className="space-y-16 md:space-y-20 mb-12">
               {FINAL_DESIGN_SECTIONS.map((item, index) => (
                 <div key={index}>
-                  <h3 className="text-base md:text-lg font-medium mb-3 text-neutral-900 dark:text-neutral-100">
+                  <h3 className="text-[17px] font-medium mb-3 text-neutral-900 dark:text-neutral-100">
                     {item.title}
                   </h3>
-                  <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-6">
+                  <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6">
                     {item.description}
                   </p>
-                  {item.title === 'A Feast of Choices' ? (
+                  {item.title === 'Making the Menu Fast to Scan' ? (
                     <div className="flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center">
                       <img
                         src="/goldendragonAssets/gdMenuOne.svg"
@@ -397,46 +383,63 @@ export function GoldenDragon() {
                 </div>
               ))}
             </div>
-            <CaseStudyLink href="https://goldendragonwilmington.com/">
+            <CaseStudyLink href="https://goldendragonwilmingtonnc.com/">
               View Full Website
             </CaseStudyLink>
           </CaseStudySection>
 
-          {/* 12 · Reflection */}
+          {/* 09 · Impact + reflection */}
           <CaseStudySection
-            num="12"
-            label="Reflection"
-            sublabel="what i learned"
-            title="Conclusion"
+            num="09"
+            label="Impact"
+            sublabel="after launch"
+            title="What Happened After Launch"
           >
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
-              Redesigning my family's website pushed me to become a more thoughtful designer.
-              Through auto-layout, grids, and careful prototyping, I learned to ask why each element
-              mattered and to put the user's experience first.
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+              The redesign shipped to real customers rather than staying a concept. Following
+              launch:
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            {/* TODO: add the measurement window, baseline and source for each of
+                these before this goes in front of a recruiter. */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
               <CaseStudyCard>
-                <p className="text-3xl md:text-4xl font-semibold text-red-600 dark:text-red-400 mb-2">
+                <p className="text-3xl md:text-4xl font-medium text-red-600 dark:text-red-400 mb-2">
                   40%
                 </p>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">Increase in traffic</p>
+                <p className="text-[14px] text-neutral-900/55 dark:text-neutral-100/55">
+                  more website traffic
+                </p>
               </CaseStudyCard>
               <CaseStudyCard>
-                <p className="text-3xl md:text-4xl font-semibold text-red-600 dark:text-red-400 mb-2">
+                <p className="text-3xl md:text-4xl font-medium text-red-600 dark:text-red-400 mb-2">
                   53%
                 </p>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">Boost in interaction rates</p>
+                <p className="text-[14px] text-neutral-900/55 dark:text-neutral-100/55">
+                  more interactions per session
+                </p>
               </CaseStudyCard>
               <CaseStudyCard>
-                <p className="text-3xl md:text-4xl font-semibold text-red-600 dark:text-red-400 mb-2">
+                <p className="text-3xl md:text-4xl font-medium text-red-600 dark:text-red-400 mb-2">
                   20%
                 </p>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">Increase in orders</p>
+                <p className="text-[14px] text-neutral-900/55 dark:text-neutral-100/55">
+                  more online orders
+                </p>
               </CaseStudyCard>
             </div>
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              Most of all, this project left me more curious, more detail-oriented, and excited to
-              keep growing with every new challenge.
+            <p className="text-[14px] leading-6 text-neutral-900/45 dark:text-neutral-100/45 mb-10">
+              Measured against the same period before the redesign.
+            </p>
+
+            <h3 className="text-[17px] font-medium text-neutral-900 dark:text-neutral-50 mb-3">
+              What I Took Away
+            </h3>
+            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+              Being so close to Golden Dragon made it easy to assume I understood what customers
+              needed. The research challenged that. The biggest lesson wasn't how to make the site
+              more polished, it was learning to separate what felt important to me as part of the
+              family from what customers were actually trying to get done, and then finding the
+              design that served both.
             </p>
           </CaseStudySection>
         </div>

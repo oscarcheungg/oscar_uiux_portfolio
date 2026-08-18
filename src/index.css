@@ -86,3 +86,144 @@ div[data-embed-type="activity"] > div {
   max-width: 100% !important;
 }
 
+
+/* ── Design-tool chrome ──────────────────────────────────────────────────
+   The hero name is presented like a selected object on a canvas: a hairline
+   frame, four corner handles, and a badge reporting its measured size. */
+:root {
+  /* Figma's selection blue. */
+  --spec: #0d99ff;
+}
+
+/* Jyutping tone numbers — set down so they read as notation, not letters. */
+.tone {
+  font-size: 0.52em;
+  font-feature-settings: 'tnum';
+  vertical-align: 0.42em;
+  opacity: 0.4;
+  margin-left: 0.03em;
+}
+
+.spec-frame {
+  position: absolute;
+  inset: -10px -12px;
+  border: 1px solid var(--spec);
+  pointer-events: none;
+}
+
+/* Corners are placed with negative margins rather than translate, so that
+   `transform` stays free for the pop-in animation. */
+.spec-handle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  margin: -3px;
+  background: #fff;
+  border: 1px solid var(--spec);
+}
+
+.spec-handle.tl { top: 0; left: 0; }
+.spec-handle.tr { top: 0; right: 0; }
+.spec-handle.bl { bottom: 0; left: 0; }
+.spec-handle.br { bottom: 0; right: 0; }
+
+.dark .spec-handle {
+  background: #0a0a0a;
+}
+
+/* The anchor holds the centring transform; the badge itself is free to move. */
+.spec-badge-anchor {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 9px);
+}
+
+.spec-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: var(--spec);
+  color: #fff;
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* ── Brand chip ──────────────────────────────────────────────────────────
+   An inline chip for the institution. Hover lifts it a hair and tints it
+   Carolina Blue. The easing is deliberately asymmetric: a quick, tight lift
+   on the way in, a softer springy settle on the way out. */
+.brand-chip {
+  position: relative;
+  display: inline-block;
+  translate: 0;
+  scale: 1;
+  padding: 1px 8px 2px;
+  border-radius: 5px;
+  background: #f2f2f2;
+  color: inherit;
+  white-space: nowrap;
+  line-height: 1.4;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    translate 0.35s cubic-bezier(0.34, 1.36, 0.64, 1),
+    scale 0.35s cubic-bezier(0.34, 1.36, 0.64, 1);
+}
+
+.dark .brand-chip {
+  background: #1f1f1f;
+}
+
+.brand-chip:hover {
+  /* Carolina Blue, deepened just enough to stay legible on the tint. */
+  color: #3e8fc4;
+  background: #edf6fc;
+  translate: 0 -1px;
+  scale: 1.02;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    translate 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dark .brand-chip:hover {
+  color: #7fbde4;
+  background: #12212c;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-chip,
+  .brand-chip:hover {
+    transition: background 0.2s, color 0.2s;
+    translate: 0;
+    scale: 1;
+  }
+}
+
+/* ── Screen-mockup tile ──────────────────────────────────────────────────
+   A blank neutral ground that shifts to the project's own tint on hover.
+   The tint comes in per-card as --screen-hover. */
+.screen-tile {
+  /* Light ground — the screens' edges are picked out by their drop-shadow
+     rather than by contrast against a dark tile. */
+  background-color: rgba(23, 23, 23, 0.055);
+  transition: background-color 0.3s ease-out;
+}
+
+.dark .screen-tile {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.group:hover .screen-tile {
+  background-color: var(--screen-hover, rgba(23, 23, 23, 0.13));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen-tile {
+    transition: none;
+  }
+}

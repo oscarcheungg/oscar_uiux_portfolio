@@ -129,8 +129,8 @@ export function StickyShowcase({ sections }: { sections: ShowcaseSection[] }) {
               </video>
             </div>
             <div>
-              <h3 className="text-lg md:text-xl mb-2">{item.title}</h3>
-              <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              <h3 className="text-xl md:text-2xl font-medium mb-2">{item.title}</h3>
+              <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
                 {item.description}
               </p>
             </div>

@@ -52,37 +52,37 @@
 
 .spotify-title {
   font-size: 1.5rem; /* text-2xl base */
-  font-weight: 700;
+  font-weight: 500;
   margin: 0.2rem 0 1.2rem 0;
 }
 
 @media (min-width: 640px) {
   .spotify-title {
-    font-size: 1.875rem; /* text-3xl sm */
+    font-size: 1.5rem;
   }
 }
 
 @media (min-width: 768px) {
   .spotify-title {
-    font-size: 2.25rem; /* text-4xl md */
+    font-size: 1.5rem;
   }
 }
 
 .spotify-process-title {
   font-size: 1.5rem; /* text-2xl base */
-  font-weight: 700;
+  font-weight: 500;
   margin: 3rem 0 1.2rem 0;
 }
 
 @media (min-width: 640px) {
   .spotify-process-title {
-    font-size: 1.875rem; /* text-3xl sm */
+    font-size: 1.5rem;
   }
 }
 
 @media (min-width: 768px) {
   .spotify-process-title {
-    font-size: 2.25rem; /* text-4xl md */
+    font-size: 1.5rem;
   }
 }
 
@@ -95,7 +95,7 @@
 
 @media (min-width: 768px) {
   .spotify-text {
-    font-size: 1.125rem; /* text-lg md */
+    font-size: 1rem;
   }
 }
 
@@ -122,7 +122,7 @@
 
 .spotify-grid-heading {
   font-size: 1.25rem; /* text-xl */
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 1rem;
 }
 
@@ -135,7 +135,7 @@
 
 @media (min-width: 768px) {
   .spotify-grid p {
-    font-size: 1.125rem; /* text-lg md */
+    font-size: 1rem;
   }
 }
 
@@ -163,13 +163,13 @@
   align-items: center;
   justify-content: center;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 1rem;
 }
 
 .spotify-process-step-title {
-  font-size: 1.125rem; /* text-lg */
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 500;
   margin-bottom: 0.5rem;
   text-align: center;
 }
@@ -193,7 +193,7 @@
 
 .spotify-flow-title {
   font-size: 1.25rem; /* text-xl base */
-  font-weight: 700;
+  font-weight: 500;
   margin: 3rem 0 1rem 0;
   color: rgb(23 23 23);
 }
@@ -206,7 +206,7 @@
 
 @media (min-width: 768px) {
   .spotify-flow-title {
-    font-size: 1.875rem; /* text-3xl md */
+    font-size: 1.5rem;
   }
 }
 
@@ -338,7 +338,7 @@
 
 .content-title {
   font-size: 1.5rem; /* text-2xl base */
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 1.5rem;
   line-height: 1.3;
   color: rgb(23 23 23);
@@ -346,7 +346,7 @@
 
 @media (min-width: 768px) {
   .content-title {
-    font-size: 1.875rem; /* text-3xl md */
+    font-size: 1.5rem;
   }
 }
 
@@ -363,7 +363,7 @@
 
 @media (min-width: 768px) {
   .content-description {
-    font-size: 1.125rem; /* text-lg md */
+    font-size: 1rem;
   }
 }
 
@@ -466,7 +466,7 @@
   }
 
   .spotify-grid-heading {
-    font-size: 1.125rem; /* text-lg mobile */
+    font-size: 1rem;
   }
 
   .spotify-text {
