@@ -33,12 +33,12 @@ const POLAROIDS = [
 /* Same label as the homepage's "my work", flush left with the rows below it.
    Instrument Sans and its tracking are tuned for a word or two. */
 const SECTION_LABEL =
-  'mb-4 font-label text-[15px] font-medium tracking-[0.7px] text-neutral-900/60 dark:text-neutral-100/60';
+  'mb-4 font-label text-[15px] font-medium tracking-[0.7px] text-neutral-900/60';
 
 /* A label long enough to read as a sentence takes the page's own typeface
    instead — Inter at body size, with the tracking dropped. */
 const SECTION_LABEL_LONG =
-  'mb-4 text-[15px] font-medium text-neutral-900/60 dark:text-neutral-100/60';
+  'mb-4 text-[15px] font-medium text-neutral-900/60';
 
 /* A logo gutter, then name and date sharing the first line with the degree or
    role beneath them. Rows without a logo leave the gutter empty so every row
@@ -47,10 +47,10 @@ const ROW = 'grid grid-cols-[48px,minmax(0,1fr),auto] gap-x-4 gap-y-0.5 py-2.5 i
 /* Tall enough to stand against both lines of the row, not just the name. */
 const ROW_LOGO = 'row-span-2 h-12 w-12 object-contain';
 const ROW_DETAIL_START = 'col-start-2';
-const ROW_NAME = 'text-[16px] leading-6 text-neutral-900/85 dark:text-neutral-100/85';
+const ROW_NAME = 'text-[16px] leading-6 text-neutral-900/85';
 const ROW_WHEN =
-  'text-[16px] leading-6 tabular-nums whitespace-nowrap text-neutral-900/40 dark:text-neutral-100/40';
-const ROW_DETAIL = `${ROW_DETAIL_START} col-span-2 text-[16px] leading-6 text-pretty text-neutral-900/55 dark:text-neutral-100/55`;
+  'text-[16px] leading-6 tabular-nums whitespace-nowrap text-neutral-900/40';
+const ROW_DETAIL = `${ROW_DETAIL_START} col-span-2 text-[16px] leading-6 text-pretty text-neutral-900/55`;
 
 export function About() {
   /* Education and experience share one row shape: name and date on the first
@@ -65,6 +65,7 @@ export function About() {
   ];
 
   const experiences = [
+    { company: 'Figma', role: 'Campus Leader', when: 'Fall 2026', logo: '/figmaLogo.png' },
     { company: '84.51°', role: 'Product Design Intern', when: 'Summer 2026', logo: '/8451Logo.png' },
     {
       company: 'Quantifyd',
@@ -100,7 +101,7 @@ export function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl mb-10 md:mb-12 tracking-tight leading-[1.1] text-neutral-900 dark:text-neutral-50 font-normal"
+              className="text-3xl sm:text-4xl md:text-5xl mb-10 md:mb-12 tracking-tight leading-[1.1] text-neutral-900 font-normal"
             >
               Hey there, I'm Oscar 👋🏻
             </motion.h1>
@@ -109,7 +110,7 @@ export function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55"
+              className="text-[16px] leading-6 text-neutral-900/55"
             >
               I didn’t know I wanted to be a designer. I came into college expecting to pursue
               software engineering or data science, but a web design class introduced me to the
@@ -120,7 +121,7 @@ export function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mt-4"
+              className="text-[16px] leading-6 text-neutral-900/55 mt-4"
             >
               I've been lucky enough to work on all sorts of problems at the intersection of design
               and technology, building intuitive experiences across web and mobile alongside some
@@ -130,7 +131,7 @@ export function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mt-4"
+              className="text-[16px] leading-6 text-neutral-900/55 mt-4"
             >
               Here's to the next hundred.
             </motion.p>
@@ -216,7 +217,7 @@ export function About() {
                 <div className="group relative flex w-full justify-center">
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 -translate-y-1 whitespace-nowrap rounded-md bg-neutral-900/[0.05] dark:bg-neutral-100/[0.09] px-2 py-1 font-label text-[12px] text-neutral-900/70 dark:text-neutral-100/70 opacity-0 transition-all duration-200 ease-out group-hover:translate-y-0 group-hover:opacity-100"
+                    className="pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 -translate-y-1 whitespace-nowrap rounded-md bg-neutral-900/[0.05] px-2 py-1 font-label text-[12px] text-neutral-900/70 opacity-0 transition-all duration-200 ease-out group-hover:translate-y-0 group-hover:opacity-100"
                   >
                     {tool.name}
                   </span>
@@ -241,7 +242,7 @@ export function About() {
           className="mt-16 max-w-4xl mx-auto"
         >
           <h2 className={SECTION_LABEL}>Life Outside the Frame</h2>
-          <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+          <p className="text-[16px] leading-6 text-neutral-900/55">
             A lot of who I am comes from the people, places, and experiences outside of work. When
             I’m not designing, you’ll probably find me running (all the time), experimenting with
             new recipes in the kitchen, or capturing the little moments in life :)

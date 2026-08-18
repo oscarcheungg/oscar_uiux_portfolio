@@ -14,7 +14,7 @@ const SOCIAL = [
 /* Inter at regular weight, links held back to ~55% opacity and resolving to
    full ink on hover. */
 const NAV_LINK =
-  'text-[16px] text-neutral-900/55 dark:text-neutral-100/55 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors';
+  'text-[16px] text-neutral-900/55 hover:text-neutral-900 transition-colors';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -98,7 +98,7 @@ export function Header() {
         rel="noopener noreferrer"
         aria-label={label}
         /* Padding pulled back by an equal margin: a 40px hit area, unchanged layout. */
-        className="-m-2.5 p-2.5 text-neutral-900/55 dark:text-neutral-100/55 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors touch-manipulation"
+        className="-m-2.5 p-2.5 text-neutral-900/55 hover:text-neutral-900 transition-colors touch-manipulation"
       >
         <Icon className={size} />
       </a>
@@ -114,7 +114,7 @@ export function Header() {
           as one, rather than the blur snapping on while the tint animates. */}
       <div
         aria-hidden="true"
-        className={`absolute inset-0 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-sm transition-opacity duration-300 ${
+        className={`absolute inset-0 bg-white/80 backdrop-blur-sm transition-opacity duration-300 ${
           scrolled ? 'opacity-100' : 'opacity-0'
         }`}
       />
@@ -128,7 +128,7 @@ export function Header() {
         <Link
           to="/"
           /* Same ink as the nav links — held back to 55%, resolving on hover. */
-          className="justify-self-start -my-2 py-2 text-[17px] text-neutral-900/55 dark:text-neutral-100/55 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+          className="justify-self-start -my-2 py-2 text-[17px] text-neutral-900/55 hover:text-neutral-900 transition-colors"
           onClick={handleLogoClick}
         >
           Oscar Cheung
@@ -161,7 +161,7 @@ export function Header() {
         <div className="md:hidden col-start-3 justify-self-end">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2.5 rounded-full bg-white/60 dark:bg-neutral-900/60 backdrop-blur-2xl border border-white/20 dark:border-white/10 text-neutral-800 dark:text-neutral-200 touch-manipulation"
+            className="p-2.5 rounded-full bg-white/60 backdrop-blur-2xl border border-white/20 text-neutral-800 touch-manipulation"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -175,7 +175,7 @@ export function Header() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="md:hidden mx-6 md:mx-8 mt-4 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-2xl rounded-2xl border border-white/20 dark:border-white/10 shadow-xl p-4"
+          className="md:hidden mx-6 md:mx-8 mt-4 bg-white/95 backdrop-blur-2xl rounded-2xl border border-white/20 shadow-xl p-4"
         >
           <div className="flex flex-col gap-2">
             <a
@@ -184,14 +184,14 @@ export function Header() {
                 handleWorkClick(e);
                 setMobileMenuOpen(false);
               }}
-              className="px-4 py-3 rounded-lg text-[17px] text-neutral-600 dark:text-neutral-400 hover:bg-white/40 dark:hover:bg-white/10 hover:text-neutral-900 dark:hover:text-neutral-100 transition-all touch-manipulation"
+              className="px-4 py-3 rounded-lg text-[17px] text-neutral-600 hover:bg-white/40 hover:text-neutral-900 transition-all touch-manipulation"
             >
               Work
             </a>
             <Link
               to="/about"
               onClick={() => setMobileMenuOpen(false)}
-              className="px-4 py-3 rounded-lg text-[17px] text-neutral-600 dark:text-neutral-400 hover:bg-white/40 dark:hover:bg-white/10 hover:text-neutral-900 dark:hover:text-neutral-100 transition-all touch-manipulation"
+              className="px-4 py-3 rounded-lg text-[17px] text-neutral-600 hover:bg-white/40 hover:text-neutral-900 transition-all touch-manipulation"
             >
               About
             </Link>
@@ -200,12 +200,12 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
-              className="px-4 py-3 rounded-lg text-[17px] text-neutral-600 dark:text-neutral-400 hover:bg-white/40 dark:hover:bg-white/10 hover:text-neutral-900 dark:hover:text-neutral-100 transition-all touch-manipulation"
+              className="px-4 py-3 rounded-lg text-[17px] text-neutral-600 hover:bg-white/40 hover:text-neutral-900 transition-all touch-manipulation"
             >
               Resume
             </a>
 
-            <div className="flex items-center gap-6 px-4 pt-3 mt-1 border-t border-neutral-200 dark:border-neutral-800">
+            <div className="flex items-center gap-6 px-4 pt-3 mt-1 border-t border-neutral-200">
               {socialLinks('w-5 h-5')}
             </div>
           </div>

@@ -107,7 +107,7 @@ const FINAL_DESIGN_SECTIONS = [
 
 export function GoldenDragon() {
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 pt-28 md:pt-36 pb-16 md:pb-24" data-accent="red">
+    <div className="min-h-screen bg-white text-neutral-900 pt-28 md:pt-36 pb-16 md:pb-24" data-accent="red">
       <CaseStudyLayout>
         <CaseStudyHeader
           title="Golden Dragon - The Heart of Our Family, Redesigned"
@@ -125,12 +125,12 @@ export function GoldenDragon() {
             sublabel="where this started"
             title="The Site I Built, One Year Later"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-6">
               I grew up watching Golden Dragon become a beloved part of my community over its 20
               years. For most of that time, our only "website" was an old Facebook page where
               customers could barely find the menu.
             </p>
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               I first helped build the restaurant a real website with a three-person student team,
               as our final project for a web design class at UNC. Then real customers started using
               it, and having a website turned out not to be the same as having a good one. A year
@@ -159,15 +159,15 @@ export function GoldenDragon() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="text-center"
                 >
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-red-600/10 dark:bg-red-500/20 flex items-center justify-center mx-auto mb-4">
-                    <span className="font-label text-[15px] font-medium text-red-600 dark:text-red-400">
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-red-600/10 flex items-center justify-center mx-auto mb-4">
+                    <span className="font-label text-[15px] font-medium text-red-600">
                       {step.number}
                     </span>
                   </div>
-                  <h3 className="text-[16px] font-medium text-neutral-900 dark:text-neutral-50 mb-2">
+                  <h3 className="text-[16px] font-medium text-neutral-900 mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-[14px] text-neutral-900/55 dark:text-neutral-100/55 whitespace-pre-line">
+                  <p className="text-[14px] text-neutral-900/55 whitespace-pre-line">
                     {step.desc}
                   </p>
                 </motion.div>
@@ -182,7 +182,7 @@ export function GoldenDragon() {
             sublabel="what was breaking down"
             title="Where the Original Site Got in the Way"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               As customers used the original site, I started noticing the cracks, and each one cost
               someone something: a dish they couldn't find, an action they couldn't spot, an answer
               they waited two days for.
@@ -190,10 +190,10 @@ export function GoldenDragon() {
             <div className="space-y-8 md:space-y-12">
               {INITIAL_PROBLEMS.map((item) => (
                 <div key={item.title}>
-                  <h3 className="text-[17px] font-medium text-neutral-900 dark:text-neutral-50 mb-3">
+                  <h3 className="text-[17px] font-medium text-neutral-900 mb-3">
                     {item.title}
                   </h3>
-                  <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6">
+                  <p className="text-[16px] leading-6 text-neutral-900/55 mb-6">
                     {item.body}
                   </p>
                   <CaseStudyFigure src={item.image} alt={item.alt} />
@@ -209,7 +209,7 @@ export function GoldenDragon() {
             sublabel="asking customers"
             title="What I Wanted to Understand"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               Being this close to the restaurant made it easy to assume I already knew what people
               needed. To check that, I surveyed 50+ Golden Dragon customers to understand how they
               decide where to eat, how they read restaurant menus, and where ordering online creates
@@ -217,10 +217,10 @@ export function GoldenDragon() {
             </p>
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <p className="text-[17px] font-medium text-neutral-900 dark:text-neutral-50 mb-4">
+                <p className="text-[17px] font-medium text-neutral-900 mb-4">
                   What the survey covered
                 </p>
-                <ul className="space-y-3 text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+                <ul className="space-y-3 text-[16px] leading-6 text-neutral-900/55">
                   <li>Experience with online and digital menus, and where they fall short</li>
                   <li>How people prefer to order, on a phone versus in person</li>
                   <li>What brings customers back to a restaurant</li>
@@ -259,13 +259,13 @@ export function GoldenDragon() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
                   <CaseStudyCard>
-                    <h3 className="text-[17px] font-medium text-neutral-900 dark:text-neutral-50 mb-3">
+                    <h3 className="text-[17px] font-medium text-neutral-900 mb-3">
                       {item.title}
                     </h3>
-                    <p className="text-[16px] leading-6 text-red-600 dark:text-red-400 font-medium mb-2">
+                    <p className="text-[16px] leading-6 text-red-600 font-medium mb-2">
                       {item.stats}
                     </p>
-                    <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+                    <p className="text-[16px] leading-6 text-neutral-900/55">
                       {item.insight}
                     </p>
                   </CaseStudyCard>
@@ -281,17 +281,17 @@ export function GoldenDragon() {
             sublabel="what mattered"
             title="Utility × Personality"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-6">
               The survey pointed at two things at once. Customers wanted the everyday tasks to be
               faster, find a dish, place an order, get the address. But the site also had to carry
               the weight of a twenty-year-old family business, because that was part of why people
               chose us over the chain down the road.
             </p>
-            <p className="text-[17px] leading-7 text-neutral-900/85 dark:text-neutral-100/85 mb-6">
+            <p className="text-[17px] leading-7 text-neutral-900/85 mb-6">
               How might we make Golden Dragon's digital experience as welcoming and easy to navigate
               as the restaurant itself?
             </p>
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+            <p className="text-[16px] leading-6 text-neutral-900/55">
               That framing kept both halves in play: the redesign had to make ordinary tasks quicker
               without turning Golden Dragon into another generic restaurant website.
             </p>
@@ -304,14 +304,14 @@ export function GoldenDragon() {
             sublabel="working it out"
             title="Deciding What Competes for Attention"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               Early concepts explored how ordering, menu discovery, and restaurant information
               should compete for attention on a single page. I settled on three actions the site
               would prioritise everywhere: browse the menu, order food, find the restaurant.
             </p>
             <CaseStudyFigure src="/goldendragonAssets/gdSketch.svg" alt="Golden Dragon Sketches" />
 
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mt-10 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mt-10 mb-8">
               I used lo-fi wireframes to test menu structures and button placements against those
               three priorities before committing to any visual direction, cheap to change while the
               hierarchy was still an open question.
@@ -321,7 +321,7 @@ export function GoldenDragon() {
               alt="Golden Dragon Lo-Fi Wireframes"
             />
 
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mt-10 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mt-10 mb-8">
               The visual system started from the red my family had already used for years, extended
               with the neutrals and type scale the old site never had. Custom illustrations do the
               work that stock photography would have flattened, and every text and button pairing
@@ -343,10 +343,10 @@ export function GoldenDragon() {
           >
             {/* The strongest quantitative finding gets the most weight. */}
             <div className="mb-12 md:mb-16">
-              <h3 className="text-[17px] font-medium text-neutral-900 dark:text-neutral-50 mb-3">
+              <h3 className="text-[17px] font-medium text-neutral-900 mb-3">
                 Making Ordering One Tap Away
               </h3>
-              <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+              <p className="text-[16px] leading-6 text-neutral-900/55">
                 With 82% of surveyed customers preferring to order digitally, ordering became the
                 site's primary action rather than a link in the navigation. An Order Now button sits
                 at the top of every page, the menu carries direct DoorDash entry points beside the
@@ -358,10 +358,10 @@ export function GoldenDragon() {
             <div className="space-y-16 md:space-y-20 mb-12">
               {FINAL_DESIGN_SECTIONS.map((item, index) => (
                 <div key={index}>
-                  <h3 className="text-[17px] font-medium mb-3 text-neutral-900 dark:text-neutral-100">
+                  <h3 className="text-[17px] font-medium mb-3 text-neutral-900">
                     {item.title}
                   </h3>
-                  <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6">
+                  <p className="text-[16px] leading-6 text-neutral-900/55 mb-6">
                     {item.description}
                   </p>
                   {item.title === 'Making the Menu Fast to Scan' ? (
@@ -395,7 +395,7 @@ export function GoldenDragon() {
             sublabel="after launch"
             title="What Happened After Launch"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               The redesign shipped to real customers rather than staying a concept. Following
               launch:
             </p>
@@ -403,38 +403,38 @@ export function GoldenDragon() {
                 these before this goes in front of a recruiter. */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
               <CaseStudyCard>
-                <p className="text-3xl md:text-4xl font-medium text-red-600 dark:text-red-400 mb-2">
+                <p className="text-3xl md:text-4xl font-medium text-red-600 mb-2">
                   40%
                 </p>
-                <p className="text-[14px] text-neutral-900/55 dark:text-neutral-100/55">
+                <p className="text-[14px] text-neutral-900/55">
                   more website traffic
                 </p>
               </CaseStudyCard>
               <CaseStudyCard>
-                <p className="text-3xl md:text-4xl font-medium text-red-600 dark:text-red-400 mb-2">
+                <p className="text-3xl md:text-4xl font-medium text-red-600 mb-2">
                   53%
                 </p>
-                <p className="text-[14px] text-neutral-900/55 dark:text-neutral-100/55">
+                <p className="text-[14px] text-neutral-900/55">
                   more interactions per session
                 </p>
               </CaseStudyCard>
               <CaseStudyCard>
-                <p className="text-3xl md:text-4xl font-medium text-red-600 dark:text-red-400 mb-2">
+                <p className="text-3xl md:text-4xl font-medium text-red-600 mb-2">
                   20%
                 </p>
-                <p className="text-[14px] text-neutral-900/55 dark:text-neutral-100/55">
+                <p className="text-[14px] text-neutral-900/55">
                   more online orders
                 </p>
               </CaseStudyCard>
             </div>
-            <p className="text-[14px] leading-6 text-neutral-900/45 dark:text-neutral-100/45 mb-10">
+            <p className="text-[14px] leading-6 text-neutral-900/45 mb-10">
               Measured against the same period before the redesign.
             </p>
 
-            <h3 className="text-[17px] font-medium text-neutral-900 dark:text-neutral-50 mb-3">
+            <h3 className="text-[17px] font-medium text-neutral-900 mb-3">
               What I Took Away
             </h3>
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+            <p className="text-[16px] leading-6 text-neutral-900/55">
               Being so close to Golden Dragon made it easy to assume I understood what customers
               needed. The research challenged that. The biggest lesson wasn't how to make the site
               more polished, it was learning to separate what felt important to me as part of the

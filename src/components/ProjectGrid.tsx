@@ -111,12 +111,12 @@ function BentoCard({
   const caption = (
     <div className="mt-4">
       <div className="flex items-start justify-between gap-2">
-        <h3 className="text-[17px] font-medium leading-[1.4] text-neutral-900/90 dark:text-neutral-100/90 group-hover:text-neutral-900 dark:group-hover:text-neutral-100 transition-colors">
+        <h3 className="text-[17px] font-medium leading-[1.4] text-neutral-900/90 group-hover:text-neutral-900 transition-colors">
           {project.client}
         </h3>
         <ProjectTags meta={project.meta} className="pt-[3px]" />
       </div>
-      <p className="mt-1.5 text-[14px] leading-[1.5] text-neutral-900/50 dark:text-neutral-100/50">
+      <p className="mt-1.5 text-[14px] leading-[1.5] text-neutral-900/50">
         {project.blurb}
       </p>
     </div>
@@ -135,7 +135,7 @@ function BentoCard({
           onClick={() => onLockClick(project)}
           className="group block w-full text-left cursor-pointer"
         >
-          <div className="relative aspect-[5/4] rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900">
+          <div className="relative aspect-[5/4] rounded-lg overflow-hidden border border-neutral-200 bg-neutral-100">
             {project.video ? (
               <video
                 ref={applySpeed}
@@ -159,8 +159,8 @@ function BentoCard({
               />
             )}
             {/* Lock chip — slides in on hover */}
-            <span className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 dark:bg-neutral-900/90 backdrop-blur-sm flex items-center justify-center shadow-sm opacity-0 translate-y-2 scale-90 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100">
-              <Lock className="w-4 h-4 text-neutral-900 dark:text-neutral-100" />
+            <span className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-sm opacity-0 translate-y-2 scale-90 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100">
+              <Lock className="w-4 h-4 text-neutral-900" />
             </span>
           </div>
           {caption}
@@ -168,7 +168,7 @@ function BentoCard({
       ) : isPlaceholder ? (
         <div className="block cursor-default">
           {project.video ? (
-            <div className="relative aspect-[5/4] rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900">
+            <div className="relative aspect-[5/4] rounded-lg overflow-hidden border border-neutral-200 bg-neutral-100">
               <video
                 ref={applySpeed}
                 src={project.video}
@@ -184,7 +184,7 @@ function BentoCard({
             </div>
           ) : project.image ? (
             <div
-              className="relative aspect-[5/4] rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900"
+              className="relative aspect-[5/4] rounded-lg overflow-hidden border border-neutral-200 bg-neutral-100"
               style={project.bg ? { backgroundColor: project.bg } : undefined}
             >
               {project.corner ? (
@@ -210,8 +210,8 @@ function BentoCard({
               )}
             </div>
           ) : (
-            <div className="relative aspect-[5/4] rounded-lg overflow-hidden border border-dashed border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900/60 flex items-center justify-center">
-              <p className="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-500">
+            <div className="relative aspect-[5/4] rounded-lg overflow-hidden border border-dashed border-neutral-300 bg-neutral-50 flex items-center justify-center">
+              <p className="text-xs uppercase tracking-widest text-neutral-500">
                 Case Study Coming Soon
               </p>
             </div>
@@ -224,7 +224,7 @@ function BentoCard({
             className={`relative aspect-[5/4] overflow-hidden ${
               project.cover
                 ? 'rounded-[10px]'
-                : 'rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900'
+                : 'rounded-lg border border-neutral-200 bg-neutral-100'
             }`}
             style={project.bg ? { backgroundColor: project.bg } : undefined}
           >
@@ -255,8 +255,8 @@ function BentoCard({
               />
             )}
             {/* Arrow chip — slides in on hover, above the cover artwork */}
-            <span className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-white/90 dark:bg-neutral-900/90 backdrop-blur-sm flex items-center justify-center opacity-0 translate-y-2 scale-90 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100">
-              <ArrowUpRight className="w-5 h-5 text-neutral-900 dark:text-neutral-100 transition-transform duration-300 group-hover:rotate-45" />
+            <span className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center opacity-0 translate-y-2 scale-90 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100">
+              <ArrowUpRight className="w-5 h-5 text-neutral-900 transition-transform duration-300 group-hover:rotate-45" />
             </span>
           </div>
           {caption}
@@ -274,7 +274,7 @@ export function ProjectGrid() {
       {/* Narrower than the rest of the page so the covers stay modest. */}
       <div className="max-w-5xl mx-auto">
         {/* Section header — a quiet centred label rather than a large heading */}
-        <h2 className="mb-8 md:mb-10 text-center font-label text-[15px] font-medium tracking-[0.7px] text-neutral-900/60 dark:text-neutral-100/60">
+        <h2 className="mb-8 md:mb-10 text-center font-label text-[15px] font-medium tracking-[0.7px] text-neutral-900/60">
           My Work
         </h2>
 

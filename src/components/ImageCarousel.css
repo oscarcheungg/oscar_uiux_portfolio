@@ -12,10 +12,6 @@
   border-radius: 24px;
 }
 
-.dark .image-carousel-container {
-  background: #1a1a1a;
-}
-
 .image-carousel-scroll-track {
   display: flex;
   height: calc(100% - 50px);
@@ -71,10 +67,6 @@
   padding: 0 16px;
 }
 
-.dark .image-carousel-title {
-  color: #999;
-}
-
 .image-carousel-indicators-container {
   display: flex;
   justify-content: center;
@@ -115,14 +107,6 @@
 
 .image-carousel-indicator.inactive::after {
   background-color: #ccc;
-}
-
-.dark .image-carousel-indicator.active::after {
-  background-color: #999;
-}
-
-.dark .image-carousel-indicator.inactive::after {
-  background-color: #444;
 }
 
 /* Improve touch targets on mobile */

@@ -33,6 +33,10 @@ dist-ssr
 !public/centibleAssets/centibleDemo.mp4
 !public/8451Assets/HomepageDemo.mp4
 !public/8451Assets/CampaignAdGroupDemo.mp4
+!public/wigoAssets/VidOne.mp4
+!public/wigoAssets/VidTwo.mp4
+!public/wigoAssets/VidThree.mp4
+!public/wigoAssets/VidFour.mp4
 assets/aboutAssets/runwithFriends.mp4
 
 # Claude local settings

@@ -122,7 +122,7 @@ export function StickyShowcase({ sections }: { sections: ShowcaseSection[] }) {
             transition={{ duration: 0.6, delay: index * 0.15 }}
             className="space-y-4"
           >
-            <div className="aspect-[9/16] bg-neutral-100 dark:bg-neutral-800 overflow-hidden max-w-xs mx-auto rounded-3xl">
+            <div className="aspect-[9/16] bg-neutral-100 overflow-hidden max-w-xs mx-auto rounded-3xl">
               <video className="w-full h-full object-cover" autoPlay loop muted playsInline preload="auto">
                 <source src={item.video} type="video/mp4" />
                 Your browser does not support the video tag.
@@ -130,7 +130,7 @@ export function StickyShowcase({ sections }: { sections: ShowcaseSection[] }) {
             </div>
             <div>
               <h3 className="text-xl md:text-2xl font-medium mb-2">{item.title}</h3>
-              <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+              <p className="text-[16px] leading-6 text-neutral-900/55">
                 {item.description}
               </p>
             </div>

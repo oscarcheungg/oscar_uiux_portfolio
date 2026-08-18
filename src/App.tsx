@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { ThemeProvider } from './contexts/ThemeContext';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
@@ -29,25 +28,23 @@ function ScrollToTop() {
 
 function App() {
   return (
-    <ThemeProvider>
-      <Router>
-        <div className="min-h-screen bg-white dark:bg-neutral-950">
-          <ScrollToTop />
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/centible" element={<Centible />} />
-            <Route path="/spotify" element={<Spotify />} />
-            <Route path="/bite" element={<Bite />} />
-            <Route path="/goldendragon" element={<GoldenDragon />} />
-            <Route path="/wigo" element={<Wigo />} />
-            <Route path="/8451" element={<EightyFourFiftyOne />} />
-          </Routes>
-          <Footer />
-        </div>
-      </Router>
-    </ThemeProvider>
+    <Router>
+      <div className="min-h-screen bg-white">
+        <ScrollToTop />
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/centible" element={<Centible />} />
+          <Route path="/spotify" element={<Spotify />} />
+          <Route path="/bite" element={<Bite />} />
+          <Route path="/goldendragon" element={<GoldenDragon />} />
+          <Route path="/wigo" element={<Wigo />} />
+          <Route path="/8451" element={<EightyFourFiftyOne />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

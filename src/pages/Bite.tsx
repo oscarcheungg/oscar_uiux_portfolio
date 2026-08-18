@@ -176,7 +176,7 @@ const NEXT_STEPS = [
 
 export function Bite() {
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 pt-28 md:pt-36 pb-16 md:pb-24" data-accent="teal">
+    <div className="min-h-screen bg-white text-neutral-900 pt-28 md:pt-36 pb-16 md:pb-24" data-accent="teal">
       <CaseStudyLayout>
         <CaseStudyHeader
           title="Bite - Dining Made Social and Simple"
@@ -194,7 +194,7 @@ export function Bite() {
             sublabel="why this exists"
             title="An Observation from Dining in China"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               While dining in China I got used to scanning a QR code, browsing the menu, and
               ordering without waiting for a server. Back in the U.S., QR menus were becoming common
               too, but the experience usually stopped at a PDF or a basic ordering screen. That made
@@ -217,17 +217,17 @@ export function Bite() {
             sublabel="what we're solving"
             title="The Question I Started With"
           >
-            <p className="text-[17px] leading-7 text-neutral-900/85 dark:text-neutral-100/85 mb-6">
+            <p className="text-[17px] leading-7 text-neutral-900/85 mb-6">
               How might digital menus help diners confidently decide what to order?
             </p>
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               I deliberately kept the question about the decision rather than about discovery.
               Plenty of products already help people pick a restaurant. Far fewer help with the
               harder moment that follows, when the menu is open and nothing on it means anything
               yet.
             </p>
 
-            <h3 className="text-[17px] font-medium mb-6 text-neutral-900 dark:text-neutral-100">
+            <h3 className="text-[17px] font-medium mb-6 text-neutral-900">
               The Process
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
@@ -240,15 +240,15 @@ export function Bite() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="text-center"
                 >
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#284B63]/10 dark:bg-[#6B8CAE]/20 border border-[#284B63]/20 dark:border-[#6B8CAE]/20 flex items-center justify-center mx-auto mb-4">
-                    <span className="font-label text-[15px] font-medium text-[#284B63] dark:text-[#6B8CAE]">
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#284B63]/10 border border-[#284B63]/20 flex items-center justify-center mx-auto mb-4">
+                    <span className="font-label text-[15px] font-medium text-[#284B63]">
                       {step.number}
                     </span>
                   </div>
-                  <h4 className="text-[16px] leading-6 font-medium text-neutral-900 dark:text-neutral-50 mb-2">
+                  <h4 className="text-[16px] leading-6 font-medium text-neutral-900 mb-2">
                     {step.title}
                   </h4>
-                  <p className="text-[14px] text-neutral-900/55 dark:text-neutral-100/55 whitespace-pre-line">
+                  <p className="text-[14px] text-neutral-900/55 whitespace-pre-line">
                     {step.desc}
                   </p>
                 </motion.div>
@@ -263,7 +263,7 @@ export function Bite() {
             sublabel="mapping the field"
             title="Competitor Analysis"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               I started by studying the field. Analyzing Sharp, InstaLaCarte, Clover, and Restolabs
               revealed gaps in visual design, social features, POS integration, and accessibility,
               which pointed me toward a lightweight, socially-driven solution.
@@ -281,7 +281,7 @@ export function Bite() {
             sublabel="what diners told me"
             title="Key Findings"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               Then I went to the diners themselves, surveying 20+ frequent diners about how they
               choose where to eat, how they read menus, and where ordering breaks down. Four themes
               came back, but they did not carry equal weight.
@@ -295,18 +295,18 @@ export function Bite() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="p-5 rounded-[10px] bg-neutral-900/[0.035] dark:bg-neutral-100/[0.06]"
+                  className="p-5 rounded-[10px] bg-neutral-900/[0.035]"
                 >
-                  <p className="font-label text-[12px] font-medium tracking-[0.7px] text-neutral-900/45 dark:text-neutral-100/45 mb-2">
+                  <p className="font-label text-[12px] font-medium tracking-[0.7px] text-neutral-900/45 mb-2">
                     {FINDING_WEIGHT[i]}
                   </p>
-                  <h3 className="text-[17px] font-medium text-neutral-900 dark:text-neutral-50 mb-3">
+                  <h3 className="text-[17px] font-medium text-neutral-900 mb-3">
                     {item.title}
                   </h3>
-                  <p className="text-[16px] leading-6 text-[#284B63] dark:text-[#6B8CAE] font-medium mb-2">
+                  <p className="text-[16px] leading-6 text-[#284B63] font-medium mb-2">
                     {item.stats}
                   </p>
-                  <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+                  <p className="text-[16px] leading-6 text-neutral-900/55">
                     {item.insight}
                   </p>
                 </motion.div>
@@ -320,7 +320,7 @@ export function Bite() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="mt-8 md:mt-12"
             >
-              <p className="text-[17px] font-medium text-neutral-900 dark:text-neutral-50 mb-4">
+              <p className="text-[17px] font-medium text-neutral-900 mb-4">
                 Pain Points (Quotes derived from participants):
               </p>
               <div className="grid md:grid-cols-2 gap-4">
@@ -331,9 +331,9 @@ export function Bite() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
-                    className="p-4 pl-5 rounded-[10px] bg-neutral-900/[0.035] dark:bg-neutral-100/[0.06] border-l-2 border-[var(--csa)] dark:border-[var(--csa-dark)]"
+                    className="p-4 pl-5 rounded-[10px] bg-neutral-900/[0.035] border-l-2 border-[var(--csa)]"
                   >
-                    <p className="text-[16px] leading-6 text-neutral-700 dark:text-neutral-300 italic">
+                    <p className="text-[16px] leading-6 text-neutral-700 italic">
                       "{quote}"
                     </p>
                   </motion.div>
@@ -349,17 +349,17 @@ export function Bite() {
             sublabel="the turn"
             title="One Insight Changed What Bite Was"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-6">
               I came in assuming QR ordering was the product. The survey said otherwise: scanning is
               already ordinary, and nobody needs help with it. The friction sits one step later, at
               the point where a diner has the menu open and has to guess which of forty dishes is
               worth ordering. People already solve that by asking someone they trust.
             </p>
-            <p className="text-[17px] leading-7 text-neutral-900/85 dark:text-neutral-100/85 mb-6">
+            <p className="text-[17px] leading-7 text-neutral-900/85 mb-6">
               Existing platforms aggregate opinions from strangers. Bite prioritises recommendations
               from people already in your circle, at the moment of choosing.
             </p>
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+            <p className="text-[16px] leading-6 text-neutral-900/55">
               That reframing is what separates Bite from Yelp or Google Maps, and it decided the
               rest of the product: the feed is built from friends and dishes rather than restaurant
               star ratings, and social proof lives inside the menu rather than in a review tab.
@@ -373,7 +373,7 @@ export function Bite() {
             sublabel="how it compounds"
             title="Designing a Loop, Not a Checkout Flow"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               Bite only works if the people giving recommendations are the same people taking them.
               A diner sees a dish a friend vouched for, orders it, and can post their own photo
               afterwards, which becomes the recommendation for the next person. Discovery and
@@ -382,10 +382,10 @@ export function Bite() {
             <div className="flex flex-wrap items-center gap-2">
               {['Discover', 'Order', 'Experience', 'Share'].map((step, i, arr) => (
                 <div key={step} className="flex items-center gap-2">
-                  <span className="rounded-[10px] bg-neutral-900/[0.035] dark:bg-neutral-100/[0.06] px-3 py-2 text-[16px] text-neutral-900/70 dark:text-neutral-100/70">
+                  <span className="rounded-[10px] bg-neutral-900/[0.035] px-3 py-2 text-[16px] text-neutral-900/70">
                     {step}
                   </span>
-                  <span aria-hidden="true" className="text-neutral-900/30 dark:text-neutral-100/30">
+                  <span aria-hidden="true" className="text-neutral-900/30">
                     {i === arr.length - 1 ? '\u21BA' : '\u2192'}
                   </span>
                 </div>
@@ -400,7 +400,7 @@ export function Bite() {
             sublabel="what made v1"
             title="Deciding What Belonged in V1"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               The research surfaced far more ideas than one product should carry: ordering, a feed,
               reviews, discovery, rewards, messaging, favourites, order history, challenges. Most of
               them were reasonable. Shipping all of them would have meant Bite did nothing
@@ -411,12 +411,12 @@ export function Bite() {
               {SCOPE.map((group) => (
                 <div
                   key={group.tier}
-                  className="p-5 rounded-[10px] bg-neutral-900/[0.035] dark:bg-neutral-100/[0.06]"
+                  className="p-5 rounded-[10px] bg-neutral-900/[0.035]"
                 >
-                  <p className="font-label text-[12px] font-medium tracking-[0.7px] text-[#284B63] dark:text-[#6B8CAE] mb-3">
+                  <p className="font-label text-[12px] font-medium tracking-[0.7px] text-[#284B63] mb-3">
                     {group.tier}
                   </p>
-                  <ul className="space-y-2 text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+                  <ul className="space-y-2 text-[16px] leading-6 text-neutral-900/55">
                     {group.items.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
@@ -424,7 +424,7 @@ export function Bite() {
                 </div>
               ))}
             </div>
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mt-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mt-8">
               Messaging was the hardest to let go of, and the easiest to justify: iMessage and
               Instagram already do it well, and rebuilding them inside a dining app would have added
               surface area without adding value.
@@ -440,7 +440,7 @@ export function Bite() {
               sublabel={step.sublabel}
               title={step.heading}
             >
-              <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+              <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
                 {step.description}
               </p>
               <CaseStudyFigure src={step.media} alt={step.alt} />
@@ -454,7 +454,7 @@ export function Bite() {
             sublabel="what we made"
             title="Introducing Bite"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               Every screen below answers to the same insight: put a recommendation from someone you
               trust in front of a diner at the moment they are choosing.
             </p>
@@ -468,17 +468,17 @@ export function Bite() {
             sublabel="what i learned"
             title="What I Took Away"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-6">
               Bite taught me that a compelling idea can quietly become several products at once. QR
               ordering, social discovery, loyalty and messaging each seemed valuable on their own,
               and together they would have made a vague app. The concept only got sharper when I
               centred one behaviour: helping someone confidently choose a dish through people they
               trust.
             </p>
-            <h3 className="text-[17px] font-medium text-neutral-900 dark:text-neutral-50 mb-3">
+            <h3 className="text-[17px] font-medium text-neutral-900 mb-3">
               Designing for Diners Meant Thinking About Restaurants Too
             </h3>
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-10">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-10">
               Bite only works if restaurants see value in it as well. I imagined the QR layer as a
               lightweight way for partners to earn repeat visits and learn which dishes are actually
               popular, sitting alongside whatever ordering setup they already run rather than
@@ -486,7 +486,7 @@ export function Bite() {
               concept I would want to pressure test first.
             </p>
 
-            <h3 className="text-[17px] font-medium mb-6 text-neutral-900 dark:text-neutral-100">
+            <h3 className="text-[17px] font-medium mb-6 text-neutral-900">
               Next Steps
             </h3>
             <ol className="space-y-4">
@@ -499,10 +499,10 @@ export function Bite() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="flex gap-4 items-start"
                 >
-                  <span className="w-6 h-6 flex items-center justify-center shrink-0 font-label text-[13px] font-medium text-[#284B63] dark:text-[#6B8CAE] bg-[#284B63]/10 dark:bg-[#6B8CAE]/20 rounded-full mt-0.5">
+                  <span className="w-6 h-6 flex items-center justify-center shrink-0 font-label text-[13px] font-medium text-[#284B63] bg-[#284B63]/10 rounded-full mt-0.5">
                     {i + 1}
                   </span>
-                  <p className="text-[16px] leading-6 text-neutral-900/70 dark:text-neutral-100/70">
+                  <p className="text-[16px] leading-6 text-neutral-900/70">
                     {step}
                   </p>
                 </motion.li>

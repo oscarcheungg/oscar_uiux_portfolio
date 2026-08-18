@@ -77,20 +77,12 @@
   color: rgb(23 23 23);
 }
 
-.dark .ss-title {
-  color: rgb(245 245 245);
-}
-
 .ss-description {
   /* The site's body treatment: 16px on a 24px line. */
   font-size: 1rem;
   line-height: 1.5;
   width: 100%;
   color: rgb(38 38 38);
-}
-
-.dark .ss-description {
-  color: rgb(212 212 212);
 }
 
 @media (min-width: 768px) {

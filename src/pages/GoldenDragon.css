@@ -83,10 +83,6 @@
   }
 }
 
-.dark .content-title {
-  color: rgb(245 245 245);
-}
-
 .content-description {
   font-size: 1rem; /* text-base */
   line-height: 1.7;
@@ -98,10 +94,6 @@
   .content-description {
     font-size: 1rem;
   }
-}
-
-.dark .content-description {
-  color: rgb(212 212 212);
 }
 
 /* Responsive Design */

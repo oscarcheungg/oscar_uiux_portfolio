@@ -65,7 +65,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.4 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors -m-2.5 p-2.5 touch-manipulation"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 text-neutral-400 hover:text-neutral-900 transition-colors -m-2.5 p-2.5 touch-manipulation"
         aria-label="Scroll to my work"
         /* 44px hit area around a 24px glyph. */
       >

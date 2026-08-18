@@ -91,7 +91,7 @@ export function ProjectTags({ meta, className = '' }: { meta: string; className?
       {tags.map((tag) => (
         <span
           key={tag}
-          className="whitespace-nowrap rounded bg-neutral-900/[0.05] dark:bg-neutral-100/[0.08] px-1.5 py-0.5 font-label text-[11px] text-neutral-900/45 dark:text-neutral-100/45"
+          className="whitespace-nowrap rounded bg-neutral-900/[0.05] px-1.5 py-0.5 font-label text-[11px] text-neutral-900/45"
         >
           {tag}
         </span>

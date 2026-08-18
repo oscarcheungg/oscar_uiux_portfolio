@@ -4,7 +4,7 @@
 
 @layer base {
   * {
-    @apply border-neutral-200 dark:border-neutral-800;
+    @apply border-neutral-200;
   }
   
   html {
@@ -12,7 +12,7 @@
   }
   
   body {
-    @apply bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50;
+    @apply bg-white text-neutral-900;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     /* Prevent text size adjustment on iOS */
@@ -29,12 +29,12 @@
 }
 
 /* Per-case-study accent (used by the CaseStudy template via var(--csa)) */
-[data-accent="blue"]   { --csa: #2563eb; --csa-dark: #60a5fa; }
-[data-accent="purple"] { --csa: #9333ea; --csa-dark: #c084fc; }
-[data-accent="green"] { --csa: #1ED760; --csa-dark: #1ED760; }
-[data-accent="red"]   { --csa: #dc2626; --csa-dark: #f87171; }
-[data-accent="teal"]  { --csa: #284B63; --csa-dark: #6B8CAE; }
-[data-accent="8451"]  { --csa: #8451EC; --csa-dark: #A78BFA; }
+[data-accent="blue"]   { --csa: #2563eb; }
+[data-accent="purple"] { --csa: #9333ea; }
+[data-accent="green"] { --csa: #1ED760; }
+[data-accent="red"]   { --csa: #dc2626; }
+[data-accent="teal"]  { --csa: #284B63; }
+[data-accent="8451"]  { --csa: #8451EC; }
 
 /* Animated gradient text (hero "currently designing at 84.51°") */
 @keyframes gradient-slide {
@@ -86,7 +86,6 @@ div[data-embed-type="activity"] > div {
   max-width: 100% !important;
 }
 
-
 /* ── Design-tool chrome ──────────────────────────────────────────────────
    The hero name is presented like a selected object on a canvas: a hairline
    frame, four corner handles, and a badge reporting its measured size. */
@@ -126,10 +125,6 @@ div[data-embed-type="activity"] > div {
 .spec-handle.tr { top: 0; right: 0; }
 .spec-handle.bl { bottom: 0; left: 0; }
 .spec-handle.br { bottom: 0; right: 0; }
-
-.dark .spec-handle {
-  background: #0a0a0a;
-}
 
 /* The anchor holds the centring transform; the badge itself is free to move. */
 .spec-badge-anchor {
@@ -173,10 +168,6 @@ div[data-embed-type="activity"] > div {
     scale 0.35s cubic-bezier(0.34, 1.36, 0.64, 1);
 }
 
-.dark .brand-chip {
-  background: #1f1f1f;
-}
-
 .brand-chip:hover {
   /* Carolina Blue, deepened just enough to stay legible on the tint. */
   color: #3e8fc4;
@@ -188,11 +179,6 @@ div[data-embed-type="activity"] > div {
     color 0.2s,
     translate 0.22s cubic-bezier(0.22, 1, 0.36, 1),
     scale 0.22s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.dark .brand-chip:hover {
-  color: #7fbde4;
-  background: #12212c;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -212,10 +198,6 @@ div[data-embed-type="activity"] > div {
      rather than by contrast against a dark tile. */
   background-color: rgba(23, 23, 23, 0.055);
   transition: background-color 0.3s ease-out;
-}
-
-.dark .screen-tile {
-  background-color: rgba(255, 255, 255, 0.06);
 }
 
 .group:hover .screen-tile {

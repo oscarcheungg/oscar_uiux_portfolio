@@ -21,10 +21,6 @@
   padding: 0;
 }
 
-.dark .spotify-hero-bg {
-  background: #1a1a1a;
-}
-
 .spotify-hero-img-wrap {
   display: flex;
   justify-content: center;
@@ -44,10 +40,6 @@
   margin-bottom: 0.5rem;
   margin-top: 3rem;
   color: rgb(115 115 115);
-}
-
-.dark .spotify-label {
-  color: rgb(163 163 163);
 }
 
 .spotify-title {
@@ -99,18 +91,10 @@
   }
 }
 
-.dark .spotify-text {
-  color: rgb(212 212 212);
-}
-
 .spotify-divider {
   border: none;
   border-top: 1px solid rgb(229 229 229);
   margin: 1.5rem 0 2.5rem 0;
-}
-
-.dark .spotify-divider {
-  border-top-color: rgb(38 38 38);
 }
 
 .spotify-grid {
@@ -187,10 +171,6 @@
   }
 }
 
-.dark .spotify-process-step-desc {
-  color: rgb(212 212 212);
-}
-
 .spotify-flow-title {
   font-size: 1.25rem; /* text-xl base */
   font-weight: 500;
@@ -208,10 +188,6 @@
   .spotify-flow-title {
     font-size: 1.5rem;
   }
-}
-
-.dark .spotify-flow-title {
-  color: rgb(212 212 212);
 }
 
 .spotify-img-wrap {
@@ -257,17 +233,6 @@
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
 }
 
-.dark .spotify-problem-video,
-.dark .spotify-quick-add-video {
-  background: #2a2a2a;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
-}
-
-.dark .spotify-problem-video-wrap:hover .spotify-problem-video,
-.dark .spotify-quick-add-video-wrap:hover .spotify-quick-add-video {
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
-}
-
 /* Sticky Scroll Effect Styles */
 .sticky-scroll-container {
   display: flex;
@@ -307,7 +272,6 @@
   object-fit: contain;
   transition: opacity 0.25s ease;
 }
-
 
 .scrollable-content {
   flex: 1;
@@ -350,10 +314,6 @@
   }
 }
 
-.dark .content-title {
-  color: rgb(245 245 245);
-}
-
 .content-description {
   font-size: 1rem; /* text-base */
   line-height: 1.7;
@@ -365,10 +325,6 @@
   .content-description {
     font-size: 1rem;
   }
-}
-
-.dark .content-description {
-  color: rgb(212 212 212);
 }
 
 /* Mobile Final Designs Section */

@@ -324,7 +324,7 @@ const Masonry: React.FC<MasonryProps> = ({
       }}
     >
       {!imagesReady && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-neutral-500 dark:text-neutral-400">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-neutral-500">
           <span className="text-4xl animate-pulse" aria-hidden>📸</span>
           <p className="text-sm">Loading...</p>
         </div>

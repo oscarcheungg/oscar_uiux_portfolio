@@ -12,10 +12,6 @@
   border-radius: 24px;
 }
 
-.dark .video-carousel-container {
-  background: #1a1a1a;
-}
-
 .video-carousel-scroll-track {
   display: flex;
   height: calc(100% - 50px);
@@ -72,10 +68,6 @@
   padding: 0 16px;
 }
 
-.dark .video-carousel-title {
-  color: #999;
-}
-
 .video-carousel-indicators-container {
   display: flex;
   justify-content: center;
@@ -104,10 +96,6 @@
 
 .video-carousel-indicator.inactive {
   background-color: #ccc;
-}
-
-.dark .video-carousel-indicator.inactive {
-  background-color: #555;
 }
 
 /* Improve touch targets on mobile */

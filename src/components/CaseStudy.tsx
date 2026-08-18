@@ -8,8 +8,8 @@ import { ProjectCover, ProjectCoverArt, ProjectTags } from './ProjectCover';
    Sans for the small labels, Inter at 16px for anything read as prose, and one
    heading scale rather than three. */
 const LABEL =
-  'font-label text-[13px] font-medium tracking-[0.7px] text-neutral-900/60 dark:text-neutral-100/60';
-const BODY = 'text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55';
+  'font-label text-[13px] font-medium tracking-[0.7px] text-neutral-900/60';
+const BODY = 'text-[16px] leading-6 text-neutral-900/55';
 
 /**
  * Case-study template (inspired by rachelchen.tech):
@@ -30,7 +30,7 @@ export function BackToWork({ className = '' }: { className?: string }) {
   return (
     <Link
       to="/#work"
-      className={`group inline-flex items-center gap-2 -my-2 py-2 font-label text-[13px] font-medium tracking-[0.5px] text-neutral-900/55 dark:text-neutral-100/55 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors ${className}`}
+      className={`group inline-flex items-center gap-2 -my-2 py-2 font-label text-[13px] font-medium tracking-[0.5px] text-neutral-900/55 hover:text-neutral-900 transition-colors ${className}`}
     >
       <ArrowLeft className="w-3.5 h-3.5 transition-transform duration-300 ease-out group-hover:-translate-x-0.5" />
       Work
@@ -98,8 +98,8 @@ export function CaseStudyLayout({ children }: { children: ReactNode }) {
                     onClick={() => goTo(item.id)}
                     className={`text-left text-[14px] leading-snug transition-colors ${
                       activeId === item.id
-                        ? 'text-neutral-900 dark:text-neutral-100 font-medium'
-                        : 'text-neutral-900/45 dark:text-neutral-100/45 hover:text-neutral-900 dark:hover:text-neutral-100'
+                        ? 'text-neutral-900 font-medium'
+                        : 'text-neutral-900/45 hover:text-neutral-900'
                     }`}
                   >
                     {item.label}
@@ -152,7 +152,7 @@ export function CaseStudyHeader({
         <ProjectTags meta={cover.meta} />
       </div>
 
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-normal leading-[1.1] tracking-tight text-neutral-900 dark:text-neutral-50 mb-8">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-normal leading-[1.1] tracking-tight text-neutral-900 mb-8">
         {title}
       </h1>
 
@@ -167,7 +167,7 @@ export function CaseStudyHeader({
         {meta.map((item) => (
           <div key={item.label}>
             <p className={`${LABEL} mb-2`}>{item.label}</p>
-            <p className="text-[16px] leading-6 text-neutral-900/85 dark:text-neutral-100/85 whitespace-pre-line">
+            <p className="text-[16px] leading-6 text-neutral-900/85 whitespace-pre-line">
               {item.value}
             </p>
           </div>
@@ -206,10 +206,10 @@ export function CaseStudySection({ num, label, title, children, className = '' }
       transition={{ duration: 0.6 }}
       className={`py-8 md:py-12 scroll-mt-28 ${className}`}
     >
-      <p className="font-label text-[13px] font-medium tracking-[0.7px] text-[var(--csa)] dark:text-[var(--csa-dark)] mb-3">
+      <p className="font-label text-[13px] font-medium tracking-[0.7px] text-[var(--csa)] mb-3">
         {label}
       </p>
-      <h2 className="text-xl md:text-2xl mb-5 tracking-tight font-medium text-neutral-900 dark:text-neutral-50">
+      <h2 className="text-xl md:text-2xl mb-5 tracking-tight font-medium text-neutral-900">
         {title}
       </h2>
       {children}
@@ -252,7 +252,7 @@ export function CaseStudyFigure({
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
       className={`${rounded ? 'rounded-2xl' : ''} overflow-hidden ${
-        bordered ? 'border border-neutral-200 dark:border-neutral-800' : ''
+        bordered ? 'border border-neutral-200' : ''
       } ${className}`}
     >
       {media}
@@ -273,7 +273,7 @@ export function CaseStudyLink({ href, children }: CaseStudyLinkProps) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 px-6 py-3 min-h-[44px] border border-neutral-300 dark:border-neutral-700 rounded-full text-neutral-900 dark:text-neutral-100 hover:border-[var(--csa)] hover:text-[var(--csa)] dark:hover:border-[var(--csa-dark)] dark:hover:text-[var(--csa-dark)] transition-all duration-300 hover:-translate-y-0.5 touch-manipulation text-[16px]"
+      className="inline-flex items-center gap-2 px-6 py-3 min-h-[44px] border border-neutral-300 rounded-full text-neutral-900 hover:border-[var(--csa)] hover:text-[var(--csa)] transition-all duration-300 hover:-translate-y-0.5 touch-manipulation text-[16px]"
     >
       <span>{children}</span>
       <ExternalLink className="w-4 h-4" />
@@ -292,10 +292,10 @@ interface CaseStudyCardProps {
 export function CaseStudyCard({ title, children, className = '' }: CaseStudyCardProps) {
   return (
     <div
-      className={`p-5 rounded-[10px] bg-neutral-900/[0.035] dark:bg-neutral-100/[0.06] ${className}`}
+      className={`p-5 rounded-[10px] bg-neutral-900/[0.035] ${className}`}
     >
       {title && (
-        <h3 className="text-[17px] font-medium mb-4 text-neutral-900 dark:text-neutral-100">
+        <h3 className="text-[17px] font-medium mb-4 text-neutral-900">
           {title}
         </h3>
       )}

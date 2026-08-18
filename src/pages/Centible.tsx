@@ -95,9 +95,9 @@ const REFLECTIONS = [
 function Bullet({ strong, children }: { strong: string; children: ReactNode }) {
   return (
     <li className="flex items-start gap-3">
-      <span className="text-purple-600 dark:text-purple-400 mt-1">•</span>
+      <span className="text-purple-600 mt-1">•</span>
       <span>
-        <strong className="text-neutral-900 dark:text-neutral-100 font-medium">{strong}</strong>{' '}
+        <strong className="text-neutral-900 font-medium">{strong}</strong>{' '}
         {children}
       </span>
     </li>
@@ -106,7 +106,7 @@ function Bullet({ strong, children }: { strong: string; children: ReactNode }) {
 
 export function Centible() {
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 pt-28 md:pt-36 pb-16 md:pb-24" data-accent="purple">
+    <div className="min-h-screen bg-white text-neutral-900 pt-28 md:pt-36 pb-16 md:pb-24" data-accent="purple">
       <CaseStudyLayout>
         <CaseStudyHeader
           title="Filtering Transactions for Centible"
@@ -124,7 +124,7 @@ export function Centible() {
             sublabel="why this matters"
             title="The Problem With the Existing Filter"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               It started with a simple question students kept asking: "How much did I spend on food
               this week?" Answering it meant working through filtering options that felt
               disproportionately complicated for something that simple. Why it felt that way was
@@ -143,7 +143,7 @@ export function Centible() {
             sublabel="what we found"
             title="How Students Actually Use Financial Tools"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               I sat down with 8 college students for informal interviews. The biggest takeaway was
               not what they filtered by, but how they approached financial tools at all. They opened
               one with a question in mind, looked for the answer, and left. Centible is a check-in
@@ -152,7 +152,7 @@ export function Centible() {
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               <CaseStudyCard title="User context">
-                <ul className="space-y-3 text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+                <ul className="space-y-3 text-[16px] leading-6 text-neutral-900/55">
                   <Bullet strong="Short, repeated check-ins:">
                     Students opened financial apps for quick answers rather than long budgeting
                     sessions
@@ -162,7 +162,7 @@ export function Centible() {
                 </ul>
               </CaseStudyCard>
               <CaseStudyCard title="Key insights">
-                <ul className="space-y-3 text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+                <ul className="space-y-3 text-[16px] leading-6 text-neutral-900/55">
                   <Bullet strong="They arrive with a specific question:">
                     Nobody was exploring the interface, they wanted an answer
                   </Bullet>
@@ -184,7 +184,7 @@ export function Centible() {
             sublabel="insight → intent"
             title="Turning Insights Into Design Principles"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               With those insights in hand, I tied each design goal to something users actually told
               us, so the solution would solve real problems instead of adding complexity.
             </p>
@@ -199,14 +199,14 @@ export function Centible() {
                 >
                   <CaseStudyCard className="h-full">
                     <div className="flex items-start gap-4">
-                      <div className="w-9 h-9 rounded-[10px] bg-purple-600/10 dark:bg-purple-500/20 flex items-center justify-center flex-shrink-0">
-                        <item.icon className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                      <div className="w-9 h-9 rounded-[10px] bg-purple-600/10 flex items-center justify-center flex-shrink-0">
+                        <item.icon className="w-5 h-5 text-purple-600" />
                       </div>
                       <div>
-                        <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2 italic">
+                        <p className="text-sm text-neutral-500 mb-2 italic">
                           "{item.insight}"
                         </p>
-                        <p className="text-base text-neutral-900 dark:text-neutral-100 leading-relaxed">
+                        <p className="text-base text-neutral-900 leading-relaxed">
                           {item.goal}
                         </p>
                       </div>
@@ -224,20 +224,20 @@ export function Centible() {
             sublabel="explore & test"
             title="Exploring Different Approaches to Transaction Filtering"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               From there, I tested several filter approaches, learning what worked and what didn't
               through rapid iteration and user feedback.
             </p>
             <div className="space-y-12 md:space-y-16">
               {ITERATIONS.map((it) => (
                 <div key={it.title}>
-                  <h3 className="text-[17px] font-medium mb-3 text-neutral-900 dark:text-neutral-100">
+                  <h3 className="text-[17px] font-medium mb-3 text-neutral-900">
                     {it.title}
                   </h3>
-                  <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-3">
+                  <p className="text-[16px] leading-6 text-neutral-900/55 mb-3">
                     {it.body}
                   </p>
-                  <p className="text-[14px] text-neutral-900/45 dark:text-neutral-100/45 italic mb-5">{it.aside}</p>
+                  <p className="text-[14px] text-neutral-900/45 italic mb-5">{it.aside}</p>
                   <CaseStudyFigure src={it.media} alt={it.alt} />
                 </div>
               ))}
@@ -251,7 +251,7 @@ export function Centible() {
             sublabel="what we made"
             title="The Final Filtering Solution"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               Everything the iterations taught me came together in the final design: a filter
               overlay menu of transaction status options, plus category chips that appear when
               filtering. Context stays intact, and filters stay quick and scannable.
@@ -259,10 +259,10 @@ export function Centible() {
             <div className="space-y-12 md:space-y-16 mb-12">
               {SOLUTION_SECTIONS.map((section) => (
                 <div key={section.title}>
-                  <h3 className="text-[17px] font-medium mb-3 text-neutral-900 dark:text-neutral-100">
+                  <h3 className="text-[17px] font-medium mb-3 text-neutral-900">
                     {section.title}
                   </h3>
-                  <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-5">
+                  <p className="text-[16px] leading-6 text-neutral-900/55 mb-5">
                     {section.description}
                   </p>
                   <CaseStudyFigure src={section.media} alt={section.title} type={section.type} />
@@ -270,7 +270,7 @@ export function Centible() {
               ))}
             </div>
             <CaseStudyCard title="How it supports user jobs">
-              <ul className="space-y-3 text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+              <ul className="space-y-3 text-[16px] leading-6 text-neutral-900/55">
                 <Bullet strong="Quick check-ins:">One tap to see food spending for the week</Bullet>
                 <Bullet strong="Category-first thinking:">
                   Categories are prominent and visually distinct
@@ -291,26 +291,26 @@ export function Centible() {
           >
             <div className="grid md:grid-cols-2 gap-8 md:gap-12">
               <div>
-                <h3 className="text-[17px] font-medium mb-4 text-neutral-900 dark:text-neutral-100">
+                <h3 className="text-[17px] font-medium mb-4 text-neutral-900">
                   Quantitative
                 </h3>
-                <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+                <p className="text-[16px] leading-6 text-neutral-900/55">
                   I ran task-based usability tests with 5 students on a high-fidelity prototype,
                   asking them to find specific transactions in both the existing filter and the
                   redesign. Participants completed those tasks{' '}
-                  <span className="text-purple-600 dark:text-purple-400 font-medium">
+                  <span className="text-purple-600 font-medium">
                     roughly 15% faster with the new filter
                   </span>
                   .
                 </p>
               </div>
               <div>
-                <h3 className="text-[17px] font-medium mb-4 text-neutral-900 dark:text-neutral-100">
+                <h3 className="text-[17px] font-medium mb-4 text-neutral-900">
                   Qualitative
                 </h3>
-                <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+                <p className="text-[16px] leading-6 text-neutral-900/55">
                   Participants described the flow as{' '}
-                  <span className="text-purple-600 dark:text-purple-400 font-medium">
+                  <span className="text-purple-600 font-medium">
                     easier to scan and more predictable
                   </span>
                   , and pointed specifically at the selected categories staying visible after
@@ -335,12 +335,12 @@ export function Centible() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
-                  className="flex gap-4 items-start p-5 rounded-[10px] bg-neutral-900/[0.035] dark:bg-neutral-100/[0.06]"
+                  className="flex gap-4 items-start p-5 rounded-[10px] bg-neutral-900/[0.035]"
                 >
-                  <span className="text-sm text-purple-600 dark:text-purple-400 pt-1 flex-shrink-0">
+                  <span className="text-sm text-purple-600 pt-1 flex-shrink-0">
                     0{i + 1}
                   </span>
-                  <p className="text-[16px] leading-6 text-neutral-900/70 dark:text-neutral-100/70">
+                  <p className="text-[16px] leading-6 text-neutral-900/70">
                     {takeaway}
                   </p>
                 </motion.div>
@@ -355,7 +355,7 @@ export function Centible() {
             sublabel="where it's going"
             title="Continuing to Refine Centible"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               I'm revamping the app's widgets so users can see their finances at a glance, and we're
               expanding marketing to grow fundraising for the app and the team. We keep refining
               Centible based on user feedback so it stays valuable for students!
@@ -372,7 +372,7 @@ export function Centible() {
             sublabel="beyond the screens"
             title="Presenting at App Team Carolina Gala"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               Our team presented the semester's work at the App Team Carolina Gala, sharing our
               usability testing insights, redesigned features, and the website redesign that brought
               them to life. Go Centible!

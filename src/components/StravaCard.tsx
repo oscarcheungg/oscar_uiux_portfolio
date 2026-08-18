@@ -44,9 +44,8 @@ function loadLeaflet(): Promise<any> {
   return leafletPromise;
 }
 
-const isDark = () => document.documentElement.classList.contains('dark');
-const tileUrl = (dark: boolean) =>
-  `https://{s}.basemaps.cartocdn.com/${dark ? 'dark_nolabels' : 'light_nolabels'}/{z}/{x}/{y}{r}.png`;
+const TILE_URL =
+  'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png';
 
 function miles(m: number) {
   return m / 1609.344;
@@ -88,8 +87,8 @@ function StravaMark({ className = '' }: { className?: string }) {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div className="min-w-0">
-      <p className="text-[0.7rem] text-neutral-400 dark:text-neutral-500 leading-none mb-1">{label}</p>
-      <p className="text-sm md:text-base font-semibold text-neutral-900 dark:text-neutral-50 tabular-nums leading-none truncate">
+      <p className="text-[0.7rem] text-neutral-400 leading-none mb-1">{label}</p>
+      <p className="text-sm md:text-base font-semibold text-neutral-900 tabular-nums leading-none truncate">
         {value}
       </p>
     </div>
@@ -111,8 +110,6 @@ export function StravaCard() {
   useEffect(() => {
     if (!activity?.polyline || !mapRef.current) return;
     let map: any;
-    let tiles: any;
-    let observer: MutationObserver | undefined;
     let cancelled = false;
 
     loadLeaflet().then((L) => {
@@ -129,19 +126,14 @@ export function StravaCard() {
         touchZoom: false,
         keyboard: false,
       });
-      tiles = L.tileLayer(tileUrl(isDark()), { subdomains: 'abcd', maxZoom: 19 }).addTo(map);
+      L.tileLayer(TILE_URL, { subdomains: 'abcd', maxZoom: 19 }).addTo(map);
       const line = L.polyline(coords, { color: STRAVA_ORANGE, weight: 3.5, opacity: 1 }).addTo(map);
       map.fitBounds(line.getBounds(), { padding: [30, 30] });
       setTimeout(() => map.invalidateSize(), 60);
-
-      // swap map tiles when the site theme toggles
-      observer = new MutationObserver(() => tiles.setUrl(tileUrl(isDark())));
-      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
     });
 
     return () => {
       cancelled = true;
-      if (observer) observer.disconnect();
       if (map) map.remove();
     };
   }, [activity]);
@@ -152,34 +144,34 @@ export function StravaCard() {
       target="_blank"
       rel="noopener noreferrer"
       title={activity ? `${activity.name} on Strava` : 'My latest run on Strava'}
-      className="group relative isolate block min-h-[400px] md:min-h-[512px] rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900"
+      className="group relative isolate block min-h-[400px] md:min-h-[512px] rounded-2xl overflow-hidden border border-neutral-200 bg-neutral-100"
     >
       {/* Full-bleed route map (z-0 contains Leaflet's internal pane z-indexes) */}
       <div
         ref={mapRef}
-        className="absolute inset-0 z-0 [&_.leaflet-container]:bg-neutral-100 dark:[&_.leaflet-container]:bg-neutral-800"
+        className="absolute inset-0 z-0 [&_.leaflet-container]:bg-neutral-100"
       />
 
       {failed && (
-        <div className="absolute inset-0 flex items-center justify-center text-sm text-neutral-500 dark:text-neutral-400">
+        <div className="absolute inset-0 flex items-center justify-center text-sm text-neutral-500">
           view my activity on Strava
         </div>
       )}
 
       {/* Strava badge — top-left */}
-      <div className="absolute z-10 top-4 left-4 w-9 h-9 rounded-full bg-white/90 dark:bg-neutral-900/90 backdrop-blur-sm shadow-sm flex items-center justify-center">
+      <div className="absolute z-10 top-4 left-4 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm shadow-sm flex items-center justify-center">
         <StravaMark className="w-5 h-5" />
       </div>
 
       {/* External-link chip — top-right, fades in on hover */}
-      <div className="absolute z-10 top-4 right-4 w-9 h-9 rounded-full bg-white/90 dark:bg-neutral-900/90 backdrop-blur-sm shadow-sm flex items-center justify-center opacity-0 translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-        <ArrowUpRight className="w-4 h-4 text-neutral-900 dark:text-neutral-100" />
+      <div className="absolute z-10 top-4 right-4 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm shadow-sm flex items-center justify-center opacity-0 translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+        <ArrowUpRight className="w-4 h-4 text-neutral-900" />
       </div>
 
       {/* Stats panel — bottom */}
       {activity && !failed && (
-        <div className="absolute z-10 inset-x-3 bottom-3 rounded-xl bg-white/95 dark:bg-neutral-900/90 backdrop-blur shadow-sm px-4 py-3.5">
-          <p className="text-xs text-neutral-400 dark:text-neutral-500 mb-3">
+        <div className="absolute z-10 inset-x-3 bottom-3 rounded-xl bg-white/95 backdrop-blur shadow-sm px-4 py-3.5">
+          <p className="text-xs text-neutral-400 mb-3">
             {formatDate(activity.start_date_local)}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">

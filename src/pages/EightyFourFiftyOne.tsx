@@ -98,20 +98,20 @@ const COMPETITIVE_MATRIX: { feature: string; support: MatrixSupport[] }[] = [
 ];
 
 const MATRIX_CELL_BG: Record<MatrixSupport, string> = {
-  yes: 'bg-green-50 dark:bg-green-500/10',
-  no: 'bg-red-50 dark:bg-red-500/10',
-  unknown: 'bg-neutral-50 dark:bg-neutral-900',
+  yes: 'bg-green-50',
+  no: 'bg-red-50',
+  unknown: 'bg-neutral-50',
 };
 
 function MatrixMark({ support }: { support: MatrixSupport }) {
   if (support === 'yes') {
-    return <Check className="w-4 h-4 mx-auto text-green-600 dark:text-green-400" aria-label="Supported" />;
+    return <Check className="w-4 h-4 mx-auto text-green-600" aria-label="Supported" />;
   }
   if (support === 'no') {
-    return <X className="w-4 h-4 mx-auto text-red-500 dark:text-red-400" aria-label="Not supported" />;
+    return <X className="w-4 h-4 mx-auto text-red-500" aria-label="Not supported" />;
   }
   return (
-    <span className="text-sm text-neutral-400 dark:text-neutral-500" aria-label="Unclear">
+    <span className="text-sm text-neutral-400" aria-label="Unclear">
       ?
     </span>
   );
@@ -124,14 +124,14 @@ function CompetitiveMatrix() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="overflow-x-auto rounded-[10px] bg-neutral-900/[0.035] dark:bg-neutral-100/[0.06]"
+      className="overflow-x-auto rounded-[10px] bg-neutral-900/[0.035]"
     >
       <table className="w-full min-w-[680px] text-sm border-collapse">
         <thead>
-          <tr className="border-b border-neutral-200 dark:border-neutral-800">
+          <tr className="border-b border-neutral-200">
             <th
               scope="col"
-              className="text-left px-6 py-5 font-label text-[12px] font-medium tracking-[0.7px] font-medium text-neutral-500 dark:text-neutral-500"
+              className="text-left px-6 py-5 font-label text-[12px] font-medium tracking-[0.7px] font-medium text-neutral-500"
             >
               AI Feature
             </th>
@@ -141,8 +141,8 @@ function CompetitiveMatrix() {
                 scope="col"
                 className={`px-4 py-5 text-center font-label text-[12px] font-medium tracking-[0.7px] font-medium ${
                   i === 0
-                    ? 'text-[var(--csa)] dark:text-[var(--csa-dark)] bg-[#8451EC]/5 dark:bg-[#8451EC]/10'
-                    : 'text-neutral-500 dark:text-neutral-500'
+                    ? 'text-[var(--csa)] bg-[#8451EC]/5'
+                    : 'text-neutral-500'
                 }`}
               >
                 {platform}
@@ -155,19 +155,19 @@ function CompetitiveMatrix() {
             <tr
               key={row.feature}
               className={
-                rowIndex > 0 ? 'border-t border-neutral-100 dark:border-neutral-900' : ''
+                rowIndex > 0 ? 'border-t border-neutral-100' : ''
               }
             >
               <th
                 scope="row"
-                className="text-left px-6 py-4 font-medium text-neutral-900 dark:text-neutral-100 leading-snug"
+                className="text-left px-6 py-4 font-medium text-neutral-900 leading-snug"
               >
                 {row.feature}
               </th>
               {row.support.map((support, i) => (
                 <td
                   key={i}
-                  className={`px-4 py-5 text-center border-l border-white dark:border-neutral-950 ${MATRIX_CELL_BG[support]}`}
+                  className={`px-4 py-5 text-center border-l border-white ${MATRIX_CELL_BG[support]}`}
                 >
                   <MatrixMark support={support} />
                 </td>
@@ -204,8 +204,8 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
       transition={{ duration: 0.5 }}
       className="mt-14 md:mt-20 w-full text-center p-8 md:p-12"
     >
-      <Lock className="w-5 h-5 text-neutral-400 dark:text-neutral-500 mx-auto mb-4" />
-      <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6">
+      <Lock className="w-5 h-5 text-neutral-400 mx-auto mb-4" />
+      <p className="text-[16px] leading-6 text-neutral-900/55 mb-6">
         hello! this case study is password-protected. reach out if you are interested.
       </p>
       <form onSubmit={submit} className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -218,17 +218,17 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
           }}
           placeholder="Enter password"
           aria-label="Case study password"
-          className="px-4 py-2.5 text-sm rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 focus:outline-none focus:border-[var(--csa)] dark:focus:border-[var(--csa-dark)] transition-colors"
+          className="px-4 py-2.5 text-sm rounded-full border border-neutral-300 bg-white text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[var(--csa)] transition-colors"
         />
         <button
           type="submit"
-          className="px-5 py-2.5 text-sm bg-neutral-900 dark:bg-neutral-50 text-white dark:text-neutral-900 rounded-full border border-neutral-900 dark:border-neutral-50 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-300 touch-manipulation"
+          className="px-5 py-2.5 text-sm bg-neutral-900 text-white rounded-full border border-neutral-900 hover:bg-neutral-800 transition-all duration-300 touch-manipulation"
         >
           unlock
         </button>
       </form>
       {error && (
-        <p className="text-sm text-red-500 dark:text-red-400 mt-4">
+        <p className="text-sm text-red-500 mt-4">
           That's not it, but feel free to email me!
         </p>
       )}
@@ -243,7 +243,7 @@ export function EightyFourFiftyOne() {
 
   return (
     <div
-      className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 pt-28 md:pt-36 pb-16 md:pb-24"
+      className="min-h-screen bg-white text-neutral-900 pt-28 md:pt-36 pb-16 md:pb-24"
       data-accent="8451"
     >
       <CaseStudyLayout key={unlocked ? 'unlocked' : 'locked'}>
@@ -273,17 +273,17 @@ export function EightyFourFiftyOne() {
             sublabel="why this matters"
             title="Users Have the Data, But Not the Direction"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               KAP surfaces plenty of performance data but no direction on what to do with it.
               Client success managers pull and verify every recommendation by hand; media buyers
               then apply each change one at a time. Insight and action sit in two places, joined by
               a person doing the work manually.
             </p>
-            <p className="text-[17px] leading-7 text-neutral-900/85 dark:text-neutral-100/85 mb-8">
+            <p className="text-[17px] leading-7 text-neutral-900/85 mb-8">
               How might we turn campaign performance data into recommendations advertisers can
               understand, trust, and act on?
             </p>
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               My scope: the recommendation experience end to end, from opportunity through
               usability testing to design-system documentation, with product, engineering and data
               science on feasibility.
@@ -303,12 +303,12 @@ export function EightyFourFiftyOne() {
             sublabel="what the market does"
             title="Benchmarking 10+ Advertising Platforms"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               I audited how the industry handles AI insights across Amazon Ads, Walmart Connect,
               Instacart Ads, Google Ads, Koddi, TikTok Ads Manager and more, annotating every
               recommendation pattern, entry point and interaction.
             </p>
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               The matrix maps an opportunity space, not a requirements list: which patterns
               advertisers are already trained on, and how differently platforms handle context,
               explanation and control. Which of those belonged in KAP was a question for our own
@@ -324,33 +324,33 @@ export function EightyFourFiftyOne() {
             sublabel="where it hurts"
             title="Finding Friction Points Within the User Journey"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-10">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-10">
               Next: where would it matter most for our users? I consolidated past research with
               client success manager and media buyer feedback to map the journey from planning to
               performance evaluation, flagging every moment where insight failed to become action.
               Two screens kept surfacing, and mapping them gave each surface a job.
             </p>
-            <ul className="mb-10 space-y-2 text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+            <ul className="mb-10 space-y-2 text-[16px] leading-6 text-neutral-900/55">
               <li>
-                <span className="font-medium text-neutral-900/85 dark:text-neutral-100/85">
+                <span className="font-medium text-neutral-900/85">
                   Homepage:
                 </span>{' '}
                 tell me what deserves attention
               </li>
               <li>
-                <span className="font-medium text-neutral-900/85 dark:text-neutral-100/85">
+                <span className="font-medium text-neutral-900/85">
                   Campaigns:
                 </span>{' '}
                 show me where the problem is
               </li>
               <li>
-                <span className="font-medium text-neutral-900/85 dark:text-neutral-100/85">
+                <span className="font-medium text-neutral-900/85">
                   Recommendation:
                 </span>{' '}
                 tell me why it is worth acting on
               </li>
               <li>
-                <span className="font-medium text-neutral-900/85 dark:text-neutral-100/85">
+                <span className="font-medium text-neutral-900/85">
                   Apply:
                 </span>{' '}
                 let me act without giving up control
@@ -358,10 +358,10 @@ export function EightyFourFiftyOne() {
             </ul>
 
             <div className="mb-12">
-              <h3 className="text-xl md:text-2xl font-medium text-neutral-900 dark:text-neutral-100 mb-3">
+              <h3 className="text-xl md:text-2xl font-medium text-neutral-900 mb-3">
                 The homepage users skip past
               </h3>
-              <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6">
+              <p className="text-[16px] leading-6 text-neutral-900/55 mb-6">
                 The homepage is the first screen every user lands on, and the first one most of them
                 skip. It reports totals and a performance chart, but offers no campaign-specific
                 action to take, so users scroll straight past it on the way to somewhere more
@@ -383,10 +383,10 @@ export function EightyFourFiftyOne() {
             </div>
 
             <div>
-              <h3 className="text-xl md:text-2xl font-medium text-neutral-900 dark:text-neutral-100 mb-3">
+              <h3 className="text-xl md:text-2xl font-medium text-neutral-900 mb-3">
                 A campaigns page with no signals
               </h3>
-              <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6">
+              <p className="text-[16px] leading-6 text-neutral-900/55 mb-6">
                 The campaigns page is where the real work starts, and it gives no signal about where
                 to look. Every row reads identically no matter how a campaign is performing, so
                 spotting the one that needs attention means clicking into campaigns one at a time
@@ -417,7 +417,7 @@ export function EightyFourFiftyOne() {
             className="pb-2 md:pb-4"
           >
             <div className="grid md:grid-cols-[2fr,1fr] gap-8 md:gap-12 items-start">
-              <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+              <p className="text-[16px] leading-6 text-neutral-900/55">
                 I ran cross-functional workshops with product, engineering and data science to rank
                 ideas on a value matrix. The decision mattered more than the ranking: we chose
                 individual recommendations over a conversational assistant. The assistant was
@@ -441,7 +441,7 @@ export function EightyFourFiftyOne() {
             sublabel="structure before screens"
             title="From Architecture to Iterations"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               Before any screens, I mapped the information architecture: where recommendations
               appear, how a hub organizes them, the anatomy of one from rationale to apply flow,
               and the activity history behind it. That last piece matters more than it looks.
@@ -456,7 +456,7 @@ export function EightyFourFiftyOne() {
               alt="KAP insight automation information architecture"
               className="mb-10 max-w-4xl mx-auto"
             />
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               I iterated on the homepage, campaigns page and recommendation center across many
               versions. Faster generation widened the exploration; the evaluation is what mattered.
               Engineers and data scientists pressure-tested feasibility on the boards, and every
@@ -468,13 +468,13 @@ export function EightyFourFiftyOne() {
               alt="Iteration boards for homepage, campaigns page, and recommendation center with engineering and data science feedback"
               className="mb-10"
             />
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               Out of this exploration came the two concepts I carried into usability testing: a
               recommendation card and its view recommendation modal, shown here in the exact
               versions participants reacted to.
             </p>
             <ImageCarousel
-              className="!bg-white border border-neutral-200 dark:border-neutral-800 [&_.image-carousel-image]:w-auto [&_.image-carousel-image]:max-h-[400px] [&_.image-carousel-image]:mx-auto"
+              className="!bg-white border border-neutral-200 [&_.image-carousel-image]:w-auto [&_.image-carousel-image]:max-h-[400px] [&_.image-carousel-image]:mx-auto"
               items={[
                 {
                   id: 1,
@@ -497,17 +497,17 @@ export function EightyFourFiftyOne() {
             sublabel="pressure-testing the concepts"
             title="Testing AI Recommendation Concepts with 6 KAP Users"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               I ran moderated, think-aloud sessions with 6 internal KAP users on understanding,
               trust and actionability. Each 30-minute session built up: a single card, then a
               grouped card, then the homepage and recommendation center to test placement and
               prioritization.
             </p>
-            <p className="text-[17px] leading-7 text-neutral-900/85 dark:text-neutral-100/85 mb-8">
+            <p className="text-[17px] leading-7 text-neutral-900/85 mb-8">
               I went in asking where AI recommendations should appear. Testing taught me the harder
               question was what a recommendation has to carry before anyone will act on it.
             </p>
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               Five findings reshaped the design, and the first one governs the rest:
             </p>
             <div className="grid md:grid-cols-2 gap-4">
@@ -518,20 +518,20 @@ export function EightyFourFiftyOne() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.06 }}
-                  className="p-5 rounded-[10px] bg-neutral-900/[0.035] dark:bg-neutral-100/[0.06]"
+                  className="p-5 rounded-[10px] bg-neutral-900/[0.035]"
                 >
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="w-9 h-9 rounded-lg bg-[#8451EC]/10 dark:bg-[#8451EC]/20 flex items-center justify-center flex-shrink-0">
-                      <finding.icon className="w-4 h-4 text-[var(--csa)] dark:text-[var(--csa-dark)]" />
+                    <div className="w-9 h-9 rounded-lg bg-[#8451EC]/10 flex items-center justify-center flex-shrink-0">
+                      <finding.icon className="w-4 h-4 text-[var(--csa)]" />
                     </div>
-                    <p className="text-[16px] leading-6 font-medium text-neutral-900 dark:text-neutral-100 leading-snug">
+                    <p className="text-[16px] leading-6 font-medium text-neutral-900 leading-snug">
                       {finding.title}
                     </p>
                   </div>
-                  <p className="text-[14px] text-neutral-900/55 dark:text-neutral-100/55 leading-relaxed mb-3">
+                  <p className="text-[14px] text-neutral-900/55 leading-relaxed mb-3">
                     {finding.body}
                   </p>
-                  <p className="border-l-2 border-[var(--csa)] dark:border-[var(--csa-dark)] pl-3 text-sm italic text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                  <p className="border-l-2 border-[var(--csa)] pl-3 text-sm italic text-neutral-500 leading-relaxed">
                     "{finding.quote}"
                   </p>
                 </motion.div>
@@ -546,34 +546,34 @@ export function EightyFourFiftyOne() {
             sublabel="insights in action"
             title="Recommendations at Every Entry Point"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-6">
               The concept I took into testing said, in effect, "increase your bid to $3.50."
               Participants answered with questions: on which campaign, why, what happens if I do,
               can I change the number, can I undo it. The final card is those questions answered.
             </p>
-            <ul className="mb-8 space-y-3 text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+            <ul className="mb-8 space-y-3 text-[16px] leading-6 text-neutral-900/55">
               <li>
-                <span className="font-medium text-neutral-900/85 dark:text-neutral-100/85">
+                <span className="font-medium text-neutral-900/85">
                   Lead with expected impact.
                 </span>{' '}
                 Advertisers decide whether a recommendation is worth considering before they care
                 how it works.
               </li>
               <li>
-                <span className="font-medium text-neutral-900/85 dark:text-neutral-100/85">
+                <span className="font-medium text-neutral-900/85">
                   Show exactly what changes.
                 </span>{' '}
                 Current value next to recommended value, against a named campaign, ad group and
                 UPC, so the action is concrete.
               </li>
               <li>
-                <span className="font-medium text-neutral-900/85 dark:text-neutral-100/85">
+                <span className="font-medium text-neutral-900/85">
                   Explain the reasoning.
                 </span>{' '}
                 Enough of the why to support a judgement, without turning the card into a report.
               </li>
               <li>
-                <span className="font-medium text-neutral-900/85 dark:text-neutral-100/85">
+                <span className="font-medium text-neutral-900/85">
                   Preserve control.
                 </span>{' '}
                 Inspect, adjust the value, apply selectively, and recover afterwards, rather than
@@ -582,7 +582,7 @@ export function EightyFourFiftyOne() {
             </ul>
             <div className="mb-10">
               <ImageCarousel
-                className="!bg-white border border-neutral-200 dark:border-neutral-800"
+                className="!bg-white border border-neutral-200"
                 items={[
                   {
                     id: 1,
@@ -597,7 +597,7 @@ export function EightyFourFiftyOne() {
                 ]}
               />
             </div>
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               The same card appears in several places, each doing a different job: the homepage
               prioritises, the campaign page diagnoses in context, ad group and UPC carry the
               specific action, and the recommendation center manages volume at scale. The homepage
@@ -608,9 +608,9 @@ export function EightyFourFiftyOne() {
               rounded={false}
               src="/8451Assets/HomepageDemo.mp4"
               type="video"
-              className="mb-10 shadow-[0_12px_32px_-16px_rgba(0,0,0,0.18)] dark:shadow-[0_12px_32px_-16px_rgba(0,0,0,0.45)]"
+              className="mb-10 shadow-[0_12px_32px_-16px_rgba(0,0,0,0.18)]"
             />
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               Inside campaigns and ad groups, where users told us decisions actually happen, inline
               recommendations surface at the exact row they apply to, down to the ad group and UPC
               level. I designed these future-state pages in collaboration with the Ad Platform &
@@ -622,7 +622,7 @@ export function EightyFourFiftyOne() {
               rounded={false}
               src="/8451Assets/CampaignAdGroupDemo.mp4"
               type="video"
-              className="shadow-[0_12px_32px_-16px_rgba(0,0,0,0.18)] dark:shadow-[0_12px_32px_-16px_rgba(0,0,0,0.45)]"
+              className="shadow-[0_12px_32px_-16px_rgba(0,0,0,0.18)]"
             />
           </CaseStudySection>
 
@@ -633,12 +633,12 @@ export function EightyFourFiftyOne() {
             sublabel="making it reusable"
             title="Turning Research Insights Into Reusable AI Patterns"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               I documented the patterns as a component library in Meridian: recommendation cards
               with and without metrics, view and confirmation modals, inline messages and toasts,
               each with states for loading, undo, recover and failure.
             </p>
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               The useful part is not the visual kit but the behaviour it encodes: what context a
               recommendation must name, when impact appears, what happens while the model works,
               and how someone gets back out when it was wrong. Those patterns are now a starting
@@ -658,7 +658,7 @@ export function EightyFourFiftyOne() {
             sublabel="where this goes next"
             title="Visualizing the Future State of Recommendations"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               I closed the internship by mapping the progression these patterns unlock: prove
               recommendations first, build the ecosystem around them, then mature into
               personalisation and a conversational assistant. Campaign-setup recommendations and
@@ -666,7 +666,7 @@ export function EightyFourFiftyOne() {
             </p>
             <div className="mb-10">
               <ImageCarousel
-                className="!bg-white border border-neutral-200 dark:border-neutral-800"
+                className="!bg-white border border-neutral-200"
                 items={[
                   {
                     id: 1,
@@ -714,7 +714,7 @@ export function EightyFourFiftyOne() {
                 ]}
               />
             </div>
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               I proposed an adoption roadmap to phase the work in after I left. At the end of my
               internship the team was carrying the recommendation MVP into its next phase, using
               this research as its foundation.
@@ -727,16 +727,16 @@ export function EightyFourFiftyOne() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="p-5 rounded-[10px] bg-neutral-900/[0.035] dark:bg-neutral-100/[0.06]"
+                  className="p-5 rounded-[10px] bg-neutral-900/[0.035]"
                 >
-                  <p className="flex items-center gap-2 font-label text-[12px] font-medium tracking-[0.7px] text-[var(--csa)] dark:text-[var(--csa-dark)] mb-3">
+                  <p className="flex items-center gap-2 font-label text-[12px] font-medium tracking-[0.7px] text-[var(--csa)] mb-3">
                     <step.icon className="w-4 h-4" />
                     {step.when}
                   </p>
-                  <p className="text-[17px] font-medium text-neutral-900 dark:text-neutral-100 mb-2 leading-snug">
+                  <p className="text-[17px] font-medium text-neutral-900 mb-2 leading-snug">
                     {step.title}
                   </p>
-                  <p className="text-[14px] text-neutral-900/55 dark:text-neutral-100/55 leading-relaxed">
+                  <p className="text-[14px] text-neutral-900/55 leading-relaxed">
                     {step.body}
                   </p>
                 </motion.div>
@@ -752,7 +752,7 @@ export function EightyFourFiftyOne() {
             title="What This Summer Taught Me"
           >
             <div className="space-y-6">
-              <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+              <p className="text-[16px] leading-6 text-neutral-900/55">
                 I came into this summer expecting to design interfaces and spent most of it
                 designing for trust. The hardest questions were never about layout, they were about
                 what a recommendation owes the person reading it: an estimated impact, an honest
@@ -760,7 +760,7 @@ export function EightyFourFiftyOne() {
                 Figma, in workshops with engineers and data scientists and in naive questions asked
                 early, which usually turned out to be the ones worth asking.
               </p>
-              <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+              <p className="text-[16px] leading-6 text-neutral-900/55">
                 The bigger lesson was that AI trust is not something you add with a disclaimer or a
                 sparkle icon. It is earned by giving someone enough evidence to judge the
                 recommendation and enough control to disagree with it. What I am proudest of is

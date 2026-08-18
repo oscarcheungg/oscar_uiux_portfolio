@@ -27,12 +27,12 @@ export function PasswordModal({ onClose }: PasswordModalProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.25 }}
-      className="fixed inset-0 z-50 bg-white dark:bg-neutral-950 flex items-center justify-center px-6"
+      className="fixed inset-0 z-50 bg-white flex items-center justify-center px-6"
     >
       {/* Back to work — top-left */}
       <button
         onClick={onClose}
-        className="absolute top-6 left-6 md:top-8 md:left-8 inline-flex items-center gap-2 text-xs tracking-widest text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+        className="absolute top-6 left-6 md:top-8 md:left-8 inline-flex items-center gap-2 text-xs tracking-widest text-neutral-500 hover:text-neutral-900 transition-colors"
       >
         <ArrowLeft className="w-3.5 h-3.5" />
         work
@@ -44,8 +44,8 @@ export function PasswordModal({ onClose }: PasswordModalProps) {
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         className="w-full max-w-md text-center"
       >
-        <Lock className="w-9 h-9 text-neutral-400 dark:text-neutral-500 mx-auto mb-6" />
-        <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-300 leading-relaxed">
+        <Lock className="w-9 h-9 text-neutral-400 mx-auto mb-6" />
+        <p className="text-lg md:text-xl text-neutral-600 leading-relaxed">
           This case study is password protected and still in the works. Check back soon!
         </p>
       </motion.div>

@@ -196,7 +196,7 @@ export function Spotify() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 pt-28 md:pt-36 pb-16 md:pb-24" data-accent="green">
+    <div className="min-h-screen bg-white text-neutral-900 pt-28 md:pt-36 pb-16 md:pb-24" data-accent="green">
       <CaseStudyLayout>
         <CaseStudyHeader
           title="Spotify Playlists Enhanced"
@@ -215,10 +215,10 @@ export function Spotify() {
             title="A Small Annoyance That Compounds"
           >
             <div className="space-y-6">
-              <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+              <p className="text-[16px] leading-6 text-neutral-900/55">
                 This started with my own annoyance. Every time I saved a song, I had to open the three dot menu, tap "Add to Playlist," scroll, and add. What should be instant becomes friction.
               </p>
-              <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">
+              <p className="text-[16px] leading-6 text-neutral-900/55">
                 That friction stacked up until playlist building felt like a chore, not part of listening.
               </p>
             </div>
@@ -231,7 +231,7 @@ export function Spotify() {
             sublabel="the experience"
             title="The Multi-Tap Nightmare"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               Spotify's existing add flow does help with selecting several songs at once, but discovery happens inside a dedicated overlay: users still have to leave their normal browsing context to build the playlist. That suggested reversing the model. Instead of bringing songs into a playlist editor, bring playlist editing into the rest of Spotify.
             </p>
             <div className="w-full max-w-5xl mx-auto" style={{ height: '600px', position: 'relative' }}>
@@ -255,7 +255,7 @@ export function Spotify() {
             sublabel="what users told me"
             title="What Users Told Me"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               Before designing anything I wanted to know whether the frustration extended past my own habits. I started with what people were already saying: Reddit threads and discussion boards where playlist management comes up constantly. It was not just mine.
             </p>
             <motion.div
@@ -280,8 +280,8 @@ export function Spotify() {
                   viewport={{ once: true, margin: '-100px' }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
-                  <p className="text-[16px] leading-6 text-neutral-900 dark:text-neutral-50 italic mb-6 leading-relaxed">"{item.quote}"</p>
-                  <p className="text-[14px] text-neutral-900/45 dark:text-neutral-100/45">{item.author}</p>
+                  <p className="text-[16px] leading-6 text-neutral-900 italic mb-6 leading-relaxed">"{item.quote}"</p>
+                  <p className="text-[14px] text-neutral-900/45">{item.author}</p>
                 </motion.div>
               ))}
             </div>
@@ -294,7 +294,7 @@ export function Spotify() {
             sublabel="others do it better"
             title="Others Do It Better"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               Next, I looked at the competition. Comparing tap counts on YouTube Music and SoundCloud, I found both solve it in far fewer steps.
             </p>
             <motion.div
@@ -318,7 +318,7 @@ export function Spotify() {
             sublabel="identifying problems"
             title="Key Pain Points"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               Then I moved from secondary research to primary, talking with Spotify users I know who actively build and maintain playlists. Five observations came out of it, but three of them were the same friction wearing different clothes. These are what remained.
             </p>
             {/* Three across, sized as supporting notes rather than headlines. */}
@@ -330,15 +330,15 @@ export function Spotify() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="group relative p-4 transition-colors duration-300 rounded-[10px] bg-neutral-900/[0.035] dark:bg-neutral-100/[0.06] hover:bg-neutral-900/[0.06] dark:hover:bg-neutral-100/[0.09]"
+                  className="group relative p-4 transition-colors duration-300 rounded-[10px] bg-neutral-900/[0.035] hover:bg-neutral-900/[0.06]"
                 >
-                  <div className="w-8 h-8 rounded-[10px] bg-[#1ED760]/10 dark:bg-[#1ED760]/20 flex items-center justify-center mb-3 group-hover:bg-[#1ED760]/20 dark:group-hover:bg-[#1ED760]/30 transition-colors">
-                    <item.icon className="w-4 h-4 text-[#1ED760] dark:text-[#1ED760]" />
+                  <div className="w-8 h-8 rounded-[10px] bg-[#1ED760]/10 flex items-center justify-center mb-3 group-hover:bg-[#1ED760]/20 transition-colors">
+                    <item.icon className="w-4 h-4 text-[#1ED760]" />
                   </div>
-                  <h3 className="text-[16px] font-medium leading-snug text-neutral-900 dark:text-neutral-50 mb-1.5">
+                  <h3 className="text-[16px] font-medium leading-snug text-neutral-900 mb-1.5">
                     {item.title}
                   </h3>
-                  <p className="text-[14px] leading-5 text-neutral-900/55 dark:text-neutral-100/55">
+                  <p className="text-[14px] leading-5 text-neutral-900/55">
                     {item.description}
                   </p>
                 </motion.div>
@@ -353,7 +353,7 @@ export function Spotify() {
             sublabel="before & after"
             title="Before & After"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               With the research in hand, I mapped Spotify's current flow and designed an enhanced version: fewer steps, all the same functionality.
             </p>
             <div className="space-y-12 md:space-y-16">
@@ -364,7 +364,7 @@ export function Spotify() {
                 transition={{ duration: 0.6 }}
               >
                 <h3 className="text-xl md:text-2xl font-medium mb-6">The Current User Flow</h3>
-                <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6 leading-relaxed">
+                <p className="text-[16px] leading-6 text-neutral-900/55 mb-6 leading-relaxed">
                   Mapping the current 4 to 5 step process confirmed what I heard in research: nested menus, context switches, and decision fatigue from branching paths all kill the groove.
                 </p>
                 <img
@@ -381,7 +381,7 @@ export function Spotify() {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <h3 className="text-xl md:text-2xl font-medium mb-6">The Enhanced User Flow</h3>
-                <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6 leading-relaxed">
+                <p className="text-[16px] leading-6 text-neutral-900/55 mb-6 leading-relaxed">
                   Playlist Mode turns a playlist into an active destination. Once a playlist is switched on, Spotify stays in that editing state while you carry on browsing normally, and any song can be added with a single "+". Five taps become two for the first save, then one for every song after.
                 </p>
                 <img
@@ -400,7 +400,7 @@ export function Spotify() {
             sublabel="feature explorations"
             title="Design Iterations"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               With the flow set, I explored ways to signal when "Playlist Mode" is active and to simplify the UI, testing visual cues until the balance felt right.
             </p>
             <div className="space-y-12 md:space-y-16">
@@ -411,7 +411,7 @@ export function Spotify() {
                 transition={{ duration: 0.6 }}
               >
                 <h3 className="text-xl md:text-2xl font-medium mb-6">Active State Design Explorations</h3>
-                <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6 leading-relaxed">
+                <p className="text-[16px] leading-6 text-neutral-900/55 mb-6 leading-relaxed">
                   I started with green inner shadows around the screen edges, but they proved too distracting. A subtle top shadow was calmer, yet it never said which playlist was active. So I landed on a green banner that names the active playlist while fitting Spotify's existing patterns.
                 </p>
                 <img
@@ -428,7 +428,7 @@ export function Spotify() {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <h3 className="text-xl md:text-2xl font-medium mb-6">UI Simplification Explorations</h3>
-                <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-6 leading-relaxed">
+                <p className="text-[16px] leading-6 text-neutral-900/55 mb-6 leading-relaxed">
                   With "Playlist Mode" in place, I consolidated the action bar: first adding quick sorting within playlists, then folding "Edit" into Playlist Mode, and finally removing the "Add" button since songs can now be added from anywhere. A simpler bar, with more capability.
                 </p>
                 <img
@@ -447,7 +447,7 @@ export function Spotify() {
             sublabel="the final design"
             title="The Final Design"
           >
-            <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55 mb-8">
+            <p className="text-[16px] leading-6 text-neutral-900/55 mb-8">
               Together these keep organising inside the listening experience: two taps to switch a playlist on, then one tap per song, with the active playlist always visible so nobody has to guess where music is going.
             </p>
 
@@ -465,7 +465,7 @@ export function Spotify() {
                   transition={{ duration: 0.6, delay: index * 0.15 }}
                   className="space-y-4"
                 >
-                  <div className="aspect-[9/16] bg-neutral-100 dark:bg-neutral-800 overflow-hidden max-w-xs mx-auto">
+                  <div className="aspect-[9/16] bg-neutral-100 overflow-hidden max-w-xs mx-auto">
                     <video
                       className="w-full h-full object-cover"
                       autoPlay
@@ -480,7 +480,7 @@ export function Spotify() {
                   </div>
                   <div>
                     <h3 className="text-xl md:text-2xl font-medium mb-2">{item.title}</h3>
-                    <p className="text-[16px] leading-6 text-neutral-900/55 dark:text-neutral-100/55">{item.description}</p>
+                    <p className="text-[16px] leading-6 text-neutral-900/55">{item.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -502,10 +502,10 @@ export function Spotify() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-100px' }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="p-5 rounded-[10px] bg-neutral-900/[0.035] dark:bg-neutral-100/[0.06]"
+                  className="p-5 rounded-[10px] bg-neutral-900/[0.035]"
                 >
-                  <p className="text-3xl md:text-4xl font-medium text-neutral-900 dark:text-neutral-50 mb-2">{impact.value}</p>
-                  <p className="text-[14px] text-neutral-900/55 dark:text-neutral-100/55">{impact.label}</p>
+                  <p className="text-3xl md:text-4xl font-medium text-neutral-900 mb-2">{impact.value}</p>
+                  <p className="text-[14px] text-neutral-900/55">{impact.label}</p>
                 </motion.div>
               ))}
             </div>
@@ -526,12 +526,12 @@ export function Spotify() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
-                  className="flex gap-4 items-start p-5 rounded-[10px] bg-neutral-900/[0.035] dark:bg-neutral-100/[0.06]"
+                  className="flex gap-4 items-start p-5 rounded-[10px] bg-neutral-900/[0.035]"
                 >
-                  <span className="font-label text-[12px] font-medium tracking-[0.7px] text-[var(--csa)] dark:text-[var(--csa-dark)] pt-1 flex-shrink-0 tabular-nums">
+                  <span className="font-label text-[12px] font-medium tracking-[0.7px] text-[var(--csa)] pt-1 flex-shrink-0 tabular-nums">
                     0{i + 1}
                   </span>
-                  <p className="text-[16px] leading-6 text-neutral-900/70 dark:text-neutral-100/70">
+                  <p className="text-[16px] leading-6 text-neutral-900/70">
                     {takeaway}
                   </p>
                 </motion.div>
