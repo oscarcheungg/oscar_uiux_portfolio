@@ -326,6 +326,26 @@ export function Wigo() {
                   </p>
                 </motion.div>
               ))}
+
+              {/* Three quotes in a two-column grid leave one cell empty. The friend
+                  group everyone is describing sits in it, decorative and sized to
+                  read as breathing room rather than a fourth quote. */}
+              <motion.div
+                aria-hidden
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className="hidden md:flex items-end justify-center pointer-events-none select-none"
+              >
+                <img
+                  src="/wigoAssets/Characters.svg"
+                  alt=""
+                  className="w-full max-w-[230px] h-auto"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </motion.div>
             </div>
 
             <h3 className="text-[17px] font-medium mb-5 text-neutral-900">What came back</h3>
