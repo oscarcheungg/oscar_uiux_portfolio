@@ -11,7 +11,7 @@ const SOCIAL = [
   { label: 'Email', href: 'mailto:ocheung@unc.edu', Icon: Mail },
 ];
 
-/* Inter at regular weight, links held back to ~55% opacity and resolving to
+/* Satoshi at regular weight, links held back to ~55% opacity and resolving to
    full ink on hover. */
 const NAV_LINK =
   'text-[16px] text-neutral-900/55 hover:text-neutral-900 transition-colors';

@@ -5,7 +5,7 @@ import { ExternalLink, ArrowLeft } from 'lucide-react';
 import { ProjectCover, ProjectCoverArt, ProjectTags } from './ProjectCover';
 
 /* Typography borrowed wholesale from the homepage and about page: Instrument
-   Sans for the small labels, Inter at 16px for anything read as prose, and one
+   Sans for the small labels, Satoshi at 16px for anything read as prose, and one
    heading scale rather than three. */
 const LABEL =
   'font-label text-[13px] font-medium tracking-[0.7px] text-neutral-900/60';

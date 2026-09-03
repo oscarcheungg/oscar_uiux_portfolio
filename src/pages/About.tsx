@@ -36,7 +36,7 @@ const SECTION_LABEL =
   'mb-4 font-label text-[15px] font-medium tracking-[0.7px] text-neutral-900/60';
 
 /* A label long enough to read as a sentence takes the page's own typeface
-   instead — Inter at body size, with the tracking dropped. */
+   instead — Satoshi at body size, with the tracking dropped. */
 const SECTION_LABEL_LONG =
   'mb-4 text-[15px] font-medium text-neutral-900/60';
 
