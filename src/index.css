@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Selected text: a soft wash of the same Figma blue as the focus rings,
+   with the text kept dark so it stays easy to read. */
+::selection {
+  background: rgba(13, 153, 255, 0.22);
+  color: #0f0d0d;
+}
+
+/* With the homepage lights off, a deeper wash and light text. */
+.home[data-theme='dark'] ::selection {
+  background: rgba(13, 153, 255, 0.4);
+  color: #fff;
+}
+
 @layer base {
   * {
     @apply border-neutral-200;
@@ -13,6 +26,9 @@
   
   body {
     @apply bg-white text-neutral-900;
+    /* The same Inter alternates the homepage uses (straight-sided digits,
+       open forms), so every page reads in one voice. */
+    font-feature-settings: 'cv11', 'ss01';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     /* Prevent text size adjustment on iOS */
@@ -28,13 +44,11 @@
   }
 }
 
-/* Per-case-study accent (used by the CaseStudy template via var(--csa)) */
-[data-accent="blue"]   { --csa: #2563eb; }
-[data-accent="purple"] { --csa: #9333ea; }
-[data-accent="green"] { --csa: #1ED760; }
-[data-accent="red"]   { --csa: #dc2626; }
-[data-accent="teal"]  { --csa: #284B63; }
-[data-accent="8451"]  { --csa: #8451EC; }
+/* One palette for every case study, so they read as a set: an accent for
+   numbers, bars, quote rules and highlights (var(--csa)), and the "Engineer"
+   blue for the <LABEL> section tags (var(--cs-label)). Only the covers and
+   backgrounds change from one case study to the next. */
+[data-accent] { --csa: #0A6FC2; --cs-label: #0d99ff; }
 
 /* Animated gradient text (hero "currently designing at 84.51°") */
 @keyframes gradient-slide {
@@ -207,5 +221,96 @@ div[data-embed-type="activity"] > div {
 @media (prefers-reduced-motion: reduce) {
   .screen-tile {
     transition: none;
+  }
+}
+
+/* ── Page transition (see lib/pageTransition.ts) ─────────────────────────
+   Between the home page and a case study: the old page fades out quickly,
+   the new one fades in rising a few pixels, and the hovered project card
+   grows into the case study's cover. Only while html.vt-page is set, so the
+   lights switch keeps its own circle reveal. */
+html.vt-page::view-transition-old(root) {
+  animation: vt-page-out 0.22s cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+html.vt-page::view-transition-new(root) {
+  animation: vt-page-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+html.vt-page::view-transition-group(case-cover) {
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* The card and the cover have different shapes; each snapshot fills the
+   moving frame without stretching. */
+html.vt-page::view-transition-old(case-cover),
+html.vt-page::view-transition-new(case-cover) {
+  height: 100%;
+  object-fit: cover;
+  overflow: clip;
+  animation-duration: 0.35s;
+}
+
+/* The sound, lights and clock row is the same on every page: during a page
+   change it holds perfectly still instead of fading and sliding with the
+   page (see TopBar). */
+html.vt-page .home__top {
+  view-transition-name: top-bar;
+}
+
+html.vt-page::view-transition-group(top-bar) {
+  animation: none;
+}
+
+html.vt-page::view-transition-old(top-bar) {
+  display: none;
+}
+
+html.vt-page::view-transition-new(top-bar) {
+  animation: none;
+}
+
+/* Going back: the case study eases away, shrinking a touch and softening,
+   while the home page settles in from just above full size. The two overlap
+   for a smooth hand-off. The cover keeps no name of its own on the way back,
+   so it leaves with the page rather than lingering. */
+html.vt-back .cs-hero {
+  view-transition-name: none;
+}
+
+html.vt-page.vt-back::view-transition-old(root) {
+  animation: vt-back-out 0.42s cubic-bezier(0.33, 0, 0.2, 1) both;
+}
+
+html.vt-page.vt-back::view-transition-new(root) {
+  animation: vt-back-in 0.56s cubic-bezier(0.22, 1, 0.36, 1) 0.06s both;
+}
+
+@keyframes vt-back-out {
+  to {
+    opacity: 0;
+    transform: scale(0.97);
+    filter: blur(3px);
+  }
+}
+
+@keyframes vt-back-in {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes vt-page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes vt-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
   }
 }

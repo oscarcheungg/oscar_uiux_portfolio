@@ -1,0 +1,796 @@
+/* ── Case study pages (see CaseStudy.tsx) ──────────────────────────────────
+   The homepage's voice, carried over: Inter, near-black text, quiet
+   grey labels, a 24px page margin, and light grey bubbles for anything boxed.
+   Type matches the homepage exactly: 14px throughout, with weight and colour
+   (not size) setting the hierarchy, and 12px for small labels. The spacing
+   scale is the homepage's (4 · 8 · 12 · 16 ·
+   24, then 64 between sections). */
+
+.cs-page {
+  --ink: #0f0d0d;
+  --text: #2b2b2b;
+  --muted: #8c8c8c;
+  --line: rgba(15, 13, 13, 0.08);
+  --bubble: #f6f6f6;
+  --space-page: 24px;
+  --column: 960px;
+
+  min-height: 100vh;
+  padding: var(--space-page) var(--space-page) 120px;
+  /* The opening slide spans the window (100vw includes a scrollbar), so
+     clip any sliver of sideways overflow. */
+  overflow-x: clip;
+  background: #fff;
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: -0.008em;
+}
+
+/* ── layout: nav at the left edge, content centred to its right ──────── */
+
+/* The nav sits at the left edge at the page margin, like the homepage's
+   column; the content is centred in all the space to its right. */
+.cs-layout {
+  position: relative;
+}
+
+.cs-column {
+  min-width: 0;
+  max-width: var(--column);
+  margin: 0 auto;
+}
+
+@media (min-width: 1100px) {
+  .cs-layout {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    column-gap: 72px;
+  }
+  .cs-column {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+/* The way back. */
+.cs-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  line-height: 20px;
+  transition: color 0.18s;
+}
+
+.cs-back:hover {
+  color: var(--ink);
+}
+
+/* Tabler's arrow-left, drawn black; faded to sit with the grey label and
+   firming up on hover. */
+.cs-back__arrow {
+  width: 16px;
+  height: 16px;
+  opacity: 0.45;
+  transition:
+    translate 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.18s;
+}
+
+.cs-back:hover .cs-back__arrow {
+  opacity: 1;
+}
+
+.cs-back:hover .cs-back__arrow {
+  translate: -2px 0;
+}
+
+.cs-back--inline {
+  margin-bottom: 28px;
+}
+
+/* Section nav: sticky at the left edge, beside the content — the way back,
+   then the section names as plain text. The one you're reading is dark; the
+   rest are grey and darken on hover. Nothing else marks it. */
+.cs-nav {
+  position: sticky;
+  top: var(--space-page);
+  z-index: 20;
+  display: none;
+  align-self: start;
+}
+
+@media (min-width: 1100px) {
+  .cs-nav {
+    display: block;
+  }
+  .cs-back--inline {
+    display: none !important;
+  }
+}
+
+/* The sections as a vertical scale (see SectionScale): a long tick and the
+   name for each section, short ticks between. Ticks near the cursor swell
+   out by --bump (0 to 1, set from the cursor's distance); the current
+   section's tick is long and dark, its name black. */
+.cs-scale {
+  display: flex;
+  flex-direction: column;
+  margin-top: 56px;
+}
+
+.cs-scale__major {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 24px;
+  text-align: left;
+  outline: none;
+}
+
+.cs-scale__minor {
+  display: flex;
+  align-items: center;
+  height: 5px;
+}
+
+.cs-scale__tick {
+  flex: none;
+  height: 1px;
+  width: calc(8px + var(--bump, 0) * 16px);
+  border-radius: 1px;
+  background: rgba(15, 13, 13, 0.18);
+  transition:
+    width 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.2s;
+}
+
+.cs-scale__tick--major {
+  width: calc(16px + var(--bump, 0) * 16px);
+  background: rgba(15, 13, 13, 0.35);
+}
+
+.cs-scale__major[aria-current='true'] .cs-scale__tick--major {
+  width: calc(28px + var(--bump, 0) * 8px);
+  height: 1.5px;
+  background: var(--ink);
+}
+
+/* The short ticks the reader has scrolled past in the current section
+   darken; the latest one stretches out to mark where they are. */
+.cs-scale__tick[data-state='past'] {
+  background: rgba(15, 13, 13, 0.45);
+}
+
+.cs-scale__tick[data-state='here'] {
+  width: calc(18px + var(--bump, 0) * 10px);
+  background: var(--ink);
+}
+
+.cs-scale__label {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: color 0.18s;
+}
+
+.cs-scale__major:hover .cs-scale__label,
+.cs-scale__major[aria-current='true'] .cs-scale__label {
+  color: var(--ink);
+}
+
+.cs-scale__major:focus-visible .cs-scale__label {
+  outline: 2px solid #0d99ff;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-scale__tick {
+    transition: none;
+  }
+}
+
+
+/* ── the cover, the width of the reading column ───────────────────────── */
+
+.cs-hero {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 14px;
+  /* Arriving from the home page, the hovered preview card grows into this
+     cover (see lib/pageTransition.ts). */
+  view-transition-name: case-cover;
+}
+
+/* ── header text below the cover ─────────────────────────────────────── */
+
+.cs-intro {
+  padding-top: 48px;
+}
+
+.cs-eyebrow {
+  color: var(--muted);
+}
+
+/* The project name, then a little more room after its comma before the
+   discipline. */
+.cs-eyebrow__client {
+  margin-right: 6px;
+  color: var(--ink);
+}
+
+.cs-eyebrow__year {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Same size and weight as the section titles below it. */
+.cs-title {
+  max-width: 640px;
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.cs-lead {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.cs-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 16px 24px;
+  margin: 24px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.cs-meta dd {
+  margin: 4px 0 0;
+  color: var(--ink);
+  white-space: pre-line;
+}
+
+/* ── sections: a blue <LABEL> tag above the title ─────────────────────── */
+
+.cs-section {
+  padding-top: 72px;
+  scroll-margin-top: 24px;
+}
+
+/* A small label in the "Engineer" blue, in capitals between angle brackets —
+   the site's code-ish voice, used for section labels and the details row. */
+.cs-tag {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cs-label, #0d99ff);
+}
+
+.cs-tag--muted {
+  color: var(--muted);
+}
+
+/* Angle brackets mark section labels only; every other small label (meta,
+   card and caption labels) is the same blue type without them. */
+.cs-tag--section::before {
+  content: '<';
+  opacity: 0.6;
+}
+
+.cs-tag--section::after {
+  content: '>';
+  opacity: 0.6;
+}
+
+.cs-section__title {
+  max-width: 640px;
+  margin: 8px 0 20px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+/* ── scannable blocks (TL;DR, callout, points, pair) ───────────────────── */
+
+/* TL;DR: the story in two short paragraphs, then "what I did" cards. */
+.cs-tldr__summary {
+  display: grid;
+  gap: 12px;
+  margin-top: 8px;
+  max-width: 680px;
+  color: var(--ink);
+}
+
+.cs-tldr__impact-label {
+  margin-top: 24px;
+}
+
+.cs-tldr__impact {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.cs-tldr__card {
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--bubble);
+}
+
+.cs-tldr__card-title {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.cs-tldr__card-body {
+  margin-top: 4px;
+  color: var(--text);
+}
+
+/* A single large statement. */
+.cs-callout {
+  margin: 0 0 24px;
+  padding: 2px 0 2px 16px;
+  border-left: 2px solid var(--csa);
+}
+
+/* A quote, not a heading: body-sized and regular weight, so it never
+   competes with the section title above it. */
+.cs-callout__text {
+  max-width: 640px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.cs-callout__note {
+  margin-top: 8px;
+  max-width: 640px;
+  color: var(--muted);
+}
+
+/* Short numbered points. */
+.cs-points {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cs-points__item {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--bubble);
+}
+
+.cs-points__num {
+  flex: none;
+  width: 20px;
+  font-size: 12px;
+  line-height: 22px;
+  color: var(--csa);
+  font-variant-numeric: tabular-nums;
+}
+
+.cs-points__title {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.cs-points__body {
+  margin-top: 2px;
+  color: var(--text);
+}
+
+/* A run of images, one per row, each with a short caption under it —
+   before/after pairs, or two steps of the process. One column, so every
+   image gets the full width and the eye moves straight down. */
+.cs-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 72px;
+  margin-top: 16px;
+}
+
+.cs-pair__media {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  border-radius: 12px;
+  background: var(--bubble);
+}
+
+.cs-pair__media img {
+  display: block;
+  width: auto;
+  max-width: min(100%, 680px);
+  max-height: min(420px, 56vh);
+  object-fit: contain;
+}
+
+/* Bare: the images carry their own framing, so no grey backing. */
+.cs-pair--bare .cs-pair__media {
+  padding: 0;
+  background: none;
+}
+
+/* Duo: two related images in one outlined frame, split by a hairline. */
+.cs-duo {
+  margin-top: 16px;
+}
+
+.cs-duo__frame {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+@media (min-width: 720px) {
+  .cs-duo__frame {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.cs-duo__cell {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.cs-duo__cell + .cs-duo__cell {
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 720px) {
+  .cs-duo__cell + .cs-duo__cell {
+    border-top: 0;
+    border-left: 1px solid var(--line);
+  }
+}
+
+.cs-duo__cell img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: min(420px, 56vh);
+}
+
+.cs-pair__caption {
+  max-width: 640px;
+  margin-top: 40px;
+  color: var(--text);
+}
+
+.cs-pair__tag {
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* Text never hugs a visual: a paragraph that follows an image, a card grid,
+   a chart or a quote gets a full 40px of air above it. */
+.cs-section > :is(div, figure, ol, ul) + p {
+  margin-top: 40px;
+}
+
+/* Stats panel: headline numbers split by hairlines, with an optional bar
+   comparison underneath. Outlined, not filled, like the other framed visuals. */
+.cs-stats-wrap {
+  margin-top: 40px;
+}
+
+.cs-stats {
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.cs-stats__label {
+  margin-bottom: 12px;
+}
+
+.cs-stats__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 720px) {
+  .cs-stats__grid {
+    grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr));
+  }
+}
+
+.cs-stat {
+  padding: 20px 24px 24px;
+}
+
+.cs-stat + .cs-stat {
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 720px) {
+  .cs-stat + .cs-stat {
+    border-top: 0;
+    border-left: 1px solid var(--line);
+  }
+}
+
+.cs-stat__value {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.cs-stat__arrow {
+  margin: 0 8px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.cs-stat__to {
+  color: var(--csa);
+}
+
+.cs-stat__label {
+  margin-top: 8px;
+  color: var(--muted);
+}
+
+.cs-stats__compare {
+  display: grid;
+  gap: 12px;
+  padding: 20px 24px 24px;
+  border-top: 1px solid var(--line);
+}
+
+.cs-stats__compare-title {
+  margin-bottom: 4px;
+  color: var(--text);
+}
+
+.cs-bar-row {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr) 48px;
+  align-items: center;
+  gap: 16px;
+}
+
+.cs-bar-row__label {
+  color: var(--muted);
+}
+
+.cs-bar {
+  display: block;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--bubble);
+}
+
+.cs-bar__fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: rgba(15, 13, 13, 0.22);
+}
+
+.cs-bar__fill--accent {
+  background: var(--csa);
+}
+
+.cs-bar-row__value {
+  text-align: right;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.cs-bar-row__value--accent {
+  font-weight: 600;
+  color: var(--csa);
+}
+
+/* ── figures, cards, links ───────────────────────────────────────────── */
+
+/* Figures never run taller than about a screen's worth: each image is
+   capped in height and scales down in proportion, centred in the column,
+   with its frame hugging it. Smaller images stay as they are. */
+.cs-figure {
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+}
+
+.cs-figure > img,
+.cs-figure > video,
+.cs-page img[class~='max-w-4xl'] {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: min(640px, 78vh);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cs-figure--rounded {
+  border-radius: 12px;
+}
+
+.cs-figure--bordered {
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.cs-card {
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--bubble);
+}
+
+.cs-card__title {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.cs-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: var(--bubble);
+  color: var(--ink);
+  transition: background-color 0.2s;
+}
+
+.cs-link:hover {
+  background: #eeeeee;
+}
+
+.cs-link__icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* ── each page's own type, mapped onto the scale ───────────────────────
+   The pages set their text with utility classes from the old design
+   (16–17px, 55% grey, 10px grey cards). Within a case study those all
+   resolve to the homepage's sizes and colours. */
+
+.cs-page [class~='text-[16px]'],
+.cs-page [class~='text-[15px]'],
+.cs-page [class~='text-[17px]'] {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.cs-page [class~='text-[14px]'] {
+  font-size: 14px;
+}
+
+.cs-page [class~='text-[12px]'],
+.cs-page [class~='text-[13px]'] {
+  font-size: 12px;
+}
+
+.cs-page [class~='leading-6'],
+.cs-page [class~='leading-7'],
+.cs-page [class~='leading-relaxed'] {
+  line-height: 1.6;
+}
+
+/* Body copy: near-black, like the homepage bio. */
+.cs-page [class~='text-neutral-900/55'],
+.cs-page [class~='text-neutral-900/70'],
+.cs-page [class~='text-neutral-900/80'],
+.cs-page [class~='text-neutral-900/85'],
+.cs-page [class~='text-neutral-700'] {
+  color: var(--text);
+}
+
+/* Secondary text: the homepage's quiet grey. */
+.cs-page [class~='text-neutral-900/45'],
+.cs-page [class~='text-neutral-900/30'],
+.cs-page [class~='text-neutral-500'],
+.cs-page [class~='text-neutral-400'] {
+  color: var(--muted);
+}
+
+/* Headings inside sections: 14px semibold, black, like the homepage name. */
+.cs-page h3,
+.cs-page h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Boxed content becomes a light grey bubble. */
+.cs-page [class~='bg-neutral-900/[0.035]'] {
+  border-radius: 12px;
+  background: var(--bubble);
+}
+
+.cs-page [class~='rounded-[10px]'],
+.cs-page [class~='rounded-[8px]'],
+.cs-page [class~='rounded-2xl'] {
+  border-radius: 12px;
+}
+
+
+
+/* Tints of the shared accent. The pages ask for these with Tailwind's
+   opacity shorthand (bg-[var(--csa)]/10), which can't tint a colour held in
+   a variable, so they're mixed here instead. */
+.cs-page [class~='bg-[var(--csa)]/5'] {
+  background-color: color-mix(in srgb, var(--csa) 5%, transparent);
+}
+.cs-page [class~='bg-[var(--csa)]/10'] {
+  background-color: color-mix(in srgb, var(--csa) 10%, transparent);
+}
+.cs-page [class~='bg-[var(--csa)]/20'],
+.cs-page [class~='group-hover:bg-[var(--csa)]/20']:hover {
+  background-color: color-mix(in srgb, var(--csa) 20%, transparent);
+}
+.cs-page [class~='border-[var(--csa)]/20'] {
+  border-color: color-mix(in srgb, var(--csa) 20%, transparent);
+}
+
+/* Phones: a narrower margin at the sides, but more room above the Back
+   link, so the page doesn't start right against the top of the screen (or
+   under a notch when it runs full-screen). */
+/* The sound, lights and clock row sits above the page (see TopBar): in the
+   top-right corner on wide windows, so the content starts clear of it; in
+   its own row on narrower ones, which already gives the top its room. */
+@media (min-width: 1024px) {
+  .cs-page {
+    padding-top: 72px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cs-page {
+    --space-page: 16px;
+    padding-top: 28px;
+  }
+}
+
+
+/* Touch screens: a taller tap area for the way back, without moving it. */
+@media (pointer: coarse) {
+  .cs-back {
+    padding: 12px 8px 12px 0;
+    margin: -12px -8px -12px 0;
+  }
+  /* Its 12px of tap padding plus 16px keeps the usual 28px above the cover. */
+  .cs-back--inline {
+    margin-bottom: 16px;
+  }
+}

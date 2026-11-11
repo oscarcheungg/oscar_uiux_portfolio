@@ -30,52 +30,45 @@ export const COVERS: Record<string, ProjectCoverArt> = {
     meta: 'Internship 2026',
     screen: '/8451NewCover.svg',
     wide: true,
-    tint: '#EDE7F9',
-    art: "url('/8451HoverBg.jpg') center/cover",
+    tint: '#DCE6F2',
+    art: "url('/covers/8451.jpg') center/cover",
   },
   wigo: {
     client: 'Wigo',
     meta: 'Mobile 2026',
     screen: '/wigoNewCover.svg',
-    tint: '#EDF1F6',
-    /* Soft pastel wash, built from layered radial gradients rather than a
-       bitmap so it stays sharp at any size and weighs nothing. */
-    art:
-      'radial-gradient(58% 52% at 10% 32%, #DCE7F0 0%, transparent 62%),' +
-      'radial-gradient(55% 48% at 90% 10%, #F8DDE0 0%, transparent 60%),' +
-      'radial-gradient(60% 55% at 6% 80%, #F7D9D6 0%, transparent 62%),' +
-      'radial-gradient(66% 60% at 94% 88%, #FBE8D2 0%, transparent 64%),' +
-      'radial-gradient(48% 44% at 22% 6%, #E4E7DC 0%, transparent 58%),' +
-      '#F7F5F6',
+    tint: '#E1E7F1',
+    /* A watercolour lake: sky, hills and two sailboats. */
+    art: "url('/covers/wigo.jpg') center/cover",
   },
   centible: {
     client: 'Centible',
     meta: 'iOS 2025',
     screen: '/centibleNewCover.svg',
-    tint: '#E6DCF4',
-    art: "url('/centibleHoverBg.jpg') center/cover",
+    tint: '#F2DCE5',
+    art: "url('/covers/centible.jpg') center/cover",
   },
   spotify: {
     client: 'Spotify',
     meta: 'Concept 2025',
     screenPair: { top: '/spotifyBottomHalf.svg', bottom: '/spotifyTopHalf.svg' },
-    tint: '#C4F5D2',
-    art: "url('/spotifyHoverBg.jpg') center/cover",
+    tint: '#D7EEF3',
+    art: "url('/covers/spotify.jpg') center/cover",
   },
   bite: {
     client: 'Bite',
     meta: 'Mobile 2025',
     screen: '/biteNewCover.svg',
-    tint: '#EBEFF1',
-    art: "url('/biteHoverBg.jpg') center/cover",
+    tint: '#D9ECFA',
+    art: "url('/covers/bite.jpg') center/cover",
   },
   goldendragon: {
     client: 'Golden Dragon',
     meta: 'Website 2025',
     screen: '/gdNewCover.svg',
     wide: true,
-    tint: '#F1EDEC',
-    art: "url('/gdHoverBg.jpg') center/cover",
+    tint: '#F6E6D2',
+    art: "url('/covers/goldendragon.jpg') center/cover",
   },
 };
 
@@ -114,6 +107,8 @@ interface ProjectCoverProps {
   showArt?: boolean;
   /* Whether the screens lift with the card's hover. */
   lift?: boolean;
+  /* Screens on a plain neutral ground: no painted artwork and no hover tint. */
+  neutral?: boolean;
   className?: string;
 }
 
@@ -122,9 +117,11 @@ export function ProjectCover({
   alt = '',
   showArt = false,
   lift = true,
+  neutral = false,
   className = '',
 }: ProjectCoverProps) {
-  const art = cover.art && (
+  const tint = neutral ? undefined : ({ '--screen-hover': cover.tint } as React.CSSProperties);
+  const art = !neutral && cover.art && (
     <span
       aria-hidden="true"
       /* Long, gently-eased fade so the artwork drifts up rather than
@@ -144,7 +141,7 @@ export function ProjectCover({
     return (
       <div
         className={`screen-tile absolute inset-0 overflow-hidden ${className}`}
-        style={{ '--screen-hover': cover.tint } as React.CSSProperties}
+        style={tint}
       >
         {art}
         <img
@@ -172,7 +169,7 @@ export function ProjectCover({
   return (
     <div
       className={`screen-tile absolute inset-0 flex items-center justify-center ${className}`}
-      style={{ '--screen-hover': cover.tint } as React.CSSProperties}
+      style={tint}
     >
       {art}
       <img

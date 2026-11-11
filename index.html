@@ -8,28 +8,15 @@
          browser's own chrome from being darkened by an OS dark preference. -->
     <meta name="color-scheme" content="light" />
     <title>Oscar Cheung</title>
-    <!-- Satoshi carries everything (served from Fontshare; it is not on Google
-         Fonts); Instrument Sans is reserved for small labels, and Caveat only
-         writes on the polaroid captions -->
-    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+    <!-- Inter (variable, so in-between weights like 550 work) carries the
+         whole site, readouts included. Geist Mono only draws the glyphs of
+         the homepage's ASCII koi pond; no text uses it. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Geist+Mono:wght@600&display=swap"
     />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&family=Caveat:wght@500&display=swap"
-    />
-    <!-- Preload critical homepage assets -->
-    <link rel="preload" as="image" href="/oscarProfile.svg" />
-    <link rel="preload" as="image" href="/centibleCover.png" />
-    <link rel="preload" as="image" href="/spotifyLogo.jpg" />
-    <link rel="preload" as="image" href="/biteAssets/newBiteCover.png" />
-    <link rel="preload" as="image" href="/gdLogo.png" />
-    <link rel="preload" as="image" href="/frame1.png" />
   </head>
   <body>
     <div id="root"></div>

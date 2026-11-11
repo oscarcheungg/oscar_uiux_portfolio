@@ -1,0 +1,24 @@
+/* ── Cherry tree (see CherryTree.tsx) ─────────────────────────────────── */
+
+/* The whole tree is the button: click to shake. Nothing drawn around it. */
+.cherry {
+  display: block;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cherry:focus-visible {
+  border-radius: 8px;
+  box-shadow: 0 0 0 2px #0d99ff;
+}
+
+/* Crisp pixels at any scale. */
+.cherry__canvas {
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}

@@ -1,0 +1,218 @@
+/* ── About (see About.tsx) ────────────────────────────────────────────────
+   The case study page's type and colours (.cs-page in case-study.css).
+   One centred column: the hello, the photos drifting by in a row (PhotoArc),
+   then the story. Same on every width, just narrower.
+   No section labels, no blue headings: headings are ink, the rest grey. */
+
+.cs-page.about {
+  position: relative;
+}
+
+.about-layout {
+  max-width: 960px;
+  margin: 0 auto;
+  padding-top: 24px;
+}
+
+.about-title {
+  margin-bottom: 0;
+}
+
+/* The easter egg's heading: like the homepage's <Engineer />, it turns blue
+   and brackets slide open around it. */
+.about-title {
+  transition: color 0.25s;
+}
+
+.about-title[data-code] {
+  color: #0d99ff;
+}
+
+.about-bracket {
+  display: inline-block;
+  max-width: 0;
+  overflow: hidden;
+  vertical-align: bottom;
+  white-space: pre;
+  opacity: 0;
+  transition:
+    max-width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s;
+}
+
+.about-title[data-code] .about-bracket {
+  max-width: 2em;
+  opacity: 0.55;
+}
+
+.about-title[data-code] .about-bracket--close {
+  transition-delay: 0.22s;
+}
+
+/* Decoding text (see Decode): the real text holds the layout, the scramble
+   sits exactly over it. */
+.decode {
+  position: relative;
+}
+
+span.decode {
+  display: inline-block;
+  white-space: pre;
+}
+
+.decode__size {
+  visibility: hidden;
+}
+
+.decode__text {
+  position: absolute;
+  inset: 0;
+}
+
+/* The handwritten name under the story: written stroke by stroke the first
+   time it comes into view (see Signature). */
+.about-sign {
+  margin-top: 28px;
+}
+
+.about-signature {
+  display: block;
+  width: 150px;
+  height: auto;
+  overflow: visible;
+  /* The artwork has room before the first stroke (the ink starts 436 of its
+     2170 pixels in); pull it left by that so the name's first stroke lines
+     up with the story's left edge. */
+  margin-left: calc(-150px * 436 / 2170);
+}
+
+html[data-theme='dark'] .about-signature {
+  filter: invert(1);
+}
+
+.about-signature path {
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 1;
+}
+
+.about-sign[data-written] .about-signature path {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset var(--duration) cubic-bezier(0.3, 0, 0.6, 1) var(--delay);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-sign[data-written] .about-signature path {
+    transition: none;
+  }
+}
+
+/* The story at reading width, with the cherry tree beside it on wide
+   windows (its top level with the story's first line) and below it,
+   centred, on narrow ones. */
+.about-prose {
+  max-width: 640px;
+}
+
+.about-tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+/* Narrow windows: the story, its signature, then the tree. */
+.about-story {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-sign {
+  order: 1;
+}
+
+.about-tree {
+  order: 2;
+}
+
+@media (min-width: 1024px) {
+  /* Wide windows: the story with the tree beside it, the tree's foot
+     level with the story's last line; the signature below the story. */
+  .about-story {
+    display: grid;
+    grid-template-columns: minmax(0, 640px) auto;
+    grid-template-areas:
+      'prose tree'
+      'sign  .';
+    justify-content: space-between;
+    column-gap: 40px;
+  }
+
+  .about-prose {
+    grid-area: prose;
+  }
+
+  .about-tree {
+    grid-area: tree;
+    align-self: end;
+    margin: 0;
+    /* The line box runs a little below the text's baseline, and the canvas
+       keeps a sliver of room under the tree's foot; lift it by the
+       difference so the foot sits exactly on the last line's baseline
+       ("Here's to the next hundred." has no descenders, so that's where the
+       text visibly ends). */
+    margin-bottom: 3.5px;
+  }
+
+  .about-sign {
+    grid-area: sign;
+  }
+}
+
+/* ── the photos ── */
+
+.about-layout .arc {
+  margin: 32px 0 48px;
+}
+
+/* Phones: shorter photos, and a stage to match. */
+@media (max-width: 640px) {
+  .about-layout .arc {
+    --arc-h: 180px !important;
+    height: 244px !important;
+  }
+}
+
+/* The way back: above the content on narrow windows, pinned to the top-left
+   page margin (where the case studies keep it) on wide ones. */
+.about-back {
+  margin-bottom: 16px;
+}
+
+@media (min-width: 1100px) {
+  .about-back {
+    position: absolute;
+    top: var(--space-page);
+    left: var(--space-page);
+    margin: 0;
+  }
+}
+
+/* ── type ── */
+
+.about-heading {
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.about-prose {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+

@@ -1,0 +1,119 @@
+/* ── Footer (see Footer.tsx) ───────────────────────────────────────────── */
+
+/* A band of blue water the page fades down into, with the copyright and
+   links along its bottom edge. */
+.site-footer {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #6f7c8a;
+  /* The page colour above, so the fade starts from it. */
+  background: #fff;
+}
+
+html[data-theme='dark'] .site-footer {
+  background: #121212;
+}
+
+/* The water: one soft, even pale blue with the pond drawn over it, with a
+   short, gentle fade in from the page at the top. */
+.site-footer__water {
+  position: absolute;
+  inset: 0;
+  background: #eaf3fb;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 44px);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 44px);
+}
+
+html[data-theme='dark'] .site-footer__water {
+  background: #13202c;
+}
+
+/* The pond reads its glyph face from the canvas's font-family. */
+.site-footer__pond {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-family: 'Geist Mono', ui-monospace, Menlo, monospace;
+}
+
+/* Copyright and links, along the bottom of the water. */
+.site-footer__bar {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 22px;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px 24px;
+  pointer-events: none;
+}
+
+.site-footer__copy {
+  margin: 0;
+}
+
+.site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: auto;
+}
+
+.site-footer__links a {
+  color: #2f4a63;
+  text-decoration: underline;
+  text-decoration-color: rgba(47, 74, 99, 0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s;
+}
+
+.site-footer__links a:hover,
+.site-footer__links a:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+html[data-theme='dark'] .site-footer {
+  color: #8a9aab;
+}
+
+html[data-theme='dark'] .site-footer__links a {
+  color: #d6e6f5;
+  text-decoration-color: rgba(214, 230, 245, 0.3);
+}
+
+.site-footer__links a:focus-visible {
+  outline: 2px solid #0d99ff;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (max-width: 640px) {
+  .site-footer {
+    height: 160px;
+  }
+
+  .site-footer__bar {
+    left: 16px;
+    right: 16px;
+    bottom: 18px;
+  }
+}
+
+/* Touch screens: links with room for a fingertip, without moving them. */
+@media (pointer: coarse) {
+  .site-footer__links a {
+    display: inline-block;
+    padding: 12px 8px;
+    margin: -12px -8px;
+  }
+}

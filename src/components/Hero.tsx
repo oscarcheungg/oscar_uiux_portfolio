@@ -23,11 +23,10 @@ export function Hero() {
             nested default. Each group passed has to be complete. */}
         <DynamicParticles
           appearance={{
-            logoImage: '/frame1.png',
-            /* Sample the icon's own magenta-to-violet gradient (#994780 →
-               #5e1098) rather than substituting a palette. It only read as
-               near-black before because the default shadow crushed it. */
-            useOriginalColors: true,
+            logoImage: '/logo-mark.svg',
+            /* The mark is solid black, so colour comes from color1/color2
+               rather than from the image. */
+            useOriginalColors: false,
             color1: '#FFFFFF',
             color2: '#8F8F8F',
             particleDensity: 16,

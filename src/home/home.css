@@ -1,0 +1,1508 @@
+/* ── The homepage (current direction) ────────────────────────────────────
+   Who I am, the work, what's beyond it and how to reach me down a column on
+   the left; sound, lighting and the place and time across the top.
+   Text is Inter at 14px, readouts included. Icons are Tabler outline
+   (stroke 2), drawn at Figma's sizes: 20px up top, 16px in the chips. */
+
+.home {
+  --ink: #0f0d0d;
+  --ink-2: rgba(15, 13, 13, 0.58);
+  --ink-3: rgba(15, 13, 13, 0.4);
+  --name: #505050;
+  --role: #999;
+  --body: #737373;
+  --strong: #202020;
+  --item: #292929;
+  --muted: #8c8c8c;
+  --chip: #f1f1f1;
+  /* The section bubble: a pale tint of the Figma blue, just enough to lift
+     the open list off the page. */
+  --bubble: #f0f7ff;
+  /* The section folders as frosted glass: a cool, see-through fill that
+     blurs the pond behind it, a hairline edge, a bright top edge where the
+     light catches it, and a soft shadow underneath. */
+  --glass: rgba(236, 244, 255, 0.46);
+  --glass-edge: rgba(15, 30, 60, 0.07);
+  --glass-shine: rgba(255, 255, 255, 0.95);
+  --glass-shadow: 0 10px 28px -14px rgba(31, 46, 64, 0.22);
+  --page: #fff;
+  --panel: rgba(255, 255, 255, 0.32);
+  --panel-shadow: 0 12px 32px rgba(31, 46, 64, 0.12);
+  --icon: none;
+  --line: rgba(15, 13, 13, 0.08);
+  --font: 'Inter', system-ui, sans-serif;
+  /* Readouts (the clock, counts, years) are Inter too, with tabular figures
+     so digits keep an even width as they change. */
+  --readout: 'Inter', system-ui, sans-serif;
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --out: cubic-bezier(0.22, 1, 0.36, 1);
+  --side: 320px;
+  --edge: 32px;
+
+  /* One spacing scale for the whole page (4 · 8 · 12 · 16 · 24):
+     page    — the margin to every window edge
+     block   — between the column's blocks (photo, intro, sections, contact)
+     text    — between paragraphs, and from a label to its content
+     row     — between rows, chip rows and the two sections
+     bubble  — inside a section's bubble (top/bottom, sides) */
+  --space-page: 24px;
+  --space-block: 24px;
+  --space-text: 12px;
+  --space-row: 8px;
+  --space-bubble-y: 8px;
+  --space-bubble-x: 12px;
+  /* The controls row is 32px tall; the column starts right below it. */
+  --space-top: calc(var(--space-page) + 32px);
+
+  position: relative;
+  min-height: 100vh;
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: -0.008em;
+  font-feature-settings: 'cv11', 'ss01';
+}
+
+/* The lights switch is a view transition (see spreadFrom in Home.tsx): the
+   new theme is revealed through a circle growing from the bulb, laid over the
+   old page rather than cross-faded with it. */
+html.vt-lights::view-transition-old(root),
+html.vt-lights::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+html.vt-lights::view-transition-new(root) {
+  z-index: 1;
+}
+
+/* The landing page never scrolls, at any window size: the document is
+   pinned while it's open (Home adds .home-locked to <html>) and the spacing
+   tightens on shorter windows. Text is never scaled. */
+html.home-locked,
+html.home-locked body {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+  /* clip, unlike hidden, can't be scrolled at all — not even by tabbing to a
+     link near the bottom. */
+  overflow: clip;
+}
+
+/* Lights off: the same page, dimmed. Black icons are inverted to white. */
+.home[data-theme='dark'] {
+  --ink: #f2f0ef;
+  --ink-2: rgba(242, 240, 239, 0.62);
+  --ink-3: rgba(242, 240, 239, 0.42);
+  --name: #e4e4e4;
+  --role: #8a8a8a;
+  --body: #a3a3a3;
+  --strong: #f2f2f2;
+  --item: #ececec;
+  --muted: #7d7d7d;
+  --chip: #232323;
+  --bubble: #13202b;
+  --glass: rgba(150, 190, 255, 0.07);
+  --glass-edge: rgba(255, 255, 255, 0.09);
+  --glass-shine: rgba(255, 255, 255, 0.12);
+  --glass-shadow: 0 12px 30px -14px rgba(0, 0, 0, 0.7);
+  --page: #121212;
+  --panel: rgba(255, 255, 255, 0.04);
+  --panel-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --icon: invert(1);
+  color-scheme: dark;
+}
+
+.home img[src^='/home/icons/'] {
+  filter: var(--icon);
+}
+
+/* The same controls row on every other page (see TopBar): it carries the
+   homepage's tokens with it, and follows the lights from <html>. */
+.site-top {
+  --ink: #0f0d0d;
+  --ink-2: rgba(15, 13, 13, 0.58);
+  --ink-3: rgba(15, 13, 13, 0.4);
+  --muted: #8c8c8c;
+  --chip: #f1f1f1;
+  --page: #fff;
+  --panel: rgba(255, 255, 255, 0.32);
+  --panel-shadow: 0 12px 32px rgba(31, 46, 64, 0.12);
+  --icon: none;
+  --line: rgba(15, 13, 13, 0.08);
+  --font: 'Inter', system-ui, sans-serif;
+  --readout: 'Inter', system-ui, sans-serif;
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --out: cubic-bezier(0.22, 1, 0.36, 1);
+  --space-page: 24px;
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: -0.008em;
+}
+
+html[data-theme='dark'] .site-top {
+  --ink: #f2f0ef;
+  --ink-2: rgba(242, 240, 239, 0.62);
+  --ink-3: rgba(242, 240, 239, 0.42);
+  --muted: #7d7d7d;
+  --chip: #232323;
+  --page: #121212;
+  --panel: rgba(255, 255, 255, 0.04);
+  --panel-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --icon: invert(1);
+  --line: rgba(255, 255, 255, 0.1);
+}
+
+.site-top img[src^='/home/icons/'] {
+  filter: var(--icon);
+}
+
+/* In the top-right corner of the page on wide windows, like the homepage:
+   it stays at the top and scrolls away with the page (wide pages keep their
+   content clear of it). */
+@media (min-width: 1024px) {
+  .home__top.site-top {
+    position: absolute;
+    z-index: 40;
+  }
+}
+
+@media (max-width: 640px) {
+  .home__top.site-top {
+    --space-page: 16px;
+  }
+}
+
+/* ── top: sound, lighting, place and time ───────────────────────────── */
+
+/* The page keeps an even 24px margin on the left, top and right: the
+   column starts 24px in, and the controls sit 24px from the top and right
+   edges. */
+.home__top {
+  position: absolute;
+  top: var(--space-page);
+  right: var(--space-page);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+}
+
+.home__toggles {
+  display: flex;
+  gap: 4px;
+}
+
+.home__toggle {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  outline: none;
+  transition: background-color 0.2s;
+}
+
+.home__toggle:hover {
+  background: var(--chip);
+}
+
+.home__toggle:focus-visible {
+  box-shadow: 0 0 0 2px #0d99ff;
+}
+
+.home__toggle img {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── left column ────────────────────────────────────────────────────── */
+
+.home__side {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  gap: var(--space-block);
+  width: 356px;
+  padding: var(--space-top) 0 var(--space-page) var(--space-page);
+}
+
+/* The photo, with my name written beside it on hover (see Signature). The
+   name overlaps the photo's lower-right corner, as in the v2 design. */
+.portrait {
+  position: relative;
+  width: 96px;
+  height: 96px;
+}
+
+.signature {
+  position: absolute;
+  top: 66px;
+  left: 80px;
+  width: 111px;
+  height: 37px;
+  overflow: visible;
+  pointer-events: none;
+  filter: var(--icon);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Each stroke of the mask starts undrawn (its one dash pushed off the end)
+   and is drawn in when the photo is hovered, after the strokes before it. */
+.signature path {
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0s 0.3s;
+}
+
+/* While the photo is hovered, write the name. Leaving fades it out, then
+   resets the strokes once the fade is done. */
+.portrait:hover .signature {
+  opacity: 1;
+  transition: opacity 0s;
+}
+
+.portrait:hover .signature path {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset var(--duration) cubic-bezier(0.3, 0, 0.6, 1) var(--delay);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait:hover .signature path {
+    transition: none;
+  }
+}
+
+.home__photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-text);
+  width: 320px;
+}
+
+.intro__identity {
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+.intro__name {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.intro__role {
+  color: var(--role);
+}
+
+/* ── role line: "Product Designer & Engineer" (see RoleLine.tsx) ─────────
+   Each role carries a faint dotted underline to say it can be hovered. */
+.role {
+  position: relative;
+  display: inline-block;
+  text-decoration: underline dotted;
+  text-decoration-color: color-mix(in srgb, var(--role) 70%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  outline: none;
+  transition:
+    color 0.25s,
+    text-decoration-color 0.25s;
+}
+
+.role:hover,
+.role:focus-visible {
+  text-decoration-color: transparent;
+}
+
+/* Product Designer: a Figma selection lands on the words. */
+.role--designer:hover,
+.role--designer:focus-visible {
+  color: var(--ink);
+}
+
+.role__frame {
+  position: absolute;
+  inset: -2px -4px;
+  border: 1px solid #0d99ff;
+  pointer-events: none;
+  opacity: 0;
+  scale: 1.06;
+  transition:
+    opacity 0.15s,
+    scale 0.35s var(--spring);
+}
+
+.role--designer:hover .role__frame,
+.role--designer:focus-visible .role__frame {
+  opacity: 1;
+  scale: 1;
+}
+
+/* Corner handles, popping in clockwise from the top left. */
+.role__handle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border: 1px solid #0d99ff;
+  background: var(--page);
+  scale: 0;
+  transition: scale 0.25s var(--spring);
+}
+
+.role__handle:nth-child(1) { top: -3.5px; left: -3.5px; }
+.role__handle:nth-child(2) { top: -3.5px; right: -3.5px; }
+.role__handle:nth-child(3) { bottom: -3.5px; right: -3.5px; }
+.role__handle:nth-child(4) { bottom: -3.5px; left: -3.5px; }
+
+.role--designer:hover .role__handle,
+.role--designer:focus-visible .role__handle {
+  scale: 1;
+  transition-delay: calc(0.08s + var(--n) * 0.05s);
+}
+
+/* The size badge, centred under the frame. */
+.role__size {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 50%;
+  translate: -50% -3px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: #0d99ff;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+  white-space: nowrap;
+  opacity: 0;
+  transition:
+    opacity 0.2s,
+    translate 0.3s var(--out);
+}
+
+.role--designer:hover .role__size,
+.role--designer:focus-visible .role__size {
+  opacity: 1;
+  translate: -50% 0;
+  transition-delay: 0.22s;
+}
+
+/* Engineer: the letters decode into <Engineer />. */
+.role--engineer[data-on='true'] {
+  color: #0d99ff;
+}
+
+.role__code {
+  position: relative;
+  display: inline-block;
+  white-space: pre;
+}
+
+/* Only the real word takes up room; the scramble sits on top of it. */
+.role__code-size {
+  visibility: hidden;
+}
+
+.role__code-text {
+  position: absolute;
+  inset: 0;
+  /* An underline doesn't reach into an inline-block, so the visible word
+     draws its own — the same dotted hint as Product Designer. */
+  text-decoration: underline dotted;
+  text-decoration-color: color-mix(in srgb, var(--role) 70%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.25s;
+}
+
+.role--engineer:hover .role__code-text {
+  text-decoration-color: transparent;
+}
+
+/* The brackets take no room until hovered, then slide open around it. */
+.role__bracket {
+  display: inline-block;
+  max-width: 0;
+  overflow: hidden;
+  vertical-align: bottom;
+  white-space: pre;
+  opacity: 0;
+  transition:
+    max-width 0.35s var(--out),
+    opacity 0.2s;
+}
+
+.role--engineer[data-on='true'] .role__bracket {
+  max-width: 2em;
+  opacity: 0.55;
+}
+
+.role--engineer[data-on='true'] .role__bracket--close {
+  transition-delay: 0.22s;
+}
+
+.intro__body {
+  display: grid;
+  gap: var(--space-text);
+  color: var(--ink);
+  letter-spacing: -0.112px;
+}
+
+.intro__link {
+  color: var(--strong);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 0.2s;
+}
+
+.intro__link:hover,
+.intro__link:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+.intro__link {
+  position: relative;
+}
+
+/* Hovering @Figma pops a little preview card up above the word — the
+   animated Figma logo, in a thin white frame with a soft shadow. It grows
+   out of the link (from a slight blur and a smaller size) with a quick
+   spring, stays put above the word rather than following the cursor, and
+   tucks away faster than it came. */
+.intro__preview {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  /* Lined up with the start of the word (not centred on it), so it can't
+     hang off the left edge when the word starts a line. */
+  left: -4px;
+  z-index: 10;
+  width: 140px;
+  aspect-ratio: 4 / 3;
+  padding: 2px;
+  border-radius: 11px;
+  background: #fff;
+  box-shadow:
+    0 0 0 1px rgba(15, 13, 13, 0.06),
+    0 18px 40px -12px rgba(15, 13, 13, 0.28),
+    0 4px 10px -4px rgba(15, 13, 13, 0.12);
+  pointer-events: none;
+  opacity: 0;
+  translate: 0 10px;
+  scale: 0.82;
+  filter: blur(4px);
+  transform-origin: 14px 100%;
+  transition:
+    opacity 0.14s,
+    translate 0.2s var(--out),
+    scale 0.2s var(--out),
+    filter 0.2s;
+}
+
+.intro__preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 9px;
+  object-fit: cover;
+}
+
+.intro__link:hover .intro__preview,
+.intro__link:focus-visible .intro__preview {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  filter: blur(0);
+  transition:
+    opacity 0.18s,
+    translate 0.45s var(--spring),
+    scale 0.45s var(--spring),
+    filter 0.25s;
+}
+
+/* Selected work and Elsewhere: a quiet label over one-line rows. */
+.index {
+  display: flex;
+  flex-direction: column;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+/* Selected work and Elsewhere: quiet grey labels that open into tight
+   lists. The label borrows the clock's voice — a mono count at its end —
+   and its folder icon opens with it. Opening cascades the rows
+   in one by one; hovering a row puts it in the spotlight, fading the others
+   back and sliding its year in beside it. */
+/* Each section sits in a rounded bubble — a pale blue — that appears when its label is hovered and
+   stays, wrapped around the list, while it's open. The padding is always
+   there (offset by a negative margin, so the text lines up with the column)
+   and only the colour changes, so nothing shifts as the bubble appears. */
+.fold {
+  /* As wide as the label plus its padding, so the icon sits as far from
+     the bubble's right edge as the words do from its left. */
+  width: calc(320px + 2 * var(--space-bubble-x));
+  max-width: calc(100% + 2 * var(--space-bubble-x));
+  margin: 0 calc(-1 * var(--space-bubble-x));
+  padding: var(--space-bubble-y) var(--space-bubble-x);
+  border-radius: 12px;
+  background: transparent;
+  transition:
+    background-color 0.25s,
+    box-shadow 0.25s,
+    backdrop-filter 0.25s;
+}
+
+/* Hovered or open, the bubble frosts over (see --glass). The edge and shine
+   are inset shadows, so nothing shifts as it appears. */
+.fold:has(.fold__toggle:hover),
+.fold[data-open='true'] {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(14px) saturate(1.6);
+  backdrop-filter: blur(14px) saturate(1.6);
+  box-shadow:
+    inset 0 0 0 1px var(--glass-edge),
+    inset 0 1px 0 var(--glass-shine),
+    var(--glass-shadow);
+}
+
+.fold + .fold {
+  margin-top: var(--space-row);
+}
+
+.fold__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 320px;
+  max-width: 100%;
+  padding: 2px 0;
+  color: var(--muted);
+  border-radius: 4px;
+  outline: none;
+  transition: color 0.2s;
+}
+
+.fold__toggle:hover,
+.fold[data-open='true'] .fold__toggle {
+  color: var(--item);
+}
+
+.fold__toggle:focus-visible {
+  box-shadow: 0 0 0 2px #0d99ff;
+}
+
+/* The section's icon: a folder that cross-fades to its open drawing as the
+   list drops, and back as it folds away. */
+.fold__icon {
+  position: relative;
+  display: inline-grid;
+  width: 15px;
+  height: 15px;
+}
+
+.fold__glyph {
+  grid-area: 1 / 1;
+  width: 15px;
+  height: 15px;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.fold__toggle:hover .fold__glyph--closed {
+  opacity: 0.9;
+}
+
+.fold__glyph--open,
+.fold[data-open='true'] .fold__glyph--closed {
+  opacity: 0;
+}
+
+.fold[data-open='true'] .fold__glyph--open {
+  opacity: 0.9;
+}
+
+/* Count and icon, together at the far end of the label. */
+.fold__end {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fold__count {
+  font-family: var(--readout);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Grid rows animate from the list's full height to nothing (and back), so
+   the drop-down needs no measured heights. */
+.fold__body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.fold[data-open='true'] .fold__body {
+  grid-template-rows: 1fr;
+}
+
+/* The row's only child, clipped, so it can shrink all the way to nothing. */
+.fold__inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.index__list {
+  display: grid;
+  gap: var(--space-row);
+  margin: 0;
+  padding: var(--space-text) 0 0;
+  list-style: none;
+}
+
+/* Rows cascade in when the section opens (each one a beat after the last)
+   and all leave together when it closes. */
+.index__list > li {
+  opacity: 0;
+  translate: 0 -4px;
+  transition:
+    opacity 0.15s,
+    translate 0.15s;
+}
+
+.fold[data-open='true'] .index__list > li {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 0.35s var(--out) calc(var(--i, 0) * 40ms + 60ms),
+    translate 0.45s var(--out) calc(var(--i, 0) * 40ms + 60ms);
+}
+
+.index__row {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
+  border-radius: 4px;
+  outline: none;
+  transition: opacity 0.25s;
+}
+
+.index__row:focus-visible {
+  box-shadow: 0 0 0 2px #0d99ff;
+}
+
+/* Spotlight: while one row is hovered or focused, the rest fade back. */
+.index__list:has(a.index__row:hover, a.index__row:focus-visible) .index__row:not(:hover, :focus-visible) {
+  opacity: 0.35;
+}
+
+.index__name {
+  color: var(--item);
+}
+
+.index__meta {
+  color: var(--muted);
+  transition: color 0.25s;
+}
+
+a.index__row:hover .index__meta,
+a.index__row:focus-visible .index__meta {
+  color: var(--body);
+}
+
+/* The year waits just out of sight and slides in on hover. */
+.index__year {
+  font-family: var(--readout);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+  opacity: 0;
+  translate: -4px 0;
+  transition:
+    opacity 0.2s,
+    translate 0.35s var(--spring);
+}
+
+.index__row:hover .index__year,
+.index__row:focus-visible .index__year {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.index__row--soon {
+  cursor: default;
+}
+
+
+
+/* Connect with me. */
+/* Connect with me sits at the foot of the window, below everything else. */
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-text);
+  margin-top: auto;
+}
+
+.contact__label {
+  line-height: 20px;
+  letter-spacing: -0.112px;
+  color: var(--ink-2);
+}
+
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Email on its own row, the social links on the row beneath it. */
+.contact__links + .contact__links {
+  margin-top: calc(var(--space-row) - var(--space-text));
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 8px;
+  border-radius: 5px;
+  background: var(--chip);
+  color: var(--ink);
+  letter-spacing: -0.112px;
+  white-space: nowrap;
+  outline: none;
+  transition: background-color 0.2s;
+}
+
+.chip--icon {
+  width: 32px;
+  padding: 0;
+  justify-content: center;
+}
+
+.chip img {
+  width: 16px;
+  height: 16px;
+}
+
+.chip:hover {
+  background: color-mix(in srgb, var(--chip) 85%, var(--ink));
+}
+
+.chip:focus-visible {
+  box-shadow: 0 0 0 2px #0d99ff;
+}
+
+/* Shorter laptop windows: tighter spacing (never smaller text) so both
+   index sections can be open at once down to about 800px tall. */
+@media (min-width: 1024px) and (max-height: 880px) {
+  .home {
+    --space-block: 16px;
+    --space-text: 8px;
+    --space-row: 4px;
+    --space-bubble-y: 6px;
+    /* The column starts level with the controls row instead of below it. */
+    --space-top: var(--space-page);
+  }
+}
+
+/* Measuring the column's natural height (see fitsWith in Home.tsx): no
+   transitions, no stretching to the window, contact block in normal flow. */
+.home__side--measuring {
+  flex: none;
+}
+
+.home__side--measuring *,
+.home__side--measuring {
+  transition: none !important;
+}
+
+.home__side--measuring .contact {
+  margin-top: 0;
+}
+
+/* Narrower windows: the controls get their own row above the column. On a
+   phone the page margin steps down to 16. */
+@media (max-width: 640px) {
+  .home {
+    --space-page: 16px;
+  }
+
+  /* Room above the controls row, so it doesn't crowd the top of a phone
+     screen (and clears a notch when the page runs full-screen). */
+  .home__top {
+    padding-top: max(40px, calc(env(safe-area-inset-top) + 16px)) !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .home__top {
+    position: static;
+    justify-content: flex-end;
+    padding: var(--space-page) var(--space-page) 0;
+  }
+  .home__side {
+    width: auto;
+    max-width: 420px;
+    padding: var(--space-block) var(--space-page) var(--space-page);
+  }
+  .intro {
+    width: auto;
+  }
+  .index__row {
+    white-space: normal;
+  }
+}
+
+/* ── sidebar ────────────────────────────────────────────────────────────── */
+
+.side {
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 40px;
+}
+
+@media (min-width: 960px) {
+  .side {
+    position: fixed;
+    inset: 0 auto 0 var(--edge);
+    width: var(--side);
+    padding: 44px 0 28px;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+}
+
+/* A link in a sentence: same ink as the words around it, a fine underline. */
+.text-link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: rgba(29, 27, 26, 0.45);
+  transition: text-decoration-color 0.2s, color 0.2s;
+}
+
+.text-link:hover,
+.text-link:focus-visible {
+  text-decoration-color: var(--ink);
+}
+
+.text-link--static {
+  cursor: default;
+}
+
+/* ── sidebar index ──────────────────────────────────────────────────────── */
+
+.side-index {
+  display: grid;
+  gap: 6px;
+  margin-top: 30px;
+}
+
+/* A heading that opens its group; a small plus turns into a minus. */
+.side-group__title {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+  font-weight: 550;
+  color: var(--ink);
+  outline: none;
+}
+
+.side-group__mark {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  opacity: 0;
+  translate: -4px 0;
+  transition: opacity 0.2s, translate 0.35s var(--spring);
+}
+
+.side-group__mark::before,
+.side-group__mark::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 9px;
+  height: 1.5px;
+  border-radius: 1px;
+  background: var(--ink-3);
+  transition: rotate 0.35s var(--spring);
+}
+
+.side-group__mark::after {
+  rotate: 90deg;
+}
+
+.side-group[data-open='true'] .side-group__mark::after {
+  rotate: 0deg;
+}
+
+.side-group__title:hover .side-group__mark,
+.side-group__title:focus-visible .side-group__mark,
+.side-group[data-open='true'] .side-group__mark {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.side-group__title:focus-visible {
+  outline: 2px solid #0d99ff;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.side-group__rows {
+  overflow: hidden;
+}
+
+.side-group__inner {
+  display: grid;
+  margin: 0 -8px 8px;
+}
+
+.side-row {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  width: 100%;
+  padding: 2px 8px;
+  border-radius: 7px;
+  color: var(--ink-2);
+  text-align: left;
+  outline: none;
+  transition: color 0.2s;
+}
+
+.side-row:hover,
+.side-row:focus-visible {
+  color: var(--ink);
+}
+
+/* One highlight shared by every row — it glides between them. */
+.side-row__pill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--chip);
+}
+
+.side-row__index {
+  width: 18px;
+  font-family: var(--readout);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+.side-row__label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.side-row__meta {
+  font-family: var(--readout);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+.side-row:focus-visible {
+  box-shadow: 0 0 0 2px #0d99ff;
+}
+
+/* ── place and time (top-right) ─────────────────────────────────────────── */
+
+.home__clock {
+  order: 1;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 20px 0;
+}
+
+@media (min-width: 960px) {
+  .home__clock {
+    position: fixed;
+    top: 34px;
+    right: calc(var(--edge) + 14px);
+    z-index: 20;
+    padding: 6px 12px 6px 9px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.72);
+    -webkit-backdrop-filter: blur(14px) saturate(1.5);
+    backdrop-filter: blur(14px) saturate(1.5);
+    box-shadow: 0 1px 2px rgba(30, 55, 52, 0.08), 0 6px 18px -10px rgba(30, 55, 52, 0.3);
+  }
+}
+
+/* The readout is a button (click switches between my time and the
+   visitor's), with a card that opens beneath it on hover or focus. */
+.local-time-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.local-time {
+  position: relative;
+  font: inherit;
+  text-align: left;
+  outline: none;
+  transition: background-color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  /* 10px on the left keeps the gap from the light bulb to the weather icon
+     the same 16px as the gap between the sound and light bulb icons. */
+  padding: 4px 10px 4px 10px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--page) 78%, transparent);
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+  color: var(--ink-2);
+}
+
+.local-time:hover,
+.local-time[aria-pressed='true'] {
+  background: color-mix(in srgb, var(--chip) 85%, transparent);
+}
+
+.local-time:focus-visible {
+  box-shadow: 0 0 0 2px #0d99ff;
+}
+
+.local-time__card {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 30;
+  display: grid;
+  gap: 2px;
+  min-width: 220px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--page);
+  box-shadow: 0 12px 28px -12px rgba(15, 13, 13, 0.22);
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: -0.104px;
+  color: var(--ink-2);
+  white-space: nowrap;
+  opacity: 0;
+  translate: 0 -4px;
+  pointer-events: none;
+  transition:
+    opacity 0.18s,
+    translate 0.3s var(--out);
+}
+
+.local-time-wrap:hover .local-time__card,
+.local-time-wrap:focus-within .local-time__card {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.local-time__strong {
+  color: var(--ink);
+}
+
+.local-time__place {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: -0.104px;
+  white-space: nowrap;
+}
+
+/* Same size as the sound and lighting icons beside it. */
+.local-time__sky {
+  width: 20px;
+  height: 20px;
+}
+
+.local-time__clock {
+  font-family: var(--readout);
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.24px;
+  color: var(--ink);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.local-time__clock time {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.local-time__unit {
+  margin-left: 4px;
+  white-space: pre;
+  color: var(--ink-3);
+}
+
+.local-time__colon {
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0.35; }
+}
+
+/* A digit on an odometer strip. Not selectable, so copying the page doesn't
+   pick up all ten digits. */
+.roll {
+  display: inline-block;
+  height: 18px;
+  overflow: hidden;
+  vertical-align: bottom;
+  user-select: none;
+}
+
+.roll__strip {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(calc(var(--d) * -18px));
+  transition: transform 0.55s var(--spring);
+}
+
+.roll__strip > span {
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+}
+
+/* ── play area ──────────────────────────────────────────────────────── */
+
+.play {
+  order: 3;
+  height: 72vh;
+  min-height: 420px;
+  padding: 0 20px 20px;
+}
+
+@media (min-width: 960px) {
+  .play {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    bottom: 20px;
+    left: calc(var(--edge) + var(--side) + 44px);
+    height: auto;
+    padding: 0;
+  }
+}
+
+/* ── work folder ──────────────────────────────────────────────────────── */
+
+/* The folder's world. Perspective here gives the front flap its depth as
+   it tips and swings on its bottom hinge. */
+.folder-area {
+  position: relative;
+  height: 100%;
+  perspective: 1100px;
+}
+
+.folder__back {
+  position: absolute;
+  z-index: 1;
+  border-radius: 6px 16px 16px 16px;
+  background: linear-gradient(180deg, #dfdcd7, #d5d1cb);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+.folder__tab {
+  position: absolute;
+  left: 0;
+  top: -16px;
+  width: 40%;
+  height: 26px;
+  border-radius: 10px 12px 0 0;
+  background: #dfdcd7;
+}
+
+.folder-cards {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+
+.folder-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+/* Only prints that are out of the folder can be picked up. */
+.folder-card[data-live] {
+  pointer-events: auto;
+}
+
+.folder-card__print {
+  display: block;
+  padding: 6px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow:
+    0 1px 2px rgba(15, 13, 13, 0.06),
+    0 10px 26px -14px rgba(15, 13, 13, 0.3);
+  outline: none;
+  transition: translate 0.4s var(--spring), box-shadow 0.3s;
+}
+
+.folder-card[data-live] .folder-card__print:hover,
+.folder-card[data-live] .folder-card__print:focus-visible {
+  translate: 0 -6px;
+  box-shadow:
+    0 2px 4px rgba(15, 13, 13, 0.06),
+    0 22px 40px -18px rgba(15, 13, 13, 0.38);
+}
+
+.folder-card__print:focus-visible {
+  outline: 2px solid #0d99ff;
+  outline-offset: 2px;
+}
+
+.folder-card__cover {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #efefef;
+}
+
+.folder-card__caption {
+  display: grid;
+  gap: 1px;
+  padding: 8px 4px 2px;
+  line-height: 1.3;
+}
+
+.folder-card__client {
+  font-size: 13px;
+  font-weight: 550;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.folder-card__meta {
+  font-family: var(--readout);
+  font-variant-numeric: tabular-nums;
+  font-size: 10.5px;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.folder__front {
+  position: absolute;
+  z-index: 20;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 18px 15px;
+  border-radius: 10px 10px 16px 16px;
+  background: linear-gradient(180deg, #f4f2ef, #e9e6e1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 1px 2px rgba(15, 13, 13, 0.06),
+    0 18px 34px -20px rgba(15, 13, 13, 0.4);
+  transform-origin: 50% 100%;
+  cursor: pointer;
+  outline: none;
+}
+
+.folder__front:focus-visible {
+  outline: 2px solid #0d99ff;
+  outline-offset: 3px;
+}
+
+.folder__label {
+  font-size: 15px;
+  font-weight: 550;
+  color: var(--ink);
+}
+
+.folder__count {
+  font-family: var(--readout);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+/* ── reduced motion ─────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .home *,
+  .home *::before,
+  .home *::after {
+    transition-duration: 0.01ms !important;
+    animation: none !important;
+  }
+}
+
+/* @UNC-Chapel Hill uses the same card as @Figma, opening to the right of
+   the words instead of above them, with the NC logo centred inside. */
+.intro__preview--side {
+  top: 50%;
+  bottom: auto;
+  left: calc(100% + 8px);
+  translate: -10px -50%;
+  transform-origin: 0 50%;
+}
+
+.intro__link:hover .intro__preview--side,
+.intro__link:focus-visible .intro__preview--side {
+  translate: 0 -50%;
+}
+
+.intro__preview--logo {
+  display: grid;
+  place-items: center;
+}
+
+.intro__preview--logo img {
+  width: 62%;
+  height: auto;
+  border-radius: 0;
+  object-fit: contain;
+}
+
+/* ── project preview beside Selected work (see WorkPeek.tsx) ─────────────── */
+
+.work-peek {
+  position: fixed;
+  z-index: 15;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--chip);
+  box-shadow:
+    0 0 0 1px rgba(15, 13, 13, 0.05),
+    0 24px 48px -24px rgba(15, 13, 13, 0.25);
+  pointer-events: none;
+  opacity: 0;
+  translate: -8px 0;
+  transition:
+    opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    translate 0.35s var(--out),
+    top 0.35s var(--out);
+}
+
+.work-peek[data-on='true'] {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* Each project's cover arrives with a quick cross-fade as the card glides
+   from row to row. */
+.work-peek__inner {
+  position: absolute;
+  inset: 0;
+  animation: peek-in 0.3s var(--out);
+}
+
+@keyframes peek-in {
+  from {
+    opacity: 0;
+    scale: 1.03;
+  }
+}
+
+/* The hovered project's name is underlined. */
+a.index__row:hover .index__name {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-peek,
+  .work-peek__inner {
+    transition: opacity 0.2s;
+    animation: none;
+  }
+}
+
+
+/* ── phones and tablets ─────────────────────────────────────────────────
+   The fixed, no-scroll layout is for wide windows. On narrower ones the
+   page scrolls like any other, so a shorter phone or an open section never
+   cuts anything off. */
+@media (max-width: 1023px) {
+  html.home-locked,
+  html.home-locked body {
+    height: auto;
+    overflow: visible;
+    overscroll-behavior: auto;
+  }
+
+  /* At least a screen tall, and as tall as its content. */
+  .home {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+}
+
+/* Touch screens: a taller tap area for each row and fingertip-sized icon
+   links, without spreading the rows apart. */
+@media (pointer: coarse) {
+  .index__row {
+    padding: 5px 0;
+    margin: -5px 0;
+  }
+
+  .chip--icon {
+    width: 40px;
+    height: 40px;
+  }
+}

@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import { Cursor } from './components/Cursor';
+import { TopBar } from './components/TopBar';
+import { PrefsProvider } from './lib/prefs';
+import './theme-dark.css';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Centible } from './pages/Centible';
@@ -26,12 +29,29 @@ function ScrollToTop() {
   return null;
 }
 
+/* The homepage brings its own chrome. Every other page (case studies and
+   About) gets the same sound, lights and clock row at the top (see TopBar),
+   finds its way back with its own "Back" link, and gets the footer. */
+function PageTop() {
+  const { pathname } = useLocation();
+  if (pathname === '/') return null;
+  return <TopBar className="site-top" />;
+}
+
+function PageChrome() {
+  const { pathname } = useLocation();
+  if (pathname === '/') return null;
+  return <Footer />;
+}
+
 function App() {
   return (
+    <PrefsProvider>
     <Router>
-      <div className="min-h-screen bg-white">
+      <div className="app-root">
         <ScrollToTop />
-        <Header />
+        <Cursor />
+        <PageTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -42,9 +62,10 @@ function App() {
           <Route path="/wigo" element={<Wigo />} />
           <Route path="/8451" element={<EightyFourFiftyOne />} />
         </Routes>
-        <Footer />
+        <PageChrome />
       </div>
     </Router>
+    </PrefsProvider>
   );
 }
 

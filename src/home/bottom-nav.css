@@ -1,0 +1,85 @@
+/* ── glass bottom nav (shared by every page that uses it) ─────────────── */
+
+.bottom-nav {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 231px;
+  height: 56px;
+  padding: 10px 12px;
+  translate: -50% 0;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 28px;
+  background: rgba(241, 241, 241, 0.8);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  filter: drop-shadow(0 10px 12px rgba(15, 13, 13, 0.07)) drop-shadow(0 2px 3px rgba(15, 13, 13, 0.04));
+}
+
+.bottom-nav__items {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 36px;
+}
+
+.bottom-nav__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 36px;
+  border-radius: 18px;
+  outline: none;
+  transition: background-color 0.2s;
+}
+
+.bottom-nav__item:hover {
+  background: rgba(15, 13, 13, 0.04);
+}
+
+.bottom-nav__item[aria-current='page']:hover {
+  background: none;
+}
+
+/* The selected highlight drawn in CSS, matching work-selected.svg: a white
+   36px disc with a faint rim and a soft shadow below. */
+.bottom-nav__item--on::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 14px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px -2px rgba(15, 13, 13, 0.04);
+}
+
+.bottom-nav__item--on img {
+  position: relative;
+}
+
+.bottom-nav__item[aria-disabled='true'] {
+  cursor: default;
+}
+
+.bottom-nav__item:focus-visible {
+  box-shadow: 0 0 0 2px #0d99ff;
+}
+
+/* The selected highlight's shadow runs past the 36px slot, above and below. */
+.bottom-nav__selected {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 64px;
+  height: 44px;
+  max-width: none;
+}

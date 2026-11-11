@@ -1,312 +1,118 @@
-import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { BackToWork } from '../components/CaseStudy';
+import { ArcPhoto, PhotoArc } from '../components/PhotoArc';
+import { CherryTree } from '../components/CherryTree';
+import { Decode } from '../components/Decode';
+import { Signature } from '../components/Signature';
+import { usePrefs } from '../lib/prefs';
+import { play } from '../home/sound';
+import './about.css';
 
-/* The tools behind the work — macOS app icons at 256px, so they stay crisp at
-   any render size and all share one shape. Being real app tiles, they need no
-   per-icon sizing: each fills its square the same way. */
-const STACK = [
-  { name: 'Figma', icon: '/toolIcons/figma.png' },
-  { name: 'Cursor', icon: '/toolIcons/cursor.png' },
-  { name: 'Claude', icon: '/toolIcons/claude.png' },
-  { name: 'ChatGPT', icon: '/toolIcons/chatgpt.png' },
-  { name: 'Notion', icon: '/toolIcons/notion.png' },
-  { name: 'Dia', icon: '/toolIcons/dia.png' },
-  { name: 'Spotify', icon: '/toolIcons/spotify.png' },
+/* About: one centred column. The hello, then the photos drifting by in a
+   straight row (see PhotoArc), then the story with a pixel cherry tree
+   beside it. Shaking the tree is the easter egg: it turns every photo into
+   dots (and back). */
+
+/* The photos in the row (see PhotoArc), whole at one shared height, in the
+   order and with the captions they have in the Figma file. Add or
+   change a caption to label a photo; leave it out and the tile goes
+   uncaptioned. */
+const PHOTOS: ArcPhoto[] = [
+  { src: '/about/strip/03-marathon.jpg', w: 600, h: 900, caption: 'My first marathon, 2:50:50 on debut!', alt: 'Oscar and a friend holding their marathon medals' },
+  { src: '/about/strip/02-img9091.jpg', w: 600, h: 800, alt: 'A city skyline across the water at dusk' },
+  { src: '/about/strip/01-img0569.jpg', w: 600, h: 800, caption: 'I love fish', alt: 'A plate of salmon and tuna sashimi' },
+  { src: '/about/strip/05-img7260.jpg', w: 600, h: 800, alt: 'Oscar at a fair at golden hour' },
+  { src: '/about/strip/04-img0992.jpg', w: 600, h: 800, caption: 'Ran it again: 2:49:18, qualified for Chicago 2028!', alt: 'Friends under the marathon finish arch' },
+  { src: '/about/strip/06-img8646.jpg', w: 600, h: 800, alt: 'Friends taking photos of each other on a sidewalk' },
+  { src: '/about/strip/07-img0324.jpg', w: 600, h: 800, alt: 'A selfie on a bike ride under a bridge' },
+  { src: '/about/strip/08-img8626.jpg', w: 600, h: 900, caption: 'I am part of a Chinese fan dancing team at UNC', alt: 'A big group photo with bouquets of flowers' },
+  { src: '/about/strip/10-img1456.jpg', w: 600, h: 800, caption: 'Slightest hint I like fish?', alt: 'A homemade sushi spread on a table' },
+  { src: '/about/strip/11-cusa.jpg', w: 900, h: 600, caption: 'The CUSA exec board 🫶🏻', alt: 'Friends posing together in a living room' },
+  { src: '/about/strip/13-newprofile.jpg', w: 600, h: 600, alt: 'Oscar on a sofa, glancing to the side' },
+  { src: '/about/strip/12-img2347.jpg', w: 900, h: 600, alt: 'A group on stage in front of a new year banquet screen' },
+  { src: '/about/strip/09-img9028.jpg', w: 600, h: 800, caption: 'Dream of being in Chicago post-grad', alt: 'A city lit up at night from above' },
+  { src: '/about/strip/14-family.jpg', w: 801, h: 600, caption: 'My family back in Hong Kong', alt: 'Family around a round dinner table' },
+  { src: '/about/strip/15-oakhouse.jpg', w: 898, h: 600, alt: 'Friends working on laptops at the Oak House café' },
+  { src: '/about/strip/16-img1011.jpg', w: 600, h: 800, caption: 'Track workouts on top', alt: 'Sneakers stretched out under a sunset sky' },
 ];
 
-/* Five prints laid out in a row, each tilted a degree or two so the set reads
-   as photos dropped on a table rather than a grid.
 
-   Every frame takes the shape of the photo it holds — `aspect` matches the
-   source file's own ratio, so nothing is cropped and no print carries empty
-   paper — and `basis` widens the landscape shots against the portrait ones,
-   the way a stack of prints is never all one size. Basis totals over 100%; the
-   row shrinks them to fit while keeping those proportions. */
-const POLAROIDS = [
-  { url: '/firstMarathon.JPG', caption: 'Ran 2:50 on my first marathon!', tilt: -8, aspect: '2 / 3', basis: 16 },
-  { url: '/flying.JPG', caption: 'Chinese fan dancing with UNC Flying Silk', tilt: 5, aspect: '3 / 2', basis: 23 },
-  { url: '/oscarCUSA.jpg', caption: 'The amazing CUSA exec!', tilt: -4, aspect: '3 / 2', basis: 23 },
-  { url: '/oscarFam.jpg', caption: 'My family back in Hong Kong 🇭🇰', tilt: 7, aspect: '4 / 3', basis: 20 },
-  { url: '/breadDough.jpg', caption: 'Photography and food 🤝🏻', tilt: -6, aspect: '2 / 3', basis: 16 },
-  { url: '/restaurantKitchen.jpg', caption: 'Restaurant kid at heart', tilt: 4.5, aspect: '3 / 2', basis: 23 },
-];
-
-/* Same label as the homepage's "my work", flush left with the rows below it.
-   Instrument Sans and its tracking are tuned for a word or two. */
-const SECTION_LABEL =
-  'mb-4 font-label text-[15px] font-medium tracking-[0.7px] text-neutral-900/60';
-
-/* A label long enough to read as a sentence takes the page's own typeface
-   instead — Satoshi at body size, with the tracking dropped. */
-const SECTION_LABEL_LONG =
-  'mb-4 text-[15px] font-medium text-neutral-900/60';
-
-/* A logo gutter, then name and date sharing the first line with the degree or
-   role beneath them. Rows without a logo leave the gutter empty so every row
-   in both lists keeps the same text alignment. */
-const ROW = 'grid grid-cols-[48px,minmax(0,1fr),auto] gap-x-4 gap-y-0.5 py-2.5 items-start';
-/* Tall enough to stand against both lines of the row, not just the name. */
-const ROW_LOGO = 'row-span-2 h-12 w-12 object-contain';
-const ROW_DETAIL_START = 'col-start-2';
-const ROW_NAME = 'text-[16px] leading-6 text-neutral-900/85';
-const ROW_WHEN =
-  'text-[16px] leading-6 tabular-nums whitespace-nowrap text-neutral-900/40';
-const ROW_DETAIL = `${ROW_DETAIL_START} col-span-2 text-[16px] leading-6 text-pretty text-neutral-900/55`;
 
 export function About() {
-  /* Education and experience share one row shape: name and date on the first
-     line, the degree or role on the second. */
-  const education = [
-    {
-      name: 'UNC Chapel Hill',
-      detail: 'B.A. Computer Science · B.S. Information Science',
-      when: 'May 2027',
-      logo: '/uncLogo.png',
-    },
-  ];
+  // The easter egg: shaking the cherry tree turns every photo into dots and
+  // decodes the heading the homepage "Engineer" way, settling as
+  // <Hey there, I'm Oscar /> in blue; shaking it again turns it all back.
+  const [dots, setDots] = useState(false);
+  const [run, setRun] = useState(0);
+  const { sound } = usePrefs();
+  const shaken = () => {
+    if (sound) play('rustle');
+    setDots((was) => !was);
+    setRun((n) => n + 1);
+  };
 
-  const experiences = [
-    { company: 'Figma', role: 'Campus Leader', when: 'Fall 2026', logo: '/figmaLogo.png' },
-    { company: '84.51°', role: 'Product Design Intern', when: 'Summer 2026', logo: '/8451Logo.png' },
-    {
-      company: 'Quantifyd',
-      role: 'Product Design Intern',
-      when: 'Summer 2025',
-      logo: '/quantifydLogo.png',
-    },
-    {
-      company: 'Centible',
-      role: 'Product Designer',
-      when: 'Fall 2025',
-      logo: '/centibleLogo.png',
-    },
-    {
-      company: 'UNC Computer Science',
-      role: 'Web Design & Development UTA',
-      when: 'Fall 2025',
-      logo: '/uncCompSciLogo.png',
-    },
-    { company: '1893 Brand Studio', role: 'Product Designer', when: 'Spring 2025', logo: '/1893Logo.png' },
-    { company: 'CS + Social Good', role: 'UI/UX Production Team', when: 'Fall 2024', logo: '/cssgLogo.png' },
-  ];
+  // The handwritten name writes itself in the first time it comes into view.
+  const sign = useRef<HTMLDivElement>(null);
+  const [written, setWritten] = useState(false);
+  useEffect(() => {
+    const el = sign.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setWritten(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.6 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
-    <section className="min-h-screen px-4 sm:px-6 md:px-12 pt-32 sm:pt-36 md:pt-44 pb-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Hero — held to the same measure as the education and experience
-            lists below, so the whole page shares one column. */}
-        <div className="max-w-4xl mx-auto mb-12 md:mb-20 grid md:grid-cols-[1fr,300px] gap-8 md:gap-16 items-start">
-          {/* Left side - Text content */}
-          <div>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl mb-10 md:mb-12 tracking-tight leading-[1.1] text-neutral-900 font-normal"
-            >
-              Hey there, I'm Oscar 👋🏻
-            </motion.h1>
+    <div className="cs-page about">
+      <BackToWork className="about-back" />
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-[16px] leading-6 text-neutral-900/55"
-            >
-              I didn’t know I wanted to be a designer. I came into college expecting to pursue
-              software engineering or data science, but a web design class introduced me to the
-              space where technical thinking meets creativity. Design became the way I could
-              understand how technology works while shaping how people experience and enjoy it.
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-[16px] leading-6 text-neutral-900/55 mt-4"
-            >
-              I've been lucky enough to work on all sorts of problems at the intersection of design
-              and technology, building intuitive experiences across web and mobile alongside some
-              incredibly talented people. A hundred prototypes later, and I'd do it all over again.
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-[16px] leading-6 text-neutral-900/55 mt-4"
-            >
-              Here's to the next hundred.
-            </motion.p>
+      <main className="about-layout">
+        <h1 className="about-heading about-title" data-code={dots || undefined}>
+          <span className="about-bracket" aria-hidden="true">
+            &lt;
+          </span>
+          <Decode text="Hey there, I’m Oscar 👋🏻" run={run} />
+          <span className="about-bracket about-bracket--close" aria-hidden="true">
+            &nbsp;/&gt;
+          </span>
+        </h1>
+
+        <PhotoArc photos={PHOTOS} dots={dots} />
+
+        {/* The story, with a little pixel cherry tree beside it. */}
+        <div className="about-story">
+          <div className="about-prose">
+            <p>
+              I didn’t know I wanted to be a designer. I came into college expecting to pursue software engineering or
+              data science, but a web design class introduced me to the space where technical thinking meets creativity.
+              Design became the way I could understand how technology works while shaping how people experience and
+              enjoy it.
+            </p>
+            <p>
+              I’ve been lucky enough to work on all sorts of problems at the intersection of design and technology,
+              building intuitive experiences across web and mobile alongside some incredibly talented people. A hundred
+              prototypes later, and I’d do it all over again.
+            </p>
+            <p>Here’s to the next hundred.</p>
+          </div>
+          <div className="about-tree">
+            <CherryTree scale={0.93} onShake={shaken} />
           </div>
 
-          {/* Right side - Polaroid-style profile photo */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="justify-self-center md:justify-self-end w-full max-w-[300px]"
-          >
-            <img
-              src="/oscarProfile.svg"
-              alt="Oscar Cheung"
-              className="w-full h-auto"
-              loading="eager"
-              decoding="async"
-            />
-          </motion.div>
+          {/* My name in my own hand, signing off the story. */}
+          <div ref={sign} className="about-sign" data-written={written || undefined}>
+            <Signature className="about-signature" maskId="about-signature-ink" />
+          </div>
         </div>
-
-        {/* Education then experience — a quiet label over a list of two-line
-            rows: name and date on the first, degree or role on the second.
-            The label repeats the homepage's "my work" treatment so the two
-            pages read as one site. */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="max-w-4xl mx-auto mb-12 md:mb-16"
-        >
-          <h2 className={SECTION_LABEL}>Education</h2>
-          <ul className="mb-10 md:mb-12">
-            {education.map((ed) => (
-              <li key={ed.name} className={ROW}>
-                {ed.logo ? (
-                  <img src={ed.logo} alt="" aria-hidden="true" className={ROW_LOGO} />
-                ) : (
-                  <span aria-hidden="true" />
-                )}
-                <span className={ROW_NAME}>{ed.name}</span>
-                <span className={ROW_WHEN}>{ed.when}</span>
-                <span className={ROW_DETAIL}>{ed.detail}</span>
-              </li>
-            ))}
-          </ul>
-
-          <h2 className={SECTION_LABEL}>Experience</h2>
-          <ul className="mb-10 md:mb-12">
-            {experiences.map((exp) => (
-              <li key={exp.company} className={ROW}>
-                {exp.logo ? (
-                  /* Company marks are square artwork, so they take the tile's
-                     corner radius; the education crest is a free shape. */
-                  <img
-                    src={exp.logo}
-                    alt=""
-                    aria-hidden="true"
-                    className={`${ROW_LOGO} rounded-[10px]`}
-                  />
-                ) : (
-                  <span aria-hidden="true" />
-                )}
-                <span className={ROW_NAME}>{exp.company}</span>
-                <span className={ROW_WHEN}>{exp.when}</span>
-                <span className={ROW_DETAIL}>{exp.role}</span>
-              </li>
-            ))}
-          </ul>
-
-          {/* Stack — a single row of app icons, no captions. The name rides on
-              the alt and the tooltip rather than taking up space. */}
-          <h2 className={SECTION_LABEL_LONG}>The Tools I Use to Bring Ideas to Life</h2>
-          {/* Evenly spaced across the container: the first icon starts on the
-              same edge as the rows above, the last ends on the right edge, and
-              each cell shrinks below the cap on narrow screens. */}
-          <ul className="flex items-center justify-between gap-4">
-            {STACK.map((tool) => (
-              <li key={tool.name} className="flex min-w-0 flex-1 max-w-[64px] justify-center">
-                {/* Cyrus's hover: the icon grows ~15% in place, no lift. The
-                    name settles into the gap beneath it at the same time. */}
-                <div className="group relative flex w-full justify-center">
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 -translate-y-1 whitespace-nowrap rounded-md bg-neutral-900/[0.05] px-2 py-1 font-label text-[12px] text-neutral-900/70 opacity-0 transition-all duration-200 ease-out group-hover:translate-y-0 group-hover:opacity-100"
-                  >
-                    {tool.name}
-                  </span>
-                  <img
-                    src={tool.icon}
-                    alt={tool.name}
-                    className="w-full h-auto transition-transform duration-300 ease-out group-hover:scale-[1.15]"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-
-        {/* Lead-in to the photographs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.1 }}
-          className="mt-16 max-w-4xl mx-auto"
-        >
-          <h2 className={SECTION_LABEL}>Life Outside the Frame</h2>
-          <p className="text-[16px] leading-6 text-neutral-900/55">
-            A lot of who I am comes from the people, places, and experiences outside of work. When
-            I’m not designing, you’ll probably find me running (all the time), experimenting with
-            new recipes in the kitchen, or capturing the little moments in life :)
-          </p>
-        </motion.div>
-
-        {/* Polaroids — a row of prints laid down at slight angles, each
-            straightening and lifting under the cursor. On narrow screens the
-            row becomes a snap carousel rather than shrinking to nothing. */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.15 }}
-          /* Centred on one line rather than sitting on a shared baseline, and
-             pulled together with a negative gap so the prints overlap the way
-             a handful dropped on a table would. */
-          /* A touch wider than the text column, so the prints read larger
-             without the captions running into their neighbours. */
-          className="mt-8 max-w-5xl mx-auto flex items-center gap-3 overflow-x-auto pb-2 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:overflow-visible sm:snap-none sm:pb-0 sm:px-5 sm:gap-0 sm:-space-x-2"
-        >
-          {POLAROIDS.map((photo, i) => (
-            <figure
-              key={photo.url}
-              /* Lifting a print on hover also raises it above its neighbours. */
-              className="group relative w-[62vw] max-w-[240px] shrink-0 snap-center transition-transform duration-500 ease-out [transform:rotate(var(--tilt))] hover:z-20 hover:[transform:rotate(0deg)_translateY(-6px)] sm:w-auto sm:max-w-none sm:shrink sm:basis-[var(--basis)] sm:snap-align-none"
-              style={
-                {
-                  '--tilt': `${photo.tilt}deg`,
-                  '--basis': `${photo.basis}%`,
-                  /* Descending, so each print overlaps the one to its right
-                     rather than covering its neighbour's caption. */
-                  zIndex: POLAROIDS.length - i,
-                } as React.CSSProperties
-              }
-            >
-              <div className="rounded-[2px] bg-white p-[6px] pb-0 shadow-[0_1px_2px_rgba(23,23,23,0.06),0_4px_14px_rgba(23,23,23,0.09)]">
-                {/* The window takes the photo's own shape, so a cover fill
-                    crops nothing worth keeping. */}
-                <div
-                  className="relative overflow-hidden bg-neutral-100"
-                  style={{ aspectRatio: photo.aspect }}
-                >
-                  <img
-                    src={photo.url}
-                    alt={photo.caption}
-                    /* A touch of grey at rest, clearing on hover. */
-                    className="absolute inset-0 h-full w-full object-cover grayscale-[0.1] transition-[filter] duration-700 ease-out group-hover:grayscale-0"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                {/* Caveat runs small for its point size, so it sits larger
-                    than the label faces elsewhere to read at the same scale. */}
-                {/* Held in from the edges so a neighbouring print overlapping
-                    this one can never reach the writing. */}
-                <figcaption className="px-5 pt-1.5 pb-2 text-center font-hand text-[15px] font-medium leading-tight text-neutral-900/70">
-                  {photo.caption}
-                </figcaption>
-              </div>
-            </figure>
-          ))}
-        </motion.div>
-
-      </div>
-    </section>
+      </main>
+    </div>
   );
 }

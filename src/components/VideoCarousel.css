@@ -1,116 +1,195 @@
-.video-carousel-container {
-  position: relative;
-  padding: 24px 0 16px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  background: #f5f5f7;
-  border-radius: 24px;
+/* ── Carousel (see VideoCarousel.tsx) ────────────────────────────────────
+   An outlined frame, like the case studies' other framed visuals: the clip
+   or screen in the middle, round previous / next buttons either side, and a row of
+   labelled tabs with progress lines underneath. */
+
+.vc {
+  padding: 24px 24px 20px;
+  border-radius: 14px;
+  box-shadow: 0 0 0 1px var(--line, rgba(15, 13, 13, 0.08));
+  outline: none;
 }
 
-.video-carousel-scroll-track {
+.vc:focus-visible {
+  box-shadow:
+    0 0 0 1px var(--line, rgba(15, 13, 13, 0.08)),
+    0 0 0 3px rgba(13, 153, 255, 0.35);
+}
+
+.vc__stage {
+  position: relative;
   display: flex;
-  height: calc(100% - 50px);
+  align-items: center;
+  justify-content: center;
+}
+
+.vc__track {
+  display: flex;
   width: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  -ms-overflow-style: none;
 }
 
-.video-carousel-scroll-track::-webkit-scrollbar {
+.vc__track::-webkit-scrollbar {
   display: none;
 }
 
-.video-carousel-item {
-  flex: 0 0 100%;
-  min-width: 100%;
+.vc__slide {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex: 0 0 100%;
   justify-content: center;
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  padding: 0 24px;
-  box-sizing: border-box;
 }
 
-.video-carousel-video-container {
-  flex: 1;
-  width: 100%;
-  max-width: 380px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 1.5rem;
+.vc__video {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: min(520px, 64vh);
+  border-radius: 20px;
 }
 
-.video-carousel-video {
-  width: 100%;
-  height: 100%;
+/* Slides keep clear of the previous / next buttons either side. */
+@media (min-width: 641px) {
+  .vc__slide {
+    padding: 0 56px;
+  }
+}
+
+/* Still screens: scaled to fit, never cropped. */
+.vc__image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: min(480px, 60vh);
   object-fit: contain;
-  border-radius: 1.5rem;
 }
 
-.video-carousel-title {
-  margin-top: 12px;
+/* Previous / next: white chips, the site's chip language. */
+.vc__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow:
+    0 0 0 1px rgba(15, 13, 13, 0.08),
+    0 4px 12px rgba(15, 13, 13, 0.08);
+  translate: 0 -50%;
+  transition:
+    background-color 0.2s,
+    scale 0.2s;
+}
+
+.vc__arrow:hover {
+  background: #f6f6f6;
+  scale: 1.06;
+}
+
+.vc__arrow:active {
+  scale: 0.96;
+}
+
+.vc__arrow--prev {
+  left: 8px;
+}
+
+.vc__arrow--next {
+  right: 8px;
+}
+
+/* Tabs: one per clip, each with a progress line that fills while it plays. */
+.vc__tabs {
+  display: grid;
+  grid-template-columns: repeat(var(--n, 2), minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.vc__tab {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 8px;
+  row-gap: 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  font: inherit;
+  color: var(--muted, #8c8c8c);
+  transition: color 0.2s;
+}
+
+.vc__tab:hover,
+.vc__tab[aria-selected='true'] {
+  color: var(--ink, #0f0d0d);
+}
+
+.vc__bar {
+  grid-column: 1 / -1;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: rgba(15, 13, 13, 0.1);
+}
+
+.vc__fill {
+  display: block;
+  height: 100%;
+  background: var(--csa, #0a6fc2);
+  transform-origin: left;
+  transition: transform 0.25s linear;
+}
+
+.vc__num {
+  font-size: 12px;
+  line-height: 20px;
+  font-variant-numeric: tabular-nums;
+  color: var(--csa, #0a6fc2);
+}
+
+.vc__tab[aria-selected='false'] .vc__num {
+  color: inherit;
+}
+
+.vc__title {
   font-size: 14px;
-  color: #666;
+  line-height: 20px;
+}
+
+.vc__caption {
+  margin-top: 16px;
   text-align: center;
-  padding: 0 16px;
+  color: var(--muted, #8c8c8c);
 }
 
-.video-carousel-indicators-container {
-  display: flex;
-  justify-content: center;
-  padding-top: 16px;
-}
-
-.video-carousel-indicators {
-  display: flex;
-  gap: 24px;
-}
-
-.video-carousel-indicator {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  padding: 8px;
-  margin: -8px;
-  touch-action: manipulation;
-}
-
-.video-carousel-indicator.active {
-  background-color: #1ED760;
-}
-
-.video-carousel-indicator.inactive {
-  background-color: #ccc;
-}
-
-/* Improve touch targets on mobile */
-@media (max-width: 768px) {
-  .video-carousel-indicator {
-    padding: 12px;
-    margin: -12px;
+@media (max-width: 640px) {
+  .vc {
+    padding: 16px 12px;
   }
-  
-  .video-carousel-title {
-    font-size: 13px;
-    padding: 0 12px;
+
+  .vc__arrow {
+    width: 32px;
+    height: 32px;
   }
-  
-  .video-carousel-item {
-    padding: 0 16px;
+
+  .vc__tabs {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vc__fill,
+  .vc__arrow {
+    transition: none;
   }
 }

@@ -1,0 +1,24 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="64" height="44" viewBox="0 0 64 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Work &#194;&#183; Selected">
+<g id="Circular selected highlight" filter="url(#filter0_d_0_21)">
+<circle cx="32" cy="20" r="18" fill="white"/>
+<circle cx="32" cy="20" r="17.5" stroke="white" stroke-opacity="0.4"/>
+</g>
+<g id="Briefcase icon">
+<path id="Vector" d="M25.5833 15.4167H38.4167C39.4292 15.4167 40.25 16.2375 40.25 17.25V26.4167C40.25 27.4292 39.4292 28.25 38.4167 28.25H25.5833C24.5708 28.25 23.75 27.4292 23.75 26.4167V17.25C23.75 16.2375 24.5708 15.4167 25.5833 15.4167Z" stroke-width="1.55833" stroke-linecap="round" stroke-linejoin="round" stroke="#0F0D0D"/>
+<path id="Vector_2" d="M28.3333 15.4167V13.5833C28.3333 13.0971 28.5265 12.6308 28.8703 12.287C29.2141 11.9432 29.6804 11.75 30.1667 11.75H33.8333C34.3196 11.75 34.7859 11.9432 35.1297 12.287C35.4735 12.6308 35.6667 13.0971 35.6667 13.5833V15.4167M23.75 20C26.3448 21.1633 29.1563 21.7647 32 21.7647C34.8437 21.7647 37.6552 21.1633 40.25 20M30.1667 20.9167H33.8333" stroke-width="1.55833" stroke-linecap="round" stroke-linejoin="round" stroke="#0F0D0D"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_0_21" x="10" y="0" width="44" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="2" operator="erode" in="SourceAlpha" result="effect1_dropShadow_0_21"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="3"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.0588235 0 0 0 0 0.0509804 0 0 0 0 0.0509804 0 0 0 0.0392157 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_21"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_21" result="shape"/>
+</filter>
+</defs>
+</svg>

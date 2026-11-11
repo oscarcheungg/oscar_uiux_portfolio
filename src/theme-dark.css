@@ -1,0 +1,178 @@
+/* ── Lights off, beyond the homepage ───────────────────────────────────────
+   The bulb in the top bar sets data-theme="dark" on <html> (see lib/prefs).
+   The homepage has its own night palette in home.css; this file gives the
+   case studies, About and the footer theirs. Images, covers and videos stay
+   as they are; everything drawn around them dims. */
+
+.app-root {
+  min-height: 100vh;
+  background: #fff;
+}
+
+html[data-theme='dark'],
+html[data-theme='dark'] body,
+html[data-theme='dark'] .app-root {
+  background: #121212;
+}
+
+/* ── the page's own tokens ── */
+
+html[data-theme='dark'] .cs-page {
+  --ink: #f2f0ef;
+  --text: #cfcac6;
+  --muted: #8a8a8a;
+  --line: rgba(255, 255, 255, 0.1);
+  --bubble: #1c1c1c;
+  background: #121212;
+  color: var(--text);
+}
+
+/* Accents lighten so they still read on the dark page. */
+html[data-theme='dark'] [data-accent] {
+  --csa: #5aa9ff;
+  --cs-label: #4db3ff;
+}
+
+/* Black line icons (the back arrow and friends) turn white. */
+html[data-theme='dark'] .cs-page img[src^='/home/icons/'],
+html[data-theme='dark'] .lightbox img[src^='/home/icons/'] {
+  filter: invert(1);
+}
+
+/* ── the section scale ── */
+
+html[data-theme='dark'] .cs-scale__tick {
+  background: rgba(242, 240, 239, 0.2);
+}
+
+html[data-theme='dark'] .cs-scale__tick--major {
+  background: rgba(242, 240, 239, 0.38);
+}
+
+html[data-theme='dark'] .cs-scale__tick[data-state='past'] {
+  background: rgba(242, 240, 239, 0.5);
+}
+
+html[data-theme='dark'] .cs-scale__major[aria-current='true'] .cs-scale__tick--major,
+html[data-theme='dark'] .cs-scale__tick[data-state='here'] {
+  background: var(--ink);
+}
+
+/* ── blocks ── */
+
+html[data-theme='dark'] .cs-bar__fill {
+  background: rgba(242, 240, 239, 0.24);
+}
+
+html[data-theme='dark'] .cs-link:hover {
+  background: #262626;
+}
+
+/* ── the carousel ── */
+
+html[data-theme='dark'] .vc__arrow {
+  background: #1f1f1f;
+  color: var(--ink);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme='dark'] .vc__arrow:hover {
+  background: #2a2a2a;
+}
+
+html[data-theme='dark'] .vc__bar {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ── the image viewer ── */
+
+html[data-theme='dark'] [data-zoom-frame]::after {
+  background-color: #1f1f1f;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 2px 8px rgba(0, 0, 0, 0.4);
+  filter: invert(0);
+}
+
+html[data-theme='dark'] .lightbox__backdrop {
+  background: rgba(12, 12, 12, 0.92);
+}
+
+html[data-theme='dark'] .lightbox__frame {
+  background: #1c1c1c;
+}
+
+html[data-theme='dark'] .lightbox__close {
+  background: #1f1f1f;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme='dark'] .lightbox__close:hover {
+  background: #2a2a2a;
+}
+
+/* ── About ── */
+
+html[data-theme='dark'] .music-card {
+  border-color: #2a2a2a;
+}
+
+/* ── Tailwind colours written into the case study pages ── */
+
+html[data-theme='dark'] .cs-page .text-neutral-900,
+html[data-theme='dark'] .cs-page .text-neutral-800 {
+  color: var(--ink);
+}
+
+html[data-theme='dark'] .cs-page [class~='text-neutral-900/90'],
+html[data-theme='dark'] .cs-page [class~='text-neutral-900/80'],
+html[data-theme='dark'] .cs-page [class~='text-neutral-900/70'] {
+  color: rgba(242, 240, 239, 0.82);
+}
+
+html[data-theme='dark'] .cs-page [class~='text-neutral-900/60'],
+html[data-theme='dark'] .cs-page [class~='text-neutral-900/55'],
+html[data-theme='dark'] .cs-page [class~='text-neutral-900/50'],
+html[data-theme='dark'] .cs-page [class~='text-neutral-900/45'],
+html[data-theme='dark'] .cs-page .text-neutral-600,
+html[data-theme='dark'] .cs-page .text-neutral-500 {
+  color: rgba(242, 240, 239, 0.58);
+}
+
+html[data-theme='dark'] .cs-page [class~='text-neutral-900/30'],
+html[data-theme='dark'] .cs-page .text-neutral-400 {
+  color: rgba(242, 240, 239, 0.38);
+}
+
+html[data-theme='dark'] .cs-page .bg-white,
+html[data-theme='dark'] .cs-page [class~='bg-white/95'],
+html[data-theme='dark'] .cs-page [class~='bg-white/90'],
+html[data-theme='dark'] .cs-page [class~='bg-white/80'] {
+  background-color: #1c1c1c;
+}
+
+html[data-theme='dark'] .cs-page [class~='bg-white/60'],
+html[data-theme='dark'] .cs-page [class~='bg-white/40'] {
+  background-color: rgba(28, 28, 28, 0.6);
+}
+
+html[data-theme='dark'] .cs-page .bg-neutral-100,
+html[data-theme='dark'] .cs-page .bg-neutral-50 {
+  background-color: #1c1c1c;
+}
+
+html[data-theme='dark'] .cs-page [class~='bg-neutral-900/[0.06]'] {
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+html[data-theme='dark'] .cs-page [class~='bg-neutral-900/[0.035]'] {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+html[data-theme='dark'] .cs-page .border-neutral-100,
+html[data-theme='dark'] .cs-page .border-neutral-200,
+html[data-theme='dark'] .cs-page .border-neutral-300,
+html[data-theme='dark'] .cs-page .border-white,
+html[data-theme='dark'] .cs-page [class~='border-white/20'] {
+  border-color: rgba(255, 255, 255, 0.12);
+}

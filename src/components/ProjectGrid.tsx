@@ -274,7 +274,7 @@ export function ProjectGrid() {
       {/* Narrower than the rest of the page so the covers stay modest. */}
       <div className="max-w-5xl mx-auto">
         {/* Section header — a quiet centred label rather than a large heading */}
-        <h2 className="mb-8 md:mb-10 text-center font-label text-[15px] font-medium tracking-[0.7px] text-neutral-900/60">
+        <h2 className="mb-8 md:mb-10 text-center font-label text-[15px] font-medium text-neutral-900/60">
           My Work
         </h2>
 

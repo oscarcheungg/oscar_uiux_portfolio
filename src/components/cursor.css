@@ -1,0 +1,109 @@
+/* ── Custom cursor (see Cursor.tsx) ─────────────────────────────────────── */
+
+/* The real pointer is hidden only while the custom one is running, so a
+   touch screen or a script failure always leaves a normal cursor. Text
+   fields keep their I-beam so typing still feels right. */
+html.custom-cursor,
+html.custom-cursor * {
+  cursor: none !important;
+}
+
+html.custom-cursor input,
+html.custom-cursor textarea,
+html.custom-cursor [contenteditable='true'] {
+  cursor: text !important;
+}
+
+/* The whole cursor rides on one transform at the pointer's exact position.
+   difference blending turns the white dot into the inverse of what's
+   beneath it. */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483000;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  opacity: 0;
+  transition: opacity 0.2s;
+  will-change: transform;
+}
+
+.cursor[data-shown='true'] {
+  opacity: 1;
+}
+
+/* The label layer sits on the same point but doesn't blend. */
+.cursor--tag {
+  mix-blend-mode: normal;
+}
+
+.cursor__dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #fff;
+  translate: -50% -50%;
+  transition:
+    width 0.26s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.26s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Swells over anything clickable… */
+.cursor[data-hover='true'] .cursor__dot {
+  width: 36px;
+  height: 36px;
+}
+
+/* …and pinches while pressed. */
+.cursor[data-down='true'] .cursor__dot {
+  scale: 0.7;
+}
+
+/* A short label in small capitals on a small dark tag, trailing just right
+   of the dot. */
+.cursor__label {
+  position: absolute;
+  top: 0;
+  left: 14px;
+  translate: 0 -50%;
+  padding: 5px 7px 4px;
+  border-radius: 5px;
+  background: #0f0d0d;
+  box-shadow: 0 4px 14px -6px rgba(15, 13, 13, 0.4);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #fff;
+  opacity: 0;
+  scale: 0.9;
+  transform-origin: left center;
+  transition:
+    opacity 0.2s,
+    scale 0.26s cubic-bezier(0.22, 1, 0.36, 1),
+    left 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cursor__label[data-on='true'] {
+  opacity: 1;
+  scale: 1;
+}
+
+.cursor[data-hover='true'] .cursor__label {
+  left: 26px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor__dot,
+  .cursor__label {
+    transition: none;
+  }
+}

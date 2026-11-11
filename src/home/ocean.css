@@ -1,0 +1,45 @@
+/* ── Ocean (see Ocean.tsx) ────────────────────────────────────────────────
+   Fills the homepage behind everything. It never takes clicks (the page's
+   links and buttons stay usable); the engine listens on the window itself.
+   Over the left column it fades to a faint layer so the text stays clear. */
+
+.ocean {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  /* Faint behind the left column, and behind the controls and clock in the
+     top-right corner. */
+  -webkit-mask-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.22) 0, rgba(0, 0, 0, 0.22) 380px, #000 540px),
+    radial-gradient(520px 150px at 100% 0, rgba(0, 0, 0, 0.18) 45%, #000 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.22) 0, rgba(0, 0, 0, 0.22) 380px, #000 540px),
+    radial-gradient(520px 150px at 100% 0, rgba(0, 0, 0, 0.18) 45%, #000 100%);
+  mask-composite: intersect;
+}
+
+/* The engine reads its glyph face from the canvas's font-family. */
+.ocean__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-family: 'Geist Mono', ui-monospace, Menlo, monospace;
+}
+
+/* Narrow windows: the column spans the page, so keep the water faint
+   everywhere. */
+@media (max-width: 1023px) {
+  .ocean {
+    -webkit-mask-image: none;
+    mask-image: none;
+    opacity: 0.3;
+  }
+}
+
+/* The column sits above the water. */
+.home__side {
+  position: relative;
+  z-index: 1;
+}

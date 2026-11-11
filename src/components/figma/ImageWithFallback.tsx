@@ -13,7 +13,7 @@ export function ImageWithFallback({ src, alt, className }: ImageWithFallbackProp
   const handleError = () => {
     if (!hasError) {
       setHasError(true);
-      setImgSrc('/frame1.png'); // Fallback to orb
+      setImgSrc('/logo-mark.svg'); // Fallback to the logo mark
     }
   };
 

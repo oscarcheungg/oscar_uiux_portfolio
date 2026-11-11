@@ -1,0 +1,73 @@
+/* ── Photo arc (see PhotoArc.tsx) ──────────────────────────────────────── */
+
+/* The stage: the width of its column, the photos placed in a straight row
+   by script. The row fades out at both ends rather than stopping sharply. */
+.arc {
+  position: relative;
+  overflow: hidden;
+  touch-action: pan-y;
+  cursor: grab;
+  outline: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 56px), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 56px), transparent);
+}
+
+.arc[data-dragging] {
+  cursor: grabbing;
+}
+
+.arc:focus-visible {
+  box-shadow: inset 0 0 0 2px #0d99ff;
+  border-radius: 6px;
+}
+
+/* Each photo, placed along the row by script. */
+.arc__tile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  will-change: transform;
+}
+
+/* Every photo at one height, its width following its own shape: never
+   cropped. */
+.arc__frame {
+  position: relative;
+  height: var(--arc-h);
+  overflow: hidden;
+  background: var(--bubble, #f6f6f6);
+}
+
+.arc__frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* The dots, laid exactly over the photo (see startDots). */
+.arc__dots {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.arc__caption {
+  /* Wraps to the width of its own photo (and never widens it), so a long
+     caption stays under its picture instead of running into the next. */
+  width: 0;
+  min-width: 100%;
+  min-height: 16px;
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--muted);
+  text-wrap: pretty;
+}
