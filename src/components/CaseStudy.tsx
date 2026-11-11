@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { isPlainClick, navigateWithTransition } from '../lib/pageTransition';
 import { usePrefs } from '../lib/prefs';
 import { play } from '../home/sound';
+import { LazyVideo } from '../lib/media';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { ProjectCover, ProjectCoverArt } from './ProjectCover';
@@ -332,9 +333,7 @@ export function CaseStudyFigure({
 }: CaseStudyFigureProps) {
   const media =
     type === 'video' ? (
-      <video src={src} className="w-full h-auto" autoPlay loop muted playsInline preload="auto">
-        Your browser does not support the video tag.
-      </video>
+      <LazyVideo src={src} className="w-full h-auto" autoPlay loop muted playsInline />
     ) : (
       <img
         src={src}

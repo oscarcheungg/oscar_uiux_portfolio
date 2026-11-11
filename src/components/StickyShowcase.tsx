@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { LazyVideo, useNearView } from '../lib/media';
 import './StickyShowcase.css';
 
 export interface ShowcaseSection {
@@ -19,6 +20,15 @@ export function StickyShowcase({ sections }: { sections: ShowcaseSection[] }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const currentVideoIndexRef = useRef(0);
+  // The phone's video loads only once it's nearly on screen (never on
+  // phones, where this layout is hidden), and pauses when scrolled away.
+  const { near, visible } = useNearView(videoRef);
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !near) return;
+    if (visible) video.play().catch(() => {});
+    else video.pause();
+  }, [near, visible]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -86,8 +96,8 @@ export function StickyShowcase({ sections }: { sections: ShowcaseSection[] }) {
         <div className="ss-container">
           <div className="ss-phone-display">
             <div className="ss-phone-frame">
-              <video ref={videoRef} className="ss-phone-video" autoPlay loop muted playsInline preload="auto">
-                <source src={sections[0].video} type="video/mp4" />
+              <video ref={videoRef} className="ss-phone-video" loop muted playsInline preload={near ? 'auto' : 'none'}>
+                {near && <source src={sections[0].video} type="video/mp4" />}
                 Your browser does not support the video tag.
               </video>
             </div>
@@ -123,10 +133,7 @@ export function StickyShowcase({ sections }: { sections: ShowcaseSection[] }) {
             className="space-y-4"
           >
             <div className="aspect-[9/16] bg-neutral-100 overflow-hidden max-w-xs mx-auto rounded-3xl">
-              <video className="w-full h-full object-cover" autoPlay loop muted playsInline preload="auto">
-                <source src={item.video} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              <LazyVideo src={item.video} className="w-full h-full object-cover" autoPlay loop muted playsInline />
             </div>
             <div>
               <h3 className="text-xl md:text-2xl font-medium mb-2">{item.title}</h3>

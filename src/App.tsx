@@ -4,6 +4,7 @@ import { Footer } from './components/Footer';
 import { Cursor } from './components/Cursor';
 import { TopBar } from './components/TopBar';
 import { PrefsProvider } from './lib/prefs';
+import { installVideoCleanup } from './lib/media';
 import './theme-dark.css';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
@@ -45,6 +46,8 @@ function PageChrome() {
 }
 
 function App() {
+  // Cancel the download of any video that leaves the page (see media.tsx).
+  useEffect(() => installVideoCleanup(), []);
   return (
     <PrefsProvider>
     <Router>

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { preloadMedia } from '../hooks/usePreload';
+import { useNearView } from '../lib/media';
 import './VideoCarousel.css';
 
 /* The site's one carousel, for screen recordings and still screens alike,
@@ -32,6 +32,10 @@ export default function VideoCarousel({ items = [] }: VideoCarouselProps): React
   const [progress, setProgress] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  // Nothing downloads until the carousel is nearly on screen; it plays only
+  // while in view.
+  const rootRef = useRef<HTMLDivElement>(null);
+  const { near, visible } = useNearView(rootRef);
   const indexRef = useRef(0);
   indexRef.current = index;
   // The track is only read once it has come to rest, so a slide we started
@@ -39,11 +43,6 @@ export default function VideoCarousel({ items = [] }: VideoCarouselProps): React
   const settle = useRef<number>();
   useEffect(() => () => window.clearTimeout(settle.current), []);
   const count = items.length;
-
-  useEffect(() => {
-    const videos = items.flatMap((item) => (item.video ? [item.video] : []));
-    if (videos.length) preloadMedia(videos);
-  }, [items, count]);
 
   const go = useCallback(
     (next: number) => {
@@ -66,12 +65,23 @@ export default function VideoCarousel({ items = [] }: VideoCarouselProps): React
       if (!video) return;
       if (i === index) {
         video.currentTime = 0;
-        video.play().catch(() => {});
+        if (near && visible) video.play().catch(() => {});
+        else video.pause();
       } else {
         video.pause();
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, items]);
+
+  // Scrolling it in or out of view resumes or pauses the current clip
+  // without restarting it.
+  useEffect(() => {
+    const video = videoRefs.current[indexRef.current];
+    if (!video || !near) return;
+    if (visible) video.play().catch(() => {});
+    else video.pause();
+  }, [near, visible]);
 
   // A swipe on touch screens moves the track itself; once it settles, follow it.
   const onScroll = () => {
@@ -98,6 +108,7 @@ export default function VideoCarousel({ items = [] }: VideoCarouselProps): React
 
   return (
     <div
+      ref={rootRef}
       className="vc"
       role="region"
       aria-roledescription="carousel"
@@ -135,8 +146,8 @@ export default function VideoCarousel({ items = [] }: VideoCarouselProps): React
                   className="vc__video"
                   muted
                   playsInline
-                  preload="auto"
-                  autoPlay={i === 0}
+                  // Only the showing clip fetches ahead; the rest wait.
+                  preload={near && i === index ? 'auto' : near ? 'metadata' : 'none'}
                   loop={!multiple}
                   onTimeUpdate={(e) => {
                     if (i !== index) return;
@@ -145,7 +156,7 @@ export default function VideoCarousel({ items = [] }: VideoCarouselProps): React
                   }}
                   onEnded={() => i === index && go(index + 1)}
                 >
-                  <source src={item.video} type="video/mp4" />
+                  {near && <source src={item.video} type="video/mp4" />}
                 </video>
               )}
             </div>

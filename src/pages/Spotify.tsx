@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
 import { AlertCircle, TrendingDown, Clock } from 'lucide-react';
-import { preloadMedia } from '../hooks/usePreload';
 import VideoCarousel from '../components/VideoCarousel';
 import { StickyShowcase } from '../components/StickyShowcase';
 import {
@@ -137,17 +135,6 @@ const REFLECTIONS = [
 ];
 
 export function Spotify() {
-  // Preload all videos when component mounts
-  useEffect(() => {
-    const videoUrls = SOLUTION_SECTIONS.map((section) => section.video);
-    // Also preload other videos used in the page
-    videoUrls.push(
-      '/spotifyAssets/newPlaylistProblems.mp4',
-      '/spotifyAssets/quickAdd.mp4'
-    );
-    preloadMedia(videoUrls);
-  }, []);
-
   return (
     <div className="cs-page" data-accent="spotify">
       <CaseStudyLayout>
