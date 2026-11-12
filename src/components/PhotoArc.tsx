@@ -259,7 +259,10 @@ export function PhotoArc({
     >
       {photos.map((p) => (
         <figure key={p.src} className="arc__tile" data-arc-tile>
-          <div className="arc__frame" style={{ aspectRatio: `${p.w} / ${p.h}` }}>
+          {/* An explicit width from the shared height, not aspect-ratio:
+              Safari can size an absolutely placed tile to nothing when its
+              width only comes from a ratio. */}
+          <div className="arc__frame" style={{ width: `calc(var(--arc-h) * ${(p.w / p.h).toFixed(4)})` }}>
             <img src={p.src} width={p.w} height={p.h} alt={p.alt ?? ''} draggable={false} />
           </div>
           <figcaption className="arc__caption">{p.caption ?? ''}</figcaption>
