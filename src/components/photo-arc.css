@@ -1,8 +1,11 @@
 /* ── Photo arc (see PhotoArc.tsx) ──────────────────────────────────────── */
 
 /* The stage: the width of its column, the photos placed in a straight row
-   by script. The row fades out at both ends rather than stopping sharply. */
+   by script. The row fades out at both ends rather than stopping sharply.
+   The fade is two page-coloured overlays, not a mask: on iPhone Safari a
+   mask over the moving photo layers leaves some of them undrawn. */
 .arc {
+  --arc-fade: #fff;
   position: relative;
   overflow: hidden;
   touch-action: pan-y;
@@ -10,8 +13,31 @@
   outline: none;
   user-select: none;
   -webkit-user-select: none;
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 56px), transparent);
-  mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 56px), transparent);
+}
+
+html[data-theme='dark'] .arc {
+  --arc-fade: #121212;
+}
+
+.arc::before,
+.arc::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 56px;
+  pointer-events: none;
+  background: linear-gradient(to right, var(--arc-fade), transparent);
+}
+
+.arc::before {
+  left: 0;
+}
+
+.arc::after {
+  right: 0;
+  transform: scaleX(-1);
 }
 
 .arc[data-dragging] {
